@@ -2,6 +2,13 @@ import Link from 'next/link';
 import React from 'react';
 import Menu from '@/components/Menu';
 import Image from 'next/image';
+import { IBM_Plex_Sans } from 'next/font/google';
+import { inherits } from 'util';
+
+const iBM_Plex_Sans = IBM_Plex_Sans({
+  subsets: ['latin'],
+  weight: '600',
+});
 
 const links = [
   { id: 1, title: 'How it works', url: '/' },
@@ -27,7 +34,7 @@ const Navbar = () => {
           >
             <Image src='/logo-1.svg' alt='' width={30} height={30} />
           </div>
-          <Link className='ml-2 mr-4' href='/'>
+          <Link className='ml-2 mr-2 lg:mr-4' href='/'>
             <Image
               src='/TherapyNoteWriter.svg'
               alt=''
@@ -37,11 +44,15 @@ const Navbar = () => {
           </Link>
         </div>
         <div
-          className='flex gap-4 ml-4 text-[#29375F] 
+          className='hidden md:flex md:gap-2 lg:gap-4 md:ml-2 lg:ml-4 text-[#29375F] 
           font-[600] uppercase text-[12px]'
         >
           {links.map((item) => (
-            <Link key={item.id} href={item.url}>
+            <Link
+              className={iBM_Plex_Sans.className}
+              key={item.id}
+              href={item.url}
+            >
               {item.title}
             </Link>
           ))}
@@ -50,9 +61,10 @@ const Navbar = () => {
       <div className='flex justify-end items-center gap-2'>
         <Link href='/'>
           <button
-            className='hidden sm:inline-block bg-[#6F91F4] py-[6px] px-7 rounded-full 
-            border-[1px] border-[#3157C9] 
-            uppercase text-white text-[10px] text-[600]
+            className='hidden md:flex bg-[#6F91F4] py-[6px] 
+            px-7 md:px-10 rounded-full border-[1px] 
+            border-[#3157C9] uppercase text-white 
+            text-[10px] text-[600] 
             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]'
           >
             Sign up
@@ -60,14 +72,18 @@ const Navbar = () => {
         </Link>
         <Link href='/'>
           <button
-            className='hidden sm:inline-block bg-white py-[6px] px-7 rounded-full border-[1px] 
-            border-[#3157C9] uppercase text-[10px] text-[600]
+            className='hidden md:flex bg-white py-[6px] 
+            px-7 md:px-10 rounded-full border-[1px] 
+            border-[#3157C9] uppercase text-[10px] 
+            text-[600] mr-1
             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]'
           >
             Login
           </button>
         </Link>
-        <Menu />
+        <div className='flex md:hidden'>
+          <Menu />
+        </div>
       </div>
     </div>
   );

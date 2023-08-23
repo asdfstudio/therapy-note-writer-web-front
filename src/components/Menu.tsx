@@ -2,6 +2,12 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { IBM_Plex_Sans } from 'next/font/google';
+
+const iBM_Plex_Sans = IBM_Plex_Sans({
+  subsets: ['latin'],
+  weight: '600',
+});
 
 const links = [
   { id: 1, title: 'How it works', url: '/' },
@@ -43,7 +49,11 @@ const Menu = () => {
             border-[#29375f33] sm:flex-row lg:hidden'
           >
             {links.map((item) => (
-              <Link key={item.id} href={item.url}>
+              <Link
+                className={iBM_Plex_Sans.className}
+                key={item.id}
+                href={item.url}
+              >
                 {item.title}
               </Link>
             ))}
