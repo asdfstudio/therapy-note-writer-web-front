@@ -1,10 +1,10 @@
 import Navbar from '@/components/Navbar';
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+// import { Inter } from 'next/font/google';
 import Footer from '@/components/Footer';
 
-const inter = Inter({ subsets: ['latin'] });
+// const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Therapy Note Writer',
@@ -18,10 +18,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
+      <body className='bg-[url("/bg-home-1.svg")] w-full bg-no-repeat bg-contain'>
+        {/* <div className={inter.className}> */}
         <Navbar />
         {children}
         <Footer />
+        {/* </div> */}
       </body>
     </html>
   );
