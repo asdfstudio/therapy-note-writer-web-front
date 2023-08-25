@@ -18,7 +18,8 @@ const SecondSection = () => {
     <div className={iBM_Plex_Sans.className}>
       <div
         className='bg-[url("/bg-home-2.svg")] h-auto 
-        bg-repeat-x bg-contain flex flex-col items-center justify-center'
+        bg-repeat-x bg-cover flex flex-col items-center 
+        justify-center'
       >
         <h1
           className='font-["poynter_Oldstyle_Display"] 
@@ -28,9 +29,17 @@ const SecondSection = () => {
         </h1>
 
         {/* Icon wrapper  */}
-        <div className='flex flex-col items-center mt-5'>
+        <div
+          className='flex flex-col items-center mt-5 
+          md:flex-row md:items-baseline md:justify-evenly 
+          md:w-[70vw]'
+        >
           {/* Single Item */}
-          <div className='flex flex-col items-center justify-center'>
+          <div
+            className='flex flex-col items-center 
+            justify-center w-[80vw] sm:flex-row md:flex-col 
+            md:w-full'
+          >
             {/* Icon */}
             <div className='flex'>
               <Image
@@ -42,17 +51,32 @@ const SecondSection = () => {
               />
             </div>
             {/* Text Contents */}
-            <div className='flex flex-col items-center justify-center mt-3 w-[70vw]'>
-              <p className='text-[#29375F] text-[22px] font-[500] leading-[1.75rem]'>
+            <div
+              className='flex flex-col items-center 
+              justify-center mt-3 w-[70vw] sm:items-start 
+              sm:ml-10 sm:w-[30vw] md:items-center
+              md:ml-0 md:w-full'
+            >
+              <p
+                className='text-[#29375F] text-[22px] 
+                font-[500] leading-[1.75rem]'
+              >
                 Input session info
               </p>
-              <p className='text-[#29375F] text-center text-[15px] font-[400] leading-[1.75rem] opacity-[0.7]'>
+              <p
+                className='text-[#29375F] text-center 
+                text-[15px] font-[400] leading-[1.75rem] 
+                opacity-[0.7] sm:text-left'
+              >
                 Easily enter relevant details about the therapy session.
               </p>
             </div>
           </div>
           {/* Arrow */}
-          <div className='flex mt-6 mb-6'>
+          <div
+            className='flex mt-6 mb-6 sm:-ml-[30vw] 
+            md:hidden'
+          >
             <Image
               src='/icon-arrow-down.svg'
               alt=''
@@ -61,9 +85,22 @@ const SecondSection = () => {
               draggable={false}
             />
           </div>
+          <div className='hidden md:flex'>
+            <Image
+              src='/icon-arrow-right.svg'
+              alt=''
+              width={130}
+              height={10}
+              draggable={false}
+            />
+          </div>
 
           {/* Single Item */}
-          <div className='flex flex-col items-center justify-center'>
+          <div
+            className='flex flex-col items-center 
+            justify-center sm:flex-row md:flex-col 
+            md:w-full'
+          >
             {/* Icon */}
             <div className='flex'>
               <Image
@@ -75,18 +112,34 @@ const SecondSection = () => {
               />
             </div>
             {/* Text Contents */}
-            <div className='flex flex-col items-center justify-center mt-3 w-[70vw]'>
-              <p className='text-[#29375F] text-[22px] font-[500] leading-[1.75rem]'>
+            <div
+              className='flex flex-col items-center 
+              justify-center mt-3
+              w-[70vw] sm:items-start sm:ml-10 sm:w-[30vw]
+              md:items-center
+              md:ml-0 md:w-full'
+            >
+              <p
+                className='text-[#29375F] text-[22px] 
+                font-[500] leading-[1.75rem]'
+              >
                 Click generate
               </p>
-              <p className='text-[#29375F] text-center text-[15px] font-[400] leading-[1.75rem] opacity-[0.7]'>
+              <p
+                className='text-[#29375F] text-center 
+                text-[15px] font-[400] leading-[1.75rem] 
+                opacity-[0.7] sm:text-left'
+              >
                 Our Al-powered system creates a professional progress note in
                 DAP format.
               </p>
             </div>
           </div>
           {/* Arrow */}
-          <div className='flex mt-6 mb-6'>
+          <div
+            className='flex mt-6 mb-6 sm:-ml-[30vw]
+            md:hidden'
+          >
             <Image
               src='/icon-arrow-down.svg'
               alt=''
@@ -96,8 +149,21 @@ const SecondSection = () => {
             />
           </div>
 
+          <div className='hidden md:flex'>
+            <Image
+              src='/icon-arrow-right.svg'
+              alt=''
+              width={130}
+              height={10}
+              draggable={false}
+            />
+          </div>
+
           {/* Single Item */}
-          <div className='flex flex-col items-center justify-center'>
+          <div
+            className='flex flex-col items-center 
+            justify-center sm:flex-row md:flex-col md:w-full'
+          >
             {/* Icon */}
             <div className='flex'>
               <Image
@@ -109,11 +175,23 @@ const SecondSection = () => {
               />
             </div>
             {/* Text Contents */}
-            <div className='flex flex-col items-center justify-center mt-3 w-[70vw]'>
-              <p className='text-[#29375F] text-[22px] font-[500] leading-[1.75rem]'>
+            <div
+              className='flex flex-col items-center 
+              justify-center mt-3 w-[70vw] sm:items-start 
+              sm:ml-10 sm:w-[30vw] md:items-center
+              md:ml-0 md:w-full'
+            >
+              <p
+                className='text-[#29375F] text-[22px] 
+                font-[500] leading-[1.75rem]'
+              >
                 Note complete
               </p>
-              <p className='text-[#29375F] text-center text-[15px] font-[400] leading-[1.75rem] opacity-[0.7]'>
+              <p
+                className='text-[#29375F] text-center 
+                text-[15px] font-[400] leading-[1.75rem] 
+                opacity-[0.7] sm:text-left'
+              >
                 Review, edit, and copy your progress note, freeing up time for
                 patient care.
               </p>
@@ -121,7 +199,7 @@ const SecondSection = () => {
           </div>
         </div>
 
-        <Link href='/' className='w-[17rem] sm:w-[10rem] mt-6'>
+        <Link href='/' className='w-[17rem] mt-10'>
           <button
             className='flex bg-[#6F91F4] py-[12px] 
             w-full rounded-full border-[1px] 
