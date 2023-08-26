@@ -30,37 +30,44 @@ const FirstSection = () => {
             draggable={false}
           />
         </div>
-        <div className='hidden md:flex'>
+        <div className='hidden md:flex w-[47.4375rem]'>
           <Image
             src='/banner-text-lg.svg'
             alt=''
-            height={100}
-            width={500}
+            height={550}
+            width={1200}
             draggable={false}
           />
         </div>
-        <div className='flex flex-col sm:flex-row gap-3 mt-5 items-center'>
-          <Link href='/' className='w-[20rem] sm:w-[10rem]'>
-            <button
-              className='flex bg-[#6F91F4] py-[12px] 
-            w-full rounded-full border-[1px] 
-            border-[#3157C9] uppercase text-white 
-            text-[12px] font-[600] justify-center
+        <div
+          className='flex flex-col sm:flex-row 
+          gap-3 mt-5 items-center'
+        >
+          <div
+            className='w-[20rem] h-[2.75rem] 
+            sm:w-[13.75rem] flex bg-[#6F91F4] py-[12px] 
+            rounded-full border-[1px] 
+            border-[#3157C9] text-white 
+            text-[1rem] font-[600] justify-center 
+            items-center
             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]'
-            >
-              Get Started
-            </button>
-          </Link>
-          <Link href='/' className='w-[20rem] sm:w-[10rem]'>
-            <button
-              className='flex bg-white py-[12px] 
-            w-full  rounded-full border-[1px] 
-            border-[#3157C9] uppercase text-[12px] 
-            font-[600] justify-center'
-            >
-              How It Works
-            </button>
-          </Link>
+          >
+            <Link href='/'>
+              <button className='uppercase'>Get Started</button>
+            </Link>
+          </div>
+          <div
+            className='w-[20rem] h-[2.75rem] sm:w-[13.75rem] 
+            flex bg-white 
+            py-[12px] rounded-full border-[1px] 
+            border-[#3157C9] uppercase text-[1rem] 
+            font-[600] text-[#6F91F4]
+            justify-center items-center'
+          >
+            <Link href='/'>
+              <button className='uppercase'>How It Works</button>
+            </Link>
+          </div>
         </div>
         <div className='flex sm:hidden mt-8'>
           <Image
@@ -71,21 +78,27 @@ const FirstSection = () => {
             draggable={false}
           />
         </div>
-        <div className='hidden sm:flex md:hidden mt-6'>
+        <div
+          className='hidden sm:flex lg:hidden mt-6 
+          w-[40rem] h-auto justify-center'
+        >
           <Image
             src='/banner-2-lg.png'
             alt=''
-            width={600}
-            height={100}
+            width={1200}
+            height={550}
             draggable={false}
           />
         </div>
-        <div className='hidden md:flex mt-6'>
+        <div
+          className='hidden lg:flex mt-6 
+          w-[70rem] h-auto justify-center'
+        >
           <Image
-            src='/banner-2-lg.png'
+            src='/banner-2-lg-big.png'
             alt=''
-            width={800}
-            height={100}
+            width={1200}
+            height={550}
             draggable={false}
           />
         </div>
