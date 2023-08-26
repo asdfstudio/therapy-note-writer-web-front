@@ -19,8 +19,9 @@ const Navbar = () => {
   return (
     <div className={iBM_Plex_Sans.className}>
       <div
-        className='bg-slate-50 flex h-10  mx-6 my-6 
-      justify-between items-center drop-shadow-xl rounded-full 
+        className='bg-slate-50 flex h-[3.75rem]  mx-6 my-6 
+      justify-between items-center drop-shadow-xl 
+      rounded-full 
       border-[1px] border-[#29375f33]'
       >
         <div className='flex justify-start items-center'>
@@ -29,10 +30,10 @@ const Navbar = () => {
         items-center rounded-full'
           >
             <div
-              className='bg-[#29375F] w-10 h-10 flex 
+              className='bg-[#29375F] w-[3.75rem] h-[3.75rem] flex 
         justify-center items-center rounded-full z-0'
             >
-              <Image src='/logo-1.svg' alt='' width={30} height={30} />
+              <Image src='/logo-1.svg' alt='' width={40} height={40} />
             </div>
             <Link className='ml-2 mr-2 lg:mr-4' href='/'>
               <Image
@@ -44,8 +45,10 @@ const Navbar = () => {
             </Link>
           </div>
           <div
-            className='hidden md:flex md:gap-2 lg:gap-4 md:ml-2 lg:ml-4 text-[#29375F] 
-          font-[600] uppercase text-[12px]'
+            className='hidden lg:flex gap-[2.5rem] 
+            lg:ml-[1.81rem] 
+            text-[#29375F] font-[600] uppercase 
+            text-[1rem] tracking-widest'
           >
             {links.map((item) => (
               <Link
@@ -59,28 +62,32 @@ const Navbar = () => {
           </div>
         </div>
         <div className='flex justify-end items-center gap-2'>
-          <Link href='/'>
-            <button
-              className='hidden sm:flex bg-[#6F91F4] py-[6px] 
-            px-7 md:px-10 rounded-full border-[1px] 
-            border-[#3157C9] uppercase text-white 
-            text-[10px] text-[600] 
+          <div
+            className='hidden sm:flex bg-[#6F91F4] 
+            sm:w-[9.375rem] sm:h-[2.75rem]  
+            lg:w-[13.75rem] lg:h-[2.75rem] rounded-full 
+            border-[1px] border-[#3157C9] text-white 
+            text-[1rem] text-[600] justify-center 
+            items-center
             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]'
-            >
-              Sign up
-            </button>
-          </Link>
-          <Link href='/'>
-            <button
-              className='hidden sm:flex bg-white py-[6px] 
-            px-7 md:px-10 rounded-full border-[1px] 
-            border-[#3157C9] uppercase text-[10px] 
-            text-[600] mr-1
+          >
+            <Link href='/'>
+              <button className='uppercase'>Sign up</button>
+            </Link>
+          </div>
+          <div
+            className='hidden sm:flex bg-white 
+            sm:w-[9.375rem] sm:h-[2.75rem] 
+            lg:w-[13.75rem] lg:h-[2.75rem] rounded-full 
+            border-[1px] border-[#3157C9] text-[1rem] 
+            text-[600] text-[#6F91F4] mr-[0.5rem] 
+            justify-center items-center
             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]'
-            >
-              Login
-            </button>
-          </Link>
+          >
+            <Link href='/'>
+              <button className='uppercase'>Login</button>
+            </Link>
+          </div>
           <div className='flex md:hidden'>
             <Menu />
           </div>

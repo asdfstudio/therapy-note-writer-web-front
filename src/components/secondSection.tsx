@@ -23,7 +23,7 @@ const SecondSection = () => {
       >
         <h1
           className='font-["poynter_Oldstyle_Display"] 
-          text-[40px] mt-5 text-[#29375F]'
+          text-[2.5rem] mt-5 text-[#29375F]'
         >
           How it <span className='italic'>works</span>
         </h1>
@@ -41,12 +41,12 @@ const SecondSection = () => {
             md:w-full'
           >
             {/* Icon */}
-            <div className='flex'>
+            <div className='flex w-[6.3125rem] h-[5rem]'>
               <Image
                 src='/second-icon-1.svg'
                 alt=''
-                width={90}
-                height={10}
+                width={1200}
+                height={550}
                 draggable={false}
               />
             </div>
@@ -58,14 +58,14 @@ const SecondSection = () => {
               md:ml-0 md:w-full'
             >
               <p
-                className='text-[#29375F] text-[22px] 
+                className='text-[#29375F] text-[1.375rem] 
                 font-[500] leading-[1.75rem]'
               >
                 Input session info
               </p>
               <p
                 className='text-[#29375F] text-center 
-                text-[15px] font-[400] leading-[1.75rem] 
+                text-[1.125rem] font-[400] leading-[1.75rem] 
                 opacity-[0.7] sm:text-left'
               >
                 Easily enter relevant details about the therapy session.
@@ -74,14 +74,15 @@ const SecondSection = () => {
           </div>
           {/* Arrow */}
           <div
-            className='flex mt-6 mb-6 sm:-ml-[30vw] 
+            className='flex w-[0.9205rem] h-[1.5625rem] 
+            mt-6 mb-6 sm:-ml-[30vw] 
             md:hidden'
           >
             <Image
               src='/icon-arrow-down.svg'
               alt=''
-              width={20}
-              height={10}
+              width={200}
+              height={100}
               draggable={false}
             />
           </div>
@@ -102,12 +103,12 @@ const SecondSection = () => {
             md:w-full'
           >
             {/* Icon */}
-            <div className='flex'>
+            <div className='flex w-[6.3125rem] h-[5rem]'>
               <Image
                 src='/second-icon-2.svg'
                 alt=''
-                width={90}
-                height={10}
+                width={1200}
+                height={550}
                 draggable={false}
               />
             </div>
@@ -120,14 +121,14 @@ const SecondSection = () => {
               md:ml-0 md:w-full'
             >
               <p
-                className='text-[#29375F] text-[22px] 
+                className='text-[#29375F] text-[1.375rem] 
                 font-[500] leading-[1.75rem]'
               >
                 Click generate
               </p>
               <p
                 className='text-[#29375F] text-center 
-                text-[15px] font-[400] leading-[1.75rem] 
+                text-[1.125rem] font-[400] leading-[1.75rem] 
                 opacity-[0.7] sm:text-left'
               >
                 Our Al-powered system creates a professional progress note in
@@ -137,14 +138,15 @@ const SecondSection = () => {
           </div>
           {/* Arrow */}
           <div
-            className='flex mt-6 mb-6 sm:-ml-[30vw]
+            className='flex w-[0.9205rem] h-[1.5625rem] 
+            mt-6 mb-6 sm:-ml-[30vw]
             md:hidden'
           >
             <Image
               src='/icon-arrow-down.svg'
               alt=''
-              width={20}
-              height={10}
+              width={200}
+              height={100}
               draggable={false}
             />
           </div>
@@ -165,12 +167,12 @@ const SecondSection = () => {
             justify-center sm:flex-row md:flex-col md:w-full'
           >
             {/* Icon */}
-            <div className='flex'>
+            <div className='flex w-[6.3125rem] h-[5rem]'>
               <Image
                 src='/second-icon-3.svg'
                 alt=''
-                width={90}
-                height={10}
+                width={1200}
+                height={550}
                 draggable={false}
               />
             </div>
@@ -182,14 +184,14 @@ const SecondSection = () => {
               md:ml-0 md:w-full'
             >
               <p
-                className='text-[#29375F] text-[22px] 
+                className='text-[#29375F] text-[1.375rem] 
                 font-[500] leading-[1.75rem]'
               >
                 Note complete
               </p>
               <p
                 className='text-[#29375F] text-center 
-                text-[15px] font-[400] leading-[1.75rem] 
+                text-[1.125rem] font-[400] leading-[1.75rem] 
                 opacity-[0.7] sm:text-left'
               >
                 Review, edit, and copy your progress note, freeing up time for
