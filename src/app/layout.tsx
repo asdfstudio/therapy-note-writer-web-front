@@ -2,9 +2,22 @@ import Navbar from '@/components/Navbar';
 import './globals.css';
 import type { Metadata } from 'next';
 // import { Inter } from 'next/font/google';
+import { IBM_Plex_Sans } from 'next/font/google';
 import Footer from '@/components/Footer';
+import localFont from 'next/font/local';
 
 // const inter = Inter({ subsets: ['latin'] });
+
+const iBM_Plex_Sans = IBM_Plex_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-iBM_Plex_Sans',
+});
+
+const poynter_Oldstyle_Display = localFont({
+  src: '../../public/font/PoynterOldstyleDisplay_Roman.ttf',
+  variable: '--font-poynter_Oldstyle_Display',
+});
 
 export const metadata: Metadata = {
   title: 'Therapy Note Writer',
@@ -19,11 +32,13 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className='bg-[url("/bg-home-1.svg")] w-full bg-no-repeat bg-contain'>
-        {/* <div className={inter.className}> */}
-        <Navbar />
-        {children}
-        <Footer />
-        {/* </div> */}
+        <div
+          className={`${iBM_Plex_Sans.variable} ${poynter_Oldstyle_Display.variable}`}
+        >
+          <Navbar />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );

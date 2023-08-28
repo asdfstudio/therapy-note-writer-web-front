@@ -1,31 +1,30 @@
 import React from 'react';
-import { IBM_Plex_Sans } from 'next/font/google';
-import localFont from 'next/font/local';
+// import { IBM_Plex_Sans } from 'next/font/google';
+// import localFont from 'next/font/local';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const iBM_Plex_Sans = IBM_Plex_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
-});
+// const iBM_Plex_Sans = IBM_Plex_Sans({
+//   subsets: ['latin'],
+//   weight: ['400', '500', '600'],
+// });
 
-const poynter_Oldstyle_Display = localFont({
-  src: '../../public/font/PoynterOldstyleDisplay_Roman.ttf',
-});
+// const poynter_Oldstyle_Display = localFont({
+//   src: '../../public/font/PoynterOldstyleDisplay_Roman.ttf',
+// });
 
 const SecondSection = () => {
   return (
-    <div className={iBM_Plex_Sans.className}>
+    <div className='font-iBM_Plex_Sans'>
       <div
         className='bg-[url("/bg-home-2.svg")] h-auto 
         bg-repeat-x bg-cover flex flex-col items-center 
         justify-center'
       >
-        <h1
-          className='font-["poynter_Oldstyle_Display"] 
-          text-[2.5rem] mt-5 text-[#29375F]'
-        >
-          How it <span className='italic'>works</span>
+        <h1 className='text-[2.5rem] mt-5 text-[#29375F]'>
+          <span className='font-poynter_Oldstyle_Display'>
+            How it <span className='italic'>works</span>
+          </span>
         </h1>
 
         {/* Icon wrapper  */}
