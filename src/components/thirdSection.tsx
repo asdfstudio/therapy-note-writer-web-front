@@ -22,7 +22,10 @@ const points = [
 
 const ThirdSection = () => {
   return (
-    <div className='mt-20 flex flex-col mb-[24rem] lg:flex-row lg:mb-0'>
+    <div
+      className='mt-20 flex flex-col mb-[24rem] 
+      lg:flex-row lg:mb-0'
+    >
       {/* Text Contents */}
       <div
         className='flex flex-col items-center 
@@ -133,7 +136,7 @@ const ThirdSection = () => {
       {/* Image & Calculator */}
       <div
         className='flex flex-col justify-center
-        items-center relative'
+        items-center relative lg:ml-10'
       >
         {/* Image */}
         <div className='flex justify-center relative'>
@@ -159,8 +162,16 @@ const ThirdSection = () => {
           alt=''
           width={1200}
           height={550}
-          className='absolute w-[22.5rem] top-[26rem] 
+          className='absolute w-[22rem] top-[26rem] 
           sm:hidden'
+        />
+        <Image
+          src={'/sec-3-value-calc-tablet.png'}
+          alt=''
+          width={1200}
+          height={550}
+          className='hidden absolute w-[30rem] top-[17rem] 
+          sm:flex lg:w-[20rem] lg:top-[29rem]'
         />
       </div>
     </div>
