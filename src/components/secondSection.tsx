@@ -30,14 +30,14 @@ const SecondSection = () => {
         {/* Icon wrapper  */}
         <div
           className='flex flex-col items-center mt-5 
-          md:flex-row md:items-baseline md:justify-evenly 
-          md:w-[70vw]'
+          xlc:flex-row xlc:items-baseline xlc:justify-evenly 
+          xlc:w-[70vw]'
         >
           {/* Single Item */}
           <div
             className='flex flex-col items-center 
-            justify-center w-[80vw] sm:flex-row md:flex-col 
-            md:w-full'
+            justify-center w-[80vw] sm:flex-row xlc:flex-col 
+            xlc:w-full'
           >
             {/* Icon */}
             <div className='flex w-[6.3125rem] h-[5rem]'>
@@ -53,8 +53,8 @@ const SecondSection = () => {
             <div
               className='flex flex-col items-center 
               justify-center mt-3 w-[70vw] sm:items-start 
-              sm:ml-10 sm:w-[30vw] md:items-center
-              md:ml-0 md:w-full'
+              sm:ml-10 sm:w-[30vw] xlc:items-center
+              xlc:ml-0 xlc:w-full'
             >
               <p
                 className='text-[#29375F] text-[1.375rem] 
@@ -75,7 +75,7 @@ const SecondSection = () => {
           <div
             className='flex w-[0.9205rem] h-[1.5625rem] 
             mt-6 mb-6 sm:-ml-[30vw] 
-            md:hidden'
+            xlc:hidden'
           >
             <Image
               src='/icon-arrow-down.svg'
@@ -85,7 +85,7 @@ const SecondSection = () => {
               draggable={false}
             />
           </div>
-          <div className='hidden md:flex'>
+          <div className='hidden xlc:flex'>
             <Image
               src='/icon-arrow-right.svg'
               alt=''
@@ -98,8 +98,8 @@ const SecondSection = () => {
           {/* Single Item */}
           <div
             className='flex flex-col items-center 
-            justify-center sm:flex-row md:flex-col 
-            md:w-full'
+            justify-center sm:flex-row xlc:flex-col 
+            xlc:w-full'
           >
             {/* Icon */}
             <div className='flex w-[6.3125rem] h-[5rem]'>
@@ -116,8 +116,8 @@ const SecondSection = () => {
               className='flex flex-col items-center 
               justify-center mt-3
               w-[70vw] sm:items-start sm:ml-10 sm:w-[30vw]
-              md:items-center
-              md:ml-0 md:w-full'
+              xlc:items-center
+              xlc:ml-0 xlc:w-full'
             >
               <p
                 className='text-[#29375F] text-[1.375rem] 
@@ -139,7 +139,7 @@ const SecondSection = () => {
           <div
             className='flex w-[0.9205rem] h-[1.5625rem] 
             mt-6 mb-6 sm:-ml-[30vw]
-            md:hidden'
+            xlc:hidden'
           >
             <Image
               src='/icon-arrow-down.svg'
@@ -150,7 +150,7 @@ const SecondSection = () => {
             />
           </div>
 
-          <div className='hidden md:flex'>
+          <div className='hidden xlc:flex'>
             <Image
               src='/icon-arrow-right.svg'
               alt=''
@@ -163,7 +163,7 @@ const SecondSection = () => {
           {/* Single Item */}
           <div
             className='flex flex-col items-center 
-            justify-center sm:flex-row md:flex-col md:w-full'
+            justify-center sm:flex-row xlc:flex-col xlc:w-full'
           >
             {/* Icon */}
             <div className='flex w-[6.3125rem] h-[5rem]'>
@@ -179,8 +179,8 @@ const SecondSection = () => {
             <div
               className='flex flex-col items-center 
               justify-center mt-3 w-[70vw] sm:items-start 
-              sm:ml-10 sm:w-[30vw] md:items-center
-              md:ml-0 md:w-full'
+              sm:ml-10 sm:w-[30vw] xlc:items-center
+              xlc:ml-0 xlc:w-full'
             >
               <p
                 className='text-[#29375F] text-[1.375rem] 

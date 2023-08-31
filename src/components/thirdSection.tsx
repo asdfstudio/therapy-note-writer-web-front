@@ -24,12 +24,12 @@ const ThirdSection = () => {
   return (
     <div
       className='mt-20 flex flex-col mb-[24rem] 
-      lg:flex-row lg:mb-0'
+      2xl:flex-row 2xl:mb-0'
     >
       {/* Text Contents */}
       <div
         className='flex flex-col items-center 
-        justify-center lg:items-start lg:ml-[6rem]'
+        justify-center 2xl:items-start 2xl:ml-[6rem]'
       >
         {/* Title */}
         <div
@@ -41,7 +41,7 @@ const ThirdSection = () => {
           text-[#29375F] text-[2.5rem] font-[400] 
             leading-[2.75rem] text-center justify-center z-10
             sm:text-[3.5rem] sm:leading-[3.78125rem]
-            lg:text-left'
+            2xl:text-left'
           >
             Why <span className='italic'>choose</span>
             <br />
@@ -65,13 +65,13 @@ const ThirdSection = () => {
               key={item.key}
               className='flex flex-col 
               items-center justify-center
-              lg:items-start'
+              2xl:items-start'
             >
               {/* Point Title */}
               <div
                 className='flex flex-col 
                 items-center justify-center sm:flex-row 
-                lg:items-stretch'
+                2xl:items-stretch'
               >
                 {/* icon */}
                 <div
@@ -79,8 +79,8 @@ const ThirdSection = () => {
                   flex rounded-full w-[1.92rem] h-[1.92rem] 
                   items-center justify-center text-[#fff] 
                   text-[0.9rem] font-poynter_Oldstyle_Display
-                  font-[400] mb-2 lg:text-[1.125rem]
-                  lg:w-[2.4rem] lg:h-[2.4rem]'
+                  font-[400] mb-2 2xl:text-[1.125rem]
+                  2xl:w-[2.4rem] 2xl:h-[2.4rem]'
                 >
                   {item.key}
                 </div>
@@ -90,8 +90,8 @@ const ThirdSection = () => {
                   font-[400] text-[#29375F] text-[1.65rem] 
                   text-center
                   leading-[1.815rem] w-[18.75rem] 
-                  sm:w-auto sm:ml-[0.49rem] lg:text-[2.0625rem]
-                  lg:leading-[2.26875rem] lg:text-left'
+                  sm:w-auto sm:ml-[0.49rem] 2xl:text-[2.0625rem]
+                  2xl:leading-[2.26875rem] 2xl:text-left'
                 >
                   {item.title}
                 </div>
@@ -102,7 +102,7 @@ const ThirdSection = () => {
                 text-center
                 text-[#29375F] text-[1.125rem]
                 font-iBM_Plex_Sans opacity-[0.7] font-[400] 
-                sm:w-[40rem] lg:text-left lg:w-[33rem]'
+                sm:w-[40rem] 2xl:text-left 2xl:w-[33rem]'
               >
                 {item.desc}
               </div>
@@ -110,7 +110,7 @@ const ThirdSection = () => {
                 <hr
                   className='w-[21.25rem] mb-[2.31rem]
                  bg-[#6F91F4] opacity-[0.3] h-[2px]
-                 lg:w-[33rem]'
+                 2xl:w-[33rem]'
                 />
               )}
             </div>
@@ -120,7 +120,7 @@ const ThirdSection = () => {
         <Link
           href='/'
           className='w-[17rem] mb-[3.13rem]
-          lg:w-full'
+          2xl:w-full'
         >
           <button
             className='flex bg-[#6F91F4] py-[12px] 
@@ -136,7 +136,7 @@ const ThirdSection = () => {
       {/* Image & Calculator */}
       <div
         className='flex flex-col justify-center
-        items-center relative lg:ml-10'
+        items-center relative 2xl:ml-10'
       >
         {/* Image */}
         <div className='flex justify-center relative'>
@@ -153,7 +153,7 @@ const ThirdSection = () => {
             width={1200}
             height={550}
             className='hidden sm:flex w-[36rem] 
-            lg:w-[41.75rem]'
+            2xl:w-[41.75rem]'
           />
         </div>
         {/* Calculator */}
@@ -171,7 +171,7 @@ const ThirdSection = () => {
           width={1200}
           height={550}
           className='hidden absolute w-[30rem] top-[17rem] 
-          sm:flex lg:w-[20rem] lg:top-[29rem]'
+          sm:flex 2xl:w-[20rem] 2xl:top-[29rem]'
         />
       </div>
     </div>

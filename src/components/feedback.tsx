@@ -58,14 +58,14 @@ const Feedback = () => {
       {/* Title */}
       <div
         className='w-[23.6rem] mb-[3.61rem] mt-[1.81rem]
-          sm:w-[29.5rem]'
+          sm:w-[29.5rem] relative'
       >
         <h2
           className='relative font-poynter_Oldstyle_Display 
           text-[#29375F] text-[2.5rem] font-[400] 
             leading-[2.75rem] text-center justify-center z-10
             sm:text-[3.5rem] sm:leading-[3.78125rem]
-            lg:text-left'
+            xlc:text-left'
         >
           Real Feedback from
           <br />
@@ -77,8 +77,8 @@ const Feedback = () => {
           width={1200}
           height={550}
           className='absolute w-[12.25rem] h-[0.5rem] 
-            top-22 left-[9rem] z-0 sm:left-20 sm:top-14 
-            sm:h-[0.5rem]'
+            top-22 left-[9rem] z-0 sm:left-[10rem] 
+            sm:h-[0.7rem] sm:w-[17rem] sm:top-[7.3rem]'
         />
       </div>
       {/* Cards */}
@@ -94,12 +94,14 @@ const Feedback = () => {
         {/* Card Body */}
         <div
           className='bg-[#fff] w-[21.25rem] h-[21.87rem]
-          flex flex-col justify-center items-center'
+          flex flex-col justify-center items-center
+          md:w-[39.25rem] xlc:w-[50rem]'
         >
           {/* Text Contents */}
           <h3
             className='w-[20rem] font-iBM_Plex_Sans 
-            text-[1.375rem] font-[400] text-center mb-2'
+            text-[1.375rem] font-[400] text-center mb-2
+            md:w-[33.3rem]'
           >
             {slides[currentIndex].desc}
           </h3>
@@ -127,13 +129,18 @@ const Feedback = () => {
           </h3>
         </div>
         {/* Arrow */}
-        <div className='flex justify-center mt-4 gap-2'>
+        <div
+          className='flex justify-center mt-4 gap-2
+          sm:relative'
+        >
           {/* Left Arrow */}
           <div
             onClick={prevSlide}
             className='flex bg-[#6F91F4] w-[2.75rem]
             h-[2.75rem] rounded-full justify-center
-            border-[1px] shadow-[#3b60cb40] shadow-md'
+            border-[1px] shadow-[#3b60cb40] shadow-md
+            md:absolute md:left-[-21rem] md:top-[-15rem]
+            xlc:left-[-26.5rem]'
           >
             <Image
               src={'/icon-arrow-left.svg'}
@@ -148,7 +155,9 @@ const Feedback = () => {
             onClick={nextSlide}
             className='flex bg-[#6F91F4] w-[2.75rem]
             h-[2.75rem] rounded-full justify-center
-            border-[1px] shadow-[#3b60cb40] shadow-md'
+            border-[1px] shadow-[#3b60cb40] shadow-md
+            md:absolute md:right-[-21rem] md:top-[-15rem]
+            xlc:right-[-26.5rem]'
           >
             <Image
               src={'/icon-arrow-right-2.svg'}
@@ -187,7 +196,7 @@ const Feedback = () => {
         </div>
       </div>
       {/* Button */}
-      <Link href='/' className='w-[17rem] mt-6'>
+      <Link href='/' className='w-[17rem] mt-8 mb-8'>
         <button
           className='flex bg-[#6F91F4] py-[12px] 
             w-full rounded-full border-[1px] 
