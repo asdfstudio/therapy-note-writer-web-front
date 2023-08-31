@@ -12,7 +12,7 @@ const FirstSection = () => {
   return (
     <div className={iBM_Plex_Sans.className}>
       <div className='flex flex-col items-center w-full'>
-        <div className='flex md:hidden'>
+        <div className='flex xlc:hidden'>
           <Image
             src='/banner-text-1-mobile.svg'
             alt=''
@@ -21,7 +21,7 @@ const FirstSection = () => {
             draggable={false}
           />
         </div>
-        <div className='flex md:hidden'>
+        <div className='flex xlc:hidden'>
           <Image
             src='/banner-text-2-mobile.svg'
             alt=''
@@ -30,7 +30,7 @@ const FirstSection = () => {
             draggable={false}
           />
         </div>
-        <div className='hidden md:flex w-[47.4375rem]'>
+        <div className='hidden xlc:flex w-[47.4375rem]'>
           <Image
             src='/banner-text-lg.svg'
             alt=''
@@ -79,7 +79,7 @@ const FirstSection = () => {
           />
         </div>
         <div
-          className='hidden sm:flex lg:hidden mt-6 
+          className='hidden sm:flex xlc:hidden mt-6 
           w-[40rem] h-auto justify-center'
         >
           <Image
@@ -91,7 +91,7 @@ const FirstSection = () => {
           />
         </div>
         <div
-          className='hidden lg:flex mt-6 
+          className='hidden xlc:flex mt-6 
           w-[70rem] h-auto justify-center'
         >
           <Image

@@ -35,7 +35,7 @@ const Navbar = () => {
             >
               <Image src='/logo-1.svg' alt='' width={40} height={40} />
             </div>
-            <Link className='ml-2 mr-2 lg:mr-4' href='/'>
+            <Link className='ml-2 mr-2 xlc:mr-4' href='/'>
               <Image
                 src='/TherapyNoteWriter.svg'
                 alt=''
@@ -45,8 +45,8 @@ const Navbar = () => {
             </Link>
           </div>
           <div
-            className='hidden lg:flex gap-[2.5rem] 
-            lg:ml-[1.81rem] 
+            className='hidden xlc:flex gap-[2.5rem] 
+            xlc:ml-[1.81rem] 
             text-[#29375F] font-[600] uppercase 
             text-[1rem] tracking-widest'
           >
@@ -65,7 +65,7 @@ const Navbar = () => {
           <div
             className='hidden sm:flex bg-[#6F91F4] 
             sm:w-[9.375rem] sm:h-[2.75rem]  
-            lg:w-[13.75rem] lg:h-[2.75rem] rounded-full 
+            xlc:w-[13.75rem] xlc:h-[2.75rem] rounded-full 
             border-[1px] border-[#3157C9] text-white 
             text-[1rem] text-[600] justify-center 
             items-center
@@ -78,7 +78,7 @@ const Navbar = () => {
           <div
             className='hidden sm:flex bg-white 
             sm:w-[9.375rem] sm:h-[2.75rem] 
-            lg:w-[13.75rem] lg:h-[2.75rem] rounded-full 
+            xlc:w-[13.75rem] xlc:h-[2.75rem] rounded-full 
             border-[1px] border-[#3157C9] text-[1rem] 
             text-[600] text-[#6F91F4] mr-[0.5rem] 
             justify-center items-center
