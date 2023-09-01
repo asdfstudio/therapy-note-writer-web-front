@@ -106,7 +106,8 @@ const Contact = () => {
           <Link
             href='/'
             className='w-[21.25rem] h-[2.75rem] mt-4
-            md:w-[43rem] md:mt-[1.25rem] md:mb-[2.38rem]
+            mb-[2.13rem]
+            md:w-[43rem] md:mt-[1.25rem] md:mb-[2.37rem]
             xlc:w-[25rem]'
           >
             <button
