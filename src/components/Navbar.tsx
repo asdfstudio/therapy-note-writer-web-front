@@ -10,9 +10,9 @@ const iBM_Plex_Sans = IBM_Plex_Sans({
 });
 
 const links = [
-  { id: 1, title: 'How it works', url: '/' },
-  { id: 2, title: 'Why choose', url: '/whychoose' },
-  { id: 3, title: 'Features', url: '/feautures' },
+  { id: 1, title: 'How it works', url: '/#how_it_works' },
+  { id: 2, title: 'Why choose', url: '/#whychoose' },
+  { id: 3, title: 'Features', url: '/#features' },
 ];
 
 const Navbar = () => {
@@ -76,7 +76,7 @@ const Navbar = () => {
             className='hidden xlc:flex gap-[2.5rem] 
             xlc:ml-[1.81rem] 
             text-[#29375F] font-[600] uppercase 
-            text-[1rem] tracking-widest'
+            text-[1rem] tracking-widest scroll-smooth	'
           >
             {links.map((item) => (
               <Link

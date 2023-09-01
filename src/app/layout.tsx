@@ -30,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en'>
+    <html lang='en' className='scroll-smooth'>
       <body className='bg-[url("/bg-home-1.svg")] w-full bg-no-repeat bg-contain'>
         <div
           className={`${iBM_Plex_Sans.variable} ${poynter_Oldstyle_Display.variable}`}
