@@ -18,6 +18,8 @@ const config: Config = {
 
       xlc: '1360px',
 
+      xl1440: '1440px',
+
       '2xl': '1512px',
     },
     extend: {

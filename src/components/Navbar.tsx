@@ -17,33 +17,61 @@ const links = [
 
 const Navbar = () => {
   return (
-    <div className={iBM_Plex_Sans.className}>
+    <div
+      className='flex justify-center mt-[1.81rem] 
+      relative z-50'
+    >
       <div
-        className='bg-slate-50 flex h-[3.75rem]  mx-6 my-6 
-      justify-between items-center drop-shadow-xl 
-      rounded-full 
-      border-[1px] border-[#29375f33]'
+        className='bg-[#fff] flex fixed justify-between 
+          h-[3.125rem] w-[21.25rem] 
+          border-[rgba(41,55,95,0.20)] border-[0.833px] 
+          drop-shadow-[0_8.33px_16.66px_rgba(53,61,82,0.15)]
+          rounded-[5.208rem]
+          md:w-[44.25rem] md:h-[3.75rem]
+          xlc:w-[80rem] xl1440:w-[85rem] 2xl:w-[89rem]'
       >
+        {/* Nav Items Left */}
         <div className='flex justify-start items-center'>
+          {/* Logo Items */}
           <div
             className='bg-[#6F91F421] flex justify-between 
-        items-center rounded-full'
+            items-center rounded-full'
           >
+            {/* Logo Icon */}
             <div
-              className='bg-[#29375F] w-[3.75rem] h-[3.75rem] flex 
-        justify-center items-center rounded-full z-0'
+              className='bg-[#29375F] w-[3.125rem] 
+              h-[3.125rem] flex justify-center items-center 
+              rounded-full z-0
+              drop-shadow-[0_0.416px_8.437px_rgba(6,5,20,0.3)]
+              md:h-[3.75rem] md:w-[3.75rem]'
             >
-              <Image src='/logo-1.svg' alt='' width={40} height={40} />
+              <Image
+                src='/logo-1.svg'
+                alt=''
+                width={40}
+                height={40}
+                className='w-[2.23rem] h-[1.51rem]
+                md:w-[2.681rem] md:h-[1.82rem]'
+              />
             </div>
-            <Link className='ml-2 mr-2 xlc:mr-4' href='/'>
+            {/* Numeric Logo */}
+            <Link
+              className='ml-2 mr-2 md:mr-[1.31rem] 
+              xlc:mr-4'
+              href='/'
+            >
               <Image
                 src='/TherapyNoteWriter.svg'
                 alt=''
                 width={160}
                 height={20}
+                className='w-[10.526rem] h-[1.188rem]
+                md:w-[12.68rem] md:h-[1.68rem]'
               />
             </Link>
           </div>
+
+          {/* Nav Items for Desktop */}
           <div
             className='hidden xlc:flex gap-[2.5rem] 
             xlc:ml-[1.81rem] 
@@ -52,7 +80,7 @@ const Navbar = () => {
           >
             {links.map((item) => (
               <Link
-                className={iBM_Plex_Sans.className}
+                className='font-iBM_Plex_Sans'
                 key={item.id}
                 href={item.url}
               >
@@ -61,10 +89,12 @@ const Navbar = () => {
             ))}
           </div>
         </div>
+        {/* Nav Items Right */}
         <div className='flex justify-end items-center gap-2'>
+          {/* Signup Button */}
           <div
-            className='hidden sm:flex bg-[#6F91F4] 
-            sm:w-[9.375rem] sm:h-[2.75rem]  
+            className='hidden md:flex bg-[#6F91F4] 
+            md:w-[9.375rem] md:h-[2.75rem]  
             xlc:w-[13.75rem] xlc:h-[2.75rem] rounded-full 
             border-[1px] border-[#3157C9] text-white 
             text-[1rem] text-[600] justify-center 
@@ -75,9 +105,10 @@ const Navbar = () => {
               <button className='uppercase'>Sign up</button>
             </Link>
           </div>
+          {/* Login Button */}
           <div
-            className='hidden sm:flex bg-white 
-            sm:w-[9.375rem] sm:h-[2.75rem] 
+            className='hidden md:flex bg-white 
+            md:w-[9.375rem] md:h-[2.75rem] 
             xlc:w-[13.75rem] xlc:h-[2.75rem] rounded-full 
             border-[1px] border-[#3157C9] text-[1rem] 
             text-[600] text-[#6F91F4] mr-[0.5rem] 
@@ -88,7 +119,8 @@ const Navbar = () => {
               <button className='uppercase'>Login</button>
             </Link>
           </div>
-          <div className='flex md:hidden'>
+          {/* Hamburger Icon */}
+          <div className='flex xlc:hidden'>
             <Menu />
           </div>
         </div>

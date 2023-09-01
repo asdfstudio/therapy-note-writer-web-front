@@ -11,7 +11,10 @@ const iBM_Plex_Sans = IBM_Plex_Sans({
 const FirstSection = () => {
   return (
     <div className={iBM_Plex_Sans.className}>
-      <div className='flex flex-col items-center w-full'>
+      <div
+        className='flex flex-col items-center w-full
+        mt-[6.54rem] z-0'
+      >
         <div className='flex xlc:hidden'>
           <Image
             src='/banner-text-1-mobile.svg'
@@ -62,7 +65,8 @@ const FirstSection = () => {
             py-[12px] rounded-full border-[1px] 
             border-[#3157C9] uppercase text-[1rem] 
             font-[600] text-[#6F91F4]
-            justify-center items-center'
+            justify-center items-center
+            font-iBM_Plex_Sans tracking-[0.1rem]'
           >
             <Link href='/'>
               <button className='uppercase'>How It Works</button>

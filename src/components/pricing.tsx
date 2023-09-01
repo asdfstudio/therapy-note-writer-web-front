@@ -115,8 +115,9 @@ const Pricing = () => {
                 className='flex bg-[#F4776F] py-[12px] 
                 w-full rounded-full border-[1px] 
                 border-[#F4776F] uppercase text-white 
-                text-[12px] font-[600] justify-center
-                drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]'
+                text-[1rem] font-[600] justify-center
+                drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
+                font-iBM_Plex_Sans tracking-[0.1rem]'
               >
                 Get Started
               </button>

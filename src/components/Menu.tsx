@@ -21,16 +21,17 @@ const Menu = () => {
     <div
       className='flex justify-center items-center 
       bg-[#6F91F4] border-[#3157C9] border-[0.833px] 
-      shadow-[#3b60cb40] shadow-md w-[2.75rem] 
-      h-[2.75rem] px-[0.72rem] rounded-full mr-[0.5rem]'
+      shadow-[#3b60cb40] shadow-md w-[2.291rem] 
+      h-[2.291rem] rounded-full mr-[0.4rem]'
     >
       {!open ? (
-        <div className='flex  justify-center'>
+        <div className='flex justify-center'>
           <Image
             src='/nav-open.svg'
             alt=''
             width={20}
             height={20}
+            className='w-[0.83rem] h-[0.83rem]'
             onClick={() => setOpen(true)}
           />
         </div>
@@ -42,22 +43,23 @@ const Menu = () => {
               alt=''
               width={20}
               height={20}
+              className='w-[0.83rem] h-[0.83rem]'
               onClick={() => setOpen(false)}
             />
           </div>
           <div
             className='bg-white text-[#29375F] font-[600] 
             uppercase absolute left-0 top-[4.3rem] 
-            h-[11.125rem] sm:h-[5.0625rem] flex 
+            h-[11.125rem] md:h-[5.0625rem] flex 
             flex-col w-full rounded-[20px] 
-            gap-[1.88rem] sm:gap-[5rem] items-center 
+            gap-[1.88rem] md:gap-[5rem] items-center 
             justify-center z-10 border-[1px] text-[1rem]
             tracking-widest	
-            border-[#29375f33] sm:flex-row lg:hidden'
+            border-[#29375f33] md:flex-row xlc:hidden'
           >
             {links.map((item) => (
               <Link
-                className={iBM_Plex_Sans.className}
+                className='font-iBM_Plex_Sans'
                 key={item.id}
                 href={item.url}
               >
