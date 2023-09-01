@@ -7,6 +7,7 @@ const Pricing = () => {
     <div
       className='flex items-center md:justify-center
       xlc:justify-normal'
+      id='features'
     >
       <div
         className='flex flex-col items-center

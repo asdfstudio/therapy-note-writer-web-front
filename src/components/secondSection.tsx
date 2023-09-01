@@ -15,7 +15,7 @@ import Link from 'next/link';
 
 const SecondSection = () => {
   return (
-    <div className='font-iBM_Plex_Sans'>
+    <div className='font-iBM_Plex_Sans' id='how_it_works'>
       <div
         className='bg-[url("/bg-home-2.svg")] h-auto 
         bg-repeat-x bg-cover flex flex-col items-center 

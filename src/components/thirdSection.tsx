@@ -25,6 +25,7 @@ const ThirdSection = () => {
     <div
       className='mt-20 flex flex-col mb-[18rem] 
       xlc:flex-row xlc:mb-0 xlc:justify-center xlc:mt-14'
+      id='whychoose'
     >
       {/* Text Contents */}
       <div
