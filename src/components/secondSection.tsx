@@ -19,7 +19,7 @@ const SecondSection = () => {
       <div
         className='bg-[url("/bg-home-2.svg")] h-auto 
         bg-repeat-x bg-cover flex flex-col items-center 
-        justify-center'
+        justify-center xlc:bg-contain'
       >
         <h1 className='text-[2.5rem] mt-5 text-[#29375F]'>
           <span className='font-poynter_Oldstyle_Display'>
@@ -200,13 +200,18 @@ const SecondSection = () => {
           </div>
         </div>
 
-        <Link href='/' className='w-[17rem] mt-10'>
+        <Link
+          href='/'
+          className='w-[17rem] mt-10 
+          xlc:mb-10'
+        >
           <button
             className='flex bg-[#6F91F4] py-[12px] 
             w-full rounded-full border-[1px] 
             border-[#3157C9] uppercase text-white 
-            text-[12px] font-[600] justify-center
-            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]'
+            text-[1rem] font-[600] justify-center
+            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
+            font-iBM_Plex_Sans tracking-[0.1rem]'
           >
             Get Started
           </button>
