@@ -5,7 +5,7 @@ import React from 'react';
 const Pricing = () => {
   return (
     <div
-      className='flex items-center md:justify-center
+      className='flex items-center justify-center 
       xlc:justify-normal'
       id='features'
     >
@@ -30,11 +30,14 @@ const Pricing = () => {
           </h2>
           {/* Card */}
           <div
-            className='flex flex-col items-center h-[17.75rem]
-          w-[22.5rem] rounded-[1.125rem] border-[#F4776F]
-          border-[1px] shadow-[#353d521a] shadow-md
-          bg-[#fff] md:w-[37.5rem] md:h-[14.125rem]
-          md:items-start xlc:w-[32.5rem] xl:w-[37.5rem]'
+            className='flex flex-col items-center
+            min-[360px]:w-[20.5rem] 
+            min-[375px]:w-[22.5rem]
+            h-[17.75rem] w-[22.5rem] rounded-[1.125rem] 
+            border-[#F4776F] border-[1px] 
+            shadow-[#353d521a] shadow-md bg-[#fff] 
+            md:w-[37.5rem] md:h-[14.125rem] md:items-start 
+            xlc:w-[32.5rem] xl:w-[37.5rem]'
           >
             {/* Card Title */}
             <h3
@@ -55,6 +58,7 @@ const Pricing = () => {
                   alt=''
                   width={1200}
                   height={550}
+                  draggable={false}
                   className='w-[0.875rem] h-[0.875rem] 
                 mr-[0.44rem]'
                 />
@@ -71,6 +75,7 @@ const Pricing = () => {
                   alt=''
                   width={1200}
                   height={550}
+                  draggable={false}
                   className='w-[0.875rem] h-[0.875rem]
                 mr-[0.44rem]'
                 />
@@ -85,11 +90,13 @@ const Pricing = () => {
             {/* Card Footer */}
             <div
               className='flex flex-col items-center
-            bg-[#f4776f33] w-[22.5rem]
-            h-[8.25rem] rounded-b-[1.125rem] mt-6
-            md:w-[37.5rem] md:h-[4.75rem] md:flex-row
-            md:justify-around md:mt-11
-            xlc:w-[32.5rem] xl:w-[37.5rem]'
+            bg-[#f4776f33] rounded-b-[1.125rem] mt-6
+              min-[360px]:w-[20.5rem] 
+              min-[375px]:w-[22.5rem]
+              w-[22.5rem] h-[8.4rem] 
+              md:w-[37.5rem] md:h-[4.75rem] md:flex-row
+              md:justify-around md:mt-11
+              xlc:w-[32.5rem] xl:w-[37.5rem]'
             >
               {/* Bullet points */}
               <div
@@ -122,7 +129,8 @@ const Pricing = () => {
                 border-[#F4776F] uppercase text-white 
                 text-[1rem] font-[600] justify-center
                 drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
-                font-iBM_Plex_Sans tracking-[0.1rem]'
+                font-iBM_Plex_Sans tracking-[0.1rem]
+                hover:bg-[#F95D53] active:bg-[#EC4E44]'
                 >
                   Get Started
                 </button>
@@ -145,6 +153,7 @@ const Pricing = () => {
             alt=''
             width={1200}
             height={550}
+            draggable={false}
             className='hidden w-[48rem] mt-8 md:flex 
         xlc:hidden'
           />
@@ -153,6 +162,7 @@ const Pricing = () => {
             alt=''
             width={1200}
             height={550}
+            draggable={false}
             className='hidden xlc:flex mt-8 
           xlc:w-[50.12rem] xlc:h-[40.12rem]
           xlc:ml-[3rem]'

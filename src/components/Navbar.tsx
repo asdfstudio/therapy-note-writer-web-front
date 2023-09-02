@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import Menu from '@/components/Menu';
 import Image from 'next/image';
 import { IBM_Plex_Sans } from 'next/font/google';
@@ -50,6 +50,7 @@ const Navbar = () => {
                 alt=''
                 width={40}
                 height={40}
+                draggable={false}
                 className='w-[2.23rem] h-[1.51rem]
                 md:w-[2.681rem] md:h-[1.82rem]'
               />
@@ -65,6 +66,7 @@ const Navbar = () => {
                 alt=''
                 width={160}
                 height={20}
+                draggable={false}
                 className='w-[10.526rem] h-[1.188rem]
                 md:w-[12.68rem] md:h-[1.68rem]'
               />
@@ -74,13 +76,19 @@ const Navbar = () => {
           {/* Nav Items for Desktop */}
           <div
             className='hidden xlc:flex gap-[2.5rem] 
-            xlc:ml-[1.81rem] 
+            xlc:ml-[1.81rem]  focus-within:text-[#6F91F4]
             text-[#29375F] font-[600] uppercase 
-            text-[1rem] tracking-widest scroll-smooth	'
+            text-[1rem] tracking-widest scroll-smooth'
           >
             {links.map((item) => (
               <Link
-                className='font-iBM_Plex_Sans'
+                className='font-iBM_Plex_Sans hover:underline 
+                hover:underline-offset-[1.3rem] 
+                hover:decoration-[0.1875rem]
+                focus:underline 
+                focus:underline-offset-[1.3rem] 
+                focus:decoration-[0.1875rem]
+                focus:text-[#29375F]'
                 key={item.id}
                 href={item.url}
               >
@@ -99,7 +107,9 @@ const Navbar = () => {
             border-[1px] border-[#3157C9] text-white 
             text-[1rem] text-[600] justify-center 
             items-center
-            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]'
+            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
+            font-iBM_Plex_Sans
+            hover:bg-[#4771ED] active:bg-[#4063C7]'
           >
             <Link href='/'>
               <button className='uppercase'>Sign up</button>
@@ -113,7 +123,10 @@ const Navbar = () => {
             border-[1px] border-[#3157C9] text-[1rem] 
             text-[600] text-[#6F91F4] mr-[0.5rem] 
             justify-center items-center
-            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]'
+            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
+            font-iBM_Plex_Sans
+            hover:border-[#4771ED] hover:bg-[#FAFAFA]
+            active:border-[#4063C7] active:bg-[#FAFAFA]'
           >
             <Link href='/'>
               <button className='uppercase'>Login</button>

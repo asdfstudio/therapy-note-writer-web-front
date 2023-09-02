@@ -13,7 +13,7 @@ const FirstSection = () => {
     <div className={iBM_Plex_Sans.className}>
       <div
         className='flex flex-col items-center w-full
-        mt-[6.54rem] z-0'
+        pt-[5.5rem] z-0'
       >
         <div className='flex xlc:hidden'>
           <Image
@@ -53,7 +53,8 @@ const FirstSection = () => {
             border-[#3157C9] text-white 
             text-[1rem] font-[600] justify-center 
             items-center
-            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]'
+            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
+            hover:bg-[#4771ED] active:bg-[#4063C7]'
           >
             <Link href='/'>
               <button className='uppercase'>Get Started</button>
@@ -66,7 +67,9 @@ const FirstSection = () => {
             border-[#3157C9] uppercase text-[1rem] 
             font-[600] text-[#6F91F4]
             justify-center items-center
-            font-iBM_Plex_Sans tracking-[0.1rem]'
+            font-iBM_Plex_Sans tracking-[0.1rem]
+            hover:border-[#4771ED] hover:bg-[#FAFAFA]
+            active:border-[#4063C7] active:bg-[#FAFAFA]'
           >
             <Link href='/'>
               <button className='uppercase'>How It Works</button>

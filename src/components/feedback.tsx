@@ -76,6 +76,7 @@ const Feedback = () => {
           alt=''
           width={1200}
           height={550}
+          draggable={false}
           className='absolute w-[12.25rem] h-[0.5rem] 
             top-22 left-[9rem] z-0 sm:left-[10rem] 
             sm:h-[0.7rem] sm:w-[17rem] sm:top-[7.3rem]'
@@ -88,6 +89,7 @@ const Feedback = () => {
           alt=''
           width={1200}
           height={550}
+          draggable={false}
           className='absolute w-[5.175rem] h-[3.5625rem]
           top-[-1.8rem]'
         />
@@ -111,6 +113,7 @@ const Feedback = () => {
             alt=''
             width={1200}
             height={550}
+            draggable={false}
             className='w-[11.875rem] mb-[0.31rem]'
           />
           {/* Name */}
@@ -140,13 +143,15 @@ const Feedback = () => {
             h-[2.75rem] rounded-full justify-center
             border-[1px] shadow-[#3b60cb40] shadow-md
             md:absolute md:left-[-21rem] md:top-[-15rem]
-            xlc:left-[-26.5rem]'
+            xlc:left-[-26.5rem]
+            hover:bg-[#4771ED] active:bg-[#4063C7]'
           >
             <Image
               src={'/icon-arrow-left.svg'}
               alt=''
               width={1200}
               height={550}
+              draggable={false}
               className='w-[1rem]'
             />
           </div>
@@ -157,13 +162,15 @@ const Feedback = () => {
             h-[2.75rem] rounded-full justify-center
             border-[1px] shadow-[#3b60cb40] shadow-md
             md:absolute md:right-[-21rem] md:top-[-15rem]
-            xlc:right-[-26.5rem]'
+            xlc:right-[-26.5rem]
+            hover:bg-[#4771ED] active:bg-[#4063C7]'
           >
             <Image
               src={'/icon-arrow-right-2.svg'}
               alt=''
               width={1200}
               height={550}
+              draggable={false}
               className='w-[1rem]'
             />
           </div>
@@ -203,7 +210,8 @@ const Feedback = () => {
             border-[#3157C9] uppercase text-white 
             text-[1rem] font-[600] justify-center
             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
-            font-iBM_Plex_Sans tracking-[0.1rem]'
+            font-iBM_Plex_Sans tracking-[0.1rem]
+            hover:bg-[#4771ED] active:bg-[#4063C7]'
         >
           Get Started
         </button>

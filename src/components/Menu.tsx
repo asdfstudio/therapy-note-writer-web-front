@@ -31,6 +31,7 @@ const Menu = () => {
             alt=''
             width={20}
             height={20}
+            draggable={false}
             className='w-[0.83rem] h-[0.83rem]'
             onClick={() => setOpen(true)}
           />
@@ -43,6 +44,7 @@ const Menu = () => {
               alt=''
               width={20}
               height={20}
+              draggable={false}
               className='w-[0.83rem] h-[0.83rem]'
               onClick={() => setOpen(false)}
             />

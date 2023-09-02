@@ -211,7 +211,8 @@ const SecondSection = () => {
             border-[#3157C9] uppercase text-white 
             text-[1rem] font-[600] justify-center
             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
-            font-iBM_Plex_Sans tracking-[0.1rem]'
+            font-iBM_Plex_Sans tracking-[0.1rem]
+            hover:bg-[#4771ED] active:bg-[#4063C7]'
           >
             Get Started
           </button>

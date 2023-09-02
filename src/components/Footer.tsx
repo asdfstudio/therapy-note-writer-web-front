@@ -44,7 +44,8 @@ const Footer = () => {
             text-[1rem] font-[600] items-center 
             justify-center font-iBM_Plex_Sans 
             tracking-[0.1rem]
-            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]'
+            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
+            hover:bg-[#4771ED] active:bg-[#4063C7]'
         >
           Get Started
         </button>
@@ -73,6 +74,7 @@ const Footer = () => {
             alt=''
             width={40}
             height={40}
+            draggable={false}
             className='w-[2.94rem] h-[2rem]
                 md:w-[4.48rem] md:h-[3.04rem]'
           />
@@ -88,6 +90,7 @@ const Footer = () => {
             alt=''
             width={160}
             height={20}
+            draggable={false}
             className='w-[13.88rem] h-[1.561rem]
                 md:w-[21.05rem] md:h-[2.376rem]'
           />

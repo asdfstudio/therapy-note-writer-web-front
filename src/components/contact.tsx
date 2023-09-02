@@ -53,7 +53,10 @@ const Contact = () => {
               placeholder='Adam Voigt'
               className='w-[21.25rem] h-[2.75rem] rounded-full
             bg-[#fff] border-[1px] border-[#6f91f480]
-              pl-[1.06rem] md:w-[43rem] xlc:w-[25rem]'
+              pl-[1.06rem] md:w-[43rem] xlc:w-[25rem]
+              font-iBM_Plex_Sans font-[400] text-[1rem]
+              hover:border-[#6F91F4] 
+              active:border-[#4771ED] active:bg-[#FAFAFA]'
             />
 
             <label
@@ -69,7 +72,10 @@ const Contact = () => {
               placeholder='yourname@domain.com'
               className='w-[21.25rem] h-[2.75rem] rounded-full
             bg-[#fff] border-[1px] border-[#6f91f480]
-              pl-[1.06rem] md:w-[43rem] xlc:w-[25rem]'
+              pl-[1.06rem] md:w-[43rem] xlc:w-[25rem]
+              font-iBM_Plex_Sans font-[400] text-[1rem]
+              hover:border-[#6F91F4] 
+              active:border-[#4771ED] active:bg-[#FAFAFA]'
             />
 
             <label
@@ -80,12 +86,15 @@ const Contact = () => {
               Phone
             </label>
             <input
-              type='number'
+              type='text'
               name='number'
               placeholder='01 12 1234'
               className='w-[21.25rem] h-[2.75rem] rounded-full
             bg-[#fff] border-[1px] border-[#6f91f480]
-              pl-[1.06rem] md:w-[43rem] xlc:w-[25rem]'
+              pl-[1.06rem] md:w-[43rem] xlc:w-[25rem]
+              font-iBM_Plex_Sans font-[400] text-[1rem]
+              hover:border-[#6F91F4] 
+              active:border-[#4771ED] active:bg-[#FAFAFA]'
             />
 
             <label
@@ -100,7 +109,11 @@ const Contact = () => {
               className='w-[21.25rem] h-[7rem] 
               rounded-[1.25rem]
             bg-[#fff] border-[1px] border-[#6f91f480]
-              pl-[1.06rem] md:w-[43rem] xlc:w-[25rem]'
+              pl-[1.06rem] md:w-[43rem] xlc:w-[25rem]
+              font-iBM_Plex_Sans font-[400] text-[1rem] 
+              pt-[0.75rem]
+              hover:border-[#6F91F4] 
+              active:border-[#4771ED] active:bg-[#FAFAFA]'
             />
           </form>
           <Link
@@ -116,7 +129,8 @@ const Contact = () => {
             border-[#3157C9] uppercase text-white 
             font-iBM_Plex_Sans tracking-[0.1rem]
             text-[1rem] font-[600] justify-center
-            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]'
+            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
+            hover:bg-[#4771ED] active:bg-[#4063C7]'
             >
               Get Started
             </button>
@@ -130,6 +144,7 @@ const Contact = () => {
         alt=''
         width={1200}
         height={550}
+        draggable={false}
         className='hidden xlc:flex w-[41.937rem] 
         h-[46.875rem]'
       />
