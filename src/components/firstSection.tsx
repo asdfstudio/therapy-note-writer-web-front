@@ -13,7 +13,7 @@ const FirstSection = () => {
     <div className={iBM_Plex_Sans.className}>
       <div
         className='flex flex-col items-center w-full
-        mt-[6.54rem] z-0'
+        pt-[5.5rem] z-0'
       >
         <div className='flex xlc:hidden'>
           <Image

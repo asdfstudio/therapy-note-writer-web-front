@@ -99,7 +99,8 @@ const Navbar = () => {
             border-[1px] border-[#3157C9] text-white 
             text-[1rem] text-[600] justify-center 
             items-center
-            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]'
+            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
+            font-iBM_Plex_Sans'
           >
             <Link href='/'>
               <button className='uppercase'>Sign up</button>
@@ -113,7 +114,8 @@ const Navbar = () => {
             border-[1px] border-[#3157C9] text-[1rem] 
             text-[600] text-[#6F91F4] mr-[0.5rem] 
             justify-center items-center
-            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]'
+            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
+            font-iBM_Plex_Sans'
           >
             <Link href='/'>
               <button className='uppercase'>Login</button>

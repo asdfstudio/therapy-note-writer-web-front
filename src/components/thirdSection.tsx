@@ -1,6 +1,8 @@
+'use client';
+import './custom.css';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 
 const points = [
   {
@@ -21,10 +23,35 @@ const points = [
 ];
 
 const ThirdSection = () => {
+  const [patientCount, setPatientCount] = useState(5);
+  const [chargePerHour, setChargePerHour] = useState(50);
+  const [value, setValue] = useState(15);
+  const [valueCharge, setValueCharge] = useState(50);
+
+  const totalHoursSaved = ((patientCount * 10) / 60).toFixed(2);
+  const totalMoneySaved = (((patientCount * 10) / 60) * chargePerHour).toFixed(
+    0
+  );
+
+  const MAX = 30;
+  const getBackgroundSize = () => {
+    return {
+      backgroundSize: `${value * 0.8}rem 100%`,
+    };
+  };
+
+  const chargeMAX = 200;
+  const getBackgroundSizeCharge = () => {
+    return {
+      backgroundSize: `${valueCharge * 0.133333}rem 100%`,
+    };
+  };
+
   return (
     <div
-      className='mt-20 flex flex-col mb-[18rem] 
-      xlc:flex-row xlc:mb-0 xlc:justify-center xlc:mt-14'
+      className='mt-20 flex flex-col mb-[20rem]
+      sm:mb-[12rem]
+      xlc:flex-row xlc:mb-[8rem] xlc:justify-center xlc:mt-14'
       id='whychoose'
     >
       {/* Text Contents */}
@@ -142,8 +169,7 @@ const ThirdSection = () => {
       {/* Image & Calculator */}
       <div
         className='flex flex-col
-        items-center relative xlc:ml-10 
-        xlc:mb-[20rem]'
+        items-center relative xlc:ml-10'
       >
         {/* Image */}
         <div className='flex justify-center relative'>
@@ -164,22 +190,126 @@ const ThirdSection = () => {
           />
         </div>
         {/* Calculator */}
-        <Image
-          src={'/sec-3-value-calc-mobile.png'}
-          alt=''
-          width={1200}
-          height={550}
-          className='absolute w-[22rem] top-[26rem] 
-          sm:hidden'
-        />
-        <Image
-          src={'/sec-3-value-calc-tablet.png'}
-          alt=''
-          width={1200}
-          height={550}
-          className='hidden absolute w-[30rem] top-[17rem] 
-          sm:flex xlc:w-[35rem] xlc:top-[19.5rem]'
-        />
+        <div
+          className='flex justify-center 
+          sm:absolute sm:w-[30rem] sm:top-[17rem] 
+          xlc:w-[35rem] xlc:top-[19.5rem]'
+        >
+          {/* <Image
+            src={'/sec-3-value-calc-mobile.png'}
+            alt=''
+            width={1200}
+            height={550}
+            className='absolute w-[22rem] top-[26rem] 
+            sm:hidden'
+          /> */}
+          {/* <Image
+            src={'/sec-3-value-calc-tablet.png'}
+            alt=''
+            width={1200}
+            height={550}
+            className='hidden sm:flex absolute'
+          /> */}
+        </div>
+
+        {/* Another Calculator */}
+        {/* Card */}
+        <div
+          className='flex flex-col items-center
+          bg-[#E9EFFD] w-[22.5rem] rounded-[1.5rem]
+          absolute top-[26rem]
+          sm:top-[17rem]'
+        >
+          {/* Card Title */}
+          <h3
+            className='text-[#6F91F4] text-[2.25rem]
+            font-[400] font-poynter_Oldstyle_Display
+            leading-[2.475rem] mt-[2rem] mb-[1.31rem]'
+          >
+            Value Calculator
+          </h3>
+          <hr
+            className='h-[2px] w-[22.375rem] 
+            bg-[#6F91F4]'
+          />
+
+          <p
+            className='text-[#29375F] text-[1.125rem]
+            font-[600] font-iBM_Plex_Sans
+            mt-[0.88rem] mb-[1.44rem]'
+          >
+            How many patient you see per week?
+          </p>
+          {/* Bar 1 */}
+          <div>
+            <input
+              type='range'
+              min='0'
+              max='25'
+              defaultValue='15'
+              step='5'
+              id='range1'
+              style={getBackgroundSize()}
+              onChange={(e) => {
+                const value = parseInt(e.target.value);
+                setPatientCount(value);
+                setValue(value);
+              }}
+              className='w-[20rem]'
+            />
+          </div>
+
+          <p
+            className='text-[#29375F] text-[1.125rem]
+            font-[600] font-iBM_Plex_Sans
+            mt-[0.88rem] mb-[1.44rem]'
+          >
+            How much do you charge per hour?
+          </p>
+          {/* Bar 2 */}
+          <div>
+            <input
+              type='range'
+              min='0'
+              max='150'
+              defaultValue='50'
+              step='25'
+              id='range1'
+              style={getBackgroundSizeCharge()}
+              onChange={(e) => {
+                const value = parseInt(e.target.value);
+                setChargePerHour(value);
+                setValueCharge(value);
+              }}
+              className='w-[20rem]'
+            />
+          </div>
+
+          <div className='relative'>
+            <p
+              className='w-[20rem] text-left
+            text-[#29375F] text-[1.75rem]
+              font-[400] font-poynter_Oldstyle_Display
+              leading-[1.925rem]
+              mt-[0.88rem] mb-[1.44rem]'
+            >
+              You’ll save{' '}
+              <span className='italic'>{totalHoursSaved}hrs/week</span> which is
+              worth{' '}
+              <span className='italic font-[600]'>${totalMoneySaved}</span> of
+              your time
+            </p>
+            <Image
+              src={'/sec-3-title-underline.svg'}
+              alt=''
+              width={1200}
+              height={550}
+              className='absolute w-[10rem] h-[0.5rem] 
+              top-10 left-[7.5rem] z-0 sm:left-20 sm:top-14 
+              sm:h-[0.5rem]'
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
