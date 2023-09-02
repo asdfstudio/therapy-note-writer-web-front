@@ -67,7 +67,9 @@ const FirstSection = () => {
             border-[#3157C9] uppercase text-[1rem] 
             font-[600] text-[#6F91F4]
             justify-center items-center
-            font-iBM_Plex_Sans tracking-[0.1rem]'
+            font-iBM_Plex_Sans tracking-[0.1rem]
+            hover:border-[#4771ED] hover:bg-[#FAFAFA]
+            active:border-[#4063C7] active:bg-[#FAFAFA]'
           >
             <Link href='/'>
               <button className='uppercase'>How It Works</button>

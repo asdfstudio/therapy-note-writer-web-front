@@ -130,7 +130,7 @@ const Pricing = () => {
                 text-[1rem] font-[600] justify-center
                 drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
                 font-iBM_Plex_Sans tracking-[0.1rem]
-                hover:bg-[#4771ED] active:bg-[#4063C7]'
+                hover:bg-[#F95D53] active:bg-[#EC4E44]'
                 >
                   Get Started
                 </button>

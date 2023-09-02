@@ -143,7 +143,8 @@ const Feedback = () => {
             h-[2.75rem] rounded-full justify-center
             border-[1px] shadow-[#3b60cb40] shadow-md
             md:absolute md:left-[-21rem] md:top-[-15rem]
-            xlc:left-[-26.5rem]'
+            xlc:left-[-26.5rem]
+            hover:bg-[#4771ED] active:bg-[#4063C7]'
           >
             <Image
               src={'/icon-arrow-left.svg'}
@@ -161,7 +162,8 @@ const Feedback = () => {
             h-[2.75rem] rounded-full justify-center
             border-[1px] shadow-[#3b60cb40] shadow-md
             md:absolute md:right-[-21rem] md:top-[-15rem]
-            xlc:right-[-26.5rem]'
+            xlc:right-[-26.5rem]
+            hover:bg-[#4771ED] active:bg-[#4063C7]'
           >
             <Image
               src={'/icon-arrow-right-2.svg'}

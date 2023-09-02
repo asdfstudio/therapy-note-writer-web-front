@@ -54,7 +54,9 @@ const Contact = () => {
               className='w-[21.25rem] h-[2.75rem] rounded-full
             bg-[#fff] border-[1px] border-[#6f91f480]
               pl-[1.06rem] md:w-[43rem] xlc:w-[25rem]
-              font-iBM_Plex_Sans font-[400] text-[1rem]'
+              font-iBM_Plex_Sans font-[400] text-[1rem]
+              hover:border-[#6F91F4] 
+              active:border-[#4771ED] active:bg-[#FAFAFA]'
             />
 
             <label
@@ -71,7 +73,9 @@ const Contact = () => {
               className='w-[21.25rem] h-[2.75rem] rounded-full
             bg-[#fff] border-[1px] border-[#6f91f480]
               pl-[1.06rem] md:w-[43rem] xlc:w-[25rem]
-              font-iBM_Plex_Sans font-[400] text-[1rem]'
+              font-iBM_Plex_Sans font-[400] text-[1rem]
+              hover:border-[#6F91F4] 
+              active:border-[#4771ED] active:bg-[#FAFAFA]'
             />
 
             <label
@@ -88,7 +92,9 @@ const Contact = () => {
               className='w-[21.25rem] h-[2.75rem] rounded-full
             bg-[#fff] border-[1px] border-[#6f91f480]
               pl-[1.06rem] md:w-[43rem] xlc:w-[25rem]
-              font-iBM_Plex_Sans font-[400] text-[1rem]'
+              font-iBM_Plex_Sans font-[400] text-[1rem]
+              hover:border-[#6F91F4] 
+              active:border-[#4771ED] active:bg-[#FAFAFA]'
             />
 
             <label
@@ -105,7 +111,9 @@ const Contact = () => {
             bg-[#fff] border-[1px] border-[#6f91f480]
               pl-[1.06rem] md:w-[43rem] xlc:w-[25rem]
               font-iBM_Plex_Sans font-[400] text-[1rem] 
-              pt-[0.75rem]'
+              pt-[0.75rem]
+              hover:border-[#6F91F4] 
+              active:border-[#4771ED] active:bg-[#FAFAFA]'
             />
           </form>
           <Link
