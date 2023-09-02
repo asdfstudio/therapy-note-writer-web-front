@@ -53,7 +53,8 @@ const FirstSection = () => {
             border-[#3157C9] text-white 
             text-[1rem] font-[600] justify-center 
             items-center
-            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]'
+            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
+            hover:bg-[#4771ED] active:bg-[#4063C7]'
           >
             <Link href='/'>
               <button className='uppercase'>Get Started</button>

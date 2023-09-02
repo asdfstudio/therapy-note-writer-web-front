@@ -50,6 +50,7 @@ const Navbar = () => {
                 alt=''
                 width={40}
                 height={40}
+                draggable={false}
                 className='w-[2.23rem] h-[1.51rem]
                 md:w-[2.681rem] md:h-[1.82rem]'
               />
@@ -65,6 +66,7 @@ const Navbar = () => {
                 alt=''
                 width={160}
                 height={20}
+                draggable={false}
                 className='w-[10.526rem] h-[1.188rem]
                 md:w-[12.68rem] md:h-[1.68rem]'
               />
@@ -100,7 +102,8 @@ const Navbar = () => {
             text-[1rem] text-[600] justify-center 
             items-center
             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
-            font-iBM_Plex_Sans'
+            font-iBM_Plex_Sans
+            hover:bg-[#4771ED] active:bg-[#4063C7]'
           >
             <Link href='/'>
               <button className='uppercase'>Sign up</button>

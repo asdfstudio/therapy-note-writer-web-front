@@ -58,6 +58,7 @@ const Pricing = () => {
                   alt=''
                   width={1200}
                   height={550}
+                  draggable={false}
                   className='w-[0.875rem] h-[0.875rem] 
                 mr-[0.44rem]'
                 />
@@ -74,6 +75,7 @@ const Pricing = () => {
                   alt=''
                   width={1200}
                   height={550}
+                  draggable={false}
                   className='w-[0.875rem] h-[0.875rem]
                 mr-[0.44rem]'
                 />
@@ -127,7 +129,8 @@ const Pricing = () => {
                 border-[#F4776F] uppercase text-white 
                 text-[1rem] font-[600] justify-center
                 drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
-                font-iBM_Plex_Sans tracking-[0.1rem]'
+                font-iBM_Plex_Sans tracking-[0.1rem]
+                hover:bg-[#4771ED] active:bg-[#4063C7]'
                 >
                   Get Started
                 </button>
@@ -150,6 +153,7 @@ const Pricing = () => {
             alt=''
             width={1200}
             height={550}
+            draggable={false}
             className='hidden w-[48rem] mt-8 md:flex 
         xlc:hidden'
           />
@@ -158,6 +162,7 @@ const Pricing = () => {
             alt=''
             width={1200}
             height={550}
+            draggable={false}
             className='hidden xlc:flex mt-8 
           xlc:w-[50.12rem] xlc:h-[40.12rem]
           xlc:ml-[3rem]'
