@@ -6,12 +6,15 @@ const Pricing = () => {
   return (
     <div
       className='flex items-center justify-center 
-      xlc:justify-normal'
-      id='features'
+      xlc:justify-center xlc:ml-[-30%]'
+      id='pricing'
     >
       <div
         className='flex flex-col items-center
       xlc:flex-row xlc:relative xlc:ml-[0rem]'
+
+        // xl1440:left-[5%] 2xl:left-[8%] min-[1550px]:left-[10%]
+        // min-[1600px]:left-[12%] min-[1700px]:left-[14%]
       >
         {/* Pricing info */}
         <div
@@ -43,14 +46,15 @@ const Pricing = () => {
             <h3
               className='font-poynter_Oldstyle_Display 
             text-[1.875rem] font-[400] leading-[2.0625rem] 
-            mt-[0.81rem] mb-[0.94rem] md:ml-[1.69rem]'
+            mt-[0.81rem] mb-[0.94rem] md:ml-[1.69rem]
+            text-[#29375F]'
             >
               Unlimited
             </h3>
             {/* Card Text */}
             <div
               className='flex flex-col w-[18rem] 
-            md:w-[25rem] md:ml-[1.69rem]'
+            md:w-[25rem] md:ml-[1.69rem] text-[#29375F]'
             >
               <div className='flex items-baseline'>
                 <Image
@@ -101,12 +105,13 @@ const Pricing = () => {
               {/* Bullet points */}
               <div
                 className='flex items-center justify-center
-              mt-[1rem] mb-[0.69rem]'
+              mt-[1rem] mb-[0.69rem] text-[#29375F]'
               >
                 <p
                   className='font-poynter_Oldstyle_Display 
-            text-[2.187rem]
-            font-[400] leading-[2.40625rem] mr-[0.94rem]'
+                  text-[2.187rem]
+                  font-[400] leading-[2.40625rem] 
+                  mr-[0.94rem]'
                 >
                   $5.99
                 </p>
@@ -140,13 +145,18 @@ const Pricing = () => {
         </div>
 
         {/* Banner Image */}
-        <div className='flex order-2 xlc:order-1'>
+        <div
+          className='flex order-2 xlc:order-1 mt-8
+          w-[23.8rem] min-[398px]:w-[25rem]
+          md:w-[48rem] xlc:w-[50.12rem] xlc:h-[40.12rem]
+          xlc:ml-[3rem]'
+        >
           <Image
             src={'/pricing-banner-mobile.png'}
             alt=''
             width={1200}
             height={550}
-            className='flex w-[23.8rem] mt-8 md:hidden'
+            className='flex md:hidden'
           />
           <Image
             src={'/pricing-banner-tab.png'}
@@ -154,8 +164,7 @@ const Pricing = () => {
             width={1200}
             height={550}
             draggable={false}
-            className='hidden w-[48rem] mt-8 md:flex 
-        xlc:hidden'
+            className='hidden md:flex xlc:hidden'
           />
           <Image
             src={'/pricing-banner-lg.png'}
@@ -163,9 +172,7 @@ const Pricing = () => {
             width={1200}
             height={550}
             draggable={false}
-            className='hidden xlc:flex mt-8 
-          xlc:w-[50.12rem] xlc:h-[40.12rem]
-          xlc:ml-[3rem]'
+            className='hidden xlc:flex'
           />
         </div>
       </div>

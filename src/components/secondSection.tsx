@@ -65,7 +65,8 @@ const SecondSection = () => {
               <p
                 className='text-[#29375F] text-center 
                 text-[1.125rem] font-[400] leading-[1.75rem] 
-                opacity-[0.7] sm:text-left'
+                opacity-[0.7] sm:text-left xlc:text-center 
+                xlc:w-[15.8125rem]'
               >
                 Easily enter relevant details about the therapy session.
               </p>
@@ -128,7 +129,8 @@ const SecondSection = () => {
               <p
                 className='text-[#29375F] text-center 
                 text-[1.125rem] font-[400] leading-[1.75rem] 
-                opacity-[0.7] sm:text-left'
+                opacity-[0.7] sm:text-left xlc:text-center 
+                xlc:w-[15.8125rem]'
               >
                 Our Al-powered system creates a professional progress note in
                 DAP format.
@@ -191,7 +193,8 @@ const SecondSection = () => {
               <p
                 className='text-[#29375F] text-center 
                 text-[1.125rem] font-[400] leading-[1.75rem] 
-                opacity-[0.7] sm:text-left'
+                opacity-[0.7] sm:text-left xlc:text-center 
+                xlc:w-[15.8125rem]'
               >
                 Review, edit, and copy your progress note, freeing up time for
                 patient care.

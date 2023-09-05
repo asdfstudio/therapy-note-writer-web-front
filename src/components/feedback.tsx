@@ -103,7 +103,7 @@ const Feedback = () => {
           <h3
             className='w-[20rem] font-iBM_Plex_Sans 
             text-[1.375rem] font-[400] text-center mb-2
-            md:w-[33.3rem]'
+            md:w-[33.3rem] text-[#29375F]'
           >
             {slides[currentIndex].desc}
           </h3>

@@ -25,7 +25,8 @@ const Footer = () => {
           return (
             <Link
               className='font-iBM_Plex_Sans font-[600]
-               tracking-[0.1rem] uppercase text-[1rem]'
+               tracking-[0.1rem] uppercase text-[1rem]
+               text-[#29375F]'
               key={index}
               href={item.url}
             >

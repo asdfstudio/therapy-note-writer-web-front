@@ -31,13 +31,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' className='scroll-smooth'>
-      <body className='bg-[url("/bg-home-1.svg")] w-full bg-no-repeat bg-contain'>
+      <body>
         <div
           className={`${iBM_Plex_Sans.variable} ${poynter_Oldstyle_Display.variable}`}
         >
-          <Navbar />
+          {/* <Navbar /> */}
           {children}
-          <Footer />
         </div>
       </body>
     </html>
