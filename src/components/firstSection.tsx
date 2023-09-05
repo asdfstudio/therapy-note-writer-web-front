@@ -10,7 +10,7 @@ const iBM_Plex_Sans = IBM_Plex_Sans({
 
 const FirstSection = () => {
   return (
-    <div className={iBM_Plex_Sans.className}>
+    <div className='font-iBM_Plex_Sans'>
       <div
         className='flex flex-col items-center w-full
         pt-[5.5rem] z-0'

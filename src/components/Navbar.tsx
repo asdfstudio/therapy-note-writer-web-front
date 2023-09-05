@@ -111,7 +111,7 @@ const Navbar = () => {
             font-iBM_Plex_Sans
             hover:bg-[#4771ED] active:bg-[#4063C7]'
           >
-            <Link href='/'>
+            <Link href='/signup'>
               <button className='uppercase'>Sign up</button>
             </Link>
           </div>
@@ -128,7 +128,7 @@ const Navbar = () => {
             hover:border-[#4771ED] hover:bg-[#FAFAFA]
             active:border-[#4063C7] active:bg-[#FAFAFA]'
           >
-            <Link href='/'>
+            <Link href='/login'>
               <button className='uppercase'>Login</button>
             </Link>
           </div>
