@@ -10,10 +10,14 @@ import Image from 'next/image';
 
 export default function Home() {
   return (
-    <main className='flex min-h-screen flex-col '>
-      <div className='absolute inset-0 -top-[15rem]'>
+    <main
+      className='flex min-h-screen flex-col 
+      bg-[url("/bg-home-1.svg")] w-full bg-no-repeat 
+      bg-contain'
+    >
+      {/* <div className='absolute inset-0 -top-[15rem]'>
         <Image src='/bg-home-1.svg' alt='background image' fill />
-      </div>
+      </div> */}
       <Navbar />
       <FirstSection />
       <SecondSection />

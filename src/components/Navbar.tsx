@@ -12,7 +12,7 @@ const iBM_Plex_Sans = IBM_Plex_Sans({
 const links = [
   { id: 1, title: 'How it works', url: '/#how_it_works' },
   { id: 2, title: 'Why choose', url: '/#whychoose' },
-  { id: 3, title: 'Features', url: '/#features' },
+  { id: 3, title: 'Pricing', url: '/#pricing' },
 ];
 
 const Navbar = () => {
@@ -105,14 +105,19 @@ const Navbar = () => {
             md:w-[9.375rem] md:h-[2.75rem]  
             xlc:w-[13.75rem] xlc:h-[2.75rem] rounded-full 
             border-[1px] border-[#3157C9] text-white 
-            text-[1rem] text-[600] justify-center 
+            text-[1rem] font-[600] justify-center 
             items-center
             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
             font-iBM_Plex_Sans
             hover:bg-[#4771ED] active:bg-[#4063C7]'
           >
             <Link href='/signup'>
-              <button className='uppercase'>Sign up</button>
+              <button
+                className='uppercase 
+                tracking-[0.1rem]'
+              >
+                Sign up
+              </button>
             </Link>
           </div>
           {/* Login Button */}
@@ -121,15 +126,20 @@ const Navbar = () => {
             md:w-[9.375rem] md:h-[2.75rem] 
             xlc:w-[13.75rem] xlc:h-[2.75rem] rounded-full 
             border-[1px] border-[#3157C9] text-[1rem] 
-            text-[600] text-[#6F91F4] mr-[0.5rem] 
+            font-[600] text-[#6F91F4] mr-[0.5rem] 
             justify-center items-center
             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
-            font-iBM_Plex_Sans
+            font-iBM_Plex_Sans 
             hover:border-[#4771ED] hover:bg-[#FAFAFA]
             active:border-[#4063C7] active:bg-[#FAFAFA]'
           >
             <Link href='/login'>
-              <button className='uppercase'>Login</button>
+              <button
+                className='uppercase 
+                tracking-[0.1rem]'
+              >
+                Login
+              </button>
             </Link>
           </div>
           {/* Hamburger Icon */}

@@ -83,6 +83,7 @@ const FirstSection = () => {
             width={380}
             height={100}
             draggable={false}
+            className='w-[23.75rem] min-[398px]:w-[25rem]'
           />
         </div>
         <div
