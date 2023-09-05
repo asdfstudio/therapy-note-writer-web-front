@@ -281,7 +281,9 @@ const ThirdSection = () => {
                 return (
                   <p
                     className={
-                      item === 20 ? 'font-[700] opacity-[1]' : 'opacity-[0.5]'
+                      item === patientCount + 5
+                        ? 'font-[700] opacity-[1]'
+                        : 'opacity-[0.5]'
                     }
                     key={index}
                   >
@@ -333,7 +335,9 @@ const ThirdSection = () => {
                 return (
                   <p
                     className={
-                      item === 100 ? 'font-[700] opacity-[1]' : 'opacity-[0.5]'
+                      item === chargePerHour + 50
+                        ? 'font-[700] opacity-[1]'
+                        : 'opacity-[0.5]'
                     }
                     key={index}
                   >
