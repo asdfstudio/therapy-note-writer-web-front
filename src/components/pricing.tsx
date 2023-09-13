@@ -124,7 +124,7 @@ const Pricing = () => {
               </div>
               {/* Button */}
               <Link
-                href='/'
+                href='/signup'
                 className='w-[17rem] mt-1
               md:w-[15.8125rem]'
               >

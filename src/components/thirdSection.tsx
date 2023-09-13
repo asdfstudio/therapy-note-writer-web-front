@@ -156,7 +156,7 @@ const ThirdSection = () => {
         })}
         {/* Button */}
         <Link
-          href='/'
+          href='/signup'
           className='w-[17rem] mb-[3.13rem]
           xlc:w-full'
         >

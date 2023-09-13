@@ -38,7 +38,7 @@ const signupPage = () => {
               className='text-[2.5rem] 
               font-poynter_Oldstyle_Display 
               font-[400] leading-[2.75rem] mt-[9.25rem]
-              mb-[1.31rem]'
+              mb-[1.31rem] text-[#29375F]'
             >
               Sign Up
             </h1>
@@ -145,7 +145,7 @@ const signupPage = () => {
 
           <h3
             className='font-iBM_Plex_Sans
-            text-[29375F] font-[600]'
+            text-[#29375F] font-[600]'
           >
             Already have an account?
           </h3>

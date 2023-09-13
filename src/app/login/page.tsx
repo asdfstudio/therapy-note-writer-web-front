@@ -34,7 +34,7 @@ const loginPage = () => {
               className='text-[2.5rem] 
               font-poynter_Oldstyle_Display 
               font-[400] leading-[2.75rem] mt-[10.94rem]
-              mb-[1.31rem]'
+              mb-[1.31rem] text-[#29375F]'
             >
               Login
             </h1>
@@ -99,7 +99,7 @@ const loginPage = () => {
           </form>
           <h3
             className='font-iBM_Plex_Sans
-            text-[29375F] font-[600] text-[1rem]'
+            text-[#29375F] font-[600] text-[1rem]'
           >
             Forgot password?{' '}
             <Link
@@ -119,7 +119,7 @@ const loginPage = () => {
 
           <h3
             className='font-iBM_Plex_Sans
-            text-[29375F] font-[600] text-[1rem]'
+            text-[#29375F] font-[600] text-[1rem]'
           >
             Don’t have an account?
           </h3>

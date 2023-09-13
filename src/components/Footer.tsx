@@ -37,7 +37,7 @@ const Footer = () => {
       </div>
 
       {/* Button */}
-      <Link href='/' className='w-[13.75rem] h-[2.75rem]'>
+      <Link href='/signup' className='w-[13.75rem] h-[2.75rem]'>
         <button
           className='flex bg-[#6F91F4] 
             w-full h-full rounded-full border-[1px] 

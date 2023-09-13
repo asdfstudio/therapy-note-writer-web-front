@@ -203,7 +203,7 @@ const Feedback = () => {
         </div>
       </div>
       {/* Button */}
-      <Link href='/' className='w-[17rem] mt-8 mb-8'>
+      <Link href='/signup' className='w-[17rem] mt-8 mb-8'>
         <button
           className='flex bg-[#6F91F4] py-[12px] 
             w-full rounded-full border-[1px] 

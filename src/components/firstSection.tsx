@@ -56,11 +56,11 @@ const FirstSection = () => {
             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
             hover:bg-[#4771ED] active:bg-[#4063C7]'
           >
-            <Link href='/'>
+            <Link href='/signup'>
               <button className='uppercase'>Get Started</button>
             </Link>
           </div>
-          <div
+          {/* <div
             className='w-[20rem] h-[2.75rem] sm:w-[13.75rem] 
             flex bg-white 
             py-[12px] rounded-full border-[1px] 
@@ -74,7 +74,7 @@ const FirstSection = () => {
             <Link href='/'>
               <button className='uppercase'>How It Works</button>
             </Link>
-          </div>
+          </div> */}
         </div>
         <div className='flex sm:hidden mt-8'>
           <Image
