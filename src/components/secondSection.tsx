@@ -204,7 +204,7 @@ const SecondSection = () => {
         </div>
 
         <Link
-          href='/'
+          href='/signup'
           className='w-[17rem] mt-10 
           xlc:mb-10'
         >

@@ -133,7 +133,7 @@ const Contact = () => {
             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
             hover:bg-[#4771ED] active:bg-[#4063C7]'
               >
-                Get Started
+                Submit
               </button>
             </Link>
           </div>
