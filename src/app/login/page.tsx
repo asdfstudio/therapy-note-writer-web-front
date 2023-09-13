@@ -6,13 +6,16 @@ import React from 'react';
 
 const loginPage = () => {
   return (
-    <div className='flex min-h-screen flex-col bg-[url("/bg-home-1.svg")] w-full bg-no-repeat bg-contain xlc:bg-none'>
+    <div
+      className='flex min-h-screen flex-col bg-[url("/bg-home-1.svg")] w-full 
+      bg-no-repeat bg-contain xlc:bg-none'
+    >
       <Navbar2 />
       {/* Big image Left */}
       <div
         className='hidden xlc:flex absolute inset-0
-        xlc:w-[57.5rem] xlc:h-[54rem]
-        2xl:w-[64rem] 2xl:h-[60rem]'
+        xlc:w-[56rem] xlc:h-[53rem]'
+        // 2xl:w-[64rem] 2xl:h-[60rem]
       >
         <Image src='/signup-banner-lg.jpg' alt='background image' fill />
       </div>
@@ -22,7 +25,7 @@ const loginPage = () => {
       {/* Text Contents */}
       <div
         className='flex flex-col items-center 
-        xlc:items-end'
+        xlc:items-center xlc:ml-[56rem]'
       >
         {/* Form */}
         <div
@@ -145,6 +148,8 @@ const loginPage = () => {
           </Link>
         </div>
       </div>
+      {/* <h1 className='flex flex-1'>WHo</h1>
+      <h1 className='flex flex-2'>Where</h1> */}
     </div>
   );
 };

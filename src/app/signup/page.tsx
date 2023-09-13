@@ -11,8 +11,8 @@ const signupPage = () => {
       {/* Big image Left */}
       <div
         className='hidden xlc:flex absolute inset-0 
-        xlc:w-[57.5rem] xlc:h-[54rem]
-        2xl:w-[64rem] 2xl:h-[60rem]'
+        xlc:w-[56rem] xlc:h-[53rem]'
+        // 2xl:w-[64rem] 2xl:h-[60rem]
       >
         <Image src='/signup-banner-lg.jpg' alt='background image' fill />
       </div>
@@ -26,7 +26,7 @@ const signupPage = () => {
       {/* Text Contents */}
       <div
         className='flex flex-col items-center 
-        xlc:items-end'
+        xlc:items-center xlc:ml-[56rem]'
       >
         {/* Form */}
         <div
