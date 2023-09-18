@@ -1,23 +1,63 @@
 'use client';
 import Navbar2 from '@/components/Navbar2';
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
 const loginPage = () => {
   return (
     <div
-      className='flex min-h-screen flex-col bg-[url("/bg-home-1.svg")] w-full 
+      className='flex min-h-screen flex-row bg-[url("/bg-home-1.svg")] w-screen 
       bg-no-repeat bg-contain xlc:bg-none'
     >
       <Navbar2 />
+
       {/* Big image Left */}
+
       <div
-        className='hidden xlc:flex absolute inset-0
-        xlc:w-[56rem] xlc:h-[53rem]'
-        // 2xl:w-[64rem] 2xl:h-[60rem]
+        className='hidden xlc:flex bg-[url("/signup-banner-lg.jpeg")] bg-no-repeat
+        bg-cover items-start w-[73%] h-screen'
       >
-        <Image src='/signup-banner-lg.jpg' alt='background image' fill />
+        <div className='w-[50%] relative mt-[7.94rem] ml-[2.5rem]'>
+          <h2
+            className='relative font-poynter_Oldstyle_Display 
+          text-[#fff] text-[3.4375rem] font-[400] 
+            leading-[3.78125rem] text-start justify-center z-10 '
+          >
+            An{' '}
+            <span
+              className=' font-[600] italic bg-[url("/login-underline-1.svg")] 
+              bg-contain bg-no-repeat bg-bottom'
+            >
+              AI-Powered
+            </span>
+            <br />
+            <span className=' font-[600]'>Note</span> taking App
+          </h2>
+
+          <h2
+            className='relative font-poynter_Oldstyle_Display 
+          text-[#fff] text-[3.4375rem] font-[400] 
+            leading-[3.78125rem] text-start justify-center z-20 
+            mt-[1.12rem] '
+          >
+            Made exclusively for{' '}
+            <span
+              className=' font-[600] italic bg-[url("/login-ellipse-1.svg")] 
+              bg-contain bg-no-repeat'
+            >
+              Therapists.
+            </span>
+          </h2>
+          {/* <Image
+            src={'/login-ellipse-1.svg'}
+            alt=''
+            width={1200}
+            height={550}
+            draggable={false}
+            className='absolute w-[18.9375rem] h-[4.5rem] 
+            z-[5] left-20 top-[12rem] '
+          /> */}
+        </div>
       </div>
 
       {/* Right Side */}
@@ -25,12 +65,13 @@ const loginPage = () => {
       {/* Text Contents */}
       <div
         className='flex flex-col items-center 
-        xlc:items-center xlc:ml-[56rem]'
+        xlc:items-end'
       >
         {/* Form */}
         <div
           className='flex flex-col items-center 
-          xlc:w-[27rem] 2xl:w-[30rem]'
+          w-screen
+          xlc:w-[30rem] min-h-screen'
         >
           <form className='flex flex-col'>
             <h1
