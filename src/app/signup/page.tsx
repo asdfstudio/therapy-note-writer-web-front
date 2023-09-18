@@ -1,6 +1,5 @@
 'use client';
 import Navbar2 from '@/components/Navbar2';
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
@@ -24,19 +23,16 @@ const signupPage = () => {
           text-[#fff] text-[3.4375rem] font-[400] 
             leading-[3.78125rem] text-start justify-center z-10 '
           >
-            An AI-Powered
+            An{' '}
+            <span
+              className=' font-[600] italic bg-[url("/login-underline-1.svg")] 
+              bg-contain bg-no-repeat bg-bottom'
+            >
+              AI-Powered
+            </span>
             <br />
             <span className=' font-[600]'>Note</span> taking App
           </h2>
-          <Image
-            src={'/login-underline-1.svg'}
-            alt=''
-            width={1200}
-            height={550}
-            draggable={false}
-            className='absolute w-[18.6785rem] h-[0.5rem] 
-            z-10 left-20 top-14 '
-          />
 
           <h2
             className='relative font-poynter_Oldstyle_Display 
