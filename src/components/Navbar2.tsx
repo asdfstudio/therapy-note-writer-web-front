@@ -18,8 +18,8 @@ const links = [
 const Navbar2 = () => {
   return (
     <div
-      className='flex justify-center mt-[1.56rem] 
-       relative z-50 xlc:justify-start xlc:ml-[2.5rem]
+      className='flex justify-start mt-[1.56rem] ml-[2.5rem]
+       absolute z-50 xlc:justify-start xlc:ml-[2.5rem]
        xlc:mt-[2.44rem]'
     >
       <div
