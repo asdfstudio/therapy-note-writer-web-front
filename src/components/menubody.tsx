@@ -6,7 +6,7 @@ const Menubody = () => {
       className='bg-[#12192E] w-screen h-screen 
      text-[#fff] font-iBM_Plex_Sans
       fixed flex flex-col top-[4.75rem] pt-[1.25rem] z-20
-      overflow-auto'
+      overflow-y-scroll'
     >
       <div
         className='ml-[1.25rem] w-[20.75rem]
@@ -29,54 +29,67 @@ const Menubody = () => {
         <div
           className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem]'
+          w-full mb-[1.25rem] flex flex-wrap'
         >
-          <input
-            type='radio'
-            value='She/Her/Hers'
-            id='option_1'
-            name='pronouns'
-            className='appearance-none w-[0.9375rem] h-[0.9375rem] 
-             bg-[#F4776F] rounded-full'
-          />
           <label
             htmlFor='option_1'
-            className='text-[0.9375rem] ml-[0.5rem] 
-            mr-[1.5rem]'
+            className='text-[0.9375rem] 
+            mr-[1.5rem] mb-[0.5rem]'
           >
+            <input
+              type='radio'
+              value='She/Her/Hers'
+              id='option_1'
+              name='pronouns'
+              className='checkbox appearance-none 
+            ring-[#F4776F] ring-[1.5px] 
+            checked:ring-[4px] checked:ring-[#F4776F]
+            focus:ring-4 focus:ring-[#F4776F]
+            rounded-full cursor-pointer 
+            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
+            />
             She/Her/Hers
           </label>
-          <input
-            type='radio'
-            value='He/Him/His'
-            id='option_2'
-            name='pronouns'
-            className=''
-          />
-          {/* <div
-            className={`h-[0.9375rem] w-[0.9375rem] 
-            bg-[#12192E] rounded-full border-[1.5px] 
-            border-[#F4776F] checked:border-[4px]`}
-          ></div> */}
+
           <label
             htmlFor='option_1'
-            className=' ml-[0.5rem] 
-            mr-[1.5rem]'
+            className='text-[0.9375rem] 
+            mr-[1.5rem] mb-[0.5rem]'
           >
+            <input
+              type='radio'
+              value='He/Him/His'
+              id='option_2'
+              name='pronouns'
+              className='checkbox appearance-none 
+              ring-[#F4776F] ring-[1.5px] 
+              checked:ring-[4px] checked:ring-[#F4776F]
+              focus:ring-4 focus:ring-[#F4776F]
+              rounded-full cursor-pointer 
+              w-[0.9375rem] h-[0.9375rem] transition
+              duration-300 mr-[0.5rem]'
+            />
             He/Him/His
           </label>
-          <br />
-          <input
-            type='radio'
-            value='They/Them/Theirs'
-            id='option_3'
-            name='pronouns'
-          />
+
           <label
             htmlFor='option_1'
-            className=' ml-[0.5rem] 
+            className='text-[0.9375rem] 
             mr-[1.5rem]'
           >
+            <input
+              type='radio'
+              value='He/Him/His'
+              id='option_2'
+              name='pronouns'
+              className='checkbox appearance-none 
+              ring-[#F4776F] ring-[1.5px] 
+              checked:ring-[4px] checked:ring-[#F4776F]
+              focus:ring-4 focus:ring-[#F4776F]
+              rounded-full cursor-pointer 
+              w-[0.9375rem] h-[0.9375rem] transition
+              duration-300 mr-[0.5rem]'
+            />
             They/Them/Theirs
           </label>
         </div>
@@ -91,34 +104,44 @@ const Menubody = () => {
         <div
           className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem]'
+          w-full mb-[1.25rem] flex flex-wrap'
         >
-          <input
-            type='radio'
-            value='He/Him/His'
-            id='option_2'
-            name='pronouns'
-            className=''
-          />
           <label
-            htmlFor='option_1'
-            className='text-[0.9375rem] ml-[0.5rem] 
-            mr-[1.5rem]'
+            htmlFor='Appointment'
+            className='text-[0.9375rem] 
+            mr-[1.5rem] mb-[0.5rem]'
           >
+            <input
+              type='radio'
+              value='Appointment'
+              id='Appointment1'
+              name='Appointment'
+              className='checkbox appearance-none 
+            ring-[#F4776F] ring-[1.5px] 
+            checked:ring-[4px] checked:ring-[#F4776F]
+            focus:ring-4 focus:ring-[#F4776F]
+            rounded-full cursor-pointer 
+            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
+            />
             In person
           </label>
-          <input
-            type='radio'
-            value='He/Him/His'
-            id='option_2'
-            name='pronouns'
-            className=''
-          />
           <label
-            htmlFor='option_1'
-            className='text-[0.9375rem] ml-[0.5rem] 
-            mr-[1.5rem]'
+            htmlFor='Appointment'
+            className='text-[0.9375rem] 
+            mr-[1.5rem] mb-[0.5rem]'
           >
+            <input
+              type='radio'
+              value='Telehealth'
+              id='Appointment2'
+              name='Appointment'
+              className='checkbox appearance-none 
+            ring-[#F4776F] ring-[1.5px] 
+            checked:ring-[4px] checked:ring-[#F4776F]
+            focus:ring-4 focus:ring-[#F4776F]
+            rounded-full cursor-pointer 
+            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
+            />
             Telehealth
           </label>
         </div>
