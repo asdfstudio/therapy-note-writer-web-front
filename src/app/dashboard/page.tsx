@@ -1,5 +1,5 @@
 'use client';
-import Menubody from '@/components/menubody';
+import Menubody from '@/components/Menubody';
 import SecondSection from '@/components/secondSection';
 import Image from 'next/image';
 import React, { useState } from 'react';
@@ -10,88 +10,79 @@ const DashboardPage = () => {
     <div className=''>
       {/* Logo and Menu */}
       <div
-        className='fixed h-[4.75rem] w-screen bg-[#12192E] font-iBM_Plex_Sans
-        text-[#fff] flex justify-center flex-col'
+        className='fixed h-[4.75rem] w-screen bg-[#12192E] 
+        font-iBM_Plex_Sans
+        text-[#fff] flex justify-between'
       >
         {/* Menu Bar Items */}
-        <div className='flex'>
-          {/* Logo and menu bar */}
-          <div className='flex'>
+        {/* Logo and menu bar */}
+        <div
+          className='flex justify-start items-center
+          ml-[1.25rem]'
+        >
+          <div
+            className='w-[2.36475rem] h-[2.36475rem] 
+              bg-[#6F91F4] flex items-center justify-center
+              rounded-[0.5715rem] mr-[0.75rem]'
+          >
             <Image
               src={'/dashboard-logo-1.svg'}
               alt=''
               width={1200}
               height={550}
-              className='w-14'
+              draggable={false}
+              className='w-[1.6945rem] h-[1.15038rem] '
             />
+          </div>
+          <Image
+            src={'/dashboard-logo-2.svg'}
+            alt=''
+            width={1200}
+            height={550}
+            draggable={false}
+            className='w-[4.625rem] h-[2.45rem] '
+          />
+        </div>
+        <div
+          className='flex justify-end items-center
+          mr-[1.25rem]'
+        >
+          <div
+            className='w-[2.75rem] h-[2.75rem] 
+          border-[#6F91F4] border-[1px] flex items-center justify-center
+          rounded-[6.25rem] mr-[0.5rem]'
+            onClick={() => {
+              !showMenu ? setShowMenu(true) : setShowMenu(false);
+            }}
+          >
             <Image
-              src={'/dashboard-logo-2.svg'}
+              src={'/dashboard-icon-pen.svg'}
               alt=''
               width={1200}
               height={550}
-              className='w-20'
+              draggable={false}
+              className='w-5'
             />
           </div>
-          <div className='flex'>
-            <div
-              onClick={() => {
-                !showMenu ? setShowMenu(true) : setShowMenu(false);
-              }}
-            >
-              <Image
-                src={'/dashboard-icon-pen.svg'}
-                alt=''
-                width={1200}
-                height={550}
-                className='w-10'
-              />
-            </div>
-            <div>
-              <Image
-                src={'/dashboard-icon-user.svg'}
-                alt=''
-                width={1200}
-                height={550}
-                className='w-10'
-              />
-            </div>
+          <div
+            className='w-[2.75rem] h-[2.75rem] 
+          border-[#6F91F4] border-[1px] flex items-center justify-center
+          rounded-[6.25rem]'
+          >
+            <Image
+              src={'/dashboard-icon-user.svg'}
+              alt=''
+              width={1200}
+              height={550}
+              draggable={false}
+              className='w-5'
+            />
           </div>
         </div>
       </div>
       {/* Menu body */}
       <div className={!showMenu ? 'hidden' : ''}>
-        <div
-          className='bg-[#12192E] w-screen h-screen text-[#fff] font-iBM_Plex_Sans
-          fixed flex flex-col top-[4.75rem]'
-        >
-          <div>
-            <p className='font-[700]'>Session Description</p>
-            <p className=' opacity-[0.6]'>Pronouns</p>
-            <div>
-              <input
-                type='radio'
-                value='She/Her/Hers'
-                id='option_1'
-                name='pronouns'
-              />
-              <label htmlFor='option_1'>She/Her/Hers</label>
-              <input
-                type='radio'
-                value='He/Him/His'
-                id='option_2'
-                name='pronouns'
-              />
-              <label htmlFor='option_1'>He/Him/His</label>
-              <input
-                type='radio'
-                value='They/Them/Theirs'
-                id='option_3'
-                name='pronouns'
-              />
-              <label htmlFor='option_1'>They/Them/Theirs</label>
-            </div>
-          </div>
-        </div>
+        <Menubody />
       </div>
 
       {/* Body */}
