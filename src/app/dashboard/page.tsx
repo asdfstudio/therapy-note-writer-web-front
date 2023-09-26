@@ -1,18 +1,19 @@
 'use client';
+import DashboardHome from '@/components/DashboardHome';
 import Menubody from '@/components/Menubody';
-import SecondSection from '@/components/secondSection';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
 const DashboardPage = () => {
   const [showMenu, setShowMenu] = useState(false);
   return (
-    <div className=''>
+    <div className='flex md:justify-between'>
       {/* Logo and Menu */}
       <div
         className='fixed h-[4.75rem] w-screen bg-[#12192E] 
         font-iBM_Plex_Sans
-        text-[#fff] flex justify-between'
+        text-[#fff] flex justify-between
+        md:w-[20.125rem]'
       >
         {/* Menu Bar Items */}
         {/* Logo and menu bar */}
@@ -81,13 +82,13 @@ const DashboardPage = () => {
         </div>
       </div>
       {/* Menu body */}
-      <div className={!showMenu ? 'hidden' : ''}>
+      <div className={!showMenu ? 'hidden md:flex' : ''}>
         <Menubody />
       </div>
 
       {/* Body */}
-      <div className='pt-[calc(100vh-37rem)]'>
-        <SecondSection />
+      <div className='pt-[4.5rem] w-full md:pt-0 md:w-[calc(100vw-20.125rem)] '>
+        <DashboardHome />
       </div>
     </div>
   );
