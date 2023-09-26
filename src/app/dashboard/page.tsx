@@ -1,11 +1,14 @@
 'use client';
 import DashboardHome from '@/components/DashboardHome';
+import DashboardNavMenu from '@/components/DashboardNavMenu';
 import Menubody from '@/components/Menubody';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useState } from 'react';
 
 const DashboardPage = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const [showNavMenu, setShowNavMenu] = useState(false);
   return (
     <div className='flex md:justify-between'>
       {/* Logo and Menu */}
@@ -17,34 +20,39 @@ const DashboardPage = () => {
       >
         {/* Menu Bar Items */}
         {/* Logo and menu bar */}
-        {/* Logo and menu bar */}
         <div
           className='flex justify-start items-center
           ml-[1.25rem]'
         >
-          <div
-            className='w-[2.36475rem] h-[2.36475rem] 
+          <Link href='/dashboard'>
+            <div
+              className='w-[2.36475rem] h-[2.36475rem] 
               bg-[#6F91F4] flex items-center justify-center
               rounded-[0.5715rem] mr-[0.75rem]'
-          >
+            >
+              <Image
+                src={'/dashboard-logo-1.svg'}
+                alt=''
+                width={1200}
+                height={550}
+                draggable={false}
+                className='w-[1.6945rem] h-[1.15038rem] '
+              />
+            </div>
+          </Link>
+          <Link href='/dashboard'>
             <Image
-              src={'/dashboard-logo-1.svg'}
+              src={'/dashboard-logo-2.svg'}
               alt=''
               width={1200}
               height={550}
               draggable={false}
-              className='w-[1.6945rem] h-[1.15038rem] '
+              className='w-[4.625rem] h-[2.45rem] '
             />
-          </div>
-          <Image
-            src={'/dashboard-logo-2.svg'}
-            alt=''
-            width={1200}
-            height={550}
-            draggable={false}
-            className='w-[4.625rem] h-[2.45rem] '
-          />
+          </Link>
         </div>
+
+        {/* Right side items */}
         <div
           className='flex justify-end items-center
           mr-[1.25rem]'
@@ -70,6 +78,9 @@ const DashboardPage = () => {
             className='w-[2.75rem] h-[2.75rem] 
           border-[#6F91F4] border-[1px] flex items-center justify-center
           rounded-[6.25rem]'
+            onClick={() => {
+              !showNavMenu ? setShowNavMenu(true) : setShowNavMenu(false);
+            }}
           >
             <Image
               src={'/dashboard-icon-user.svg'}
@@ -85,6 +96,16 @@ const DashboardPage = () => {
       {/* Menu body */}
       <div className={!showMenu ? 'hidden md:flex' : ''}>
         <Menubody />
+      </div>
+
+      <div
+        className={
+          !showNavMenu
+            ? 'hidden'
+            : `flex absolute w-full sm:w-full md:w-[20.125rem] justify-end `
+        }
+      >
+        <DashboardNavMenu />
       </div>
 
       {/* Body */}
