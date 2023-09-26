@@ -17,6 +17,7 @@ const DashboardPage = () => {
       >
         {/* Menu Bar Items */}
         {/* Logo and menu bar */}
+        {/* Logo and menu bar */}
         <div
           className='flex justify-start items-center
           ml-[1.25rem]'
