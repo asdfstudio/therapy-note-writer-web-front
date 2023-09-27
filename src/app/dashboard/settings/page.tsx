@@ -15,7 +15,7 @@ const SettingsPage = () => {
         font-iBM_Plex_Sans
         text-[#fff] flex justify-between
         md:w-[5.375rem] md:flex-col md:h-screen
-        md:pt-[1rem]'
+        md:pt-[1rem] z-[2]'
       >
         {/* Menu Bar Items */}
         {/* Logo and menu bar */}
