@@ -1,32 +1,33 @@
 'use client';
+import ChangePassHome from '@/components/ChangePassHome';
 import DashboardNavMenu from '@/components/DashboardNavMenu';
 import SettingsHome from '@/components/SettingsHome';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
-const SettingsPage = () => {
+const ChangePasswordPage = () => {
   const [showNavMenu, setShowNavMenu] = useState(false);
   return (
     <div className='flex md:justify-between'>
       {/* Logo and Menu */}
       <div
         className='fixed h-[4.75rem] w-screen bg-[#12192E] 
-          font-iBM_Plex_Sans
-          text-[#fff] flex justify-between
-          md:w-[20.125rem]'
+            font-iBM_Plex_Sans
+            text-[#fff] flex justify-between
+            md:w-[20.125rem]'
       >
         {/* Menu Bar Items */}
         {/* Logo and menu bar */}
         <div
           className='flex justify-start items-center
-            ml-[1.25rem]'
+              ml-[1.25rem]'
         >
           <Link href='/dashboard'>
             <div
               className='w-[2.36475rem] h-[2.36475rem] 
-                bg-[#6F91F4] flex items-center justify-center
-                rounded-[0.5715rem] mr-[0.75rem]'
+                  bg-[#6F91F4] flex items-center justify-center
+                  rounded-[0.5715rem] mr-[0.75rem]'
             >
               <Image
                 src={'/dashboard-logo-1.svg'}
@@ -53,13 +54,13 @@ const SettingsPage = () => {
         {/* Right side items */}
         <div
           className='flex justify-end items-center
-            mr-[1.25rem]'
+              mr-[1.25rem]'
         >
           <Link href='/dashboard'>
             <div
               className='w-[2.75rem] h-[2.75rem] 
-            border-[#6F91F4] border-[1px] flex items-center justify-center
-            rounded-[6.25rem] mr-[0.5rem]'
+              border-[#6F91F4] border-[1px] flex items-center justify-center
+              rounded-[6.25rem] mr-[0.5rem]'
             >
               <Image
                 src={'/dashboard-icon-pen.svg'}
@@ -73,8 +74,8 @@ const SettingsPage = () => {
           </Link>
           <div
             className='w-[2.75rem] h-[2.75rem] bg-[#6F91F4]
-            border-[#6F91F4] border-[1px] flex items-center justify-center
-            rounded-[6.25rem]'
+              border-[#6F91F4] border-[1px] flex items-center justify-center
+              rounded-[6.25rem]'
             onClick={() => {
               !showNavMenu ? setShowNavMenu(true) : setShowNavMenu(false);
             }}
@@ -104,10 +105,10 @@ const SettingsPage = () => {
 
       {/* Body */}
       <div className='pt-[4.5rem] w-full md:pt-0 md:w-[calc(100vw-20.125rem)] '>
-        <SettingsHome />
+        <ChangePassHome />
       </div>
     </div>
   );
 };
 
-export default SettingsPage;
+export default ChangePasswordPage;
