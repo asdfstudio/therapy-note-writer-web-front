@@ -12,15 +12,16 @@ const SettingsPage = () => {
       {/* Logo and Menu */}
       <div
         className='fixed h-[4.75rem] w-screen bg-[#12192E] 
-          font-iBM_Plex_Sans
-          text-[#fff] flex justify-between
-          md:w-[20.125rem]'
+        font-iBM_Plex_Sans
+        text-[#fff] flex justify-between
+        md:w-[5.375rem] md:flex-col md:h-screen
+        md:pt-[1rem]'
       >
         {/* Menu Bar Items */}
         {/* Logo and menu bar */}
         <div
           className='flex justify-start items-center
-            ml-[1.25rem]'
+            ml-[1.25rem] md:hidden'
         >
           <Link href='/dashboard'>
             <div
@@ -53,7 +54,8 @@ const SettingsPage = () => {
         {/* Right side items */}
         <div
           className='flex justify-end items-center
-            mr-[1.25rem]'
+            mr-[1.25rem] md:flex-col-reverse
+            md:gap-[1.25rem] md:mr-0'
         >
           <Link href='/dashboard'>
             <div
@@ -96,14 +98,14 @@ const SettingsPage = () => {
         className={
           !showNavMenu
             ? 'hidden'
-            : `flex absolute w-full sm:w-full md:w-[20.125rem] justify-end `
+            : `flex fixed w-full md:w-[18rem] justify-end z-20 md:-top-[3.5rem]`
         }
       >
         <DashboardNavMenu />
       </div>
 
       {/* Body */}
-      <div className='pt-[4.5rem] w-full md:pt-0 md:w-[calc(100vw-20.125rem)] '>
+      <div className='pt-[4.5rem] w-full md:pt-0 '>
         <SettingsHome />
       </div>
     </div>
