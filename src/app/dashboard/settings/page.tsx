@@ -1,198 +1,115 @@
 'use client';
-import Navbar2 from '@/components/Navbar2';
+import DashboardHome from '@/components/DashboardHome';
+import DashboardNavMenu from '@/components/DashboardNavMenu';
+import Menubody from '@/components/Menubody';
+import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 
-const settingsPage = () => {
+const SettingsPage = () => {
+  const [showMenu, setShowMenu] = useState(false);
+  const [showNavMenu, setShowNavMenu] = useState(false);
   return (
-    <div
-      className='flex min-h-screen flex-row bg-[url("/bg-home-1.svg")] w-screen 
-      bg-no-repeat bg-contain xlc:bg-none'
-    >
-      <Navbar2 />
-
-      {/* Big image Left */}
-
+    <div className='flex md:justify-between'>
+      {/* Logo and Menu */}
       <div
-        className='hidden xlc:flex bg-[url("/signup-banner-lg.jpeg")] bg-no-repeat
-        bg-cover items-start w-[73%] h-screen'
+        className='fixed h-[4.75rem] w-screen bg-[#12192E] 
+          font-iBM_Plex_Sans
+          text-[#fff] flex justify-between
+          md:w-[20.125rem]'
       >
-        <div className='w-[50%] relative mt-[7.94rem] ml-[2.5rem]'>
-          <h2
-            className='relative font-poynter_Oldstyle_Display 
-          text-[#fff] text-[3.4375rem] font-[400] 
-            leading-[3.78125rem] text-start justify-center z-10 '
-          >
-            An{' '}
-            <span
-              className=' font-[600] italic bg-[url("/login-underline-1.svg")] 
-              bg-contain bg-no-repeat bg-bottom'
-            >
-              AI-Powered
-            </span>
-            <br />
-            <span className=' font-[600]'>Note</span> taking App
-          </h2>
-
-          <h2
-            className='relative font-poynter_Oldstyle_Display 
-          text-[#fff] text-[3.4375rem] font-[400] 
-            leading-[3.78125rem] text-start justify-center z-20 
-            mt-[1.12rem] '
-          >
-            Made exclusively for{' '}
-            <span
-              className=' font-[600] italic bg-[url("/login-ellipse-1.svg")] 
-              bg-contain bg-no-repeat'
-            >
-              Therapists.
-            </span>
-          </h2>
-          {/* <Image
-            src={'/login-ellipse-1.svg'}
-            alt=''
-            width={1200}
-            height={550}
-            draggable={false}
-            className='absolute w-[18.9375rem] h-[4.5rem] 
-            z-[5] left-20 top-[12rem] '
-          /> */}
-        </div>
-      </div>
-
-      {/* Right Side */}
-
-      {/* Text Contents */}
-      <div
-        className='flex flex-col items-center 
-        xlc:items-end'
-      >
-        {/* Form */}
+        {/* Menu Bar Items */}
+        {/* Logo and menu bar */}
         <div
-          className='flex flex-col items-center 
-          w-screen
-          xlc:w-[30rem] min-h-screen'
+          className='flex justify-start items-center
+            ml-[1.25rem]'
         >
-          <form className='flex flex-col'>
-            <h1
-              className='text-[2.5rem] 
-              font-poynter_Oldstyle_Display 
-              font-[400] leading-[2.75rem] mt-[10.94rem]
-              mb-[1.31rem] text-[#29375F]'
+          <Link href='/dashboard'>
+            <div
+              className='w-[2.36475rem] h-[2.36475rem] 
+                bg-[#6F91F4] flex items-center justify-center
+                rounded-[0.5715rem] mr-[0.75rem]'
             >
-              Login
-            </h1>
-
-            <label
-              className='font-iBM_Plex_Sans
-          text-[#29375F] text-[1rem] font-[400] 
-           mb-[0.5rem]'
-            >
-              Email Address
-            </label>
-            <input
-              type='email'
-              name='email'
-              placeholder='yourname@domain.com'
-              className='w-[21.25rem] h-[2.75rem] rounded-full
-            bg-[#fff] border-[1px] border-[#6f91f480]
-              pl-[1.06rem] md:w-[43rem] xlc:w-[25rem]
-              font-iBM_Plex_Sans font-[400] text-[1rem]
-              hover:border-[#6F91F4] 
-              active:border-[#4771ED] active:bg-[#FAFAFA]'
+              <Image
+                src={'/dashboard-logo-1.svg'}
+                alt=''
+                width={1200}
+                height={550}
+                draggable={false}
+                className='w-[1.6945rem] h-[1.15038rem] '
+              />
+            </div>
+          </Link>
+          <Link href='/dashboard'>
+            <Image
+              src={'/dashboard-logo-2.svg'}
+              alt=''
+              width={1200}
+              height={550}
+              draggable={false}
+              className='w-[4.625rem] h-[2.45rem] '
             />
-
-            <label
-              className='font-iBM_Plex_Sans
-          text-[#29375F] text-[1rem] font-[400]
-            mt-[1.25rem] mb-[0.5rem]'
-            >
-              Password
-            </label>
-            <input
-              type='password'
-              name='password'
-              placeholder='****  ****  ****'
-              className='w-[21.25rem] h-[2.75rem] rounded-full
-            bg-[#fff] border-[1px] border-[#6f91f480]
-              pl-[1.06rem] md:w-[43rem] xlc:w-[25rem]
-              font-iBM_Plex_Sans font-[400] text-[1rem]
-              hover:border-[#6F91F4] 
-              active:border-[#4771ED] active:bg-[#FAFAFA]'
-            />
-            <Link
-              href='/login'
-              className='w-[21.25rem] h-[2.75rem] mt-4
-            mb-[0.94rem]
-            md:w-[43rem] md:mt-[1.25rem] 
-            xlc:w-[25rem]'
-            >
-              <button
-                type='submit'
-                className='flex bg-[#6F91F4] h-full 
-            w-full items-center rounded-full border-[1px] 
-            border-[#3157C9] uppercase text-white 
-            font-iBM_Plex_Sans tracking-[0.1rem]
-            text-[1rem] font-[600] justify-center
-            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
-            hover:bg-[#4771ED] active:bg-[#4063C7]'
-              >
-                Login
-              </button>
-            </Link>
-          </form>
-          <h3
-            className='font-iBM_Plex_Sans
-            text-[#29375F] font-[600] text-[1rem]'
-          >
-            Forgot password?{' '}
-            <Link
-              href={'/login'}
-              className='text-[#6F91F4]
-              underline'
-            >
-              Reset
-            </Link>
-          </h3>
-
-          <hr
-            className='w-[21.25rem] h-[2px] 
-            bg-[rgba(111,145,244,0.40)] mt-[2.5rem]
-            mb-[2.5rem]'
-          />
-
-          <h3
-            className='font-iBM_Plex_Sans
-            text-[#29375F] font-[600] text-[1rem]'
-          >
-            Don’t have an account?
-          </h3>
-          <Link
-            href='/signup'
-            className='w-[21.25rem] h-[2.75rem] mt-3
-            mb-[8.38rem]
-            md:w-[43rem] md:mt-[1.25rem] md:mb-[2.37rem]
-            xlc:w-[25rem]'
-          >
-            <button
-              className='flex bg-white h-full 
-            w-full items-center rounded-full border-[1px] 
-            border-[#3157C9] uppercase text-[#6F91F4] 
-            font-iBM_Plex_Sans tracking-[0.1rem]
-            text-[1rem] font-[600] justify-center
-            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
-            hover:border-[#4771ED] hover:bg-[#FAFAFA]
-            active:border-[#4063C7] active:bg-[#FAFAFA]'
-            >
-              Sign Up
-            </button>
           </Link>
         </div>
+
+        {/* Right side items */}
+        <div
+          className='flex justify-end items-center
+            mr-[1.25rem]'
+        >
+          <Link href='/dashboard'>
+            <div
+              className='w-[2.75rem] h-[2.75rem] 
+            border-[#6F91F4] border-[1px] flex items-center justify-center
+            rounded-[6.25rem] mr-[0.5rem]'
+            >
+              <Image
+                src={'/dashboard-icon-pen.svg'}
+                alt=''
+                width={1200}
+                height={550}
+                draggable={false}
+                className='w-5'
+              />
+            </div>
+          </Link>
+          <div
+            className='w-[2.75rem] h-[2.75rem] bg-[#6F91F4]
+            border-[#6F91F4] border-[1px] flex items-center justify-center
+            rounded-[6.25rem]'
+            onClick={() => {
+              !showNavMenu ? setShowNavMenu(true) : setShowNavMenu(false);
+            }}
+          >
+            <Image
+              src={'/dashboard-icon-user-white.svg'}
+              alt=''
+              width={1200}
+              height={550}
+              draggable={false}
+              className='w-5'
+            />
+          </div>
+        </div>
       </div>
-      {/* <h1 className='flex flex-1'>WHo</h1>
-      <h1 className='flex flex-2'>Where</h1> */}
+
+      {/* Menu Nav */}
+      <div
+        className={
+          !showNavMenu
+            ? 'hidden'
+            : `flex absolute w-full sm:w-full md:w-[20.125rem] justify-end `
+        }
+      >
+        <DashboardNavMenu />
+      </div>
+
+      {/* Body */}
+      <div className='pt-[4.5rem] w-full md:pt-0 md:w-[calc(100vw-20.125rem)] '>
+        <DashboardHome />
+      </div>
     </div>
   );
 };
 
-export default settingsPage;
+export default SettingsPage;

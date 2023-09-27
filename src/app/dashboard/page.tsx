@@ -58,21 +58,32 @@ const DashboardPage = () => {
           mr-[1.25rem]'
         >
           <div
-            className='w-[2.75rem] h-[2.75rem] 
+            className={`w-[2.75rem] h-[2.75rem] 
           border-[#6F91F4] border-[1px] flex items-center justify-center
-          rounded-[6.25rem] mr-[0.5rem]'
+          rounded-[6.25rem] mr-[0.5rem] ${showMenu ? 'bg-[#6F91F4]' : ''}`}
             onClick={() => {
               !showMenu ? setShowMenu(true) : setShowMenu(false);
             }}
           >
-            <Image
-              src={'/dashboard-icon-pen.svg'}
-              alt=''
-              width={1200}
-              height={550}
-              draggable={false}
-              className='w-5'
-            />
+            {!showMenu ? (
+              <Image
+                src={'/dashboard-icon-pen.svg'}
+                alt=''
+                width={1200}
+                height={550}
+                draggable={false}
+                className='w-5'
+              />
+            ) : (
+              <Image
+                src={'/dashboard-icon-pen-white.svg'}
+                alt=''
+                width={1200}
+                height={550}
+                draggable={false}
+                className='w-5'
+              />
+            )}
           </div>
           <div
             className='w-[2.75rem] h-[2.75rem] 
