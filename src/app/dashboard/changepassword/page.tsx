@@ -1,13 +1,11 @@
 'use client';
-import DashboardHome from '@/components/DashboardHome';
+import ChangePassHome from '@/components/ChangePassHome';
 import DashboardNavMenu from '@/components/DashboardNavMenu';
-import Menubody from '@/components/Menubody';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
-const DashboardPage = () => {
-  const [showMenu, setShowMenu] = useState(false);
+const ChangePasswordPage = () => {
   const [showNavMenu, setShowNavMenu] = useState(false);
   return (
     <div className='flex md:justify-between'>
@@ -16,19 +14,20 @@ const DashboardPage = () => {
         className='fixed h-[4.75rem] w-screen bg-[#12192E] 
         font-iBM_Plex_Sans
         text-[#fff] flex justify-between
-        md:w-[20.125rem]'
+        md:w-[5.375rem] md:flex-col md:h-screen
+        md:pt-[1rem]'
       >
         {/* Menu Bar Items */}
         {/* Logo and menu bar */}
         <div
           className='flex justify-start items-center
-          ml-[1.25rem]'
+              ml-[1.25rem] md:hidden'
         >
           <Link href='/dashboard'>
             <div
               className='w-[2.36475rem] h-[2.36475rem] 
-              bg-[#6F91F4] flex items-center justify-center
-              rounded-[0.5715rem] mr-[0.75rem]'
+                  bg-[#6F91F4] flex items-center justify-center
+                  rounded-[0.5715rem] mr-[0.75rem]'
             >
               <Image
                 src={'/dashboard-logo-1.svg'}
@@ -55,17 +54,15 @@ const DashboardPage = () => {
         {/* Right side items */}
         <div
           className='flex justify-end items-center
-          mr-[1.25rem]'
+              mr-[1.25rem] md:flex-col-reverse
+              md:gap-[1.25rem] md:mr-0'
         >
-          <div
-            className={`w-[2.75rem] h-[2.75rem] 
-          border-[#6F91F4] border-[1px] flex items-center justify-center
-          rounded-[6.25rem] mr-[0.5rem] ${showMenu ? 'bg-[#6F91F4]' : ''}`}
-            onClick={() => {
-              !showMenu ? setShowMenu(true) : setShowMenu(false);
-            }}
-          >
-            {!showMenu ? (
+          <Link href='/dashboard'>
+            <div
+              className='w-[2.75rem] h-[2.75rem] 
+              border-[#6F91F4] border-[1px] flex items-center justify-center
+              rounded-[6.25rem] mr-[0.5rem]'
+            >
               <Image
                 src={'/dashboard-icon-pen.svg'}
                 alt=''
@@ -74,27 +71,18 @@ const DashboardPage = () => {
                 draggable={false}
                 className='w-5'
               />
-            ) : (
-              <Image
-                src={'/dashboard-icon-pen-white.svg'}
-                alt=''
-                width={1200}
-                height={550}
-                draggable={false}
-                className='w-5'
-              />
-            )}
-          </div>
+            </div>
+          </Link>
           <div
-            className='w-[2.75rem] h-[2.75rem] 
-          border-[#6F91F4] border-[1px] flex items-center justify-center
-          rounded-[6.25rem]'
+            className='w-[2.75rem] h-[2.75rem] bg-[#6F91F4]
+              border-[#6F91F4] border-[1px] flex items-center justify-center
+              rounded-[6.25rem]'
             onClick={() => {
               !showNavMenu ? setShowNavMenu(true) : setShowNavMenu(false);
             }}
           >
             <Image
-              src={'/dashboard-icon-user.svg'}
+              src={'/dashboard-icon-user-white.svg'}
               alt=''
               width={1200}
               height={550}
@@ -104,27 +92,24 @@ const DashboardPage = () => {
           </div>
         </div>
       </div>
-      {/* Menu body */}
-      <div className={!showMenu ? 'hidden md:flex' : ''}>
-        <Menubody />
-      </div>
 
+      {/* Menu Nav */}
       <div
         className={
           !showNavMenu
             ? 'hidden'
-            : `flex absolute w-full sm:w-full md:w-[20.125rem] justify-end `
+            : `flex fixed w-full md:w-[18rem] justify-end z-20 md:-top-[3.5rem]`
         }
       >
         <DashboardNavMenu />
       </div>
 
       {/* Body */}
-      <div className='pt-[4.5rem] w-full md:pt-0 md:w-[calc(100vw-20.125rem)] '>
-        <DashboardHome />
+      <div className='pt-[4.5rem] w-full md:pt-0 '>
+        <ChangePassHome />
       </div>
     </div>
   );
 };
 
-export default DashboardPage;
+export default ChangePasswordPage;
