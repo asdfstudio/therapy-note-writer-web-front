@@ -5,15 +5,16 @@ const Menubody = () => {
   return (
     <div
       className='bg-[#12192E] w-screen h-screen 
-      md:w-[20.125rem]
+      md:w-[23.75rem]
      text-[#fff] font-iBM_Plex_Sans
       fixed flex flex-col top-[4.75rem] pt-[1.25rem] z-20
       overflow-y-scroll'
     >
       <div
         className='ml-[1.25rem] w-[20.75rem]
-        flex flex-col justify-center mb-[10rem]
-        md:w-[17.125rem]'
+        flex flex-col justify-center md:mb-[3rem] 
+        xlc:mb-[7rem]
+        md:w-[20.75rem]'
       >
         <p
           className='font-[700]

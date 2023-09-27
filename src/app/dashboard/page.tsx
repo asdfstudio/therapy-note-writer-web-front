@@ -16,7 +16,8 @@ const DashboardPage = () => {
         className='fixed h-[4.75rem] w-screen bg-[#12192E] 
         font-iBM_Plex_Sans
         text-[#fff] flex justify-between
-        md:w-[20.125rem]'
+        md:w-[23.75rem] z-[2] border-b-[1px]
+        border-[rgba(111,145,244,0.40)]'
       >
         {/* Menu Bar Items */}
         {/* Logo and menu bar */}
@@ -60,20 +61,24 @@ const DashboardPage = () => {
           <div
             className={`w-[2.75rem] h-[2.75rem] 
           border-[#6F91F4] border-[1px] flex items-center justify-center
-          rounded-[6.25rem] mr-[0.5rem] ${showMenu ? 'bg-[#6F91F4]' : ''}`}
+          rounded-[6.25rem] mr-[0.5rem] md:hidden ${
+            showMenu ? 'bg-[#6F91F4]' : ''
+          }`}
             onClick={() => {
               !showMenu ? setShowMenu(true) : setShowMenu(false);
             }}
           >
             {!showMenu ? (
-              <Image
-                src={'/dashboard-icon-pen.svg'}
-                alt=''
-                width={1200}
-                height={550}
-                draggable={false}
-                className='w-5'
-              />
+              <div>
+                <Image
+                  src={'/dashboard-icon-pen.svg'}
+                  alt=''
+                  width={1200}
+                  height={550}
+                  draggable={false}
+                  className='w-5'
+                />
+              </div>
             ) : (
               <Image
                 src={'/dashboard-icon-pen-white.svg'}
@@ -104,6 +109,7 @@ const DashboardPage = () => {
           </div>
         </div>
       </div>
+
       {/* Menu body */}
       <div className={!showMenu ? 'hidden md:flex' : ''}>
         <Menubody />
@@ -113,14 +119,14 @@ const DashboardPage = () => {
         className={
           !showNavMenu
             ? 'hidden'
-            : `flex absolute w-full sm:w-full md:w-[20.125rem] justify-end `
+            : `flex fixed w-full z-20 md:w-[24.75rem] justify-end `
         }
       >
         <DashboardNavMenu />
       </div>
 
       {/* Body */}
-      <div className='pt-[4.5rem] w-full md:pt-0 md:w-[calc(100vw-20.125rem)] '>
+      <div className='pt-[4.5rem] w-full md:pt-0 md:w-[calc(100vw-23.75rem)]'>
         <DashboardHome />
       </div>
     </div>

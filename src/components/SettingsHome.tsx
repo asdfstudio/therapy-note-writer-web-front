@@ -7,7 +7,7 @@ const SettingsHome = () => {
       className='flex min-h-screen bg-[url("/bg-home-1.svg")] 
       w-screen flex-col items-center
       bg-no-repeat bg-contain xlc:flex-row
-      xlc:justify-center'
+      xlc:justify-center '
     >
       {/* Account */}
 
@@ -108,7 +108,7 @@ const SettingsHome = () => {
             mb-[2.5rem] xlc:hidden'
       />
 
-      <form className='flex flex-col'>
+      <form className='flex flex-col mb-[5rem] xlc:mb-0'>
         <h1
           className='text-[3.125rem] 
               font-poynter_Oldstyle_Display 
