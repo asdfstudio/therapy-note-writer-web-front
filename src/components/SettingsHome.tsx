@@ -113,7 +113,7 @@ const SettingsHome = () => {
           className='text-[3.125rem] 
               font-poynter_Oldstyle_Display 
               font-[400] leading-[3.4375rem] 
-              mb-[1.5rem] text-[#29375F]'
+              mb-[2rem] text-[#29375F]'
         >
           Manage <br /> Subscription
         </h1>

@@ -73,22 +73,28 @@ const ChangePasswordPage = () => {
               />
             </div>
           </Link>
-          <div
-            className='w-[2.75rem] h-[2.75rem] bg-[#6F91F4]
+          <div className='w-full flex justify-end'>
+            <div
+              className='w-[2.75rem] h-[2.75rem] bg-[#6F91F4]
               border-[#6F91F4] border-[1px] flex items-center justify-center
               rounded-[6.25rem]'
-            onClick={() => {
-              !showNavMenu ? setShowNavMenu(true) : setShowNavMenu(false);
-            }}
-          >
-            <Image
-              src={'/dashboard-icon-user-white.svg'}
-              alt=''
-              width={1200}
-              height={550}
-              draggable={false}
-              className='w-5'
-            />
+              onClick={() => {
+                !showNavMenu ? setShowNavMenu(true) : setShowNavMenu(false);
+              }}
+            >
+              <Image
+                src={'/dashboard-icon-user-white.svg'}
+                alt=''
+                width={1200}
+                height={550}
+                draggable={false}
+                className='w-5'
+              />
+            </div>
+            <span
+              className='border-r-[0.375rem] border-[#6F91F4] 
+              rounded-full ml-4 hidden md:flex'
+            ></span>
           </div>
         </div>
       </div>

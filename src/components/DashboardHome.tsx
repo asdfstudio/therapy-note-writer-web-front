@@ -11,9 +11,16 @@ const DashboardHome = () => {
         bg-repeat-x bg-cover flex flex-col items-center 
         justify-center xlc:bg-contain xlc:pt-[7rem]'
       >
-        <h1 className='text-[3.4375rem] mt-5 text-[#29375F]'>
+        <h1 className='text-[3.4375rem] mt-5 text-[#29375F] '>
           <span className='font-poynter_Oldstyle_Display'>
-            How it <span className='italic'>works</span>
+            How it{' '}
+            <span
+              className='italic font-[600] 
+              bg-[url("/login-underline-1.svg")] 
+              bg-contain bg-no-repeat bg-bottom'
+            >
+              works
+            </span>
           </span>
         </h1>
 
