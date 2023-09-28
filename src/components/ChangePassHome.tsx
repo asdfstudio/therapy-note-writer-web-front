@@ -17,7 +17,7 @@ const ChangePassHome = () => {
               font-[400] leading-[3.4375rem] mt-[2.98rem]
               mb-[1.5rem] text-[#29375F]'
           >
-            Change <br /> Password
+            Change <br className='xlc:hidden' /> Password
           </h1>
 
           <label
@@ -30,7 +30,7 @@ const ChangePassHome = () => {
           <input
             type='password'
             name='password'
-            placeholder='****  ****  ****'
+            placeholder='Type current password'
             className='w-[21.25rem] h-[2.75rem] rounded-full
             bg-[#fff] border-[1px] border-[#6f91f480]
               pl-[1.06rem] md:w-[25rem] xlc:w-[25rem]
@@ -48,7 +48,7 @@ const ChangePassHome = () => {
           <input
             type='password'
             name='password'
-            placeholder='****  ****  ****'
+            placeholder='Type new password'
             className='w-[21.25rem] h-[2.75rem] rounded-full
             bg-[#fff] border-[1px] border-[#6f91f480]
               pl-[1.06rem] md:w-[25rem] xlc:w-[25rem]
@@ -66,7 +66,7 @@ const ChangePassHome = () => {
           <input
             type='password'
             name='password'
-            placeholder='****  ****  ****'
+            placeholder='Retype new password'
             className='w-[21.25rem] h-[2.75rem] rounded-full
             bg-[#fff] border-[1px] border-[#6f91f480]
               pl-[1.06rem] md:w-[25rem] xlc:w-[25rem]
