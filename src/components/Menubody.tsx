@@ -1,7 +1,10 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
+import TagsInputCustom from './TagsInputCustom';
 
 const Menubody = () => {
+  const [selected, setSelected] = useState(['']);
+
   return (
     <div
       className='bg-[#12192E] w-screen h-screen 
@@ -33,7 +36,8 @@ const Menubody = () => {
         <div
           className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] flex flex-wrap'
+          w-full mb-[1.25rem] flex flex-wrap
+          border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <label
             htmlFor='option_1'
@@ -111,7 +115,8 @@ const Menubody = () => {
         <div
           className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] flex flex-wrap'
+          w-full mb-[1.25rem] flex flex-wrap
+          border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <label
             htmlFor='Appointment'
@@ -162,10 +167,11 @@ const Menubody = () => {
         >
           Diagnosis
         </p>
-        <div
+        {/* <div
           className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem]'
+          w-full mb-[1.25rem]
+          border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <input
             type='text'
@@ -174,7 +180,21 @@ const Menubody = () => {
             name='pronouns'
             className=' bg-transparent w-full'
           />
+        </div> */}
+
+        {/* Test */}
+
+        <div
+          className='bg-[rgba(53,61,82,0.60)]
+        rounded-[0.25888rem] p-[0.62rem]
+        w-full mb-[1.25rem]
+        border-[0.518px] 
+        border-[rgba(111,145,244,0.50)] flex flex-wrap'
+        >
+          <TagsInputCustom />
         </div>
+
+        {/* Test */}
 
         {/* Options */}
         <p
@@ -186,7 +206,8 @@ const Menubody = () => {
         <div
           className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem]'
+          w-full mb-[1.25rem]
+          border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <input
             type='text'
@@ -207,7 +228,8 @@ const Menubody = () => {
         <div
           className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem]'
+          w-full mb-[1.25rem]
+          border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <input
             type='text'
@@ -228,7 +250,8 @@ const Menubody = () => {
         <div
           className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem]'
+          w-full mb-[1.25rem]
+          border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <input
             type='text'
@@ -258,7 +281,8 @@ const Menubody = () => {
         <div
           className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2'
+          w-full mb-[1.25rem] grid grid-cols-2
+          border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <label
             htmlFor='Appearance1'
@@ -352,7 +376,8 @@ const Menubody = () => {
         <div
           className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2'
+          w-full mb-[1.25rem] grid grid-cols-2
+          border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <label
             htmlFor='Speech1'
@@ -502,7 +527,8 @@ const Menubody = () => {
         <div
           className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2'
+          w-full mb-[1.25rem] grid grid-cols-2
+          border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <label
             htmlFor='Affect1'
@@ -611,7 +637,8 @@ const Menubody = () => {
         <div
           className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2'
+          w-full mb-[1.25rem] grid grid-cols-2
+          border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <label
             htmlFor='Mood1'
@@ -758,7 +785,8 @@ const Menubody = () => {
         <div
           className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2'
+          w-full mb-[1.25rem] grid grid-cols-2
+          border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <label
             htmlFor='Behavior1'
@@ -867,7 +895,8 @@ const Menubody = () => {
         <div
           className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2'
+          w-full mb-[1.25rem] grid grid-cols-2
+          border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <label
             htmlFor='Delusions1'
@@ -995,7 +1024,8 @@ const Menubody = () => {
         <div
           className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-3'
+          w-full mb-[1.25rem] grid grid-cols-3
+          border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <label
             htmlFor='Suicidal_Ideation1'
@@ -1104,7 +1134,8 @@ const Menubody = () => {
         <div
           className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-3'
+          w-full mb-[1.25rem] grid grid-cols-3
+          border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <label
             htmlFor='Homicidal_Ideation1'
@@ -1213,7 +1244,8 @@ const Menubody = () => {
         <div
           className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2'
+          w-full mb-[1.25rem] grid grid-cols-2
+          border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <label
             htmlFor='Self_Injuring_Behavior1'
@@ -1341,7 +1373,8 @@ const Menubody = () => {
         <div
           className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2'
+          w-full mb-[1.25rem] grid grid-cols-2
+          border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <label
             htmlFor='Insight1'
@@ -1431,7 +1464,8 @@ const Menubody = () => {
         <div
           className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2'
+          w-full mb-[1.25rem] grid grid-cols-2
+          border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <label
             htmlFor='Judgment1'
@@ -1521,7 +1555,8 @@ const Menubody = () => {
         <div
           className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2'
+          w-full mb-[1.25rem] grid grid-cols-2
+          border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <label
             htmlFor='Oriented1'
@@ -1592,7 +1627,8 @@ const Menubody = () => {
         <div
           className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2'
+          w-full mb-[1.25rem] grid grid-cols-2
+          border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <label
             htmlFor='Eye_Contact1'
@@ -1691,7 +1727,8 @@ const Menubody = () => {
         <div
           className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem]'
+          w-full mb-[1.25rem]
+          border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <textarea
             placeholder='Write homework...'
@@ -1711,7 +1748,8 @@ const Menubody = () => {
         <div
           className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem]'
+          w-full mb-[1.25rem]
+          border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <input
             type='text'
