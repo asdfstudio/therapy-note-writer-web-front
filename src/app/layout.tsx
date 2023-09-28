@@ -1,12 +1,7 @@
-import Navbar from '@/components/Navbar';
 import './globals.css';
 import type { Metadata } from 'next';
-// import { Inter } from 'next/font/google';
 import { IBM_Plex_Sans } from 'next/font/google';
-import Footer from '@/components/Footer';
 import localFont from 'next/font/local';
-
-// const inter = Inter({ subsets: ['latin'] });
 
 const iBM_Plex_Sans = IBM_Plex_Sans({
   subsets: ['latin'],
