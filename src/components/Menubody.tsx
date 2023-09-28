@@ -1,10 +1,55 @@
+import './custom.css';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React from 'react';
 import TagsInputCustom from './TagsInputCustom';
 
-const Menubody = () => {
-  const [selected, setSelected] = useState(['']);
+const Speech = [
+  'Clear',
+  'Soft',
+  'Loud',
+  'Pressured',
+  'Slow',
+  'Rapid',
+  'Slurred',
+];
 
+const Mood = [
+  'Happy',
+  'Sad',
+  'Angry',
+  'Irritable',
+  'Euphoric',
+  'Anxious',
+  'Depressed',
+];
+
+const Behavior = [
+  'Cooperative',
+  'Uncooperative',
+  'Agitated',
+  'Calm',
+  'Disruptive',
+];
+
+const delusions = [
+  'None',
+  'Persecutory',
+  'Grandiose',
+  'Somatic',
+  'Erotomanic',
+  'Nihilistic',
+];
+
+const Self_Injuring_Behavior = [
+  'None',
+  'Scratching',
+  'Cutting',
+  'Burning',
+  'Biting',
+  'Other',
+];
+
+const Menubody = () => {
   return (
     <div
       className='bg-[#12192E] w-screen h-screen 
@@ -407,142 +452,24 @@ const Menubody = () => {
           w-full mb-[1.25rem] grid grid-cols-2
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
-          <label
-            htmlFor='Speech1'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Clear'
-              id='Speech1'
-              name='Speech'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Clear
-          </label>
-          <label
-            htmlFor='Speech2'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Soft'
-              id='Speech2'
-              name='Speech'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Soft
-          </label>
-          <label
-            htmlFor='Speech3'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Loud'
-              id='Speech3'
-              name='Speech'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Loud
-          </label>
-          <label
-            htmlFor='Speech4'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Pressured'
-              id='Speech4'
-              name='Speech'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Pressured
-          </label>
-
-          <label
-            htmlFor='Speech5'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Slow'
-              id='Speech5'
-              name='Speech'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Slow
-          </label>
-
-          <label
-            htmlFor='Speech6'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Rapid'
-              id='Speech6'
-              name='Speech'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Rapid
-          </label>
-
-          <label
-            htmlFor='Speech7'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Slurred'
-              id='Speech7'
-              name='Speech'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Slurred
-          </label>
+          {Speech.map((item, index) => {
+            return (
+              <label
+                key={index}
+                htmlFor={`${item}${index}`}
+                className='container'
+              >
+                <input
+                  value={item}
+                  id={`${item}${index}`}
+                  name='Delusions'
+                  type='checkbox'
+                />
+                <span className='checkmark'></span>
+                {item}
+              </label>
+            );
+          })}
         </div>
 
         {/* Options */}
@@ -668,139 +595,24 @@ const Menubody = () => {
           w-full mb-[1.25rem] grid grid-cols-2
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
-          <label
-            htmlFor='Mood1'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Happy'
-              id='Mood1'
-              name='Mood'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset 
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Happy
-          </label>
-          <label
-            htmlFor='Mood2'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Sad'
-              id='Mood2'
-              name='Mood'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset 
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Sad
-          </label>
-          <label
-            htmlFor='Mood3'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Angry'
-              id='Mood3'
-              name='Mood'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset 
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Angry
-          </label>
-          <label
-            htmlFor='Mood4'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Irritable'
-              id='Mood4'
-              name='Mood'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset 
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Irritable
-          </label>
-          <label
-            htmlFor='Mood5'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Euphoric'
-              id='Mood5'
-              name='Mood'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset 
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Euphoric
-          </label>
-          <label
-            htmlFor='Mood6'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Anxious'
-              id='Mood6'
-              name='Mood'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset 
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Anxious
-          </label>
-          <label
-            htmlFor='Mood7'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Depressed'
-              id='Mood7'
-              name='Mood'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset 
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Depressed
-          </label>
+          {Mood.map((item, index) => {
+            return (
+              <label
+                key={index}
+                htmlFor={`${item}${index}`}
+                className='container'
+              >
+                <input
+                  value={item}
+                  id={`${item}${index}`}
+                  name='Delusions'
+                  type='checkbox'
+                />
+                <span className='checkmark'></span>
+                {item}
+              </label>
+            );
+          })}
         </div>
 
         {/* Options */}
@@ -816,101 +628,24 @@ const Menubody = () => {
           w-full mb-[1.25rem] grid grid-cols-2
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
-          <label
-            htmlFor='Behavior1'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Cooperative'
-              id='Behavior1'
-              name='Behavior'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset 
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Cooperative
-          </label>
-          <label
-            htmlFor='Behavior2'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Uncooperative'
-              id='Behavior2'
-              name='Behavior'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset 
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Uncooperative
-          </label>
-          <label
-            htmlFor='Behavior3'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Agitated'
-              id='Behavior3'
-              name='Behavior'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset 
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Agitated
-          </label>
-          <label
-            htmlFor='Behavior4'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Calm'
-              id='Behavior4'
-              name='Behavior'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset 
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Calm
-          </label>
-          <label
-            htmlFor='Behavior5'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Disruptive'
-              id='Behavior5'
-              name='Behavior'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset 
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Disruptive
-          </label>
+          {Behavior.map((item, index) => {
+            return (
+              <label
+                key={index}
+                htmlFor={`${item}${index}`}
+                className='container'
+              >
+                <input
+                  value={item}
+                  id={`${item}${index}`}
+                  name='Delusions'
+                  type='checkbox'
+                />
+                <span className='checkmark'></span>
+                {item}
+              </label>
+            );
+          })}
         </div>
 
         {/* Options */}
@@ -926,120 +661,24 @@ const Menubody = () => {
           w-full mb-[1.25rem] grid grid-cols-2
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
-          <label
-            htmlFor='Delusions1'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='None'
-              id='Delusions1'
-              name='Delusions'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset 
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            None
-          </label>
-          <label
-            htmlFor='Delusions2'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Persecutory'
-              id='Delusions2'
-              name='Delusions'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset 
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Persecutory
-          </label>
-          <label
-            htmlFor='Delusions3'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Grandiose'
-              id='Delusions3'
-              name='Delusions'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset 
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Grandiose
-          </label>
-          <label
-            htmlFor='Delusions4'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Somatic'
-              id='Delusions4'
-              name='Delusions'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset 
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Somatic
-          </label>
-          <label
-            htmlFor='Delusions5'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Erotomanic'
-              id='Delusions5'
-              name='Delusions'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset 
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Erotomanic
-          </label>
-          <label
-            htmlFor='Delusions6'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Nihilistic'
-              id='Delusions6'
-              name='Delusions'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset 
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Nihilistic
-          </label>
+          {delusions.map((item, index) => {
+            return (
+              <label
+                key={index}
+                htmlFor={`${item}${index}`}
+                className='container'
+              >
+                <input
+                  value={item}
+                  id={`${item}${index}`}
+                  name='Delusions'
+                  type='checkbox'
+                />
+                <span className='checkmark'></span>
+                {item}
+              </label>
+            );
+          })}
         </div>
 
         {/* Options */}
@@ -1275,120 +914,24 @@ const Menubody = () => {
           w-full mb-[1.25rem] grid grid-cols-2
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
-          <label
-            htmlFor='Self_Injuring_Behavior1'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='None'
-              id='Self_Injuring_Behavior1'
-              name='Self_Injuring_Behavior'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset 
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            None
-          </label>
-          <label
-            htmlFor='Self_Injuring_Behavior2'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Scratching'
-              id='Self_Injuring_Behavior2'
-              name='Self_Injuring_Behavior'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset 
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Scratching
-          </label>
-          <label
-            htmlFor='Self_Injuring_Behavior3'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Cutting'
-              id='Self_Injuring_Behavior3'
-              name='Self_Injuring_Behavior'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset 
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Cutting
-          </label>
-          <label
-            htmlFor='Self_Injuring_Behavior4'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Burning'
-              id='Self_Injuring_Behavior4'
-              name='Self_Injuring_Behavior'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset 
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Burning
-          </label>
-          <label
-            htmlFor='Self_Injuring_Behavior5'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Biting'
-              id='Self_Injuring_Behavior5'
-              name='Self_Injuring_Behavior'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset 
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Biting
-          </label>
-          <label
-            htmlFor='Self_Injuring_Behavior6'
-            className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-          >
-            <input
-              type='checkbox'
-              value='Other'
-              id='Self_Injuring_Behavior6'
-              name='Self_Injuring_Behavior'
-              className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset 
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-            />
-            Other
-          </label>
+          {Self_Injuring_Behavior.map((item, index) => {
+            return (
+              <label
+                key={index}
+                htmlFor={`${item}${index}`}
+                className='container'
+              >
+                <input
+                  value={item}
+                  id={`${item}${index}`}
+                  name='Delusions'
+                  type='checkbox'
+                />
+                <span className='checkmark'></span>
+                {item}
+              </label>
+            );
+          })}
         </div>
 
         {/* Options */}

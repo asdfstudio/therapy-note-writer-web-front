@@ -26,7 +26,7 @@ const DashboardHome = () => {
           {/* Single Item */}
           <div
             className='flex items-center 
-            justify-center w-[90vw] sm:flex-row xlc:flex-col 
+            justify-center w-full sm:flex-row xlc:flex-col 
             xlc:w-full'
           >
             {/* Icon */}
@@ -92,7 +92,7 @@ const DashboardHome = () => {
           {/* Single Item */}
           <div
             className='flex items-center 
-            justify-center w-[90vw] sm:flex-row xlc:flex-col 
+            justify-center w-full sm:flex-row xlc:flex-col 
             xlc:w-full'
           >
             {/* Icon */}
@@ -160,7 +160,7 @@ const DashboardHome = () => {
           {/* Single Item */}
           <div
             className='flex items-center 
-            justify-center w-[90vw] sm:flex-row xlc:flex-col 
+            justify-center w-full sm:flex-row xlc:flex-col 
             xlc:w-full'
           >
             {/* Icon */}
