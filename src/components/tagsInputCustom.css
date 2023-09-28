@@ -11,28 +11,28 @@
 }
 
 .tag-item {
-  background-color: #f4776f;
+  /* background-color: #f4776f; */
   display: inline-block;
-  padding: 0.5em 0.75em;
+  /* padding: 0.5em 0.75em; */
   border-radius: 0.25888rem;
 }
 .tag-item .close {
-  height: 20px;
-  width: 20px;
-  background-color: #ffb9b5;
-  color: #f4776f;
+  height: 0.75rem;
+  width: 0.75rem;
+  /* background-color: #ffb9b5; */
+  /* color: #f4776f; */
   border-radius: 50%;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   margin-left: 0.5em;
-  font-size: 18px;
+  font-size: 11px;
   cursor: pointer;
 }
 
 .tags-input {
   flex-grow: 1;
-  padding: 0.5em 0;
+  /* padding: 0.5em 0; */
   /* border: none; */
   /* outline: none; */
   background: transparent;

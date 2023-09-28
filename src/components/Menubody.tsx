@@ -181,9 +181,6 @@ const Menubody = () => {
             className=' bg-transparent w-full'
           />
         </div> */}
-
-        {/* Test */}
-
         <div
           className='bg-[rgba(53,61,82,0.60)]
         rounded-[0.25888rem] p-[0.62rem]
@@ -191,10 +188,13 @@ const Menubody = () => {
         border-[0.518px] 
         border-[rgba(111,145,244,0.50)] flex flex-wrap'
         >
-          <TagsInputCustom />
+          <TagsInputCustom
+            tag_background='bg-[#f4776f]'
+            close_background='bg-[#ffb9b5]'
+            close_icon_color='text-[#f4776f]'
+            placeholder_text='Write diagnosis...'
+          />
         </div>
-
-        {/* Test */}
 
         {/* Options */}
         <p
@@ -203,7 +203,7 @@ const Menubody = () => {
         >
           Current Symptoms
         </p>
-        <div
+        {/* <div
           className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] p-[0.62rem]
           w-full mb-[1.25rem]
@@ -215,6 +215,20 @@ const Menubody = () => {
             id='option_1'
             name='pronouns'
             className=' bg-transparent w-full'
+          />
+        </div> */}
+        <div
+          className='bg-[rgba(53,61,82,0.60)]
+        rounded-[0.25888rem] p-[0.62rem]
+        w-full mb-[1.25rem]
+        border-[0.518px] 
+        border-[rgba(111,145,244,0.50)] flex flex-wrap'
+        >
+          <TagsInputCustom
+            tag_background='bg-[#6F91F4]'
+            close_background='bg-[#2048BE]'
+            close_icon_color='text-[#6F91F4]'
+            placeholder_text='Write symptoms...'
           />
         </div>
 
@@ -247,7 +261,7 @@ const Menubody = () => {
         >
           Interventions used
         </p>
-        <div
+        {/* <div
           className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] p-[0.62rem]
           w-full mb-[1.25rem]
@@ -259,6 +273,20 @@ const Menubody = () => {
             id='option_1'
             name='pronouns'
             className=' bg-transparent w-full'
+          />
+        </div> */}
+        <div
+          className='bg-[rgba(53,61,82,0.60)]
+        rounded-[0.25888rem] p-[0.62rem]
+        w-full mb-[1.25rem]
+        border-[0.518px] 
+        border-[rgba(111,145,244,0.50)] flex flex-wrap'
+        >
+          <TagsInputCustom
+            tag_background='bg-[#6F91F4]'
+            close_background='bg-[#2048BE]'
+            close_icon_color='text-[#6F91F4]'
+            placeholder_text='Write interventions...'
           />
         </div>
 
