@@ -3,19 +3,20 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const DashboardHome = () => {
+const DashboardHome = (props: { onClick: () => void }) => {
   return (
     <div className='font-iBM_Plex_Sans'>
       <div
-        className='bg-[url("/bg-home-2.svg")] h-auto w-full
+        className='bg-[url("/bg-home-2.svg")] h-screen w-full
         bg-repeat-x bg-cover flex flex-col items-center 
-        justify-center xlc:bg-contain xlc:pt-[7rem]'
+        justify-center xlc:bg-contain 
+        pt-[8rem] md:pt-0 mb-[5rem] xlc:mb-0'
       >
-        <h1 className='text-[3.4375rem] mt-5 text-[#29375F] '>
+        <h1 className='text-[3.4375rem] text-[#29375F] '>
           <span className='font-poynter_Oldstyle_Display'>
             How it{' '}
             <span
-              className='italic font-[600] 
+              className='italic font-[400] 
               bg-[url("/login-underline-1.svg")] 
               bg-contain bg-no-repeat bg-bottom'
             >
@@ -209,24 +210,20 @@ const DashboardHome = () => {
           </div>
         </div>
 
-        <Link
-          href='/dashboard'
+        <button
           className='w-[17rem] mt-10 
-          mb-10'
-        >
-          <button
-            className='flex bg-[#6F91F4] py-[12px] 
-            w-full rounded-full border-[1px] 
+            mb-10 flex bg-[#6F91F4] py-[12px] 
+             rounded-full border-[1px] 
             border-[#3157C9] uppercase text-white 
             text-[1rem] font-[600] justify-center
             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
             font-iBM_Plex_Sans tracking-[0.1rem]
             hover:bg-[#4771ED] active:bg-[#4063C7]
             md:hidden'
-          >
-            write session info
-          </button>
-        </Link>
+          onClick={props.onClick}
+        >
+          write session info
+        </button>
       </div>
     </div>
   );

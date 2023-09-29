@@ -9,6 +9,10 @@ import React, { useState } from 'react';
 const DashboardPage = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showNavMenu, setShowNavMenu] = useState(false);
+
+  const handleShowMenu = () => {
+    setShowMenu(true);
+  };
   return (
     <div className='flex md:justify-between'>
       {/* Logo and Menu */}
@@ -127,7 +131,7 @@ const DashboardPage = () => {
 
       {/* Body */}
       <div className='pt-[4.5rem] w-full md:pt-0 md:w-[calc(100vw-23.75rem)]'>
-        <DashboardHome />
+        <DashboardHome onClick={handleShowMenu} />
       </div>
     </div>
   );
