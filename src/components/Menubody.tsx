@@ -59,10 +59,9 @@ const Menubody = () => {
       overflow-y-scroll'
     >
       <div
-        className='ml-[1.25rem] w-[20.75rem]
-        flex flex-col justify-center md:mb-[3rem] 
-        xlc:mb-[7rem]
-        md:w-[20.75rem]'
+        className='ml-[1.25rem] mr-[1.1rem]
+        flex flex-col justify-center mb-[7rem] 
+        md:w-[20.75rem] md:mr-0'
       >
         <p
           className='font-[700]
@@ -80,7 +79,7 @@ const Menubody = () => {
         </p>
         <div
           className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] p-[0.62rem]
+          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
           w-full mb-[1.25rem] flex flex-wrap
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
@@ -130,7 +129,7 @@ const Menubody = () => {
           <label
             htmlFor='option_1'
             className='text-[0.9375rem] 
-            mr-[1.5rem]'
+            mr-[1.5rem] mb-[0.5rem]'
           >
             <input
               type='radio'
@@ -159,14 +158,14 @@ const Menubody = () => {
         </p>
         <div
           className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] p-[0.62rem]
+          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
           w-full mb-[1.25rem] flex flex-wrap
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <label
             htmlFor='Appointment'
             className='text-[0.9375rem] 
-            mr-[1.5rem] '
+            mr-[1.5rem] mb-[0.5rem]'
           >
             <input
               type='radio'
@@ -186,7 +185,7 @@ const Menubody = () => {
           <label
             htmlFor='Appointment'
             className='text-[0.9375rem] 
-            mr-[1.5rem] '
+            mr-[1.5rem] mb-[0.5rem]'
           >
             <input
               type='radio'
@@ -267,7 +266,8 @@ const Menubody = () => {
         rounded-[0.25888rem] p-[0.62rem]
         w-full mb-[1.25rem]
         border-[0.518px] 
-        border-[rgba(111,145,244,0.50)] flex flex-wrap'
+        border-[rgba(111,145,244,0.50)] flex flex-wrap
+        focus:border-[#6F91F4]'
         >
           <TagsInputCustom
             tag_background='bg-[#6F91F4]'
@@ -284,20 +284,17 @@ const Menubody = () => {
         >
           What was discussed in session
         </p>
-        <div
-          className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem]
-          border-[0.518px] border-[rgba(111,145,244,0.50)]'
-        >
-          <input
-            type='text'
-            placeholder='Write discussion...'
-            id='option_1'
-            name='pronouns'
-            className=' bg-transparent w-full'
-          />
-        </div>
+        <textarea
+          placeholder='Write discussion...'
+          id='option_1'
+          name='pronouns'
+          className=' bg-[rgba(53,61,82,0.60)]
+            rounded-[0.25888rem] p-[0.62rem]
+            w-full h-auto mb-[1.25rem]
+            border-[0.518px] border-[rgba(111,145,244,0.50)] 
+            resize-y focus:outline-none
+            focus:border-[#6F91F4]'
+        />
 
         {/* Options */}
         <p
@@ -353,8 +350,9 @@ const Menubody = () => {
         </p>
         <div
           className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2
+          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
+          w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+          md:grid-cols-2
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <label
@@ -400,7 +398,7 @@ const Menubody = () => {
           <label
             htmlFor='Appearance3'
             className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
+            mr-[1.5rem] mb-[0.5rem] '
           >
             <input
               type='radio'
@@ -448,8 +446,9 @@ const Menubody = () => {
         </p>
         <div
           className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2
+          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
+          w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+          md:grid-cols-2
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           {Speech.map((item, index) => {
@@ -481,8 +480,9 @@ const Menubody = () => {
         </p>
         <div
           className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2
+          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
+          w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+          md:grid-cols-2
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <label
@@ -591,8 +591,9 @@ const Menubody = () => {
         </p>
         <div
           className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2
+          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
+          w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+          md:grid-cols-2
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           {Mood.map((item, index) => {
@@ -624,8 +625,9 @@ const Menubody = () => {
         </p>
         <div
           className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2
+          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
+          w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+          md:grid-cols-2
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           {Behavior.map((item, index) => {
@@ -657,8 +659,9 @@ const Menubody = () => {
         </p>
         <div
           className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2
+          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
+          w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+          md:grid-cols-2
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           {delusions.map((item, index) => {
@@ -690,8 +693,8 @@ const Menubody = () => {
         </p>
         <div
           className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-3
+          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
+          w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <label
@@ -800,8 +803,8 @@ const Menubody = () => {
         </p>
         <div
           className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-3
+          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
+          w-full mb-[1.25rem] grid grid-cols-2  sm:grid-cols-4
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <label
@@ -910,8 +913,9 @@ const Menubody = () => {
         </p>
         <div
           className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2
+          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
+          w-full mb-[1.25rem] grid grid-cols-2  sm:grid-cols-4
+          md:grid-cols-3
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           {Self_Injuring_Behavior.map((item, index) => {
@@ -943,8 +947,9 @@ const Menubody = () => {
         </p>
         <div
           className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2
+          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
+          w-full mb-[1.25rem] grid grid-cols-2  sm:grid-cols-4
+          md:grid-cols-3
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <label
@@ -1034,8 +1039,9 @@ const Menubody = () => {
         </p>
         <div
           className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2
+          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
+          w-full mb-[1.25rem] grid grid-cols-2  sm:grid-cols-4
+          md:grid-cols-3
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <label
@@ -1125,8 +1131,9 @@ const Menubody = () => {
         </p>
         <div
           className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2
+          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
+          w-full mb-[1.25rem] grid grid-cols-2  sm:grid-cols-4
+          md:grid-cols-3
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <label
@@ -1197,8 +1204,9 @@ const Menubody = () => {
         </p>
         <div
           className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2
+          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
+          w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+          md:grid-cols-3
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
         >
           <label
@@ -1295,17 +1303,17 @@ const Menubody = () => {
         >
           Homework
         </p>
-        <div
-          className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem]
-          border-[0.518px] border-[rgba(111,145,244,0.50)]'
-        >
+        <div className=''>
           <textarea
             placeholder='Write homework...'
             id='Homework'
             name='Homework'
-            className='bg-transparent h-[9rem] w-full'
+            className='bg-[rgba(53,61,82,0.60)]
+            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
+            w-full mb-[1.25rem]
+            border-[0.518px] border-[rgba(111,145,244,0.50)] h-[9rem] 
+            resize-y focus:outline-none
+            focus:border-[#6F91F4]'
           />
         </div>
 
@@ -1316,20 +1324,18 @@ const Menubody = () => {
         >
           Next appointment date
         </p>
-        <div
-          className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem]
-          border-[0.518px] border-[rgba(111,145,244,0.50)]'
-        >
-          <input
-            type='text'
-            placeholder='Write date...'
-            id='option_1'
-            name='pronouns'
-            className=' bg-transparent w-full'
-          />
-        </div>
+        <input
+          type='text'
+          placeholder='Write date...'
+          id='option_1'
+          name='pronouns'
+          className=' bg-[rgba(53,61,82,0.60)]
+            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
+            w-full mb-[1.25rem]
+            border-[0.518px] border-[rgba(111,145,244,0.50)] 
+            focus:outline-none
+            focus:border-[#6F91F4]'
+        />
         <div>
           <Link
             href='/dashboard'

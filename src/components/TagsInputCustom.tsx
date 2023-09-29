@@ -31,7 +31,7 @@ const TagsInputCustom = ({
     setTags(tags.filter((el, i) => i !== index));
   }
   return (
-    <div className='tags-input-container'>
+    <div className='tags-input-container '>
       {tags.map((tag, index) => (
         <div
           className={`tag-item h-[1.625rem] 
@@ -52,7 +52,7 @@ const TagsInputCustom = ({
       <input
         onKeyDown={handleKeyDown}
         type='text'
-        className='tags-input'
+        className='tags-input focus:outline-none '
         placeholder={`${placeholder_text}`}
       />
     </div>
