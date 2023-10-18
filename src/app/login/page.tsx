@@ -11,18 +11,16 @@ const LoginPage = () => {
     const passwordRef = useRef<any>(null);
     const { user, dispatch, isFetching } = useContext(Context);
     const router = useRouter();
+    const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         dispatch({ type: 'LOGIN_START' });
         try {
-            const res = await axios.post(
-                'http://localhost:4242/api/auth/login',
-                {
-                    email: userRef.current.value,
-                    password: passwordRef.current.value,
-                }
-            );
+            const res = await axios.post(`${baseURL}/api/auth/login`, {
+                email: userRef.current.value,
+                password: passwordRef.current.value,
+            });
             dispatch({ type: 'LOGIN_SUCCESS', payload: res.data });
         } catch (error) {
             dispatch({ type: 'LOGIN_FAILURE' });
