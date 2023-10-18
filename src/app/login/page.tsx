@@ -3,12 +3,14 @@ import Navbar2 from '@/components/Navbar2';
 import { Context } from '@/context/Context';
 import axios from 'axios';
 import Link from 'next/link';
-import React, { useContext, useRef } from 'react';
+import { useRouter } from 'next/navigation';
+import React, { useContext, useEffect, useRef } from 'react';
 
 const LoginPage = () => {
     const userRef = useRef<any>(null);
     const passwordRef = useRef<any>(null);
-    const { dispatch, isFetching } = useContext(Context);
+    const { user, dispatch, isFetching } = useContext(Context);
+    const router = useRouter();
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
@@ -26,6 +28,11 @@ const LoginPage = () => {
             dispatch({ type: 'LOGIN_FAILURE' });
         }
     };
+
+    useEffect(() => {
+        user ? router.push('/dashboard') : '';
+    }, [user, router]);
+
     return (
         <div
             className='flex min-h-screen flex-row bg-[url("/bg-home-1.svg")] w-screen 
