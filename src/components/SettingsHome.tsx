@@ -1,3 +1,4 @@
+'use client';
 import React, { useContext, useState } from 'react';
 import Link from 'next/link';
 import { Context } from '@/context/Context';
@@ -5,7 +6,7 @@ import { Context } from '@/context/Context';
 const SettingsHome = () => {
     const [passwordType, setPasswordType] = useState('password');
     const { user } = useContext<any>(Context);
-    // console.log(user!.user);
+    // console.log(user && user.user);
 
     const showPassword = () => {
         if (passwordType === 'password') {
@@ -45,7 +46,7 @@ const SettingsHome = () => {
                 <input
                     type='text'
                     name='username'
-                    defaultValue={user!.user.username}
+                    defaultValue={user && user.user.username}
                     // placeholder='Amanda Groel'
                     className='w-[21.25rem] h-[2.75rem] rounded-full
             bg-[#fff] border-[1px] border-[#6f91f480]
@@ -65,7 +66,7 @@ const SettingsHome = () => {
                 <input
                     type='email'
                     name='email'
-                    defaultValue={user!.user.email}
+                    defaultValue={user && user.user.email}
                     // placeholder='yourname@domain.com'
                     className='w-[21.25rem] h-[2.75rem] rounded-full
             bg-[#fff] border-[1px] border-[#6f91f480]
@@ -85,7 +86,7 @@ const SettingsHome = () => {
                 <input
                     type={passwordType}
                     name='password'
-                    defaultValue={user!.user.password}
+                    defaultValue={user && user.user.password}
                     disabled
                     // placeholder='****  ****  ****'
                     className='w-[21.25rem] h-[2.75rem] rounded-full
