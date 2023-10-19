@@ -17,7 +17,11 @@ const LoginPage = () => {
         e.preventDefault();
         dispatch({ type: 'LOGIN_START' });
         try {
+            const headers = {
+                'Content-Type': 'application/json',
+            };
             const res = await axios.post(`${baseURL}/api/auth/login`, {
+                headers,
                 email: userRef.current.value,
                 password: passwordRef.current.value,
             });
