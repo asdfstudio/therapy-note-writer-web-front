@@ -16,11 +16,8 @@ const nextConfig = {
     async rewrites() {
         return [
             {
-                source: '/api/:path*',
-                destination: [
-                    'localhost',
-                    'https://therapyback.airlystudio.com/:path*',
-                ],
+                source: '/:path*',
+                destination: 'https://therapyback.airlystudio.com/:path*',
             },
         ];
     },
