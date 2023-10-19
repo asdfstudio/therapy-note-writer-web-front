@@ -9,6 +9,7 @@ import React, { useState } from 'react';
 const DashboardPage = () => {
     const [showMenu, setShowMenu] = useState(false);
     const [showNavMenu, setShowNavMenu] = useState(false);
+    const [mainSummary, setMainSummary] = useState('');
 
     const handleShowMenu = () => {
         setShowMenu(true);
@@ -64,10 +65,10 @@ const DashboardPage = () => {
                 >
                     <div
                         className={`w-[2.75rem] h-[2.75rem] 
-          border-[#6F91F4] border-[1px] flex items-center justify-center
-          rounded-[6.25rem] mr-[0.5rem] md:hidden ${
-              showMenu ? 'bg-[#6F91F4]' : ''
-          }`}
+                        border-[#6F91F4] border-[1px] flex items-center justify-center
+                        rounded-[6.25rem] mr-[0.5rem] md:hidden ${
+                            showMenu ? 'bg-[#6F91F4]' : ''
+                        }`}
                         onClick={() => {
                             !showMenu ? setShowMenu(true) : setShowMenu(false);
                         }}
@@ -118,7 +119,7 @@ const DashboardPage = () => {
 
             {/* Menu body */}
             <div className={!showMenu ? 'hidden md:flex' : ''}>
-                <Menubody />
+                <Menubody setMainSummary={setMainSummary} />
             </div>
 
             <div
@@ -133,7 +134,10 @@ const DashboardPage = () => {
 
             {/* Body */}
             <div className='pt-[4.5rem] w-full md:pt-0 md:w-[calc(100vw-23.75rem)]'>
-                <DashboardHome onClick={handleShowMenu} />
+                <DashboardHome
+                    handleShowMenu={handleShowMenu}
+                    mainSummary={mainSummary}
+                />
             </div>
         </div>
     );

@@ -1,9 +1,18 @@
 'use client';
 import './custom.css';
-import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TagsInputCustom from './TagsInputCustom';
+import axios from 'axios';
 
+const Pronouns = ['She/Her/Hers', 'He/Him/His', 'They/Them/Theirs'];
+const AppointmentLocation = ['In person', 'Telehealth'];
+const Diagnosis = ['In person', 'Telehealth'];
+const Appearance = [
+    'Well-groomed',
+    'Disheveled',
+    'Appropriate',
+    'Inappropriate',
+];
 const Speech = [
     'Clear',
     'Soft',
@@ -13,6 +22,8 @@ const Speech = [
     'Rapid',
     'Slurred',
 ];
+
+const Affect = ['Appropriate', 'Blunted', 'Flat', 'Labile', 'Restricted'];
 
 const Mood = [
     'Happy',
@@ -32,7 +43,7 @@ const Behavior = [
     'Disruptive',
 ];
 
-const delusions = [
+const Delusions = [
     'None',
     'Persecutory',
     'Grandiose',
@@ -40,6 +51,9 @@ const delusions = [
     'Erotomanic',
     'Nihilistic',
 ];
+
+const SuicidalIdeation = ['None', 'Passive', 'Active', 'Plan', 'Intent'];
+const HomicidalIdeation = ['None', 'Passive', 'Active', 'Plan', 'Intent'];
 
 const Self_Injuring_Behavior = [
     'None',
@@ -50,40 +64,161 @@ const Self_Injuring_Behavior = [
     'Other',
 ];
 
-const Menubody = () => {
-    const [clientPronouns, setClientPronouns] = useState([]);
-    const [apptLocation, setApptLocation] = useState('');
-    const [diagnosis, setDiagnosis] = useState('');
-    const [currentSymptoms, setCurrentSymptoms] = useState('');
-    const [discussed, setDiscussed] = useState('');
-    const [interventions, setInterventions] = useState('');
-    const [appearance, setAppearance] = useState([]);
-    const [speech, setSpeech] = useState([]);
-    const [affect, setAffect] = useState([]);
-    const [mood, setMood] = useState([]);
-    const [behavior, setBehavior] = useState([]);
-    const [delusion, setDelusion] = useState([]);
-    const [suicidal, setSuicidal] = useState([]);
-    const [homicidal, setHomicidal] = useState([]);
-    const [selfInjury, setSelfInjury] = useState([]);
-    const [selfInjuryDescr, setSelfInjuryDescr] = useState('');
-    const [insight, setInsight] = useState([]);
-    const [judgment, setJudgment] = useState([]);
-    const [oriented, setOriented] = useState([]);
-    const [eyeContact, setEyeContact] = useState([]);
-    const [homework, setHomework] = useState('');
-    const [plan, setPlan] = useState('');
-    const [nextAppt, setNextAppt] = useState('');
+const Insight = ['Good', 'Fair', 'Poor', 'None'];
+const Judgment = ['Good', 'Fair', 'Poor', 'None'];
+const Oriented = ['Oriented x3', 'Confused', 'Disoriented'];
+const EyeContact = ['Good', 'Fair', 'Poor', 'None'];
 
-    const handleMultiSelectChange = (event: any, setter: any) => {
-        setter(event.target.value);
+const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
+    const [clientPronouns, setClientPronouns] = useState<any>('');
+    const [apptLocation, setApptLocation] = useState<any>('');
+    const [diagnosis, setDiagnosis] = useState<any>('');
+    const [currentSymptoms, setCurrentSymptoms] = useState<any>([]);
+    const [discussed, setDiscussed] = useState<any>('');
+    const [interventions, setInterventions] = useState<any>([]);
+    const [appearance, setAppearance] = useState<any>('');
+    const [speech, setSpeech] = useState<any>([]);
+    const [affect, setAffect] = useState<any>('');
+    const [mood, setMood] = useState<any>([]);
+    const [behavior, setBehavior] = useState<any>([]);
+    const [delusion, setDelusion] = useState<any>([]);
+    const [suicidal, setSuicidal] = useState<any>('');
+    const [homicidal, setHomicidal] = useState<any>('');
+    const [selfInjury, setSelfInjury] = useState<any>([]);
+    const [insight, setInsight] = useState<any>('');
+    const [judgment, setJudgment] = useState<any>('');
+    const [oriented, setOriented] = useState<any>('');
+    const [eyeContact, setEyeContact] = useState<any>('');
+    const [homework, setHomework] = useState<any>('');
+    const [nextAppt, setNextAppt] = useState<any>('');
+    const [summary, setSummary] = useState('');
+
+    useEffect(() => {
+        const local_clientPronouns = localStorage.getItem(
+            'LOCAL_clientPronouns'
+        );
+        if (local_clientPronouns) setClientPronouns(local_clientPronouns);
+
+        const local_apptLocation = localStorage.getItem('LOCAL_apptLocation');
+        if (local_apptLocation) setApptLocation(local_apptLocation);
+
+        const local_diagnosis = localStorage.getItem('LOCAL_diagnosis');
+        if (local_diagnosis) setDiagnosis(local_diagnosis);
+
+        const local_currentSymptoms = JSON.parse(
+            localStorage.getItem('LOCAL_currentSymptoms')!
+        );
+        if (local_currentSymptoms) setCurrentSymptoms(local_currentSymptoms);
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('LOCAL_clientPronouns', clientPronouns);
+        localStorage.setItem('LOCAL_apptLocation', apptLocation);
+        localStorage.setItem('LOCAL_diagnosis', diagnosis);
+        localStorage.setItem(
+            'LOCAL_currentSymptoms',
+            JSON.stringify(currentSymptoms)
+        );
+        localStorage.setItem('LOCAL_discussed', discussed);
+        localStorage.setItem(
+            'LOCAL_interventions',
+            JSON.stringify(interventions)
+        );
+        localStorage.setItem('LOCAL_appearance', appearance);
+        localStorage.setItem('LOCAL_speech', JSON.stringify(speech));
+        localStorage.setItem('LOCAL_affect', affect);
+        localStorage.setItem('LOCAL_mood', JSON.stringify(mood));
+        localStorage.setItem('LOCAL_behavior', JSON.stringify(behavior));
+        localStorage.setItem('LOCAL_delusion', JSON.stringify(delusion));
+        localStorage.setItem('LOCAL_suicidal', suicidal);
+        localStorage.setItem('LOCAL_homicidal', homicidal);
+        localStorage.setItem('LOCAL_selfInjury', JSON.stringify(selfInjury));
+        localStorage.setItem('LOCAL_insight', insight);
+        localStorage.setItem('LOCAL_judgment', judgment);
+        localStorage.setItem('LOCAL_oriented', oriented);
+        localStorage.setItem('LOCAL_eyeContact', eyeContact);
+        localStorage.setItem('LOCAL_homework', homework);
+        localStorage.setItem('LOCAL_nextAppt', nextAppt);
+    }, [
+        affect,
+        appearance,
+        apptLocation,
+        behavior,
+        clientPronouns,
+        currentSymptoms,
+        delusion,
+        diagnosis,
+        discussed,
+        eyeContact,
+        homework,
+        homicidal,
+        insight,
+        interventions,
+        judgment,
+        mood,
+        nextAppt,
+        oriented,
+        selfInjury,
+        speech,
+        suicidal,
+    ]);
+
+    const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+
+    const getValue = (label: any, value: any) => {
+        if (Array.isArray(value)) {
+            return value.length > 0 ? `${label}: ${value.join(', ')}` : '';
+        } else {
+            return value !== null && value !== '' ? `${label}: ${value}` : '';
+        }
     };
 
-    const handleInputChange = (event: any, setter: any) => {
-        // setter(event.target.value);
-        // const tempValue = [...speech, event.target.value];
-        const tempValue = speech.concat(event.target.value);
-        setSpeech(tempValue);
+    const newSummary = [
+        getValue('Client Pronouns', clientPronouns),
+        getValue('Appointment Location', apptLocation),
+        getValue('Diagnosis', diagnosis),
+        getValue('Current Symptoms', currentSymptoms),
+        getValue('Discussed', discussed),
+        getValue('Interventions', interventions),
+        getValue('Appearance', appearance),
+        getValue('Speech', speech),
+        getValue('Affect', affect),
+        getValue('Mood', mood),
+        getValue('Behavior', behavior),
+        getValue('Delusions', delusion),
+        getValue('Suicidal Ideation', suicidal),
+        getValue('Homicidal Ideation', homicidal),
+        getValue('Self-Injuring Behavior', selfInjury),
+        getValue('Insight', insight),
+        getValue('Judgment', judgment),
+        getValue('Oriented', oriented),
+        getValue('Eye Contact', eyeContact),
+        getValue('Homework', homework),
+        getValue('Next Appointment Date', nextAppt),
+    ]
+        .filter((line) => line)
+        .join('\n');
+
+    const prompt = `Please write a therapy note based on the following session information:\n${newSummary}`;
+
+    const handleSubmit = async () => {
+        await axios
+            .post(`${baseURL}/api/openai/summary`, {
+                prompt: prompt,
+            }) // Update this line
+            .then((response) => {
+                // Extract the data from the server response
+                const note = response.data.note; // or .paragraph, depending on which API you're calling
+                // Update the state of summary
+                setSummary(note);
+                setMainSummary(note);
+            })
+            .catch((error) => {
+                console.error(`Failed to generate therapy note: ${error}`);
+                setSummary(
+                    'Unable to generate therapy note. Please try again later.'
+                );
+            });
     };
 
     return (
@@ -116,73 +251,41 @@ const Menubody = () => {
                 <div
                     className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
-          w-full mb-[1.25rem] flex flex-wrap
+          w-full mb-[1.25rem] grid grid-cols-1 sm:grid-cols-3
+          md:grid-cols-1
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
                 >
-                    <label
-                        htmlFor='option_1'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='She/Her/Hers'
-                            id='option_1'
-                            name='pronouns'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset
-            focus:ring-[4px] focus:ring-[#F4776F]
-            rounded-full cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        She/Her/Hers
-                    </label>
+                    {Pronouns.map((item, index) => {
+                        return (
+                            <label
+                                className='text-[0.9375rem] 
+                                mr-[1.5rem] mb-[0.5rem]'
+                                key={index}
+                                // htmlFor={`${item}${index}`}
+                            >
+                                <input
+                                    type='radio'
+                                    value={item}
+                                    id={`${item}${index}`}
+                                    name='Pronouns'
+                                    checked={
+                                        item === clientPronouns ? true : false
+                                    }
+                                    className='checkbox appearance-none 
+                            ring-[#F4776F] ring-[1.5px] 
+                            checked:ring-[4px] checked:ring-[#F4776F]
+                            ring-inset rounded-full
+                            cursor-pointer 
+                            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
+                                    onChange={(event) => {
+                                        setClientPronouns(event.target.value);
+                                    }}
+                                />
 
-                    <label
-                        htmlFor='option_1'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='He/Him/His'
-                            id='option_2'
-                            name='pronouns'
-                            className='checkbox appearance-none 
-              ring-[#F4776F] ring-[1.5px] 
-              checked:ring-[4px] checked:ring-[#F4776F]
-              ring-inset
-              focus:ring-4 focus:ring-[#F4776F]
-              rounded-full cursor-pointer 
-              w-[0.9375rem] h-[0.9375rem] transition
-              duration-300 mr-[0.5rem]'
-                        />
-                        He/Him/His
-                    </label>
-
-                    <label
-                        htmlFor='option_1'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='He/Him/His'
-                            id='option_2'
-                            name='pronouns'
-                            className='checkbox appearance-none 
-              ring-[#F4776F] ring-[1.5px] 
-              checked:ring-[4px] checked:ring-[#F4776F]
-              ring-inset
-              focus:ring-4 focus:ring-[#F4776F]
-              rounded-full cursor-pointer 
-              w-[0.9375rem] h-[0.9375rem] transition
-              duration-300 mr-[0.5rem]'
-                        />
-                        They/Them/Theirs
-                    </label>
+                                {item}
+                            </label>
+                        );
+                    })}
                 </div>
 
                 {/* Options */}
@@ -195,49 +298,41 @@ const Menubody = () => {
                 <div
                     className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
-          w-full mb-[1.25rem] flex flex-wrap
+          w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+          md:grid-cols-2
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
                 >
-                    <label
-                        htmlFor='Appointment'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Appointment'
-                            id='Appointment1'
-                            name='Appointment'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset
-            focus:ring-4 focus:ring-[#F4776F]
-            rounded-full cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        In person
-                    </label>
-                    <label
-                        htmlFor='Appointment'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Telehealth'
-                            id='Appointment2'
-                            name='Appointment'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset
-            focus:ring-4 focus:ring-[#F4776F]
-            rounded-full cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Telehealth
-                    </label>
+                    {AppointmentLocation.map((item, index) => {
+                        return (
+                            <label
+                                className='text-[0.9375rem] 
+                                mr-[1.5rem] mb-[0.5rem]'
+                                key={index}
+                                // htmlFor={`${item}${index}`}
+                            >
+                                <input
+                                    type='radio'
+                                    value={item}
+                                    id={`${item}${index}`}
+                                    name='Appointment Location'
+                                    checked={
+                                        item === apptLocation ? true : false
+                                    }
+                                    className='checkbox appearance-none 
+                            ring-[#F4776F] ring-[1.5px] 
+                            checked:ring-[4px] checked:ring-[#F4776F]
+                            ring-inset rounded-full
+                            cursor-pointer 
+                            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
+                                    onChange={(event) => {
+                                        setApptLocation(event.target.value);
+                                    }}
+                                />
+
+                                {item}
+                            </label>
+                        );
+                    })}
                 </div>
 
                 {/* Options */}
@@ -249,50 +344,40 @@ const Menubody = () => {
                 </p>
                 <div
                     className='bg-[rgba(53,61,82,0.60)]
-                    rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
-                    w-full mb-[1.25rem] flex flex-wrap
-                    border-[0.518px] border-[rgba(111,145,244,0.50)]'
+          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
+          w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+          md:grid-cols-2
+          border-[0.518px] border-[rgba(111,145,244,0.50)]'
                 >
-                    <label
-                        htmlFor='Diagnosis'
-                        className='text-[0.9375rem] 
-                        mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Diagnosis'
-                            id='Diagnosis1'
-                            name='Diagnosis'
-                            className='checkbox appearance-none 
+                    {Diagnosis.map((item, index) => {
+                        return (
+                            <label
+                                className='text-[0.9375rem] 
+                                mr-[1.5rem] mb-[0.5rem]'
+                                key={index}
+                                // htmlFor={`${item}${index}`}
+                            >
+                                <input
+                                    type='radio'
+                                    value={item}
+                                    id={`${item}${index}`}
+                                    name='Diagnosis'
+                                    checked={item === diagnosis ? true : false}
+                                    className='checkbox appearance-none 
                             ring-[#F4776F] ring-[1.5px] 
                             checked:ring-[4px] checked:ring-[#F4776F]
-                            ring-inset
-                            focus:ring-4 focus:ring-[#F4776F]
-                            rounded-full cursor-pointer 
+                            ring-inset rounded-full
+                            cursor-pointer 
                             w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        In person
-                    </label>
-                    <label
-                        htmlFor='Diagnosis'
-                        className='text-[0.9375rem] 
-                        mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Diagnosis'
-                            id='Diagnosis2'
-                            name='Diagnosis'
-                            className='checkbox appearance-none 
-                            ring-[#F4776F] ring-[1.5px] 
-                            checked:ring-[4px] checked:ring-[#F4776F]
-                            ring-inset
-                            focus:ring-4 focus:ring-[#F4776F]
-                            rounded-full cursor-pointer 
-                            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Telehealth
-                    </label>
+                                    onChange={(event) => {
+                                        setDiagnosis(event.target.value);
+                                    }}
+                                />
+
+                                {item}
+                            </label>
+                        );
+                    })}
                 </div>
                 {/* <div
           className='bg-[rgba(53,61,82,0.60)]
@@ -343,6 +428,8 @@ const Menubody = () => {
                         close_background='bg-[#2048BE]'
                         close_icon_color='text-[#6F91F4]'
                         placeholder_text='Write symptoms...'
+                        setFunc={setCurrentSymptoms}
+                        currentTags={currentSymptoms}
                     />
                 </div>
 
@@ -357,6 +444,9 @@ const Menubody = () => {
                     placeholder='Write discussion...'
                     id='option_1'
                     name='pronouns'
+                    onChange={(event) => {
+                        setDiscussed(event.target.value);
+                    }}
                     className=' bg-[rgba(53,61,82,0.60)]
             rounded-[0.25888rem] p-[0.62rem]
             w-full h-auto mb-[1.25rem]
@@ -398,6 +488,8 @@ const Menubody = () => {
                         close_background='bg-[#2048BE]'
                         close_icon_color='text-[#6F91F4]'
                         placeholder_text='Write interventions...'
+                        setFunc={setInterventions}
+                        currentTags={interventions}
                     />
                 </div>
 
@@ -424,86 +516,34 @@ const Menubody = () => {
           md:grid-cols-2
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
                 >
-                    <label
-                        htmlFor='Appearance1'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Well-groomed'
-                            id='Appearance1'
-                            name='Appearance'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset
-            focus:ring-4 focus:ring-[#F4776F]
-            rounded-full cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Well-groomed
-                    </label>
-                    <label
-                        htmlFor='Appearance2'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Disheveled'
-                            id='Appearance2'
-                            name='Appearance'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset
-            focus:ring-4 focus:ring-[#F4776F]
-            rounded-full cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Disheveled
-                    </label>
-                    <label
-                        htmlFor='Appearance3'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem] '
-                    >
-                        <input
-                            type='radio'
-                            value='Appropriate'
-                            id='Appearance3'
-                            name='Appearance'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset
-            focus:ring-4 focus:ring-[#F4776F]
-            rounded-full cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Appropriate
-                    </label>
-                    <label
-                        htmlFor='Appearance4'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Inappropriate'
-                            id='Appearance4'
-                            name='Appearance'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset
-            focus:ring-4 focus:ring-[#F4776F]
-            rounded-full cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Inappropriate
-                    </label>
+                    {Appearance.map((item, index) => {
+                        return (
+                            <label
+                                className='text-[0.9375rem] 
+                                mr-[1.5rem] mb-[0.5rem]'
+                                key={index}
+                                // htmlFor={`${item}${index}`}
+                            >
+                                <input
+                                    type='radio'
+                                    value={item}
+                                    id={`${item}${index}`}
+                                    name='Appearance'
+                                    className='checkbox appearance-none 
+                            ring-[#F4776F] ring-[1.5px] 
+                            checked:ring-[4px] checked:ring-[#F4776F]
+                            ring-inset rounded-full
+                            cursor-pointer 
+                            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
+                                    onChange={(event) => {
+                                        setAppearance(event.target.value);
+                                    }}
+                                />
+
+                                {item}
+                            </label>
+                        );
+                    })}
                 </div>
 
                 {/* Options */}
@@ -530,10 +570,22 @@ const Menubody = () => {
                                 <input
                                     value={item}
                                     id={`${item}${index}`}
-                                    name='Delusions'
+                                    name='Speech'
                                     type='checkbox'
                                     onChange={(event) => {
-                                        handleInputChange(event, setSpeech);
+                                        const currentValue = event.target.value;
+                                        if (speech.includes(currentValue)) {
+                                            const tempArray = speech;
+                                            const index =
+                                                tempArray.indexOf(currentValue);
+                                            tempArray.splice(index, 1);
+                                            setSpeech(tempArray);
+                                        } else {
+                                            setSpeech((prevValue: any) => [
+                                                ...prevValue,
+                                                event.target.value,
+                                            ]);
+                                        }
                                     }}
                                 />
                                 <span className='checkmark'></span>
@@ -557,101 +609,34 @@ const Menubody = () => {
           md:grid-cols-2
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
                 >
-                    <label
-                        htmlFor='Affect1'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Appropriate'
-                            id='Affect1'
-                            name='Affect'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Appropriate
-                    </label>
-                    <label
-                        htmlFor='Affect2'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Blunted'
-                            id='Affect2'
-                            name='Affect'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Blunted
-                    </label>
-                    <label
-                        htmlFor='Affect3'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Flat'
-                            id='Affect3'
-                            name='Affect'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Flat
-                    </label>
-                    <label
-                        htmlFor='Affect4'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Labile'
-                            id='Affect4'
-                            name='Affect'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Labile
-                    </label>
-                    <label
-                        htmlFor='Affect5'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Restricted'
-                            id='Affect5'
-                            name='Affect'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Restricted
-                    </label>
+                    {Affect.map((item, index) => {
+                        return (
+                            <label
+                                className='text-[0.9375rem] 
+                                mr-[1.5rem] mb-[0.5rem]'
+                                key={index}
+                                // htmlFor={`${item}${index}`}
+                            >
+                                <input
+                                    type='radio'
+                                    value={item}
+                                    id={`${item}${index}`}
+                                    name='Affect'
+                                    className='checkbox appearance-none 
+                            ring-[#F4776F] ring-[1.5px] 
+                            checked:ring-[4px] checked:ring-[#F4776F]
+                            ring-inset rounded-full
+                            cursor-pointer 
+                            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
+                                    onChange={(event) => {
+                                        setAffect(event.target.value);
+                                    }}
+                                />
+
+                                {item}
+                            </label>
+                        );
+                    })}
                 </div>
 
                 {/* Options */}
@@ -672,14 +657,29 @@ const Menubody = () => {
                         return (
                             <label
                                 key={index}
-                                htmlFor={`${item}${index}`}
+                                // htmlFor={`${item}${index}`}
                                 className='container'
                             >
                                 <input
                                     value={item}
                                     id={`${item}${index}`}
-                                    name='Delusions'
+                                    name='Mood'
                                     type='checkbox'
+                                    onChange={(event) => {
+                                        const currentValue = event.target.value;
+                                        if (mood.includes(currentValue)) {
+                                            const tempArray = mood;
+                                            const index =
+                                                tempArray.indexOf(currentValue);
+                                            tempArray.splice(index, 1);
+                                            setMood(tempArray);
+                                        } else {
+                                            setMood((prevValue: any) => [
+                                                ...prevValue,
+                                                event.target.value,
+                                            ]);
+                                        }
+                                    }}
                                 />
                                 <span className='checkmark'></span>
                                 {item}
@@ -706,14 +706,29 @@ const Menubody = () => {
                         return (
                             <label
                                 key={index}
-                                htmlFor={`${item}${index}`}
+                                // htmlFor={`${item}${index}`}
                                 className='container'
                             >
                                 <input
                                     value={item}
                                     id={`${item}${index}`}
-                                    name='Delusions'
+                                    name='Behavior'
                                     type='checkbox'
+                                    onChange={(event) => {
+                                        const currentValue = event.target.value;
+                                        if (behavior.includes(currentValue)) {
+                                            const tempArray = behavior;
+                                            const index =
+                                                tempArray.indexOf(currentValue);
+                                            tempArray.splice(index, 1);
+                                            setBehavior(tempArray);
+                                        } else {
+                                            setBehavior((prevValue: any) => [
+                                                ...prevValue,
+                                                event.target.value,
+                                            ]);
+                                        }
+                                    }}
                                 />
                                 <span className='checkmark'></span>
                                 {item}
@@ -736,11 +751,11 @@ const Menubody = () => {
           md:grid-cols-2
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
                 >
-                    {delusions.map((item, index) => {
+                    {Delusions.map((item, index) => {
                         return (
                             <label
                                 key={index}
-                                htmlFor={`${item}${index}`}
+                                // htmlFor={`${item}${index}`}
                                 className='container'
                             >
                                 <input
@@ -748,6 +763,21 @@ const Menubody = () => {
                                     id={`${item}${index}`}
                                     name='Delusions'
                                     type='checkbox'
+                                    onChange={(event) => {
+                                        const currentValue = event.target.value;
+                                        if (delusion.includes(currentValue)) {
+                                            const tempArray = delusion;
+                                            const index =
+                                                tempArray.indexOf(currentValue);
+                                            tempArray.splice(index, 1);
+                                            setDelusion(tempArray);
+                                        } else {
+                                            setDelusion((prevValue: any) => [
+                                                ...prevValue,
+                                                event.target.value,
+                                            ]);
+                                        }
+                                    }}
                                 />
                                 <span className='checkmark'></span>
                                 {item}
@@ -770,101 +800,34 @@ const Menubody = () => {
           md:grid-cols-2
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
                 >
-                    <label
-                        htmlFor='Suicidal_Ideation1'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='None'
-                            id='Suicidal_Ideation1'
-                            name='Suicidal_Ideation'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        None
-                    </label>
-                    <label
-                        htmlFor='Suicidal_Ideation2'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Passive'
-                            id='Suicidal_Ideation2'
-                            name='Suicidal_Ideation'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Passive
-                    </label>
-                    <label
-                        htmlFor='Suicidal_Ideation3'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Active'
-                            id='Suicidal_Ideation3'
-                            name='Suicidal_Ideation'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Active
-                    </label>
-                    <label
-                        htmlFor='Suicidal_Ideation4'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Plan'
-                            id='Suicidal_Ideation4'
-                            name='Suicidal_Ideation'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Plan
-                    </label>
-                    <label
-                        htmlFor='Suicidal_Ideation5'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Intent'
-                            id='Suicidal_Ideation5'
-                            name='Suicidal_Ideation'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Intent
-                    </label>
+                    {SuicidalIdeation.map((item, index) => {
+                        return (
+                            <label
+                                className='text-[0.9375rem] 
+                                mr-[1.5rem] mb-[0.5rem]'
+                                key={index}
+                                // htmlFor={`${item}${index}`}
+                            >
+                                <input
+                                    type='radio'
+                                    value={item}
+                                    id={`${item}${index}`}
+                                    name='Suicidal_Ideation'
+                                    className='checkbox appearance-none 
+                                    ring-[#F4776F] ring-[1.5px] 
+                                    checked:ring-[4px] checked:ring-[#F4776F]
+                                    ring-inset rounded-full
+                                    cursor-pointer 
+                                    w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
+                                    onChange={(event) => {
+                                        setSuicidal(event.target.value);
+                                    }}
+                                />
+
+                                {item}
+                            </label>
+                        );
+                    })}
                 </div>
 
                 {/* Options */}
@@ -881,101 +844,34 @@ const Menubody = () => {
           md:grid-cols-2
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
                 >
-                    <label
-                        htmlFor='Homicidal_Ideation1'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='None'
-                            id='Homicidal_Ideation1'
-                            name='Homicidal_Ideation'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        None
-                    </label>
-                    <label
-                        htmlFor='Homicidal_Ideation2'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Passive'
-                            id='Homicidal_Ideation2'
-                            name='Homicidal_Ideation'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Passive
-                    </label>
-                    <label
-                        htmlFor='Homicidal_Ideation3'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Active'
-                            id='Homicidal_Ideation3'
-                            name='Homicidal_Ideation'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Active
-                    </label>
-                    <label
-                        htmlFor='Homicidal_Ideation4'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Plan'
-                            id='Homicidal_Ideation4'
-                            name='Homicidal_Ideation'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Plan
-                    </label>
-                    <label
-                        htmlFor='Homicidal_Ideation5'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Intent'
-                            id='Homicidal_Ideation5'
-                            name='Homicidal_Ideation'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Intent
-                    </label>
+                    {HomicidalIdeation.map((item, index) => {
+                        return (
+                            <label
+                                className='text-[0.9375rem] 
+                                mr-[1.5rem] mb-[0.5rem]'
+                                key={index}
+                                // htmlFor={`${item}${index}`}
+                            >
+                                <input
+                                    type='radio'
+                                    value={item}
+                                    id={`${item}${index}`}
+                                    name='Homicidal_Ideation'
+                                    className='checkbox appearance-none 
+                                    ring-[#F4776F] ring-[1.5px] 
+                                    checked:ring-[4px] checked:ring-[#F4776F]
+                                    ring-inset rounded-full
+                                    cursor-pointer 
+                                    w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
+                                    onChange={(event) => {
+                                        setHomicidal(event.target.value);
+                                    }}
+                                />
+
+                                {item}
+                            </label>
+                        );
+                    })}
                 </div>
 
                 {/* Options */}
@@ -996,14 +892,29 @@ const Menubody = () => {
                         return (
                             <label
                                 key={index}
-                                htmlFor={`${item}${index}`}
+                                // htmlFor={`${item}${index}`}
                                 className='container'
                             >
                                 <input
                                     value={item}
                                     id={`${item}${index}`}
-                                    name='Delusions'
+                                    name='Self Injuring Behavior'
                                     type='checkbox'
+                                    onChange={(event) => {
+                                        const currentValue = event.target.value;
+                                        if (selfInjury.includes(currentValue)) {
+                                            const tempArray = selfInjury;
+                                            const index =
+                                                tempArray.indexOf(currentValue);
+                                            tempArray.splice(index, 1);
+                                            setSelfInjury(tempArray);
+                                        } else {
+                                            setSelfInjury((prevValue: any) => [
+                                                ...prevValue,
+                                                event.target.value,
+                                            ]);
+                                        }
+                                    }}
                                 />
                                 <span className='checkmark'></span>
                                 {item}
@@ -1026,82 +937,34 @@ const Menubody = () => {
           md:grid-cols-2
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
                 >
-                    <label
-                        htmlFor='Insight1'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Good'
-                            id='Insight1'
-                            name='Insight'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Good
-                    </label>
-                    <label
-                        htmlFor='Insight2'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Fair'
-                            id='Insight2'
-                            name='Insight'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Fair
-                    </label>
-                    <label
-                        htmlFor='Insight3'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Poor'
-                            id='Insight3'
-                            name='Insight'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Poor
-                    </label>
-                    <label
-                        htmlFor='Insight4'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='None'
-                            id='Insight4'
-                            name='Insight'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        None
-                    </label>
+                    {Insight.map((item, index) => {
+                        return (
+                            <label
+                                className='text-[0.9375rem] 
+                            mr-[1.5rem] mb-[0.5rem]'
+                                key={index}
+                                // htmlFor={`${item}${index}`}
+                            >
+                                <input
+                                    type='radio'
+                                    value={item}
+                                    id={`${item}${index}`}
+                                    name='Insight'
+                                    className='checkbox appearance-none 
+                                ring-[#F4776F] ring-[1.5px] 
+                                checked:ring-[4px] checked:ring-[#F4776F]
+                                ring-inset rounded-full
+                                cursor-pointer 
+                                w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
+                                    onChange={(event) => {
+                                        setInsight(event.target.value);
+                                    }}
+                                />
+
+                                {item}
+                            </label>
+                        );
+                    })}
                 </div>
 
                 {/* Options */}
@@ -1118,82 +981,34 @@ const Menubody = () => {
           md:grid-cols-2
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
                 >
-                    <label
-                        htmlFor='Judgment1'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Good'
-                            id='Judgment1'
-                            name='Judgment'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Good
-                    </label>
-                    <label
-                        htmlFor='Judgment2'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Fair'
-                            id='Judgment2'
-                            name='Judgment'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Fair
-                    </label>
-                    <label
-                        htmlFor='Judgment3'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Poor'
-                            id='Judgment3'
-                            name='Judgment'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Poor
-                    </label>
-                    <label
-                        htmlFor='Judgment4'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='None'
-                            id='Judgment4'
-                            name='Judgment'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        None
-                    </label>
+                    {Judgment.map((item, index) => {
+                        return (
+                            <label
+                                className='text-[0.9375rem] 
+                            mr-[1.5rem] mb-[0.5rem]'
+                                key={index}
+                                // htmlFor={`${item}${index}`}
+                            >
+                                <input
+                                    type='radio'
+                                    value={item}
+                                    id={`${item}${index}`}
+                                    name='Judgment'
+                                    className='checkbox appearance-none 
+                                ring-[#F4776F] ring-[1.5px] 
+                                checked:ring-[4px] checked:ring-[#F4776F]
+                                ring-inset rounded-full
+                                cursor-pointer 
+                                w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
+                                    onChange={(event) => {
+                                        setJudgment(event.target.value);
+                                    }}
+                                />
+
+                                {item}
+                            </label>
+                        );
+                    })}
                 </div>
 
                 {/* Options */}
@@ -1210,63 +1025,34 @@ const Menubody = () => {
           md:grid-cols-2
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
                 >
-                    <label
-                        htmlFor='Oriented1'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Oriented x3'
-                            id='Oriented1'
-                            name='Oriented'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Oriented x3
-                    </label>
-                    <label
-                        htmlFor='Oriented2'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Confused'
-                            id='Oriented2'
-                            name='Oriented'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Confused
-                    </label>
-                    <label
-                        htmlFor='Oriented3'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Disoriented'
-                            id='Oriented3'
-                            name='Oriented'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Disoriented
-                    </label>
+                    {Oriented.map((item, index) => {
+                        return (
+                            <label
+                                className='text-[0.9375rem] 
+                            mr-[1.5rem] mb-[0.5rem]'
+                                key={index}
+                                // htmlFor={`${item}${index}`}
+                            >
+                                <input
+                                    type='radio'
+                                    value={item}
+                                    id={`${item}${index}`}
+                                    name='Oriented'
+                                    className='checkbox appearance-none 
+                                ring-[#F4776F] ring-[1.5px] 
+                                checked:ring-[4px] checked:ring-[#F4776F]
+                                ring-inset rounded-full
+                                cursor-pointer 
+                                w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
+                                    onChange={(event) => {
+                                        setOriented(event.target.value);
+                                    }}
+                                />
+
+                                {item}
+                            </label>
+                        );
+                    })}
                 </div>
 
                 {/* Options */}
@@ -1279,86 +1065,38 @@ const Menubody = () => {
                 <div
                     className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+          w-full mb-[1.25rem] grid grid-cols-2  sm:grid-cols-4
           md:grid-cols-2
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
                 >
-                    <label
-                        htmlFor='Eye_Contact1'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Good'
-                            id='Eye_Contact1'
-                            name='Eye_Contact'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Good
-                    </label>
-                    <label
-                        htmlFor='Eye_Contact2'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Fair'
-                            id='Eye_Contact2'
-                            name='Eye_Contact'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Fair
-                    </label>
-                    <label
-                        htmlFor='Eye_Contact3'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='Poor'
-                            id='Eye_Contact3'
-                            name='Eye_Contact'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        Poor
-                    </label>
-                    <label
-                        htmlFor='Eye_Contact4'
-                        className='text-[0.9375rem] 
-            mr-[1.5rem] mb-[0.5rem]'
-                    >
-                        <input
-                            type='radio'
-                            value='None'
-                            id='Eye_Contact4'
-                            name='Eye_Contact'
-                            className='checkbox appearance-none 
-            ring-[#F4776F] ring-[1.5px] 
-            checked:ring-[4px] checked:ring-[#F4776F]
-            ring-inset rounded-full
-            cursor-pointer 
-            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                        />
-                        None
-                    </label>
+                    {EyeContact.map((item, index) => {
+                        return (
+                            <label
+                                className='text-[0.9375rem] 
+                            mr-[1.5rem] mb-[0.5rem]'
+                                key={index}
+                                // htmlFor={`${item}${index}`}
+                            >
+                                <input
+                                    type='radio'
+                                    value={item}
+                                    id={`${item}${index}`}
+                                    name='EyeContact'
+                                    className='checkbox appearance-none 
+                                ring-[#F4776F] ring-[1.5px] 
+                                checked:ring-[4px] checked:ring-[#F4776F]
+                                ring-inset rounded-full
+                                cursor-pointer 
+                                w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
+                                    onChange={(event) => {
+                                        setEyeContact(event.target.value);
+                                    }}
+                                />
+
+                                {item}
+                            </label>
+                        );
+                    })}
                 </div>
 
                 {/* Plan */}
@@ -1382,12 +1120,15 @@ const Menubody = () => {
                         placeholder='Write homework...'
                         id='Homework'
                         name='Homework'
+                        onChange={(event) => {
+                            setHomework(event.target.value);
+                        }}
                         className='bg-[rgba(53,61,82,0.60)]
-            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
-            w-full mb-[1.25rem]
-            border-[0.518px] border-[rgba(111,145,244,0.50)] h-[9rem] 
-            resize-y focus:outline-none
-            focus:border-[#6F91F4]'
+                        rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
+                        w-full mb-[1.25rem]
+                        border-[0.518px] border-[rgba(111,145,244,0.50)] h-[9rem] 
+                        resize-y focus:outline-none
+                        focus:border-[#6F91F4]'
                     />
                 </div>
 
@@ -1403,6 +1144,9 @@ const Menubody = () => {
                     placeholder='Write date...'
                     id='option_1'
                     name='pronouns'
+                    onChange={(event) => {
+                        setNextAppt(event.target.value);
+                    }}
                     className=' bg-[rgba(53,61,82,0.60)]
             rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
             w-full mb-[1.25rem]
@@ -1411,23 +1155,29 @@ const Menubody = () => {
             focus:border-[#6F91F4]'
                 />
                 <div>
-                    <Link
+                    {/* <Link
                         href='/dashboard'
                         className='w-[17rem] mt-10 
           xlc:mb-10'
+                    > */}
+                    <div
+                        className='w-full mt-2 
+                        xlc:mb-10 '
                     >
                         <button
+                            onClick={handleSubmit}
                             className='flex bg-[#6F91F4] py-[12px] 
-            w-full rounded-full border-[1px] 
-            border-[#3157C9] uppercase text-white 
-            text-[1rem] font-[600] justify-center
-            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
-            font-iBM_Plex_Sans tracking-[0.1rem]
-            hover:bg-[#4771ED] active:bg-[#4063C7]'
+                            w-full rounded-full border-[1px] 
+                            border-[#3157C9] uppercase text-white 
+                            text-[1rem] font-[600] justify-center
+                            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
+                            font-iBM_Plex_Sans tracking-[0.1rem]
+                            hover:bg-[#4771ED] active:bg-[#4063C7]'
                         >
                             Generate
                         </button>
-                    </Link>
+                    </div>
+                    {/* </Link> */}
                 </div>
             </div>
         </div>
