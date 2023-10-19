@@ -1,4 +1,29 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+    // images: {
+    //     domains: ['localhost', 'https://therapyback.airlystudio.com/'],
+    // },
 
-module.exports = nextConfig
+    // async rewrites() {
+    //     return [
+    //         {
+    //             source: '/api/:path*',
+    //             destination: 'https://api.example.com/:path*',
+    //         },
+    //     ];
+    // },
+
+    async rewrites() {
+        return [
+            {
+                source: '/api/:path*',
+                destination: [
+                    'localhost',
+                    'https://therapyback.airlystudio.com/:path*',
+                ],
+            },
+        ];
+    },
+};
+
+module.exports = nextConfig;
