@@ -2,18 +2,22 @@
 import Navbar2 from '@/components/Navbar2';
 import { Context } from '@/context/Context';
 import axios from 'axios';
+import { error } from 'console';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 
 const LoginPage = () => {
     const userRef = useRef<any>(null);
     const passwordRef = useRef<any>(null);
     const { user, dispatch, isFetching } = useContext(Context);
+    const [currentError, setCurrentError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
     const router = useRouter();
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
     const handleSubmit = async (e: any) => {
+        setCurrentError(false);
         e.preventDefault();
         dispatch({ type: 'LOGIN_START' });
         try {
@@ -26,8 +30,10 @@ const LoginPage = () => {
                 password: passwordRef.current.value,
             });
             dispatch({ type: 'LOGIN_SUCCESS', payload: res.data });
-        } catch (error) {
+        } catch (error: any) {
             dispatch({ type: 'LOGIN_FAILURE' });
+            setCurrentError(true);
+            setErrorMessage(error.response.data.error);
         }
     };
 
@@ -153,6 +159,17 @@ const LoginPage = () => {
               active:border-[#4771ED] active:bg-[#FAFAFA]'
                             ref={passwordRef}
                         />
+                        {currentError ? (
+                            <span
+                                className='font-iBM_Plex_Sans font-[400] text-[1rem]
+                            text-red-600 self-center mt-5'
+                            >
+                                {errorMessage}
+                            </span>
+                        ) : (
+                            <></>
+                        )}
+
                         {/* <Link
                             href='/login'
                             className='w-[21.25rem] h-[2.75rem] mt-4
