@@ -1,8 +1,9 @@
 'use client';
 import './custom.css';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import TagsInputCustom from './TagsInputCustom';
 import axios from 'axios';
+import { Context } from '@/context/Context';
 
 const Pronouns = ['She/Her/Hers', 'He/Him/His', 'They/Them/Theirs'];
 const AppointmentLocation = ['In person', 'Telehealth'];
@@ -92,6 +93,8 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
     const [homework, setHomework] = useState<any>('');
     const [nextAppt, setNextAppt] = useState<any>('');
     const [summary, setSummary] = useState('');
+
+    const { user } = useContext<any>(Context);
 
     useEffect(() => {
         const local_clientPronouns = localStorage.getItem(
@@ -218,6 +221,23 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
                 setSummary(
                     'Unable to generate therapy note. Please try again later.'
                 );
+            });
+
+        const email = user.user.email || '';
+        const today = new Date();
+        const month = `${today.getMonth()}/${today.getFullYear()}`;
+
+        await axios
+            .post(`${baseURL}/api/auth/click`, {
+                email: email,
+                month: month,
+            })
+            .then((response) => {
+                // Extract the data from the server response
+                const clickData = response.data.note;
+            })
+            .catch((error) => {
+                console.error(`Failed to keep click count: ${error}`);
             });
     };
 
