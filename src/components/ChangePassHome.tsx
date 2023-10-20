@@ -1,7 +1,7 @@
 'use client';
-import React, { useContext, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Link from 'next/link';
-import { Context } from '@/context/Context';
+// import { Context } from '@/context/Context';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
@@ -12,9 +12,21 @@ const ChangePassHome = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const router = useRouter();
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
-    const { user } = useContext<any>(Context);
+    // const { user } = useContext<any>(Context);
 
-    const email = user!.user.email || null;
+    // console.log('user ', user.user.email);
+
+    // const email = user.user.email || null;
+    let email = '';
+
+    let user: any;
+    if (typeof window !== 'undefined') {
+        user = JSON.parse(localStorage.getItem('user')!) || null;
+
+        if (user) {
+            email = user.user.email;
+        }
+    }
 
     const handlePassword = (password: any) => {
         if (password !== NewPasswordRef.current.value) {
