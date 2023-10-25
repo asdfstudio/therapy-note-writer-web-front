@@ -362,7 +362,22 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
                 >
                     Diagnosis
                 </p>
-                <div
+
+                <input
+                    placeholder='Write discussion...'
+                    id='option_1'
+                    name='pronouns'
+                    onChange={(event) => {
+                        setDiagnosis(event.target.value);
+                    }}
+                    className=' bg-[rgba(53,61,82,0.60)]
+            rounded-[0.25888rem] p-[0.62rem]
+            w-full h-auto mb-[1.25rem]
+            border-[0.518px] border-[rgba(111,145,244,0.50)] 
+            resize-y focus:outline-none
+            focus:border-[#6F91F4]'
+                />
+                {/* <div
                     className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
           w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
@@ -398,7 +413,7 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
                             </label>
                         );
                     })}
-                </div>
+                </div> */}
                 {/* <div
           className='bg-[rgba(53,61,82,0.60)]
         rounded-[0.25888rem] p-[0.62rem]
@@ -1160,7 +1175,7 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
                     Next appointment date
                 </p>
                 <input
-                    type='text'
+                    type='date'
                     placeholder='Write date...'
                     id='option_1'
                     name='pronouns'
@@ -1169,7 +1184,7 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
                     }}
                     className=' bg-[rgba(53,61,82,0.60)]
             rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
-            w-full mb-[1.25rem]
+            w-full mb-[1.25rem] pb-2
             border-[0.518px] border-[rgba(111,145,244,0.50)] 
             focus:outline-none
             focus:border-[#6F91F4]'
