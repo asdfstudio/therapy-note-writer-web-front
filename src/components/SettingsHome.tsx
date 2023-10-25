@@ -7,6 +7,8 @@ const SettingsHome = () => {
     const [passwordType, setPasswordType] = useState('password');
     const { user } = useContext<any>(Context);
     // console.log(user && user.user);
+    const stripePriceId = process.env.NEXT_PUBLIC_STRIPE_PRICE_ID;
+    const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
     const showPassword = () => {
         if (passwordType === 'password') {
@@ -16,6 +18,17 @@ const SettingsHome = () => {
             setPasswordType('password');
         }
     };
+
+    let email = '';
+
+    let userLocal: any;
+    if (typeof window !== 'undefined') {
+        userLocal = JSON.parse(localStorage.getItem('user')!) || null;
+
+        if (user) {
+            email = userLocal.user.email;
+        }
+    }
 
     return (
         <div
@@ -137,7 +150,7 @@ const SettingsHome = () => {
             mb-[2.5rem] xlc:hidden'
             />
 
-            <form className='flex flex-col mb-[5rem] xlc:mb-0'>
+            <div className='flex flex-col mb-[5rem] xlc:mb-0'>
                 <h1
                     className='text-[3.125rem] 
               font-poynter_Oldstyle_Display 
@@ -165,7 +178,7 @@ const SettingsHome = () => {
                     type='text'
                     name='plan'
                     placeholder='Basic'
-                    defaultValue={'Basic'}
+                    defaultValue={user && user.user.subPackage}
                     disabled
                     className='w-[21.25rem] h-[2.75rem] rounded-full
             bg-[#fff] border-[1px] border-[#6f91f480]
@@ -175,46 +188,63 @@ const SettingsHome = () => {
               active:border-[#4771ED] active:bg-[#FAFAFA]'
                 />
 
-                <label
-                    className='font-iBM_Plex_Sans
-          text-[#29375F] text-[1rem] font-[400] 
-          mt-[1.5rem] mb-[0.5rem]'
-                >
-                    Next Billing Cycle
-                </label>
-                <input
-                    type='text'
-                    name='email'
-                    placeholder='June 10, 2024'
-                    disabled
-                    className='w-[21.25rem] h-[2.75rem] rounded-full
-            bg-[#fff] border-[1px] border-[#6f91f480]
-              pl-[1.06rem] md:w-[25rem] xlc:w-[25rem]
-              font-iBM_Plex_Sans font-[400] text-[1rem]
-              hover:border-[#6F91F4] 
-              active:border-[#4771ED] active:bg-[#FAFAFA]'
-                />
-                <Link
-                    href='/dashboard/settings'
-                    className='w-[21.25rem] h-[2.75rem] mt-4
+                {user && user.user.nextBill === '' ? (
+                    <></>
+                ) : (
+                    <>
+                        <label
+                            className='font-iBM_Plex_Sans
+text-[#29375F] text-[1rem] font-[400] 
+mt-[1.5rem] mb-[0.5rem]'
+                        >
+                            Next Billing Cycle
+                        </label>
+                        <input
+                            type='text'
+                            name='date'
+                            defaultValue={user && user.user.nextBill}
+                            // placeholder='June 10, 2024'
+                            disabled
+                            className='w-[21.25rem] h-[2.75rem] rounded-full
+                            bg-[#fff] border-[1px] border-[#6f91f480]
+                            pl-[1.06rem] md:w-[25rem] xlc:w-[25rem]
+                            font-iBM_Plex_Sans font-[400] text-[1rem]
+                            hover:border-[#6F91F4] 
+                            active:border-[#4771ED] active:bg-[#FAFAFA]'
+                        />
+                    </>
+                )}
+
+                <form action={`${baseURL}/api/stripe/checkout`} method='POST'>
+                    {/* Hidden field with Stripe PriceID */}
+                    <input type='hidden' name='priceId' value={stripePriceId} />
+                    <input
+                        type='hidden'
+                        name='userID'
+                        value={user && user.user._id}
+                    />
+                    <input type='hidden' name='sub' value='sub' />
+                    <div
+                        className='w-[21.25rem] h-[2.75rem] mt-4
             mb-[0.94rem]
             md:w-[25rem] md:mt-[1.25rem] 
             xlc:w-[25rem]'
-                >
-                    <button
-                        type='submit'
-                        className='flex bg-[#6F91F4] h-full 
+                    >
+                        <button
+                            type='submit'
+                            className='flex bg-[#6F91F4] h-full 
             w-full items-center rounded-full border-[1px] 
             border-[#3157C9] uppercase text-white 
             font-iBM_Plex_Sans tracking-[0.1rem]
             text-[1rem] font-[600] justify-center
             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
             hover:bg-[#4771ED] active:bg-[#4063C7]'
-                    >
-                        update subscription
-                    </button>
-                </Link>
-            </form>
+                        >
+                            update subscription
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };
