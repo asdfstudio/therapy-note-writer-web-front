@@ -364,9 +364,9 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
                 </p>
 
                 <input
-                    placeholder='Write discussion...'
-                    id='option_1'
-                    name='pronouns'
+                    placeholder='Write diagnosis...'
+                    id='diagnosis'
+                    name='diagnosis'
                     onChange={(event) => {
                         setDiagnosis(event.target.value);
                     }}
@@ -477,8 +477,8 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
                 </p>
                 <textarea
                     placeholder='Write discussion...'
-                    id='option_1'
-                    name='pronouns'
+                    id='discussion'
+                    name='discussion'
                     onChange={(event) => {
                         setDiscussed(event.target.value);
                     }}
