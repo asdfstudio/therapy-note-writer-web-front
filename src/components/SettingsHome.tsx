@@ -1,23 +1,35 @@
 'use client';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Context } from '@/context/Context';
+import axios from 'axios';
 
 const SettingsHome = () => {
-    const [passwordType, setPasswordType] = useState('password');
+    const [nextBill, setNextBill] = useState('');
+    const [subPackage, setSubPackage] = useState('');
     const { user } = useContext<any>(Context);
-    // console.log(user && user.user);
+
     const stripePriceId = process.env.NEXT_PUBLIC_STRIPE_PRICE_ID;
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
-    const showPassword = () => {
-        if (passwordType === 'password') {
-            setPasswordType('text');
-        }
-        if (passwordType === 'text') {
-            setPasswordType('password');
-        }
-    };
+    let userID = user && user.user._id;
+
+    useEffect(() => {
+        const checkSubscription = async () => {
+            const headers = {
+                'Content-Type': 'application/json',
+            };
+            const data = {
+                id: userID,
+            };
+            const subscriptionData = await axios.get(
+                `${baseURL}/api/auth/check-subscription/${userID}`
+            );
+            setNextBill(subscriptionData.data.nextBill);
+            setSubPackage(subscriptionData.data.subPackage);
+        };
+        checkSubscription();
+    }, [baseURL, nextBill, subPackage, userID]);
 
     let email = '';
 
@@ -97,9 +109,9 @@ const SettingsHome = () => {
                     Password
                 </label>
                 <input
-                    type={passwordType}
+                    type='password'
                     name='password'
-                    defaultValue={user && user.user.password}
+                    defaultValue='*** *** *** *** ***'
                     disabled
                     // placeholder='****  ****  ****'
                     className='w-[21.25rem] h-[2.75rem] rounded-full
@@ -108,7 +120,7 @@ const SettingsHome = () => {
                     font-iBM_Plex_Sans font-[400] text-[1rem] 
                     text-[#969595] '
                 />
-                <div className='flex gap-2 items-center'>
+                {/* <div className='flex gap-2 mt-1 items-center'>
                     <input
                         className='flex self-start ml-[1rem] mt-[0.5rem] '
                         type='checkbox'
@@ -117,7 +129,7 @@ const SettingsHome = () => {
                         }}
                     />
                     <label className='flex mt-[0.1rem]'>Show Password</label>
-                </div>
+                </div> */}
 
                 <Link
                     href='/dashboard/changepassword'
@@ -177,8 +189,8 @@ const SettingsHome = () => {
                 <input
                     type='text'
                     name='plan'
-                    placeholder='Basic'
-                    defaultValue={user && user.user.subPackage}
+                    // placeholder='FREE'
+                    defaultValue={subPackage}
                     disabled
                     className='w-[21.25rem] h-[2.75rem] rounded-full
             bg-[#fff] border-[1px] border-[#6f91f480]
@@ -188,7 +200,7 @@ const SettingsHome = () => {
               active:border-[#4771ED] active:bg-[#FAFAFA]'
                 />
 
-                {user && user.user.nextBill === '' ? (
+                {nextBill === '' ? (
                     <></>
                 ) : (
                     <>
@@ -202,7 +214,7 @@ mt-[1.5rem] mb-[0.5rem]'
                         <input
                             type='text'
                             name='date'
-                            defaultValue={user && user.user.nextBill}
+                            defaultValue={nextBill}
                             // placeholder='June 10, 2024'
                             disabled
                             className='w-[21.25rem] h-[2.75rem] rounded-full
