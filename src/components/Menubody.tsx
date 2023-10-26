@@ -77,19 +77,19 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
     const [currentSymptoms, setCurrentSymptoms] = useState<any>([]);
     const [discussed, setDiscussed] = useState<any>('');
     const [interventions, setInterventions] = useState<any>([]);
-    const [appearance, setAppearance] = useState<any>('');
+    const [appearance, setAppearance] = useState<any>([]);
     const [speech, setSpeech] = useState<any>([]);
-    const [affect, setAffect] = useState<any>('');
+    const [affect, setAffect] = useState<any>([]);
     const [mood, setMood] = useState<any>([]);
     const [behavior, setBehavior] = useState<any>([]);
     const [delusion, setDelusion] = useState<any>([]);
-    const [suicidal, setSuicidal] = useState<any>('');
-    const [homicidal, setHomicidal] = useState<any>('');
+    const [suicidal, setSuicidal] = useState<any>([]);
+    const [homicidal, setHomicidal] = useState<any>([]);
     const [selfInjury, setSelfInjury] = useState<any>([]);
-    const [insight, setInsight] = useState<any>('');
-    const [judgment, setJudgment] = useState<any>('');
-    const [oriented, setOriented] = useState<any>('');
-    const [eyeContact, setEyeContact] = useState<any>('');
+    const [insight, setInsight] = useState<any>([]);
+    const [judgment, setJudgment] = useState<any>([]);
+    const [oriented, setOriented] = useState<any>([]);
+    const [eyeContact, setEyeContact] = useState<any>([]);
     const [homework, setHomework] = useState<any>('');
     const [nextAppt, setNextAppt] = useState<any>('');
     const [summary, setSummary] = useState('');
@@ -127,19 +127,19 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
             'LOCAL_interventions',
             JSON.stringify(interventions)
         );
-        localStorage.setItem('LOCAL_appearance', appearance);
+        localStorage.setItem('LOCAL_appearance', JSON.stringify(appearance));
         localStorage.setItem('LOCAL_speech', JSON.stringify(speech));
-        localStorage.setItem('LOCAL_affect', affect);
+        localStorage.setItem('LOCAL_affect', JSON.stringify(affect));
         localStorage.setItem('LOCAL_mood', JSON.stringify(mood));
         localStorage.setItem('LOCAL_behavior', JSON.stringify(behavior));
         localStorage.setItem('LOCAL_delusion', JSON.stringify(delusion));
-        localStorage.setItem('LOCAL_suicidal', suicidal);
-        localStorage.setItem('LOCAL_homicidal', homicidal);
+        localStorage.setItem('LOCAL_suicidal', JSON.stringify(suicidal));
+        localStorage.setItem('LOCAL_homicidal', JSON.stringify(homicidal));
         localStorage.setItem('LOCAL_selfInjury', JSON.stringify(selfInjury));
-        localStorage.setItem('LOCAL_insight', insight);
-        localStorage.setItem('LOCAL_judgment', judgment);
-        localStorage.setItem('LOCAL_oriented', oriented);
-        localStorage.setItem('LOCAL_eyeContact', eyeContact);
+        localStorage.setItem('LOCAL_insight', JSON.stringify(insight));
+        localStorage.setItem('LOCAL_judgment', JSON.stringify(judgment));
+        localStorage.setItem('LOCAL_oriented', JSON.stringify(oriented));
+        localStorage.setItem('LOCAL_eyeContact', JSON.stringify(eyeContact));
         localStorage.setItem('LOCAL_homework', homework);
         localStorage.setItem('LOCAL_nextAppt', nextAppt);
     }, [
@@ -367,6 +367,7 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
                     placeholder='Write diagnosis...'
                     id='diagnosis'
                     name='diagnosis'
+                    value={diagnosis}
                     onChange={(event) => {
                         setDiagnosis(event.target.value);
                     }}
@@ -554,27 +555,32 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
                     {Appearance.map((item, index) => {
                         return (
                             <label
-                                className='text-[0.9375rem] 
-                                mr-[1.5rem] mb-[0.5rem]'
+                                className='container'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
                                 <input
-                                    type='radio'
+                                    type='checkbox'
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Appearance'
-                                    className='checkbox appearance-none 
-                            ring-[#F4776F] ring-[1.5px] 
-                            checked:ring-[4px] checked:ring-[#F4776F]
-                            ring-inset rounded-full
-                            cursor-pointer 
-                            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
                                     onChange={(event) => {
-                                        setAppearance(event.target.value);
+                                        const currentValue = event.target.value;
+                                        if (appearance.includes(currentValue)) {
+                                            const tempArray = appearance;
+                                            const index =
+                                                tempArray.indexOf(currentValue);
+                                            tempArray.splice(index, 1);
+                                            setAppearance(tempArray);
+                                        } else {
+                                            setAppearance((prevValue: any) => [
+                                                ...prevValue,
+                                                event.target.value,
+                                            ]);
+                                        }
                                     }}
                                 />
-
+                                <span className='checkmark'></span>
                                 {item}
                             </label>
                         );
@@ -599,7 +605,7 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
                         return (
                             <label
                                 key={index}
-                                htmlFor={`${item}${index}`}
+                                // htmlFor={`${item}${index}`}
                                 className='container'
                             >
                                 <input
@@ -647,27 +653,32 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
                     {Affect.map((item, index) => {
                         return (
                             <label
-                                className='text-[0.9375rem] 
-                                mr-[1.5rem] mb-[0.5rem]'
+                                className='container'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
                                 <input
-                                    type='radio'
+                                    type='checkbox'
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Affect'
-                                    className='checkbox appearance-none 
-                            ring-[#F4776F] ring-[1.5px] 
-                            checked:ring-[4px] checked:ring-[#F4776F]
-                            ring-inset rounded-full
-                            cursor-pointer 
-                            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
                                     onChange={(event) => {
-                                        setAffect(event.target.value);
+                                        const currentValue = event.target.value;
+                                        if (affect.includes(currentValue)) {
+                                            const tempArray = affect;
+                                            const index =
+                                                tempArray.indexOf(currentValue);
+                                            tempArray.splice(index, 1);
+                                            setAffect(tempArray);
+                                        } else {
+                                            setAffect((prevValue: any) => [
+                                                ...prevValue,
+                                                event.target.value,
+                                            ]);
+                                        }
                                     }}
                                 />
-
+                                <span className='checkmark'></span>
                                 {item}
                             </label>
                         );
@@ -838,13 +849,12 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
                     {SuicidalIdeation.map((item, index) => {
                         return (
                             <label
-                                className='text-[0.9375rem] 
-                                mr-[1.5rem] mb-[0.5rem]'
+                                className='container'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
                                 <input
-                                    type='radio'
+                                    type='checkbox'
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Suicidal_Ideation'
@@ -855,10 +865,22 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
                                     cursor-pointer 
                                     w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
                                     onChange={(event) => {
-                                        setSuicidal(event.target.value);
+                                        const currentValue = event.target.value;
+                                        if (suicidal.includes(currentValue)) {
+                                            const tempArray = suicidal;
+                                            const index =
+                                                tempArray.indexOf(currentValue);
+                                            tempArray.splice(index, 1);
+                                            setSuicidal(tempArray);
+                                        } else {
+                                            setSuicidal((prevValue: any) => [
+                                                ...prevValue,
+                                                event.target.value,
+                                            ]);
+                                        }
                                     }}
                                 />
-
+                                <span className='checkmark'></span>
                                 {item}
                             </label>
                         );
@@ -882,27 +904,32 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
                     {HomicidalIdeation.map((item, index) => {
                         return (
                             <label
-                                className='text-[0.9375rem] 
-                                mr-[1.5rem] mb-[0.5rem]'
+                                className='container'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
                                 <input
-                                    type='radio'
+                                    type='checkbox'
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Homicidal_Ideation'
-                                    className='checkbox appearance-none 
-                                    ring-[#F4776F] ring-[1.5px] 
-                                    checked:ring-[4px] checked:ring-[#F4776F]
-                                    ring-inset rounded-full
-                                    cursor-pointer 
-                                    w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
                                     onChange={(event) => {
-                                        setHomicidal(event.target.value);
+                                        const currentValue = event.target.value;
+                                        if (homicidal.includes(currentValue)) {
+                                            const tempArray = homicidal;
+                                            const index =
+                                                tempArray.indexOf(currentValue);
+                                            tempArray.splice(index, 1);
+                                            setHomicidal(tempArray);
+                                        } else {
+                                            setHomicidal((prevValue: any) => [
+                                                ...prevValue,
+                                                event.target.value,
+                                            ]);
+                                        }
                                     }}
                                 />
-
+                                <span className='checkmark'></span>
                                 {item}
                             </label>
                         );
@@ -975,27 +1002,32 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
                     {Insight.map((item, index) => {
                         return (
                             <label
-                                className='text-[0.9375rem] 
-                            mr-[1.5rem] mb-[0.5rem]'
+                                className='container'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
                                 <input
-                                    type='radio'
+                                    type='checkbox'
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Insight'
-                                    className='checkbox appearance-none 
-                                ring-[#F4776F] ring-[1.5px] 
-                                checked:ring-[4px] checked:ring-[#F4776F]
-                                ring-inset rounded-full
-                                cursor-pointer 
-                                w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
                                     onChange={(event) => {
-                                        setInsight(event.target.value);
+                                        const currentValue = event.target.value;
+                                        if (insight.includes(currentValue)) {
+                                            const tempArray = insight;
+                                            const index =
+                                                tempArray.indexOf(currentValue);
+                                            tempArray.splice(index, 1);
+                                            setInsight(tempArray);
+                                        } else {
+                                            setInsight((prevValue: any) => [
+                                                ...prevValue,
+                                                event.target.value,
+                                            ]);
+                                        }
                                     }}
                                 />
-
+                                <span className='checkmark'></span>
                                 {item}
                             </label>
                         );
@@ -1019,27 +1051,32 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
                     {Judgment.map((item, index) => {
                         return (
                             <label
-                                className='text-[0.9375rem] 
-                            mr-[1.5rem] mb-[0.5rem]'
+                                className='container'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
                                 <input
-                                    type='radio'
+                                    type='checkbox'
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Judgment'
-                                    className='checkbox appearance-none 
-                                ring-[#F4776F] ring-[1.5px] 
-                                checked:ring-[4px] checked:ring-[#F4776F]
-                                ring-inset rounded-full
-                                cursor-pointer 
-                                w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
                                     onChange={(event) => {
-                                        setJudgment(event.target.value);
+                                        const currentValue = event.target.value;
+                                        if (judgment.includes(currentValue)) {
+                                            const tempArray = judgment;
+                                            const index =
+                                                tempArray.indexOf(currentValue);
+                                            tempArray.splice(index, 1);
+                                            setJudgment(tempArray);
+                                        } else {
+                                            setJudgment((prevValue: any) => [
+                                                ...prevValue,
+                                                event.target.value,
+                                            ]);
+                                        }
                                     }}
                                 />
-
+                                <span className='checkmark'></span>
                                 {item}
                             </label>
                         );
@@ -1063,27 +1100,32 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
                     {Oriented.map((item, index) => {
                         return (
                             <label
-                                className='text-[0.9375rem] 
-                            mr-[1.5rem] mb-[0.5rem]'
+                                className='container'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
                                 <input
-                                    type='radio'
+                                    type='checkbox'
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Oriented'
-                                    className='checkbox appearance-none 
-                                ring-[#F4776F] ring-[1.5px] 
-                                checked:ring-[4px] checked:ring-[#F4776F]
-                                ring-inset rounded-full
-                                cursor-pointer 
-                                w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
                                     onChange={(event) => {
-                                        setOriented(event.target.value);
+                                        const currentValue = event.target.value;
+                                        if (oriented.includes(currentValue)) {
+                                            const tempArray = oriented;
+                                            const index =
+                                                tempArray.indexOf(currentValue);
+                                            tempArray.splice(index, 1);
+                                            setOriented(tempArray);
+                                        } else {
+                                            setOriented((prevValue: any) => [
+                                                ...prevValue,
+                                                event.target.value,
+                                            ]);
+                                        }
                                     }}
                                 />
-
+                                <span className='checkmark'></span>
                                 {item}
                             </label>
                         );
@@ -1107,27 +1149,32 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
                     {EyeContact.map((item, index) => {
                         return (
                             <label
-                                className='text-[0.9375rem] 
-                            mr-[1.5rem] mb-[0.5rem]'
+                                className='container'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
                                 <input
-                                    type='radio'
+                                    type='checkbox'
                                     value={item}
                                     id={`${item}${index}`}
                                     name='EyeContact'
-                                    className='checkbox appearance-none 
-                                ring-[#F4776F] ring-[1.5px] 
-                                checked:ring-[4px] checked:ring-[#F4776F]
-                                ring-inset rounded-full
-                                cursor-pointer 
-                                w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
                                     onChange={(event) => {
-                                        setEyeContact(event.target.value);
+                                        const currentValue = event.target.value;
+                                        if (eyeContact.includes(currentValue)) {
+                                            const tempArray = eyeContact;
+                                            const index =
+                                                tempArray.indexOf(currentValue);
+                                            tempArray.splice(index, 1);
+                                            setEyeContact(tempArray);
+                                        } else {
+                                            setEyeContact((prevValue: any) => [
+                                                ...prevValue,
+                                                event.target.value,
+                                            ]);
+                                        }
                                     }}
                                 />
-
+                                <span className='checkmark'></span>
                                 {item}
                             </label>
                         );
