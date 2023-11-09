@@ -1,10 +1,19 @@
 'use client';
 import Navbar2 from '@/components/Navbar2';
 import { Context } from '@/context/Context';
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useContext, useEffect, useRef, useState } from 'react';
+import {
+    initFacebookSdk,
+    getFacebookLoginStatus,
+    fbLogin,
+    fbLogout,
+    fbApi,
+    fbMe,
+} from '../../utils/FacebookSDK';
 
 const SignupPage = () => {
     const usernameRef = useRef<any>(null);
@@ -13,6 +22,66 @@ const SignupPage = () => {
     const [error, setError] = useState(false);
     const router = useRouter();
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+
+    // useEffect(() => {
+    //     console.log('Started use effect');
+    //     fbLogic().then(() => {
+    //         console.log('2nd time');
+    //         getFacebookLoginStatus().then((response: any) => {
+    //             if (response == null) {
+    //                 console.log('No login status for the person');
+    //             } else {
+    //                 console.log('res', response);
+    //             }
+    //         });
+    //     });
+    // }, []);
+
+    // useEffect(() => {
+    //     console.log('window', window);
+    //     console.log('Started use effect');
+    //     initFacebookSdk();
+    // }, []);
+
+    useEffect(() => {
+        console.log('Started use effect');
+        initFacebookSdk().then(() => {
+            console.log('2nd time');
+            getFacebookLoginStatus().then((response: any) => {
+                if (response == null) {
+                    console.log('No login status for the person');
+                } else {
+                    console.log('res', response);
+                    if (response.authResponse != null) {
+                        fbMe().then((res: any) => {
+                            console.log('me', res);
+                        });
+                    }
+                }
+            });
+        });
+    }, []);
+
+    function login() {
+        console.log('reached log in button');
+        fbLogin().then((response: any) => {
+            console.log(response);
+            if (response.status === 'connected') {
+                console.log('Person is connected');
+            } else {
+                // something
+                console.log('something else');
+            }
+        });
+    }
+
+    function logout() {
+        console.log('reached log out button');
+        fbLogout().then((response: any) => {
+            console.log(response);
+            console.log('something else');
+        });
+    }
 
     const handlePassword = (password: any) => {
         if (password !== passwordRef.current.value) {
@@ -37,8 +106,28 @@ const SignupPage = () => {
         }
     };
 
+    const getUser = (credentialResponse: any) => {
+        console.log(credentialResponse);
+
+        axios
+            .get(
+                `https://www.googleapis.com/oauth2/v1/userinfo?client_id=${credentialResponse.clientId}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${credentialResponse.credenial}`,
+                        Accept: 'application/json',
+                    },
+                }
+            )
+            .then((res) => {
+                console.log(res.data);
+            })
+            .catch((err) => console.log(err));
+    };
+
     return (
         <div
+            // <GoogleOAuthProvider clientId='1060704648880-2vqttp1m0jsdkitbh77nn9if0sos43ne.apps.googleusercontent.com'>
             className='flex min-h-screen flex-row bg-[url("/bg-home-1.svg")] w-screen 
       bg-no-repeat bg-contain xlc:bg-none'
         >
@@ -106,6 +195,35 @@ const SignupPage = () => {
                         >
                             Sign Up
                         </h1>
+                        <h2 className='mb-5'>Sign up using</h2>
+                        {/* <GoogleLogin
+                                onSuccess={(credentialResponse) => {
+                                    getUser(credentialResponse);
+                                }}
+                                onError={() => {
+                                    console.log('Login Failed');
+                                }}
+                            /> */}
+
+                        {/* FACEBOOK BUTTON */}
+                        {/* <div
+                            className='fb-login-button'
+                            data-width='400px'
+                            data-size=''
+                            data-button-type=''
+                            data-layout=''
+                            data-auto-logout-link='false'
+                            data-use-continue-as='false'
+                        ></div> */}
+
+                        <button className=' bg-slate-300' onClick={login}>
+                            Login
+                        </button>
+                        <button className=' bg-slate-500' onClick={logout}>
+                            Logout
+                        </button>
+
+                        <h2 className='flex self-center mt-5'>Or</h2>
                         <label
                             className='font-iBM_Plex_Sans
             text-[#29375F] text-[1rem] font-[400] 
@@ -255,6 +373,7 @@ const SignupPage = () => {
                     </Link>
                 </div>
             </div>
+            {/* </GoogleOAuthProvider> */}
         </div>
     );
 };
