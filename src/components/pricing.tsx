@@ -1,183 +1,229 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { motion } from 'framer-motion';
+
+const contents = [
+    {
+        title: 'Free',
+        amount: '$0',
+        desc: 'Saved 10 hours on week 1. No more busy work for me. Only patient care. Just love the service. Easy, fast and very convenient.',
+        point_1: '5 notes generated per month, completely free',
+        point_2: 'Simple and easy-to-use interface',
+        subTitle: 'PhD in Mental Health',
+    },
+    {
+        title: 'Basic',
+        amount: '$10',
+        desc: 'Everything is just better with this tool. Highly suggested. I wish I had known about this earlier.',
+        point_1: '100 notes generated per month',
+        point_2: 'Suitable for therapists with a moderate caseload',
+        subTitle: 'PhD in Mental Health',
+    },
+    {
+        title: 'Premium',
+        amount: '$20',
+        desc: 'Saved 10 hours on week 1. No more busy work for me. Only patient care. Just love the service. Easy, fast and very convenient.',
+        point_1: '500 notes generated per month',
+        point_2: 'Perfect for therapists with a large caseload',
+        subTitle: 'PhD in Mental Health',
+    },
+];
 
 const Pricing = () => {
-  return (
-    <div
-      className='flex items-center justify-center 
-      xlc:justify-center xlc:ml-[-30%]'
-      id='pricing'
-    >
-      <div
-        className='flex flex-col items-center
-      xlc:flex-row xlc:relative xlc:ml-[0rem]'
-
-        // xl1440:left-[5%] 2xl:left-[8%] min-[1550px]:left-[10%]
-        // min-[1600px]:left-[12%] min-[1700px]:left-[14%]
-      >
-        {/* Pricing info */}
+    return (
         <div
-          className='flex flex-col order-1 items-center
-        xlc:order-2 xlc:absolute xlc:left-[46.5rem]
-        xlc:top-[7rem] xlc:items-start'
+            id='pricing'
+            className=' flex flex-col items-center h-[calc(44rem)] relative 
+            font-poynter_Oldstyle_Display bg-[url("/pricing-bg.svg")] bg-no-repeat '
         >
-          {/* Title */}
-          <h2
-            className='font-poynter_Oldstyle_Display 
-          text-[#29375F] text-[2.5rem] font-[400] 
-            leading-[2.75rem] mt-[3.56rem] mb-[1.25rem]
-            md:text-[3.4375rem] md:leading-[3.78125rem]'
-          >
-            Pricing
-          </h2>
-          {/* Card */}
-          <div
-            className='flex flex-col items-center
-            min-[360px]:w-[20.5rem] 
-            min-[375px]:w-[22.5rem]
-            h-[17.75rem] w-[22.5rem] rounded-[1.125rem] 
-            border-[#F4776F] border-[1px] 
-            shadow-[#353d521a] shadow-md bg-[#fff] 
-            md:w-[37.5rem] md:h-[14.125rem] md:items-start 
-            xlc:w-[32.5rem] xl:w-[37.5rem]'
-          >
-            {/* Card Title */}
-            <h3
-              className='font-poynter_Oldstyle_Display 
-            text-[1.875rem] font-[400] leading-[2.0625rem] 
-            mt-[0.81rem] mb-[0.94rem] md:ml-[1.69rem]
-            text-[#29375F]'
+            <motion.div
+                initial={{ opacity: 0.3, y: 0 }}
+                whileInView={{ opacity: 1, y: 90 }}
+                transition={{ duration: 2, delay: 1 }}
             >
-              Unlimited
-            </h3>
-            {/* Card Text */}
-            <div
-              className='flex flex-col w-[18rem] 
-            md:w-[25rem] md:ml-[1.69rem] text-[#29375F]'
-            >
-              <div className='flex items-baseline'>
-                <Image
-                  src={'/icon-circle-check.svg'}
-                  alt=''
-                  width={1200}
-                  height={550}
-                  draggable={false}
-                  className='w-[0.875rem] h-[0.875rem] 
-                mr-[0.44rem]'
-                />
-                <p
-                  className='font-iBM_Plex_Sans 
-                leading-[1.35rem] text-[1.125rem]'
-                >
-                  Everything TherapyNoteWriter has to offer
-                </p>
-              </div>
-              <div className='flex items-baseline'>
-                <Image
-                  src={'/icon-circle-check.svg'}
-                  alt=''
-                  width={1200}
-                  height={550}
-                  draggable={false}
-                  className='w-[0.875rem] h-[0.875rem]
-                mr-[0.44rem]'
-                />
-                <p
-                  className='font-iBM_Plex_Sans font-[600]
-                leading-[1.35rem] text-[1.125rem]'
-                >
-                  Unlimited Note Generation
-                </p>
-              </div>
-            </div>
-            {/* Card Footer */}
-            <div
-              className='flex flex-col items-center
-            bg-[#f4776f33] rounded-b-[1.125rem] mt-6
-              min-[360px]:w-[20.5rem] 
-              min-[375px]:w-[22.5rem]
-              w-[22.5rem] h-[8.4rem] 
-              md:w-[37.5rem] md:h-[4.75rem] md:flex-row
-              md:justify-around md:mt-11
-              xlc:w-[32.5rem] xl:w-[37.5rem]'
-            >
-              {/* Bullet points */}
-              <div
-                className='flex items-center justify-center
-              mt-[1rem] mb-[0.69rem] text-[#29375F]'
-              >
-                <p
-                  className='font-poynter_Oldstyle_Display 
-                  text-[2.187rem]
-                  font-[400] leading-[2.40625rem] 
-                  mr-[0.94rem]'
-                >
-                  $5.99
-                </p>
-                <p
-                  className='font-iBM_Plex_Sans text-[1.125rem]
-              font-[400] leading-[1.35rem] '
-                >
-                  Per month
-                </p>
-              </div>
-              {/* Button */}
-              <Link
-                href='/signup'
-                className='w-[17rem] mt-1
-              md:w-[15.8125rem]'
-              >
-                <button
-                  className='flex bg-[#F4776F] py-[12px] 
-                w-full rounded-full border-[1px] 
-                border-[#F4776F] uppercase text-white 
-                text-[1rem] font-[600] justify-center
-                drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
-                font-iBM_Plex_Sans tracking-[0.1rem]
-                hover:bg-[#F95D53] active:bg-[#EC4E44]'
-                >
-                  Get Started
-                </button>
-              </Link>
-            </div>
-          </div>
-        </div>
+                <h1 className='text-[3.4375rem] text-[#29375F] '>
+                    <span className='font-poynter_Oldstyle_Display font-[400]'>
+                        Our pricing is simple with{' '}
+                        <span
+                            className='italic font-[600] 
+                            bg-[url("/login-underline-1.svg")] 
+                            bg-contain bg-no-repeat bg-bottom '
+                        >
+                            no hidden fees!
+                        </span>
+                    </span>
+                </h1>
+            </motion.div>
 
-        {/* Banner Image */}
-        <div
-          className='flex order-2 xlc:order-1 mt-8
-          w-[23.8rem] min-[398px]:w-[25rem]
-          md:w-[48rem] xlc:w-[50.12rem] xlc:h-[40.12rem]
-          xlc:ml-[3rem]'
-        >
-          <Image
-            src={'/pricing-banner-mobile.png'}
-            alt=''
-            width={1200}
-            height={550}
-            className='flex md:hidden'
-          />
-          <Image
-            src={'/pricing-banner-tab.png'}
-            alt=''
-            width={1200}
-            height={550}
-            draggable={false}
-            className='hidden md:flex xlc:hidden'
-          />
-          <Image
-            src={'/pricing-banner-lg.png'}
-            alt=''
-            width={1200}
-            height={550}
-            draggable={false}
-            className='hidden xlc:flex'
-          />
+            <motion.div
+                // className=' relative'
+                initial={{ opacity: 1, scale: 1, y: 500 }}
+                whileInView={{
+                    opacity: 1,
+                    scale: 1,
+                    y: 90,
+                    filter: 'blur(5px)',
+                }}
+                transition={{ duration: 2 }}
+            >
+                <Image
+                    src={'/pricing-banner-lg.png'}
+                    alt=''
+                    width={700}
+                    height={320}
+                    draggable={false}
+                    className='hidden xlc:flex z-0'
+                />
+                {/* <h1 className=' absolute text-[3rem] top-0'>
+                    here is an example
+                </h1> */}
+            </motion.div>
+            <motion.div
+                className=' absolute top-0 flex'
+                initial={{ opacity: 1, scale: 1, y: 600 }}
+                whileInView={{ opacity: 1, scale: 1, y: 200 }}
+                transition={{ duration: 2, delay: 2 }}
+            >
+                {contents.map((item: any, index: any) => {
+                    return (
+                        <div
+                            key={index}
+                            className={`w-[21.25rem] h-auto ${
+                                index === 2
+                                    ? 'bg-[#CAD8FB] border-[#3157C9] border-[1px]'
+                                    : 'bg-[#fff]'
+                            }  
+                            rounded-[1.125rem]
+                            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)] mx-[1rem]
+                            flex flex-col`}
+                        >
+                            <div className=' m-[2rem] '>
+                                {/* Title */}
+                                <p className='text-[2.815rem] text-[#242C44] font-[400]'>
+                                    {item.title}
+                                </p>
+                                {index === 2 ? (
+                                    <Image
+                                        src={'/pricing-popular-ribbon.png'}
+                                        alt=''
+                                        width={1200}
+                                        height={550}
+                                        draggable={false}
+                                        className='absolute w-[8.625rem] h-auto mr-[0.44rem]
+                                    right-[-1.3rem] top-[2.7rem]'
+                                    />
+                                ) : (
+                                    ''
+                                )}
+
+                                <hr
+                                    className=' bg-[#6F91F4] h-[2px] w-[17.25rem] 
+                                    mt-[1.31rem] mb-[2rem]'
+                                />
+
+                                {/* Price */}
+                                <p className='mb-[2rem]'>
+                                    <span
+                                        className='text-[3.4375rem] text-[#29375F]
+                                        font-[600]'
+                                    >
+                                        {item.amount}
+                                    </span>
+                                    <span
+                                        className='text-[2.06rem] text-[#29375F]
+                                        font-[400] italic'
+                                    >
+                                        /month
+                                    </span>
+                                </p>
+
+                                <div className='flex items-baseline'>
+                                    <Image
+                                        src={'/icon-circle-check.svg'}
+                                        alt=''
+                                        width={1200}
+                                        height={550}
+                                        draggable={false}
+                                        className='w-[0.875rem] h-[0.875rem] mr-[0.44rem]'
+                                    />
+                                    <p
+                                        className='font-iBM_Plex_Sans font-[400]
+                                        leading-[1.35rem] text-[1.125rem]'
+                                    >
+                                        {item.point_1}
+                                    </p>
+                                </div>
+                                <div className='flex items-baseline'>
+                                    <Image
+                                        src={'/icon-circle-check.svg'}
+                                        alt=''
+                                        width={1200}
+                                        height={550}
+                                        draggable={false}
+                                        className='w-[0.875rem] h-[0.875rem] mr-[0.44rem]'
+                                    />
+                                    <p
+                                        className='font-iBM_Plex_Sans font-[400]
+                                        leading-[1.35rem] text-[1.125rem]'
+                                    >
+                                        {item.point_2}
+                                    </p>
+                                </div>
+
+                                {index === 2 ? (
+                                    <Link
+                                        href='/'
+                                        className='w-[17.25rem] h-[2.75rem] '
+                                    >
+                                        <button
+                                            className='flex bg-[#6F91F4] h-[2.75rem] 
+                                            mt-[2.63rem] 
+                                            w-full items-center rounded-full border-[1px] 
+                                            border-[#3157C9] uppercase text-white 
+                                            font-iBM_Plex_Sans tracking-[0.1rem]
+                                            text-[1rem] font-[600] justify-center
+                                            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
+                                            hover:bg-[#4771ED] active:bg-[#4063C7]'
+                                        >
+                                            Get Started
+                                        </button>
+                                    </Link>
+                                ) : (
+                                    <Link
+                                        href='/signup'
+                                        className='w-[21.25rem] h-[2.75rem] '
+                                    >
+                                        <button
+                                            className='flex bg-white h-[2.75rem] 
+                                            mt-[2.63rem] 
+                                            w-full items-center rounded-full border-[1px] 
+                                            border-[#3157C9] uppercase text-[#6F91F4] 
+                                            font-iBM_Plex_Sans tracking-[0.1rem]
+                                            text-[1rem] font-[600] justify-center
+                                            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
+                                            hover:border-[#4771ED] hover:bg-[#FAFAFA]
+                                            active:border-[#4063C7] active:bg-[#FAFAFA]'
+                                        >
+                                            Get Started
+                                        </button>
+                                    </Link>
+                                )}
+                            </div>
+                        </div>
+                    );
+                })}
+            </motion.div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
+// function scrollAnimation() {
+//   return(
+//     <motion.div>
+
+//     </motion.div>
+//   )
+// }
 export default Pricing;
