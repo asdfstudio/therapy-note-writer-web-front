@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { IBM_Plex_Sans } from 'next/font/google';
 import localFont from 'next/font/local';
 import { ContextProvider } from '../context/Context';
+// import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const iBM_Plex_Sans = IBM_Plex_Sans({
     subsets: ['latin'],
@@ -28,13 +29,21 @@ export default function RootLayout({
     return (
         <html lang='en' className='scroll-smooth'>
             <body>
+                <script
+                    async
+                    defer
+                    crossOrigin='anonymous'
+                    src='https://connect.facebook.net/en_US/sdk.js'
+                ></script>
                 <ContextProvider>
+                    {/* <GoogleOAuthProvider clientId='1060704648880-2vqttp1m0jsdkitbh77nn9if0sos43ne.apps.googleusercontent.com'> */}
                     <div
                         className={`${iBM_Plex_Sans.variable} ${poynter_Oldstyle_Display.variable}`}
                     >
                         {/* <Navbar /> */}
                         {children}
                     </div>
+                    {/* </GoogleOAuthProvider> */}
                 </ContextProvider>
             </body>
         </html>

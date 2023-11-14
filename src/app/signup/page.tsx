@@ -1,10 +1,20 @@
 'use client';
 import Navbar2 from '@/components/Navbar2';
 import { Context } from '@/context/Context';
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import React, { useContext, useEffect, useRef, useState } from 'react';
+import {
+    initFacebookSdk,
+    getFacebookLoginStatus,
+    fbLogin,
+    fbLogout,
+    fbApi,
+    fbMe,
+} from '../../utils/FacebookSDK';
+import Image from 'next/image';
 
 const SignupPage = () => {
     const usernameRef = useRef<any>(null);
@@ -12,7 +22,79 @@ const SignupPage = () => {
     const passwordRef = useRef<any>(null);
     const [error, setError] = useState(false);
     const router = useRouter();
+    const params = useSearchParams();
+    // console.log('param', params.get('code'));
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+
+    // useEffect(() => {
+    //     console.log('Started use effect');
+    //     fbLogic().then(() => {
+    //         console.log('2nd time');
+    //         getFacebookLoginStatus().then((response: any) => {
+    //             if (response == null) {
+    //                 console.log('No login status for the person');
+    //             } else {
+    //                 console.log('res', response);
+    //             }
+    //         });
+    //     });
+    // }, []);
+
+    // useEffect(() => {
+    //     console.log('window', window);
+    //     console.log('Started use effect');
+    //     initFacebookSdk();
+    // }, []);
+
+    useEffect(() => {
+        console.log('Started use effect');
+        initFacebookSdk().then(() => {
+            console.log('2nd time');
+            getFacebookLoginStatus().then((response: any) => {
+                if (response == null) {
+                    console.log('No login status for the person');
+                } else {
+                    console.log('res', response);
+                    if (response.authResponse != null) {
+                        fbMe().then((res: any) => {
+                            console.log('me', res);
+                        });
+                    }
+                }
+            });
+        });
+
+        // Should check linkedin API is there's any code in param
+        // Then use the apram to call api for access token
+        // Then call user data api with access token to get user data and complete registration
+    }, []);
+
+    function login() {
+        console.log('reached log in button');
+        fbLogin().then((response: any) => {
+            console.log(response);
+            if (response.status === 'connected') {
+                console.log('Person is connected');
+            } else {
+                // something
+                console.log('something else');
+            }
+        });
+    }
+
+    function logout() {
+        console.log('reached log out button');
+        fbLogout().then((response: any) => {
+            console.log(response);
+            console.log('something else');
+        });
+    }
+
+    const linkedinLogin = () => {
+        router.push(
+            'https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=86z5s5j7v8ljtj&redirect_uri=https%3A%2F%2F63dc-116-204-154-22.ngrok-free.app%2Fsignup&state=1234&scope=profile%20email'
+        );
+    };
 
     const handlePassword = (password: any) => {
         if (password !== passwordRef.current.value) {
@@ -37,8 +119,28 @@ const SignupPage = () => {
         }
     };
 
+    const getUser = (credentialResponse: any) => {
+        console.log(credentialResponse);
+
+        axios
+            .get(
+                `https://www.googleapis.com/oauth2/v1/userinfo?client_id=${credentialResponse.clientId}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${credentialResponse.credenial}`,
+                        Accept: 'application/json',
+                    },
+                }
+            )
+            .then((res) => {
+                console.log(res.data);
+            })
+            .catch((err) => console.log(err));
+    };
+
     return (
         <div
+            // <GoogleOAuthProvider clientId='1060704648880-2vqttp1m0jsdkitbh77nn9if0sos43ne.apps.googleusercontent.com'>
             className='flex min-h-screen flex-row bg-[url("/bg-home-1.svg")] w-screen 
       bg-no-repeat bg-contain xlc:bg-none'
         >
@@ -106,6 +208,153 @@ const SignupPage = () => {
                         >
                             Sign Up
                         </h1>
+
+                        {/* <GoogleLogin
+                                onSuccess={(credentialResponse) => {
+                                    getUser(credentialResponse);
+                                }}
+                                onError={() => {
+                                    console.log('Login Failed');
+                                }}
+                            /> */}
+
+                        {/* FACEBOOK BUTTON */}
+                        {/* <div
+                            className='fb-login-button'
+                            data-width='400px'
+                            data-size=''
+                            data-button-type=''
+                            data-layout=''
+                            data-auto-logout-link='false'
+                            data-use-continue-as='false'
+                        ></div> */}
+
+                        {/* <button className=' bg-slate-300' onClick={login}>
+                            Login
+                        </button>
+                        <button className=' bg-slate-500' onClick={logout}>
+                            Logout
+                        </button> */}
+
+                        <div
+                            className='w-[21.25rem] h-[2.75rem] mt-4
+                        mb-[2.13rem]
+                        md:w-[43rem] md:mt-[1.25rem] md:mb-[2.37rem]
+                        xlc:w-[25rem] xlc:mb-0'
+                        >
+                            <button
+                                // onClick={login}
+                                className='flex bg-[#1877F2] h-full 
+                            w-full items-center rounded-full border-[1px] 
+                            border-[#5199F5] uppercase text-white 
+                            font-iBM_Plex_Sans tracking-[0.1rem]
+                            text-[1rem] font-[600] 
+                            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
+                            hover:bg-[#1800F2] active:bg-[#4063C7]'
+                            >
+                                <Image
+                                    src={'/fb-logo.svg'}
+                                    alt=''
+                                    width={1200}
+                                    height={550}
+                                    draggable={false}
+                                    className='w-[2.01225rem] h-[2.01225rem] ml-[0.52rem]'
+                                />
+                                <span className='flex-1'>
+                                    sign up with facebook
+                                </span>
+                            </button>
+                        </div>
+
+                        <div
+                            className='w-[21.25rem] h-[2.75rem] mt-4
+                        mb-[2.13rem]
+                        md:w-[43rem] md:mt-[1.25rem] md:mb-[2.37rem]
+                        xlc:w-[25rem] xlc:mb-0'
+                        >
+                            <button
+                                // onClick={handleSubmit}
+                                className='flex bg-[#DE6558] h-full 
+                            w-full items-center rounded-full border-[1px] 
+                            border-[#D84A3B] uppercase text-white 
+                            font-iBM_Plex_Sans tracking-[0.1rem]
+                            text-[1rem] font-[600] 
+                            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
+                            hover:bg-[#DE0058] active:bg-[#4063C7]'
+                            >
+                                <Image
+                                    src={'/google-logo.svg'}
+                                    alt=''
+                                    width={1200}
+                                    height={550}
+                                    draggable={false}
+                                    className='w-[2.01225rem] h-[2.01225rem] ml-[0.52rem]'
+                                />
+                                <span className='flex-1'>
+                                    sign up with google
+                                </span>
+                            </button>
+                        </div>
+                        <div
+                            className='w-[21.25rem] h-[2.75rem] mt-4
+                        mb-[2.13rem]
+                        md:w-[43rem] md:mt-[1.25rem] md:mb-[2.37rem]
+                        xlc:w-[25rem] xlc:mb-0'
+                        >
+                            <button
+                                // onClick={handleSubmit}
+                                className='flex bg-[#262626] h-full 
+                            w-full items-center rounded-full border-[1px] 
+                            border-[#4D4847] uppercase text-white 
+                            font-iBM_Plex_Sans tracking-[0.1rem]
+                            text-[1rem] font-[600] 
+                            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
+                            hover:bg-[#260026] active:bg-[#4063C7]'
+                            >
+                                <Image
+                                    src={'/twitter-logo.svg'}
+                                    alt=''
+                                    width={1200}
+                                    height={550}
+                                    draggable={false}
+                                    className='w-[1.8125rem] h-[1.5625rem] ml-[0.52rem]'
+                                />
+                                <span className='flex-1'>
+                                    sign up with twitter
+                                </span>
+                            </button>
+                        </div>
+                        <div
+                            className='w-[21.25rem] h-[2.75rem] mt-4
+                        mb-[2.13rem]
+                        md:w-[43rem] md:mt-[1.25rem] md:mb-[2.37rem]
+                        xlc:w-[25rem] xlc:mb-0'
+                        >
+                            <button
+                                // onClick={linkedinLogin}
+                                className='flex bg-[#0A66C2] h-full 
+                            w-full items-center rounded-full border-[1px] 
+                            border-[#0C75DF] uppercase text-white 
+                            font-iBM_Plex_Sans tracking-[0.1rem]
+                            text-[1rem] font-[600] 
+                            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
+                            hover:bg-[#4771ED] active:bg-[#4063C7]'
+                            >
+                                <Image
+                                    src={'/linkedin-logo.svg'}
+                                    alt=''
+                                    width={1200}
+                                    height={550}
+                                    draggable={false}
+                                    className='w-[1.81988rem] h-[1.80188rem] ml-[0.52rem]'
+                                />
+                                <span className='flex-1'>
+                                    sign up with linkedin
+                                </span>
+                            </button>
+                        </div>
+
+                        <h2 className='flex self-center mt-5'>Or</h2>
                         <label
                             className='font-iBM_Plex_Sans
             text-[#29375F] text-[1rem] font-[400] 
@@ -255,6 +504,7 @@ const SignupPage = () => {
                     </Link>
                 </div>
             </div>
+            {/* </GoogleOAuthProvider> */}
         </div>
     );
 };
