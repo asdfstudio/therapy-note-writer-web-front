@@ -1,8 +1,8 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const contents = [
     {
@@ -32,16 +32,39 @@ const contents = [
 ];
 
 const Pricing = () => {
+    const titleRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: titleRef,
+        offset: ['1 1', '0 0'],
+    });
+
+    const opacityProgress = useTransform(scrollYProgress, [0, 1], [0.1, 1]);
+    const YProgress = useTransform(scrollYProgress, [0, 1], [-60, 100]);
+    const bgYProgress = useTransform(scrollYProgress, [0, 1], [500, 90]);
+    const bgBlurProgress = useTransform(
+        scrollYProgress,
+        [0, 0.8, 1],
+        ['blur(0)', 'blur(0)', 'blur(5px)']
+    );
+    const pricingYProgress = useTransform(
+        scrollYProgress,
+        [0, 0.7, 1],
+        [600, 600, 200]
+    );
+
     return (
         <div
             id='pricing'
             className=' flex flex-col items-center h-[calc(44rem)] relative 
-            font-poynter_Oldstyle_Display bg-[url("/pricing-bg.svg")] bg-no-repeat '
+            font-poynter_Oldstyle_Display bg-[url("/pricing-bg.svg")] bg-no-repeat bg-cover '
         >
             <motion.div
-                initial={{ opacity: 0.3, y: 0 }}
-                whileInView={{ opacity: 1, y: 90 }}
-                transition={{ duration: 2, delay: 1 }}
+                className=' z-0'
+                ref={titleRef}
+                style={{
+                    opacity: opacityProgress,
+                    y: YProgress,
+                }}
             >
                 <h1 className='text-[3.4375rem] text-[#29375F] '>
                     <span className='font-poynter_Oldstyle_Display font-[400]'>
@@ -58,15 +81,10 @@ const Pricing = () => {
             </motion.div>
 
             <motion.div
-                // className=' relative'
-                initial={{ opacity: 1, scale: 1, y: 500 }}
-                whileInView={{
-                    opacity: 1,
-                    scale: 1,
-                    y: 90,
-                    filter: 'blur(5px)',
+                style={{
+                    y: bgYProgress,
+                    filter: bgBlurProgress,
                 }}
-                transition={{ duration: 2 }}
             >
                 <Image
                     src={'/pricing-banner-lg.png'}
@@ -74,17 +92,14 @@ const Pricing = () => {
                     width={700}
                     height={320}
                     draggable={false}
-                    className='hidden xlc:flex z-0'
+                    className='hidden md:flex z-0'
                 />
-                {/* <h1 className=' absolute text-[3rem] top-0'>
-                    here is an example
-                </h1> */}
             </motion.div>
             <motion.div
                 className=' absolute top-0 flex'
-                initial={{ opacity: 1, scale: 1, y: 600 }}
-                whileInView={{ opacity: 1, scale: 1, y: 200 }}
-                transition={{ duration: 2, delay: 2 }}
+                style={{
+                    y: pricingYProgress,
+                }}
             >
                 {contents.map((item: any, index: any) => {
                     return (
@@ -219,11 +234,4 @@ const Pricing = () => {
     );
 };
 
-// function scrollAnimation() {
-//   return(
-//     <motion.div>
-
-//     </motion.div>
-//   )
-// }
 export default Pricing;
