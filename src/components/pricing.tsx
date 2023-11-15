@@ -39,8 +39,8 @@ const Pricing = () => {
     });
 
     const opacityProgress = useTransform(scrollYProgress, [0, 1], [0.1, 1]);
-    const YProgress = useTransform(scrollYProgress, [0, 1], [-60, 100]);
-    const bgYProgress = useTransform(scrollYProgress, [0, 1], [500, 90]);
+    const YProgress = useTransform(scrollYProgress, [0, 1], [-60, 120]);
+    const bgYProgress = useTransform(scrollYProgress, [0, 1], [500, 140]);
     const bgBlurProgress = useTransform(
         scrollYProgress,
         [0, 0.8, 1],
@@ -49,13 +49,13 @@ const Pricing = () => {
     const pricingYProgress = useTransform(
         scrollYProgress,
         [0, 0.7, 1],
-        [600, 600, 200]
+        [600, 600, 250]
     );
 
     return (
         <div
             id='pricing'
-            className=' flex flex-col items-center h-[calc(44rem)] relative 
+            className=' flex flex-col items-center h-screen relative 
             font-poynter_Oldstyle_Display bg-[url("/pricing-bg.svg")] bg-no-repeat bg-cover '
         >
             <motion.div
@@ -72,7 +72,7 @@ const Pricing = () => {
                         <span
                             className='italic font-[600] 
                             bg-[url("/login-underline-1.svg")] 
-                            bg-contain bg-no-repeat bg-bottom '
+                            bg-contain bg-no-repeat bg-[center_top_3.5rem]  '
                         >
                             no hidden fees!
                         </span>
