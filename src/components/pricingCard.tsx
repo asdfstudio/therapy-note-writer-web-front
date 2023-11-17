@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const contents = [
@@ -31,119 +31,30 @@ const contents = [
     },
 ];
 
-const Pricing = () => {
-    const [screenWidth, setScreenWidth] = useState(1360);
-
-    useEffect(() => {
-        const getScreenWidth = () => {
-            setScreenWidth(window.screen.availWidth);
-        };
-        getScreenWidth();
-    }, [screenWidth]);
-
+const PricingCard = () => {
     const titleRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: titleRef,
         offset: ['1 1', '0 0'],
     });
 
-    const opacityProgress = useTransform(scrollYProgress, [0, 1], [0.1, 1]);
-    const opacityProgressMobile = useTransform(
-        scrollYProgress,
-        [0, 0.3, 1],
-        [0.1, 1, 1]
-    );
-    const YProgress = useTransform(scrollYProgress, [0, 1], [-60, 120]);
-    const YProgressMobile = useTransform(
-        scrollYProgress,
-        [0, 0.4, 1],
-        [-160, 20, 100]
-    );
-    const bgYProgress = useTransform(scrollYProgress, [0, 1], [500, 140]);
-    const bgBlurProgress = useTransform(
-        scrollYProgress,
-        [0, 0.8, 1],
-        ['blur(0)', 'blur(0)', 'blur(5px)']
-    );
-
     const pricingYProgress = useTransform(
         scrollYProgress,
-        [0, 0.7, 1],
-        [600, 600, 250]
-    );
-    const pricingYProgressMobile = useTransform(
-        scrollYProgress,
         [0, 0.5, 1],
-        [600, 600, -850]
+        [600, 0, -850]
     );
 
     return (
         <div
             id='pricing'
-            className=' flex flex-col items-center h-screen relative  
+            className=' flex flex-col items-center h-screen relative 
             font-poynter_Oldstyle_Display bg-[url("/pricing-bg.svg")] bg-no-repeat bg-top 
             xlc:h-screen'
         >
-            {/* Title */}
-            <motion.div
-                className=' z-0 '
-                ref={titleRef}
-                style={{
-                    opacity:
-                        screenWidth >= 1360
-                            ? opacityProgress
-                            : opacityProgressMobile,
-                    y: screenWidth >= 1360 ? YProgress : YProgressMobile,
-                }}
-            >
-                <h1
-                    className='text-[2.5rem] text-[#29375F] leading-[2.75rem] 
-                    w-[21rem] text-center mt-[2rem] mb-[4rem]
-                    md:text-[3.4375rem] md:w-[32.59rem] md:leading-[3.78rem] xlc:w-screen xlc:mt-0 xlc:mb-0'
-                >
-                    <span className='font-poynter_Oldstyle_Display font-[400]'>
-                        Our pricing is simple with{' '}
-                        <span
-                            className='italic font-[600] 
-                            bg-[url("/login-underline-1.svg")] 
-                            bg-contain bg-no-repeat bg-[center_top_2.5rem] md:bg-[center_top_3.5rem]  '
-                        >
-                            no hidden fees!
-                        </span>
-                    </span>
-                </h1>
-            </motion.div>
-
-            <motion.div
-                style={{
-                    y: bgYProgress,
-                    filter: bgBlurProgress,
-                }}
-            >
-                <Image
-                    src={'/pricing-banner-lg.png'}
-                    alt=''
-                    width={700}
-                    height={320}
-                    draggable={false}
-                    className='hidden xlc:flex z-0'
-                />
-                <Image
-                    src={'/pricing-banner-mobile.png'}
-                    alt=''
-                    width={700}
-                    height={320}
-                    draggable={false}
-                    className=' xlc:hidden z-0'
-                />
-            </motion.div>
             <motion.div
                 className=' absolute top-0 flex flex-col gap-[2rem] xlc:flex-row xlc:gap-0'
                 style={{
-                    y:
-                        screenWidth >= 1360
-                            ? pricingYProgress
-                            : pricingYProgressMobile,
+                    y: pricingYProgress,
                 }}
             >
                 {contents.map((item: any, index: any) => {
@@ -157,8 +68,7 @@ const Pricing = () => {
                             }  
                             rounded-[1.125rem]
                             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)] mx-[1rem]
-                            flex flex-col 
-                            md:w-[40.25rem] xlc:w-[21.25rem]`}
+                            flex flex-col`}
                         >
                             <div className=' m-[2rem] '>
                                 {/* Title */}
@@ -280,4 +190,4 @@ const Pricing = () => {
     );
 };
 
-export default Pricing;
+export default PricingCard;
