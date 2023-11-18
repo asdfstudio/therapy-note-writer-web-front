@@ -236,6 +236,7 @@ const SignupPage = () => {
                             Logout
                         </button> */}
 
+                        {/* Facebook login button */}
                         <div
                             className='w-[21.25rem] h-[2.75rem] mt-4
                         mb-[2.13rem]
@@ -266,6 +267,7 @@ const SignupPage = () => {
                             </button>
                         </div>
 
+                        {/* Google login button */}
                         <div
                             className='w-[21.25rem] h-[2.75rem] mt-4
                         mb-[2.13rem]
@@ -295,6 +297,8 @@ const SignupPage = () => {
                                 </span>
                             </button>
                         </div>
+
+                        {/* Twitter login button */}
                         <div
                             className='w-[21.25rem] h-[2.75rem] mt-4
                         mb-[2.13rem]
@@ -324,6 +328,8 @@ const SignupPage = () => {
                                 </span>
                             </button>
                         </div>
+
+                        {/* LinkedIn login button */}
                         <div
                             className='w-[21.25rem] h-[2.75rem] mt-4
                         mb-[2.13rem]
