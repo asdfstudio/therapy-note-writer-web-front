@@ -3,6 +3,7 @@ import Navbar2 from '@/components/Navbar2';
 import { Context } from '@/context/Context';
 import axios from 'axios';
 import { error } from 'console';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useContext, useEffect, useRef, useState } from 'react';
@@ -102,28 +103,29 @@ const LoginPage = () => {
             {/* Text Contents */}
             <div
                 className='flex flex-col items-center 
-        xlc:items-end'
+                xlc:items-end '
             >
                 {/* Form */}
                 <div
                     className='flex flex-col items-center 
-          w-screen
-          xlc:w-[30rem] min-h-screen'
+                    w-screen
+                    xlc:w-[30rem] min-h-screen xlc:snap-y scroll-auto '
                 >
                     <form className='flex flex-col' onSubmit={handleSubmit}>
                         <h1
                             className='text-[2.5rem] 
-              font-poynter_Oldstyle_Display 
-              font-[400] leading-[2.75rem] mt-[10.94rem]
-              mb-[1.31rem] text-[#29375F]'
+                            font-poynter_Oldstyle_Display 
+                            font-[400] leading-[2.75rem] mt-[6.5rem]
+                            mb-[0.75rem] text-[#29375F] md:mb-[1.25rem]
+                            xlc:mt-[4.75rem]'
                         >
                             Login
                         </h1>
 
                         <label
                             className='font-iBM_Plex_Sans
-          text-[#29375F] text-[1rem] font-[400] 
-           mb-[0.5rem]'
+                            text-[#29375F] text-[1rem] font-[400] 
+                            mb-[0.5rem]'
                         >
                             Email Address
                         </label>
@@ -143,7 +145,7 @@ const LoginPage = () => {
                         <label
                             className='font-iBM_Plex_Sans
           text-[#29375F] text-[1rem] font-[400]
-            mt-[1.25rem] mb-[0.5rem]'
+            mt-[0.75rem] mb-[0.5rem] md:mt-[1.25rem]'
                         >
                             Password
                         </label>
@@ -169,17 +171,9 @@ const LoginPage = () => {
                         ) : (
                             <></>
                         )}
-
-                        {/* <Link
-                            href='/login'
-                            className='w-[21.25rem] h-[2.75rem] mt-4
-                              mb-[0.94rem]
-                              md:w-[43rem] md:mt-[1.25rem] 
-                              xlc:w-[25rem]'
-                        > */}
                         <div
-                            className='w-[21.25rem] h-[2.75rem] mt-4
-                              mb-[0.94rem]
+                            className='w-[21.25rem] h-[2.75rem] mt-[0.75rem]
+                              mb-[0.75rem]
                               md:w-[43rem] md:mt-[1.25rem] 
                               xlc:w-[25rem]'
                         >
@@ -199,8 +193,8 @@ const LoginPage = () => {
                                 Login
                             </button>
                         </div>
-                        {/* </Link> */}
                     </form>
+                    {/* Forgot password link */}
                     <h3
                         className='font-iBM_Plex_Sans
             text-[#29375F] font-[600] text-[1rem]'
@@ -215,10 +209,139 @@ const LoginPage = () => {
                         </Link>
                     </h3>
 
+                    <div className='mt-[0.75rem] flex items-center'>
+                        <hr className='h-[2px] w-[8.87rem] bg-[rgba(111,145,244,0.40)] ' />
+                        <p
+                            className=' uppercase font-iBM_Plex_Sans text-[1rem] font-[600] 
+                            text-[#AEB9D9] mx-[1rem]'
+                        >
+                            or
+                        </p>
+                        <hr className='h-[2px] w-[8.87rem] bg-[rgba(111,145,244,0.40)] ' />
+                    </div>
+
+                    {/* Facebook login button */}
+                    <div
+                        className='w-[21.25rem] h-[2.75rem] mt-4
+                        mb-[0.75rem]
+                        md:w-[43rem] md:mt-[1.25rem] md:mb-[2.37rem]
+                        xlc:w-[25rem] xlc:mb-0'
+                    >
+                        <button
+                            // onClick={login}
+                            className='flex bg-[#1877F2] h-full 
+                            w-full items-center rounded-full border-[1px] 
+                            border-[#5199F5] uppercase text-white 
+                            font-iBM_Plex_Sans tracking-[0.1rem]
+                            text-[1rem] font-[600] 
+                            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
+                            hover:bg-[#1800F2] active:bg-[#4063C7]'
+                        >
+                            <Image
+                                src={'/fb-logo.svg'}
+                                alt=''
+                                width={1200}
+                                height={550}
+                                draggable={false}
+                                className='w-[2.01225rem] h-[2.01225rem] ml-[0.52rem]'
+                            />
+                            <span className='flex-1'>
+                                sign up with facebook
+                            </span>
+                        </button>
+                    </div>
+
+                    {/* Google login button */}
+                    <div
+                        className='w-[21.25rem] h-[2.75rem] 
+                        mb-[0.75rem]
+                        md:w-[43rem] md:mt-[1.25rem] md:mb-[2.37rem]
+                        xlc:w-[25rem] xlc:mb-0'
+                    >
+                        <button
+                            // onClick={handleSubmit}
+                            className='flex bg-[#DE6558] h-full 
+                            w-full items-center rounded-full border-[1px] 
+                            border-[#D84A3B] uppercase text-white 
+                            font-iBM_Plex_Sans tracking-[0.1rem]
+                            text-[1rem] font-[600] 
+                            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
+                            hover:bg-[#DE0058] active:bg-[#4063C7]'
+                        >
+                            <Image
+                                src={'/google-logo.svg'}
+                                alt=''
+                                width={1200}
+                                height={550}
+                                draggable={false}
+                                className='w-[2.01225rem] h-[2.01225rem] ml-[0.52rem]'
+                            />
+                            <span className='flex-1'>sign up with google</span>
+                        </button>
+                    </div>
+
+                    {/* Twitter login button */}
+                    <div
+                        className='w-[21.25rem] h-[2.75rem] mb-[0.75rem]
+                        md:w-[43rem] md:mt-[1.25rem] md:mb-[2.37rem]
+                        xlc:w-[25rem] xlc:mb-0'
+                    >
+                        <button
+                            // onClick={handleSubmit}
+                            className='flex bg-[#262626] h-full 
+                            w-full items-center rounded-full border-[1px] 
+                            border-[#4D4847] uppercase text-white 
+                            font-iBM_Plex_Sans tracking-[0.1rem]
+                            text-[1rem] font-[600] 
+                            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
+                            hover:bg-[#260026] active:bg-[#4063C7]'
+                        >
+                            <Image
+                                src={'/twitter-logo.svg'}
+                                alt=''
+                                width={1200}
+                                height={550}
+                                draggable={false}
+                                className='w-[1.8125rem] h-[1.5625rem] ml-[0.52rem]'
+                            />
+                            <span className='flex-1'>sign up with twitter</span>
+                        </button>
+                    </div>
+
+                    {/* LinkedIn login button */}
+                    <div
+                        className='w-[21.25rem] h-[2.75rem] 
+                        md:w-[43rem] md:mt-[1.25rem] md:mb-[2.37rem]
+                        xlc:w-[25rem] xlc:mb-0'
+                    >
+                        <button
+                            // onClick={linkedinLogin}
+                            className='flex bg-[#0A66C2] h-full 
+                            w-full items-center rounded-full border-[1px] 
+                            border-[#0C75DF] uppercase text-white 
+                            font-iBM_Plex_Sans tracking-[0.1rem]
+                            text-[1rem] font-[600] 
+                            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
+                            hover:bg-[#4771ED] active:bg-[#4063C7]'
+                        >
+                            <Image
+                                src={'/linkedin-logo.svg'}
+                                alt=''
+                                width={1200}
+                                height={550}
+                                draggable={false}
+                                className='w-[1.81988rem] h-[1.80188rem] ml-[0.52rem]'
+                            />
+                            <span className='flex-1'>
+                                sign up with linkedin
+                            </span>
+                        </button>
+                    </div>
+
                     <hr
                         className='w-[21.25rem] h-[2px] 
-            bg-[rgba(111,145,244,0.40)] mt-[2.5rem]
-            mb-[2.5rem]'
+            bg-[rgba(111,145,244,0.40)] mt-[3.8rem]
+            mb-[0.75rem]'
                     />
 
                     <h3
@@ -229,7 +352,7 @@ const LoginPage = () => {
                     </h3>
                     <Link
                         href='/signup'
-                        className='w-[21.25rem] h-[2.75rem] mt-3
+                        className='w-[21.25rem] h-[2.75rem] mt-[0.75rem]
                           mb-[8.38rem]
                           md:w-[43rem] md:mt-[1.25rem] md:mb-[2.37rem]
                           xlc:w-[25rem]'
