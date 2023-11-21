@@ -16,4 +16,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: 22
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: "cd /var/www/therapy-web-front && ./.scripts/deploy.sh"
+          script: "cd /var/www/therapy-front && ./.scripts/deploy.sh"
