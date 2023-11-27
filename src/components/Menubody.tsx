@@ -5,7 +5,17 @@ import TagsInputCustom from './TagsInputCustom';
 import axios from 'axios';
 import { Context } from '@/context/Context';
 
-const Pronouns = ['She/Her/Hers', 'He/Him/His', 'They/Them/Theirs'];
+const Pronouns = [
+    'She',
+    'Her',
+    'Hers',
+    'He',
+    'Him',
+    'His',
+    'They',
+    'Them',
+    'Theirs',
+];
 const AppointmentLocation = ['In person', 'Telehealth'];
 const Diagnosis = ['In person', 'Telehealth'];
 const Appearance = [
@@ -71,7 +81,7 @@ const Oriented = ['Oriented x3', 'Confused', 'Disoriented'];
 const EyeContact = ['Good', 'Fair', 'Poor', 'None'];
 
 const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
-    const [clientPronouns, setClientPronouns] = useState<any>('');
+    const [clientPronouns, setClientPronouns] = useState<any>([]);
     const [apptLocation, setApptLocation] = useState<any>('');
     const [diagnosis, setDiagnosis] = useState<any>('');
     const [currentSymptoms, setCurrentSymptoms] = useState<any>([]);
@@ -97,8 +107,8 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
     const { user } = useContext<any>(Context);
 
     useEffect(() => {
-        const local_clientPronouns = localStorage.getItem(
-            'LOCAL_clientPronouns'
+        const local_clientPronouns = JSON.parse(
+            localStorage.getItem('LOCAL_clientPronouns')!
         );
         if (local_clientPronouns) setClientPronouns(local_clientPronouns);
 
@@ -115,7 +125,10 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
     }, []);
 
     useEffect(() => {
-        localStorage.setItem('LOCAL_clientPronouns', clientPronouns);
+        localStorage.setItem(
+            'LOCAL_clientPronouns',
+            JSON.stringify(clientPronouns)
+        );
         localStorage.setItem('LOCAL_apptLocation', apptLocation);
         localStorage.setItem('LOCAL_diagnosis', diagnosis);
         localStorage.setItem(
@@ -272,40 +285,81 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
                     className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
           w-full mb-[1.25rem] grid grid-cols-1 sm:grid-cols-3
-          md:grid-cols-1
+          md:grid-cols-3
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
                 >
                     {Pronouns.map((item, index) => {
                         return (
                             <label
-                                className='text-[0.9375rem] 
-                                mr-[1.5rem] mb-[0.5rem]'
+                                className='container '
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
                                 <input
-                                    type='radio'
+                                    type='checkbox'
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Pronouns'
-                                    checked={
-                                        item === clientPronouns ? true : false
-                                    }
-                                    className='checkbox appearance-none 
-                            ring-[#F4776F] ring-[1.5px] 
-                            checked:ring-[4px] checked:ring-[#F4776F]
-                            ring-inset rounded-full
-                            cursor-pointer 
-                            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
                                     onChange={(event) => {
-                                        setClientPronouns(event.target.value);
+                                        const currentValue = event.target.value;
+                                        if (
+                                            clientPronouns.includes(
+                                                currentValue
+                                            )
+                                        ) {
+                                            const tempArray = clientPronouns;
+                                            const index =
+                                                tempArray.indexOf(currentValue);
+                                            tempArray.splice(index, 1);
+                                            setClientPronouns(tempArray);
+                                        } else {
+                                            setClientPronouns(
+                                                (prevValue: any) => [
+                                                    ...prevValue,
+                                                    event.target.value,
+                                                ]
+                                            );
+                                        }
                                     }}
                                 />
-
                                 {item}
+                                <span className='checkmark'></span>
                             </label>
                         );
                     })}
+                    {/* {Appearance.map((item, index) => {
+                        return (
+                            <label
+                                className='container'
+                                key={index}
+                                // htmlFor={`${item}${index}`}
+                            >
+                                <input
+                                    type='checkbox'
+                                    value={item}
+                                    id={`${item}${index}`}
+                                    name='Appearance'
+                                    onChange={(event) => {
+                                        const currentValue = event.target.value;
+                                        if (appearance.includes(currentValue)) {
+                                            const tempArray = appearance;
+                                            const index =
+                                                tempArray.indexOf(currentValue);
+                                            tempArray.splice(index, 1);
+                                            setAppearance(tempArray);
+                                        } else {
+                                            setAppearance((prevValue: any) => [
+                                                ...prevValue,
+                                                event.target.value,
+                                            ]);
+                                        }
+                                    }}
+                                />
+                                <span className='checkmark'></span>
+                                {item}
+                            </label>
+                        );
+                    })} */}
                 </div>
 
                 {/* Options */}
