@@ -2,6 +2,8 @@
 import DashboardHome from '@/components/DashboardHome';
 import DashboardNavMenu from '@/components/DashboardNavMenu';
 import Menubody from '@/components/Menubody';
+import SubscriptionPop from '@/components/subscriptionPop';
+import TermsOfService from '@/components/termsOfService';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
@@ -10,12 +12,64 @@ const DashboardPage = () => {
     const [showMenu, setShowMenu] = useState(false);
     const [showNavMenu, setShowNavMenu] = useState(false);
     const [mainSummary, setMainSummary] = useState('');
+    const [showSubscriptionTable, setShowSubscriptionTable] = useState(false);
+    const [termsOfServiceAccepted, setTermsOfServiceAccepted] = useState(false);
+    const [showTermsOfServicePop, setShowTermsOfServicePop] = useState(true);
+
+    const contents = [
+        {
+            title: 'Free',
+            amount: '$0',
+            desc: 'Saved 10 hours on week 1. No more busy work for me. Only patient care. Just love the service. Easy, fast and very convenient.',
+            point_1: '5 notes generated per month, completely free',
+            point_2: 'Simple and easy-to-use interface',
+            subTitle: 'PhD in Mental Health',
+        },
+        {
+            title: 'Basic',
+            amount: '$10',
+            desc: 'Everything is just better with this tool. Highly suggested. I wish I had known about this earlier.',
+            point_1: '100 notes generated per month',
+            point_2: 'Suitable for therapists with a moderate caseload',
+            subTitle: 'PhD in Mental Health',
+        },
+        {
+            title: 'Premium',
+            amount: '$20',
+            desc: 'Saved 10 hours on week 1. No more busy work for me. Only patient care. Just love the service. Easy, fast and very convenient.',
+            point_1: '500 notes generated per month',
+            point_2: 'Perfect for therapists with a large caseload',
+            subTitle: 'PhD in Mental Health',
+        },
+    ];
 
     const handleShowMenu = () => {
         setShowMenu(true);
     };
+
+    const handleSubscription = () => {
+        setShowSubscriptionTable(false);
+    };
     return (
         <div className='flex md:justify-between'>
+            {/* Subscription pop-up */}
+            {showSubscriptionTable ? (
+                <SubscriptionPop
+                    setShowSubscriptionTable={setShowSubscriptionTable}
+                />
+            ) : (
+                ''
+            )}
+
+            {/* Terms of Service page pop-up */}
+            {showTermsOfServicePop ? (
+                <TermsOfService
+                    setShowTermsOfServicePop={setShowTermsOfServicePop}
+                />
+            ) : (
+                ''
+            )}
+
             {/* Logo and Menu */}
             <div
                 className='fixed h-[4.75rem] w-screen bg-[#12192E] 

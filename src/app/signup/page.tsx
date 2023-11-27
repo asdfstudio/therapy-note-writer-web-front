@@ -109,6 +109,10 @@ const SignupPage = () => {
         });
     }
 
+    const handleSIgnupComplete = () => {
+        router.push('/login');
+    };
+
     const linkedinLogin = () => {
         router.push(
             'https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=86z5s5j7v8ljtj&redirect_uri=https%3A%2F%2F63dc-116-204-154-22.ngrok-free.app%2Fsignup&state=1234&scope=profile%20email'
@@ -1053,7 +1057,7 @@ const SignupPage = () => {
                         xlc:w-[25rem] xlc:mb-0'
                             >
                                 <button
-                                    // onClick={handleAccountSetup}
+                                    onClick={handleSIgnupComplete}
                                     className='flex bg-[#6F91F4] h-full 
                             w-full items-center rounded-full border-[1px] 
                             border-[#3157C9] uppercase text-white 
