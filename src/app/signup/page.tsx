@@ -20,7 +20,9 @@ const SignupPage = () => {
     const usernameRef = useRef<any>(null);
     const emailRef = useRef<any>(null);
     const passwordRef = useRef<any>(null);
+    const [email, setEmail] = useState('');
     const [error, setError] = useState(false);
+    const [mailError, setMailError] = useState(false);
     const [isEmailFormShown, setIsEmailFormShown] = useState(true);
     const [isOTPShown, setIsOTPShown] = useState(false);
     const [isVerifiedScreenShown, setIsVerifiedScreenShown] = useState(false);
@@ -65,41 +67,65 @@ const SignupPage = () => {
     //     initFacebookSdk();
     // }, []);
 
-    useEffect(() => {
-        // console.log('Started use effect');
+    // useEffect(() => {
+    //     console.log('Started use effect');
+    //     initFacebookSdk().then(() => {
+    //         console.log('2nd time');
+    //         getFacebookLoginStatus().then((response: any) => {
+    //             console.log('res', response);
+    //             if (response === null || response.authResponse === null) {
+    //                 console.log('No login status for the person');
+    //             } else {
+    //                 // console.log('res', response);
+    //                 if (response.authResponse != null) {
+    //                     fbMe().then((res: any) => {
+    //                         console.log('me', res);
+    //                         setEmail(res.email);
+    //                     });
+    //                 }
+    //             }
+    //         });
+    //     });
+
+    //     // Should check linkedin API is there's any code in param
+    //     // Then use the apram to call api for access token
+    //     // Then call user data api with access token to get user data and complete registration
+    // }, []);
+
+    const login = async (e: any) => {
+        e.preventDefault();
+        console.log('reached log in button');
+
         initFacebookSdk().then(() => {
-            // console.log('2nd time');
+            console.log('2nd time');
             getFacebookLoginStatus().then((response: any) => {
-                if (response == null) {
+                console.log('res', response);
+                if (response === null || response.authResponse === null) {
                     console.log('No login status for the person');
+                    fbLogin().then((response: any) => {
+                        console.log('login button', response);
+                        if (response.status === 'connected') {
+                            console.log('Person is connected');
+                        } else {
+                            // something
+                            // console.log('something else');
+                        }
+                    });
                 } else {
                     // console.log('res', response);
                     if (response.authResponse != null) {
+                        console.log('person in');
                         fbMe().then((res: any) => {
                             console.log('me', res);
+                            setEmail(res.email);
+
+                            handleSubmit(e);
                         });
                     }
                 }
             });
         });
-
-        // Should check linkedin API is there's any code in param
-        // Then use the apram to call api for access token
-        // Then call user data api with access token to get user data and complete registration
-    }, []);
-
-    function login() {
-        console.log('reached log in button');
-        fbLogin().then((response: any) => {
-            console.log(response);
-            if (response.status === 'connected') {
-                console.log('Person is connected');
-            } else {
-                // something
-                console.log('something else');
-            }
-        });
-    }
+    };
 
     function logout() {
         console.log('reached log out button');
@@ -129,20 +155,28 @@ const SignupPage = () => {
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-        try {
-            // const res = await axios.post(`${baseURL}/api/auth/register`, {
-            //     username: usernameRef.current.value,
-            //     email: emailRef.current.value,
-            //     password: passwordRef.current.value,
-            // });
+        if (email === '' || email === ' ' || email === null) {
+            setMailError(true);
+        } else {
+            try {
+                // const res = await axios.post(`${baseURL}/api/auth/register`, {
+                //     username: usernameRef.current.value,
+                //     email: emailRef.current.value,
+                //     password: passwordRef.current.value,
+                // });
 
-            // console.log(res.data);
-            // res.data && router.push('/login');
+                // console.log(res.data);
+                // res.data && router.push('/login');
 
-            setIsEmailFormShown(false);
-            setIsOTPShown(true);
-        } catch (error) {
-            return error;
+                // const res = await axios.post(`${baseURL}/api/auth/register`, {
+                //     email: email,
+                // });
+
+                setIsEmailFormShown(false);
+                setIsOTPShown(true);
+            } catch (error) {
+                return error;
+            }
         }
     };
 
@@ -237,17 +271,18 @@ const SignupPage = () => {
             {/* Right Side */}
             <div>
                 {/* Log out button */}
-                <div
-                    className='flex w-[28rem] items-center justify-end mt-[2rem]
+                {isOTPShown ? (
+                    <div
+                        className='flex w-[28rem] items-center justify-end mt-[2rem]
                     mr-[2rem]'
-                >
-                    <svg
-                        className='w-[0.75rem] h-[0.75rem] mr-[0.5rem]'
-                        xmlns='http://www.w3.org/2000/svg'
-                        viewBox='0 0 512 512'
                     >
-                        <path
-                            d='M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 
+                        <svg
+                            className='w-[0.75rem] h-[0.75rem] mr-[0.5rem]'
+                            xmlns='http://www.w3.org/2000/svg'
+                            viewBox='0 0 512 512'
+                        >
+                            <path
+                                d='M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 
                                     11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 
                                     6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 
                                     0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 
@@ -256,15 +291,18 @@ const SignupPage = () => {
                                     14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 
                                     32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 
                                     0c17.7 0 32 14.3 32 32s-14.3 32-32 32z'
-                        />
-                    </svg>
-                    <p
-                        className='w-[5rem] text-[0.75rem] font-[600]
+                            />
+                        </svg>
+                        <p
+                            className='w-[5rem] text-[0.75rem] font-[600]
                         uppercase font-iBM_Plex_Sans  text-[rgba(41,55,95,0.70)]'
-                    >
-                        Log Out
-                    </p>
-                </div>
+                        >
+                            Log Out
+                        </p>
+                    </div>
+                ) : (
+                    ''
+                )}
 
                 {/* Text Contents */}
                 {isEmailFormShown && (
@@ -283,7 +321,7 @@ const SignupPage = () => {
                             font-poynter_Oldstyle_Display 
                             font-[400] leading-[2.75rem] mt-[6.5rem]
                             mb-[0.75rem] text-[#29375F] md:mb-[1.25rem]
-                            xlc:mt-0'
+                            xlc:mt-[4.75rem]'
                                 >
                                     Sign Up
                                 </h1>
@@ -348,7 +386,22 @@ const SignupPage = () => {
                                     type='text'
                                     name='email'
                                     placeholder='yourname@domain.com'
-                                    ref={emailRef}
+                                    // ref={emailRef}
+                                    // pattern='/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i'
+                                    onChange={(e) => {
+                                        const mailValue = e.target.value;
+                                        const mailRegexPattern =
+                                            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                                        const matched =
+                                            mailValue.match(mailRegexPattern);
+
+                                        if (matched !== null) {
+                                            setMailError(false);
+                                            setEmail(e.target.value);
+                                        } else {
+                                            setMailError(true);
+                                        }
+                                    }}
                                     className='w-[21.25rem] h-[2.75rem] rounded-full
             bg-[#fff] border-[1px] border-[#6f91f480]
               pl-[1.06rem] md:w-[43rem] xlc:w-[25rem]
@@ -356,6 +409,15 @@ const SignupPage = () => {
               hover:border-[#6F91F4] 
               active:border-[#4771ED] active:bg-[#FAFAFA]'
                                 />
+                                {mailError && (
+                                    <span
+                                        className='ml-[0.75rem] text-[#F4776F] font-iBM_Plex_Sans
+                                font-[400]'
+                                    >
+                                        Email can&apos;t be empty and needs to
+                                        be valid
+                                    </span>
+                                )}
 
                                 {/* Sign-up button */}
                                 <div
@@ -366,13 +428,15 @@ const SignupPage = () => {
                                 >
                                     <button
                                         onClick={handleSubmit}
-                                        className='flex bg-[#6F91F4] h-full 
+                                        disabled={mailError}
+                                        className={`flex bg-[#6F91F4] h-full 
                             w-full items-center rounded-full border-[1px] 
                             border-[#3157C9] uppercase text-white 
                             font-iBM_Plex_Sans tracking-[0.1rem]
                             text-[1rem] font-[600] justify-center
                             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
-                            hover:bg-[#4771ED] active:bg-[#4063C7]'
+                            hover:bg-[#4771ED] active:bg-[#4063C7]
+                            `}
                                     >
                                         Sign up
                                     </button>
@@ -397,7 +461,7 @@ const SignupPage = () => {
                         xlc:w-[25rem] xlc:mb-0'
                                 >
                                     <button
-                                        // onClick={login}
+                                        onClick={login}
                                         className='flex bg-[#1877F2] h-full 
                             w-full items-center rounded-full border-[1px] 
                             border-[#5199F5] uppercase text-white 
@@ -569,14 +633,13 @@ const SignupPage = () => {
 
                         {/* Paragraph */}
                         <p
-                            className='text-[1rem] 
+                            className='w-[25.0625rem] text-[1rem] 
                             font-iBM_Plex_Sans
                             font-[400] mt-[1.5rem]
                             mb-[1.5rem] text-[#29375F]'
                         >
-                            We have sent a verification code to your email
-                            “adamvoigt@gmail.com”. Please enter the code to
-                            verify your email.
+                            We have sent a verification code to your email{' '}
+                            {email}. Please enter the code to verify your email.
                         </p>
 
                         <div className='flex gap-[0.5rem]'>
@@ -671,6 +734,16 @@ const SignupPage = () => {
                         className='flex flex-col items-center 
                     w-screen xlc:w-[30rem] min-h-screen'
                     >
+                        {/* Email Image */}
+                        <Image
+                            src={'/sign-up-mail.png'}
+                            alt=''
+                            width={1200}
+                            height={550}
+                            draggable={false}
+                            className='w-[7.77rem] h-auto ml-[1.5rem]'
+                        />
+
                         {/* Title */}
                         <p
                             className='w-[24.9375rem] text-[3.125rem] text-center
