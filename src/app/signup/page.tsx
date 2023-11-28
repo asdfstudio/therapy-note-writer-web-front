@@ -23,9 +23,10 @@ const SignupPage = () => {
     const [email, setEmail] = useState('');
     const [error, setError] = useState(false);
     const [mailError, setMailError] = useState(false);
-    const [isEmailFormShown, setIsEmailFormShown] = useState(true);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [isEmailFormShown, setIsEmailFormShown] = useState(false);
     const [isOTPShown, setIsOTPShown] = useState(false);
-    const [isVerifiedScreenShown, setIsVerifiedScreenShown] = useState(false);
+    const [isVerifiedScreenShown, setIsVerifiedScreenShown] = useState(true);
     const [isSetupScreenShown, setIsSetupScreenShown] = useState(false);
     const [isAboutScreenShown, setIsAboutScreenShown] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
@@ -36,6 +37,7 @@ const SignupPage = () => {
     const params = useSearchParams();
     // console.log('param', params.get('code'));
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+    let otpArray: any = [];
 
     const noteTakingPrefList = [
         'Data, Assessment, Plan (DAP)',
@@ -119,7 +121,7 @@ const SignupPage = () => {
                             console.log('me', res);
                             setEmail(res.email);
 
-                            handleSubmit(e);
+                            handleSubmit(e, 'facebook');
                         });
                     }
                 }
@@ -153,38 +155,62 @@ const SignupPage = () => {
         }
     };
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = async (e: any, signupMedium: any) => {
         e.preventDefault();
-        if (email === '' || email === ' ' || email === null) {
-            setMailError(true);
-        } else {
-            try {
-                // const res = await axios.post(`${baseURL}/api/auth/register`, {
-                //     username: usernameRef.current.value,
-                //     email: emailRef.current.value,
-                //     password: passwordRef.current.value,
-                // });
 
-                // console.log(res.data);
-                // res.data && router.push('/login');
+        try {
+            // const res = await axios.post(`${baseURL}/api/auth/register`, {
+            //     username: usernameRef.current.value,
+            //     email: emailRef.current.value,
+            //     password: passwordRef.current.value,
+            // });
 
-                // const res = await axios.post(`${baseURL}/api/auth/register`, {
-                //     email: email,
-                // });
+            // console.log(res.data);
+            // res.data && router.push('/login');
 
+            const res = await axios.post(`${baseURL}/api/auth/register`, {
+                email: email,
+                signupMedium: signupMedium,
+            });
+
+            if (res.data.success === true) {
                 setIsEmailFormShown(false);
-                setIsOTPShown(true);
-            } catch (error) {
-                return error;
+                if (signupMedium === 'manual') {
+                    setIsOTPShown(true);
+                } else {
+                    setIsAboutScreenShown(true);
+                }
+            } else {
+                console.log('Problem with server');
+                setErrorMessage('Problem with server');
+                setMailError(true);
             }
+        } catch (error: any) {
+            setErrorMessage(error.response.data.error);
+            setMailError(true);
+            return error;
         }
     };
 
-    const submitOTP = async () => {
-        // Handle OTP match
+    const submitOTP = async (e: any, otpArray: any) => {
+        e.preventDefault();
 
-        setIsOTPShown(false);
-        setIsVerifiedScreenShown(true);
+        const regexComma = /,/g;
+        const otp = parseInt(otpArray.toString().replace(regexComma, ''));
+
+        const res = await axios.post(`${baseURL}/api/auth/verify`, {
+            email: email,
+            otp: otp,
+        });
+
+        if (res.data.success === true) {
+            setIsOTPShown(false);
+            setIsVerifiedScreenShown(true);
+        } else {
+            console.log('Problem with server');
+            setErrorMessage('Problem with server');
+            setMailError(true);
+        }
     };
 
     const OTPVerified = () => {
@@ -271,7 +297,10 @@ const SignupPage = () => {
             {/* Right Side */}
             <div>
                 {/* Log out button */}
-                {isOTPShown ? (
+                {isOTPShown ||
+                isVerifiedScreenShown ||
+                isSetupScreenShown ||
+                isAboutScreenShown ? (
                     <div
                         className='flex w-[28rem] items-center justify-end mt-[2rem]
                     mr-[2rem]'
@@ -399,6 +428,9 @@ const SignupPage = () => {
                                             setMailError(false);
                                             setEmail(e.target.value);
                                         } else {
+                                            setErrorMessage(
+                                                "Email can't be empty and needs to be valid"
+                                            );
                                             setMailError(true);
                                         }
                                     }}
@@ -414,8 +446,9 @@ const SignupPage = () => {
                                         className='ml-[0.75rem] text-[#F4776F] font-iBM_Plex_Sans
                                 font-[400]'
                                     >
-                                        Email can&apos;t be empty and needs to
-                                        be valid
+                                        {/* Email can&apos;t be empty and needs to
+                                        be valid */}
+                                        {errorMessage}
                                     </span>
                                 )}
 
@@ -427,7 +460,9 @@ const SignupPage = () => {
                         xlc:w-[25rem] xlc:mb-0'
                                 >
                                     <button
-                                        onClick={handleSubmit}
+                                        onClick={(e: any) => {
+                                            handleSubmit(e, 'manual');
+                                        }}
                                         disabled={mailError}
                                         className={`flex bg-[#6F91F4] h-full 
                             w-full items-center rounded-full border-[1px] 
@@ -649,7 +684,8 @@ const SignupPage = () => {
                             border-[rgba(111,145,244,0.50)] border-[1px]
                             text-center'
                                 type='text'
-                                onInput={(e: any) => {
+                                onChange={(e: any) => {
+                                    otpArray[0] = e.target.value;
                                     e.target.parentElement.children[1].focus();
                                 }}
                             />
@@ -668,7 +704,8 @@ const SignupPage = () => {
                                 //         e.target.parentElement.children[0].focus();
                                 //     }
                                 // }}
-                                onInput={(e: any) => {
+                                onChange={(e: any) => {
+                                    otpArray[1] = e.target.value;
                                     e.target.parentElement.children[2].focus();
                                 }}
                             />
@@ -677,7 +714,8 @@ const SignupPage = () => {
                             border-[rgba(111,145,244,0.50)] border-[1px]
                             text-center'
                                 type='text'
-                                onInput={(e: any) => {
+                                onChange={(e: any) => {
+                                    otpArray[2] = e.target.value;
                                     e.target.parentElement.children[3].focus();
                                 }}
                             />
@@ -686,7 +724,8 @@ const SignupPage = () => {
                             border-[rgba(111,145,244,0.50)] border-[1px]
                             text-center'
                                 type='text'
-                                onInput={(e: any) => {
+                                onChange={(e: any) => {
+                                    otpArray[3] = e.target.value;
                                     e.target.parentElement.children[4].focus();
                                 }}
                             />
@@ -695,6 +734,9 @@ const SignupPage = () => {
                             border-[rgba(111,145,244,0.50)] border-[1px]
                             text-center'
                                 type='text'
+                                onChange={(e: any) => {
+                                    otpArray[4] = e.target.value;
+                                }}
                             />
                         </div>
 
@@ -713,7 +755,9 @@ const SignupPage = () => {
                         xlc:w-[25rem] xlc:mb-0 xlc:mt-0'
                         >
                             <button
-                                onClick={submitOTP}
+                                onClick={(e: any) => {
+                                    submitOTP(e, otpArray);
+                                }}
                                 className='flex bg-[#6F91F4] h-full 
                             w-full items-center rounded-full border-[1px] 
                             border-[#3157C9] uppercase text-white 
@@ -731,7 +775,7 @@ const SignupPage = () => {
                 {/* Email Verified Screen */}
                 {isVerifiedScreenShown && (
                     <div
-                        className='flex flex-col items-center 
+                        className='flex flex-col items-center justify-center 
                     w-screen xlc:w-[30rem] min-h-screen'
                     >
                         {/* Email Image */}
