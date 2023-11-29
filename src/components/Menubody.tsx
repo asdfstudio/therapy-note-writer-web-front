@@ -284,7 +284,7 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
                 <div
                     className='bg-[rgba(53,61,82,0.60)]
           rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-1 sm:grid-cols-3
+          w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
           md:grid-cols-3
           border-[0.518px] border-[rgba(111,145,244,0.50)]'
                 >

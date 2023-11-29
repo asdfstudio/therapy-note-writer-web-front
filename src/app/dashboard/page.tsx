@@ -14,7 +14,7 @@ const DashboardPage = () => {
     const [mainSummary, setMainSummary] = useState('');
     const [showSubscriptionTable, setShowSubscriptionTable] = useState(false);
     const [termsOfServiceAccepted, setTermsOfServiceAccepted] = useState(false);
-    const [showTermsOfServicePop, setShowTermsOfServicePop] = useState(true);
+    const [showTermsOfServicePop, setShowTermsOfServicePop] = useState(false);
 
     const contents = [
         {
