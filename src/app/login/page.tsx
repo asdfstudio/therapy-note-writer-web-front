@@ -1,6 +1,12 @@
 'use client';
 import Navbar2 from '@/components/Navbar2';
 import { Context } from '@/context/Context';
+import {
+    fbLogin,
+    fbMe,
+    getFacebookLoginStatus,
+    initFacebookSdk,
+} from '@/utils/FacebookSDK';
 import axios from 'axios';
 import { error } from 'console';
 import Image from 'next/image';
@@ -9,17 +15,23 @@ import { useRouter } from 'next/navigation';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 
 const LoginPage = () => {
-    const userRef = useRef<any>(null);
+    // const userRef = useRef<any>(null);
     const passwordRef = useRef<any>(null);
     const { user, dispatch, isFetching } = useContext(Context);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [signupMedium, setSignupMedium] = useState('manual');
     const [currentError, setCurrentError] = useState(false);
+    const [mailError, setMailError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const router = useRouter();
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
     const handleSubmit = async (e: any) => {
-        setCurrentError(false);
         e.preventDefault();
+        setCurrentError(false);
+
+        console.log('email', email);
         dispatch({ type: 'LOGIN_START' });
         try {
             const headers = {
@@ -27,8 +39,35 @@ const LoginPage = () => {
             };
             const res = await axios.post(`${baseURL}/api/auth/login`, {
                 headers,
-                email: userRef.current.value,
-                password: passwordRef.current.value,
+                email: email,
+                password: password,
+                signupMedium: signupMedium,
+            });
+            dispatch({ type: 'LOGIN_SUCCESS', payload: res.data });
+        } catch (error: any) {
+            dispatch({ type: 'LOGIN_FAILURE' });
+            setCurrentError(true);
+            setErrorMessage(error.response.data.error);
+        }
+    };
+
+    const handleSubmitSocial = async (
+        emailParam: any,
+        passwordParam: any,
+        signupMediumParam: any
+    ) => {
+        setCurrentError(false);
+        console.log('email', email);
+        dispatch({ type: 'LOGIN_START' });
+        try {
+            const headers = {
+                'Content-Type': 'application/json',
+            };
+            const res = await axios.post(`${baseURL}/api/auth/login`, {
+                headers,
+                email: emailParam,
+                password: passwordParam,
+                signupMedium: signupMediumParam,
             });
             dispatch({ type: 'LOGIN_SUCCESS', payload: res.data });
         } catch (error: any) {
@@ -41,6 +80,47 @@ const LoginPage = () => {
     useEffect(() => {
         user ? router.push('/dashboard') : '';
     }, [user, router]);
+
+    const login = async () => {
+        setSignupMedium('facebook');
+        setPassword('facebook');
+
+        console.log('reached log in button');
+
+        initFacebookSdk().then(() => {
+            console.log('2nd time');
+            getFacebookLoginStatus().then((response: any) => {
+                console.log('res', response);
+                if (response === null || response.authResponse === null) {
+                    console.log('No login status for the person');
+                    fbLogin().then((response: any) => {
+                        console.log('login button', response);
+                        if (response.status === 'connected') {
+                            console.log('Person is connected');
+                        } else {
+                            // something
+                            // console.log('something else');
+                        }
+                    });
+                } else {
+                    // console.log('res', response);
+                    if (response.authResponse != null) {
+                        console.log('person in');
+                        fbMe().then((res: any) => {
+                            console.log('me', res);
+                            setEmail(res.email);
+                            console.log('email here', email);
+                            handleSubmitSocial(
+                                res.email,
+                                'facebook',
+                                'facebook'
+                            );
+                        });
+                    }
+                }
+            });
+        });
+    };
 
     return (
         <div
@@ -139,8 +219,35 @@ const LoginPage = () => {
                             font-iBM_Plex_Sans font-[400] text-[1rem]
                             hover:border-[#6F91F4] 
                             active:border-[#4771ED] active:bg-[#FAFAFA]'
-                            ref={userRef}
+                            // ref={userRef}
+                            onChange={(e) => {
+                                const mailValue = e.target.value;
+                                const mailRegexPattern =
+                                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                                const matched =
+                                    mailValue.match(mailRegexPattern);
+
+                                if (matched !== null) {
+                                    setMailError(false);
+                                    setEmail(e.target.value);
+                                } else {
+                                    setErrorMessage(
+                                        "Email can't be empty and needs to be valid"
+                                    );
+                                    setMailError(true);
+                                }
+                            }}
                         />
+                        {mailError && (
+                            <span
+                                className='ml-[0.75rem] text-[#F4776F] font-iBM_Plex_Sans
+                                font-[400]'
+                            >
+                                {/* Email can&apos;t be empty and needs to
+                                        be valid */}
+                                {errorMessage}
+                            </span>
+                        )}
 
                         <label
                             className='font-iBM_Plex_Sans
@@ -159,7 +266,10 @@ const LoginPage = () => {
               font-iBM_Plex_Sans font-[400] text-[1rem]
               hover:border-[#6F91F4] 
               active:border-[#4771ED] active:bg-[#FAFAFA]'
-                            ref={passwordRef}
+                            // ref={passwordRef}
+                            onChange={(e: any) => {
+                                setPassword(e.target.value);
+                            }}
                         />
                         {currentError ? (
                             <span
@@ -228,7 +338,8 @@ const LoginPage = () => {
                         xlc:w-[25rem] xlc:mb-0'
                     >
                         <button
-                            // onClick={login}
+                            type='button'
+                            onClick={login}
                             className='flex bg-[#1877F2] h-full 
                             w-full items-center rounded-full border-[1px] 
                             border-[#5199F5] uppercase text-white 
