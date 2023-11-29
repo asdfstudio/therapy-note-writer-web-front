@@ -40,7 +40,7 @@ const TermsOfService = ({
                     Last updated October 16, 2023 12:34 PM
                 </p>
 
-                {/* Pricing Card */}
+                {/* Terms of Service Card */}
                 <div className='flex'>
                     <div
                         className={` h-auto bg-[#fff] border-[rgba(111,145,244,0.50)] border-[1px]  

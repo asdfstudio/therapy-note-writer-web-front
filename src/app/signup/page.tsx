@@ -52,51 +52,6 @@ const SignupPage = () => {
         'Other',
     ];
 
-    // useEffect(() => {
-    //     console.log('Started use effect');
-    //     fbLogic().then(() => {
-    //         console.log('2nd time');
-    //         getFacebookLoginStatus().then((response: any) => {
-    //             if (response == null) {
-    //                 console.log('No login status for the person');
-    //             } else {
-    //                 console.log('res', response);
-    //             }
-    //         });
-    //     });
-    // }, []);
-
-    // useEffect(() => {
-    //     console.log('window', window);
-    //     console.log('Started use effect');
-    //     initFacebookSdk();
-    // }, []);
-
-    // useEffect(() => {
-    //     console.log('Started use effect');
-    //     initFacebookSdk().then(() => {
-    //         console.log('2nd time');
-    //         getFacebookLoginStatus().then((response: any) => {
-    //             console.log('res', response);
-    //             if (response === null || response.authResponse === null) {
-    //                 console.log('No login status for the person');
-    //             } else {
-    //                 // console.log('res', response);
-    //                 if (response.authResponse != null) {
-    //                     fbMe().then((res: any) => {
-    //                         console.log('me', res);
-    //                         setEmail(res.email);
-    //                     });
-    //                 }
-    //             }
-    //         });
-    //     });
-
-    //     // Should check linkedin API is there's any code in param
-    //     // Then use the apram to call api for access token
-    //     // Then call user data api with access token to get user data and complete registration
-    // }, []);
-
     const login = async () => {
         // e.preventDefault();
         setSignupMedium('facebook');
@@ -133,17 +88,9 @@ const SignupPage = () => {
         });
     };
 
-    // function logout() {
-    //     console.log('reached log out button');
-    //     fbLogout().then((response: any) => {
-    //         console.log(response);
-    //         console.log('something else');
-    //     });
-    // }
-
     const linkedinLogin = () => {
         router.push(
-            'https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=86z5s5j7v8ljtj&redirect_uri=https%3A%2F%2F63dc-116-204-154-22.ngrok-free.app%2Fsignup&state=1234&scope=profile%20email'
+            'https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=86z5s5j7v8ljtj&redirect_uri=https%3A%2F%2Fgull-equal-slowly.ngrok-free.app%2Fsignup&state=1234&scope=profile%20email'
         );
     };
 
@@ -307,12 +254,27 @@ const SignupPage = () => {
             .catch((err) => console.log(err));
     };
 
-    // useEffect(() => {
-    //     console.log('email update', email);
-    //     console.log('password update', password);
-    //     console.log('signupMedium update', signupMedium);
-    //     console.log('username update', username);
-    // }, [email, password, signupMedium, username]);
+    useEffect(() => {
+        console.log('param', params.get('code'));
+        const code = params.get('code');
+
+        if (code !== null) {
+            const data = {
+                code: code,
+                grant_type: 'client_credentials',
+                redirect_uri:
+                    'https%3A%2F%2Fgull-equal-slowly.ngrok-free.app%2Fsignup',
+                client_id: '86z5s5j7v8ljtj',
+                client_secret: 'N7Lpk1YhmOrvaSZh',
+            };
+            const result = axios.post(
+                'https://www.linkedin.com/oauth/v2/accessToken',
+                data
+            );
+
+            console.log('result', result);
+        }
+    }, [params]);
 
     return (
         <div
@@ -657,7 +619,7 @@ const SignupPage = () => {
                         xlc:w-[25rem] xlc:mb-0'
                                 >
                                     <button
-                                        // onClick={linkedinLogin}
+                                        onClick={linkedinLogin}
                                         className='flex bg-[#0A66C2] h-full 
                             w-full items-center rounded-full border-[1px] 
                             border-[#0C75DF] uppercase text-white 
