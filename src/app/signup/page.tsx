@@ -261,7 +261,7 @@ const SignupPage = () => {
                 .post(`${baseURL}/api/auth/getLinkedinUserEmail`, {
                     code: code,
                     redirect_uri:
-                        'https://gull-equal-slowly.ngrok-free.app/signup',
+                        process.env.NEXT_PUBLIC_LINKEDIN_REDIRECT_URL_SIGN_UP,
                 })
                 .then((userData) => {
                     console.log('user data', userData.data);
