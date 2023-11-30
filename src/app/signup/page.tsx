@@ -91,8 +91,8 @@ const SignupPage = () => {
         );
     };
 
-    const handleConfirmPassword = (password: any) => {
-        if (password !== passwordRef.current.value) {
+    const handleConfirmPassword = (passwordParam: any) => {
+        if (passwordParam !== password) {
             setError(true);
         } else {
             setError(false);
@@ -173,7 +173,7 @@ const SignupPage = () => {
         e.preventDefault();
 
         const regexComma = /,/g;
-        const otp = parseInt(otpArray.toString().replace(regexComma, ''));
+        const otp = otpArray.toString().replace(regexComma, '');
 
         const res = await axios.post(`${baseURL}/api/auth/verify`, {
             email: email,
@@ -988,8 +988,8 @@ const SignupPage = () => {
                                 }`}
                                 name='password'
                                 placeholder='****  ****  ****'
-                                onChange={(event) => {
-                                    handleConfirmPassword(event.target.value);
+                                onChange={(e: any) => {
+                                    handleConfirmPassword(e.target.value);
                                 }}
                                 className='w-[21.25rem] h-[2.75rem] rounded-full
             bg-[#fff] border-[1px] border-[#6f91f480]
