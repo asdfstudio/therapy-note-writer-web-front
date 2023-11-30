@@ -139,7 +139,7 @@ const LoginPage = () => {
                 .post(`${baseURL}/api/auth/getLinkedinUserEmail`, {
                     code: code,
                     redirect_uri:
-                        'https://gull-equal-slowly.ngrok-free.app/login',
+                        process.env.NEXT_PUBLIC_LINKEDIN_REDIRECT_URL_LOGIN,
                 })
                 .then((userData) => {
                     setSignupMedium('linkedin');
