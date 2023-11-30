@@ -37,6 +37,9 @@ const SignupPage = () => {
     const router = useRouter();
     const params = useSearchParams();
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+    const redirect_uri = process.env.NEXT_PUBLIC_LINKEDIN_REDIRECT_URL_SIGN_UP;
+    const redirect_uri_encoded =
+        process.env.NEXT_PUBLIC_LINKEDIN_REDIRECT_URL_SIGN_UP_ENCODED;
     let otpArray: any = [];
 
     const noteTakingPrefList = [
@@ -87,7 +90,7 @@ const SignupPage = () => {
 
     const linkedinLogin = () => {
         router.push(
-            'https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=86z5s5j7v8ljtj&redirect_uri=https%3A%2F%2Fgull-equal-slowly.ngrok-free.app%2Fsignup&state=1234&scope=openid%20profile%20email'
+            `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=86z5s5j7v8ljtj&redirect_uri=${redirect_uri_encoded}&state=1234&scope=openid%20profile%20email`
         );
     };
 
@@ -260,8 +263,7 @@ const SignupPage = () => {
             axios
                 .post(`${baseURL}/api/auth/getLinkedinUserEmail`, {
                     code: code,
-                    redirect_uri:
-                        process.env.NEXT_PUBLIC_LINKEDIN_REDIRECT_URL_SIGN_UP,
+                    redirect_uri: redirect_uri,
                 })
                 .then((userData) => {
                     console.log('user data', userData.data);
