@@ -4,7 +4,7 @@ import { Context } from '@/context/Context';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import Link from 'next/link';
-import { useParams, useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import {
     initFacebookSdk,
@@ -17,8 +17,6 @@ import {
 import Image from 'next/image';
 
 const SignupPage = () => {
-    // const usernameRef = useRef<any>(null);
-    // const emailRef = useRef<any>(null);
     const passwordRef = useRef<any>(null);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -38,7 +36,6 @@ const SignupPage = () => {
     const [avgNumOfSessionsPerWeek, setAvgNumOfSessionsPerWeek] = useState(0);
     const router = useRouter();
     const params = useSearchParams();
-    // console.log('param', params.get('code'));
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
     let otpArray: any = [];
 
@@ -90,7 +87,7 @@ const SignupPage = () => {
 
     const linkedinLogin = () => {
         router.push(
-            'https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=86z5s5j7v8ljtj&redirect_uri=https%3A%2F%2Fgull-equal-slowly.ngrok-free.app%2Fsignup&state=1234&scope=profile%20email'
+            'https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=86z5s5j7v8ljtj&redirect_uri=https%3A%2F%2Fgull-equal-slowly.ngrok-free.app%2Fsignup&state=1234&scope=openid%20profile%20email'
         );
     };
 
@@ -255,26 +252,53 @@ const SignupPage = () => {
     };
 
     useEffect(() => {
-        console.log('param', params.get('code'));
+        // LinkedIn Access
+
         const code = params.get('code');
 
         if (code !== null) {
-            const data = {
-                code: code,
-                grant_type: 'client_credentials',
-                redirect_uri:
-                    'https%3A%2F%2Fgull-equal-slowly.ngrok-free.app%2Fsignup',
-                client_id: '86z5s5j7v8ljtj',
-                client_secret: 'N7Lpk1YhmOrvaSZh',
-            };
-            const result = axios.post(
-                'https://www.linkedin.com/oauth/v2/accessToken',
-                data
-            );
+            axios
+                .post(`${baseURL}/api/auth/getLinkedinUserEmail`, {
+                    code: code,
+                    redirect_uri:
+                        'https://gull-equal-slowly.ngrok-free.app/signup',
+                })
+                .then((userData) => {
+                    console.log('user data', userData.data);
 
-            console.log('result', result);
+                    setSignupMedium('linkedin');
+                    setEmail(userData.data.email);
+                    // handleSubmitSocial(userData.data.email, 'linkedin');
+
+                    try {
+                        const signupMedium = 'linkedin';
+
+                        axios
+                            .post(`${baseURL}/api/auth/register`, {
+                                email: userData.data.email,
+                                signupMedium: signupMedium,
+                            })
+                            .then((res) => {
+                                if (res.data.success === true) {
+                                    setIsEmailFormShown(false);
+                                    setIsAboutScreenShown(true);
+                                } else {
+                                    console.log('Problem with server');
+                                    setErrorMessage('Problem with server');
+                                    setMailError(true);
+                                }
+                            });
+                    } catch (error: any) {
+                        setErrorMessage(error.response.data.error);
+                        setMailError(true);
+                        return error;
+                    }
+                })
+                .catch((err: any) => {
+                    console.log('ERROR', err);
+                });
         }
-    }, [params]);
+    }, [params, baseURL]);
 
     return (
         <div

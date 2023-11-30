@@ -11,7 +11,7 @@ import axios from 'axios';
 import { error } from 'console';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 
 const LoginPage = () => {
@@ -25,6 +25,7 @@ const LoginPage = () => {
     const [mailError, setMailError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const router = useRouter();
+    const params = useSearchParams();
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
     const handleSubmit = async (e: any) => {
@@ -121,6 +122,59 @@ const LoginPage = () => {
             });
         });
     };
+
+    const linkedinLogin = () => {
+        router.push(
+            'https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=86z5s5j7v8ljtj&redirect_uri=https%3A%2F%2Fgull-equal-slowly.ngrok-free.app%2Flogin&state=1234&scope=openid%20profile%20email'
+        );
+    };
+
+    useEffect(() => {
+        // LinkedIn Access
+
+        const code = params.get('code');
+
+        if (code !== null) {
+            axios
+                .post(`${baseURL}/api/auth/getLinkedinUserEmail`, {
+                    code: code,
+                    redirect_uri:
+                        'https://gull-equal-slowly.ngrok-free.app/login',
+                })
+                .then((userData) => {
+                    setSignupMedium('linkedin');
+                    setEmail(userData.data.email);
+                    setCurrentError(false);
+
+                    dispatch({ type: 'LOGIN_START' });
+                    try {
+                        const headers = {
+                            'Content-Type': 'application/json',
+                        };
+                        axios
+                            .post(`${baseURL}/api/auth/login`, {
+                                headers,
+                                email: userData.data.email,
+                                password: 'facebook',
+                                signupMedium: 'linkedin',
+                            })
+                            .then((res) => {
+                                dispatch({
+                                    type: 'LOGIN_SUCCESS',
+                                    payload: res.data,
+                                });
+                            });
+                    } catch (error: any) {
+                        dispatch({ type: 'LOGIN_FAILURE' });
+                        setCurrentError(true);
+                        setErrorMessage(error.response.data.error);
+                    }
+                })
+                .catch((err: any) => {
+                    console.log('ERROR', err);
+                });
+        }
+    }, [params, baseURL, dispatch]);
 
     return (
         <div
@@ -357,7 +411,7 @@ const LoginPage = () => {
                                 className='w-[2.01225rem] h-[2.01225rem] ml-[0.52rem]'
                             />
                             <span className='flex-1'>
-                                sign up with facebook
+                                continue with facebook
                             </span>
                         </button>
                     </div>
@@ -387,7 +441,7 @@ const LoginPage = () => {
                                 draggable={false}
                                 className='w-[2.01225rem] h-[2.01225rem] ml-[0.52rem]'
                             />
-                            <span className='flex-1'>sign up with google</span>
+                            <span className='flex-1'>continue with google</span>
                         </button>
                     </div>
 
@@ -415,7 +469,9 @@ const LoginPage = () => {
                                 draggable={false}
                                 className='w-[1.8125rem] h-[1.5625rem] ml-[0.52rem]'
                             />
-                            <span className='flex-1'>sign up with twitter</span>
+                            <span className='flex-1'>
+                                continue with twitter
+                            </span>
                         </button>
                     </div>
 
@@ -426,7 +482,7 @@ const LoginPage = () => {
                         xlc:w-[25rem] xlc:mb-0'
                     >
                         <button
-                            // onClick={linkedinLogin}
+                            onClick={linkedinLogin}
                             className='flex bg-[#0A66C2] h-full 
                             w-full items-center rounded-full border-[1px] 
                             border-[#0C75DF] uppercase text-white 
@@ -444,7 +500,7 @@ const LoginPage = () => {
                                 className='w-[1.81988rem] h-[1.80188rem] ml-[0.52rem]'
                             />
                             <span className='flex-1'>
-                                sign up with linkedin
+                                continue with linkedin
                             </span>
                         </button>
                     </div>
