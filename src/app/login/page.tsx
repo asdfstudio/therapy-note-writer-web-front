@@ -9,6 +9,7 @@ import {
 } from '@/utils/FacebookSDK';
 import axios from 'axios';
 import { error } from 'console';
+import { jwtDecode } from 'jwt-decode';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -24,6 +25,7 @@ const LoginPage = () => {
     const [currentError, setCurrentError] = useState(false);
     const [mailError, setMailError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+    const [isGoogleButtonHidden, setIsGoogleButtonHidden] = useState(true);
     const router = useRouter();
     const params = useSearchParams();
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -78,6 +80,16 @@ const LoginPage = () => {
             dispatch({ type: 'LOGIN_FAILURE' });
             setCurrentError(true);
             setErrorMessage(error.response.data.error);
+        }
+    };
+
+    const handleSubmitGoogle = (e: any) => {
+        e.preventDefault();
+
+        if (isGoogleButtonHidden) {
+            setIsGoogleButtonHidden(false);
+        } else {
+            setIsGoogleButtonHidden(true);
         }
     };
 
@@ -176,7 +188,57 @@ const LoginPage = () => {
                     console.log('ERROR', err);
                 });
         }
-    }, [params, baseURL, dispatch]);
+
+        // google login
+
+        if (typeof window !== undefined) {
+            const handleGoogleCallbackResponse = (response: any) => {
+                const userObject: any = jwtDecode(response.credential);
+
+                setSignupMedium('google');
+                setEmail(userObject.email);
+                setCurrentError(false);
+
+                dispatch({ type: 'LOGIN_START' });
+
+                try {
+                    const headers = {
+                        'Content-Type': 'application/json',
+                    };
+
+                    axios
+                        .post(`${baseURL}/api/auth/login`, {
+                            headers,
+                            email: userObject.email,
+                            password: 'facebook',
+                            signupMedium: 'google',
+                        })
+                        .then((res) => {
+                            dispatch({
+                                type: 'LOGIN_SUCCESS',
+                                payload: res.data,
+                            });
+                        });
+                } catch (error: any) {
+                    dispatch({ type: 'LOGIN_FAILURE' });
+                    setCurrentError(true);
+                    setErrorMessage(error.response.data.error);
+                }
+            };
+
+            window.google.accounts.id.initialize({
+                client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+                callback: handleGoogleCallbackResponse,
+            });
+
+            window.google.accounts.id.renderButton(
+                document.getElementById('googleSignInDiv'),
+                { theme: 'outline', size: 'large' }
+            );
+
+            // window.google.accounts.id.prompt();
+        }
+    }, [params, baseURL, dispatch, redirect_uri]);
 
     return (
         <div
@@ -426,7 +488,9 @@ const LoginPage = () => {
                         xlc:w-[25rem] xlc:mb-0'
                     >
                         <button
-                            // onClick={handleSubmit}
+                            onClick={(e: any) => {
+                                handleSubmitGoogle(e);
+                            }}
                             className='flex bg-[#DE6558] h-full 
                             w-full items-center rounded-full border-[1px] 
                             border-[#D84A3B] uppercase text-white 
@@ -446,6 +510,12 @@ const LoginPage = () => {
                             <span className='flex-1'>continue with google</span>
                         </button>
                     </div>
+                    {/* Google Generated Button */}
+                    <div
+                        hidden={isGoogleButtonHidden}
+                        className='mt-[1rem] self-center'
+                        id='googleSignInDiv'
+                    ></div>
 
                     {/* Twitter login button */}
                     <div

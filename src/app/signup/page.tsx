@@ -5,7 +5,13 @@ import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, {
+    Fragment,
+    useContext,
+    useEffect,
+    useRef,
+    useState,
+} from 'react';
 import {
     initFacebookSdk,
     getFacebookLoginStatus,
@@ -15,6 +21,13 @@ import {
     fbMe,
 } from '../../utils/FacebookSDK';
 import Image from 'next/image';
+import { jwtDecode } from 'jwt-decode';
+
+declare global {
+    interface Window {
+        google: any;
+    }
+}
 
 const SignupPage = () => {
     const passwordRef = useRef<any>(null);
@@ -34,6 +47,7 @@ const SignupPage = () => {
     const [showPasswordAgain, setShowPasswordAgain] = useState(false);
     const [noteTakingPref, setNoteTakingPref] = useState('');
     const [avgNumOfSessionsPerWeek, setAvgNumOfSessionsPerWeek] = useState(0);
+    const [isGoogleButtonHidden, setIsGoogleButtonHidden] = useState(true);
     const router = useRouter();
     const params = useSearchParams();
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -172,6 +186,16 @@ const SignupPage = () => {
         }
     };
 
+    const handleSubmitGoogle = (e: any) => {
+        e.preventDefault();
+
+        if (isGoogleButtonHidden) {
+            setIsGoogleButtonHidden(false);
+        } else {
+            setIsGoogleButtonHidden(true);
+        }
+    };
+
     const submitOTP = async (e: any, otpArray: any) => {
         e.preventDefault();
 
@@ -300,7 +324,54 @@ const SignupPage = () => {
                     console.log('ERROR', err);
                 });
         }
-    }, [params, baseURL]);
+
+        // google login
+
+        if (typeof window !== undefined) {
+            const handleGoogleCallbackResponse = (response: any) => {
+                const userObject: any = jwtDecode(response.credential);
+
+                setSignupMedium('google');
+                setEmail(userObject.email);
+
+                try {
+                    const signupMedium = 'google';
+
+                    axios
+                        .post(`${baseURL}/api/auth/register`, {
+                            email: userObject.email,
+                            signupMedium: signupMedium,
+                        })
+                        .then((res) => {
+                            if (res.data.success === true) {
+                                setIsEmailFormShown(false);
+                                setIsAboutScreenShown(true);
+                            } else {
+                                console.log('Problem with server');
+                                setErrorMessage('Problem with server');
+                                setMailError(true);
+                            }
+                        });
+                } catch (error: any) {
+                    setErrorMessage(error.response.data.error);
+                    setMailError(true);
+                    return error;
+                }
+            };
+
+            window.google.accounts.id.initialize({
+                client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+                callback: handleGoogleCallbackResponse,
+            });
+
+            window.google.accounts.id.renderButton(
+                document.getElementById('googleSignInDiv'),
+                { theme: 'outline', size: 'large' }
+            );
+
+            // window.google.accounts.id.prompt();
+        }
+    }, [params, baseURL, redirect_uri, router]);
 
     return (
         <div
@@ -420,46 +491,6 @@ const SignupPage = () => {
                                 }}
                             /> */}
 
-                                {/* FACEBOOK BUTTON */}
-                                {/* <div
-                            className='fb-login-button'
-                            data-width='400px'
-                            data-size=''
-                            data-button-type=''
-                            data-layout=''
-                            data-auto-logout-link='false'
-                            data-use-continue-as='false'
-                        ></div> */}
-
-                                {/* <button className=' bg-slate-300' onClick={login}>
-                            Login
-                        </button>
-                        <button className=' bg-slate-500' onClick={logout}>
-                            Logout
-                        </button> */}
-
-                                {/* Commented for new designs  (DOWN CODES) */}
-
-                                {/* <label
-                            className='font-iBM_Plex_Sans
-            text-[#29375F] text-[1rem] font-[400] 
-              mb-[0.5rem]'
-                        >
-                            Your Name
-                        </label>
-                        <input
-                            type='text'
-                            name='name'
-                            placeholder='Adam Voigt'
-                            ref={usernameRef}
-                            className='w-[21.25rem] h-[2.75rem] rounded-full
-            bg-[#fff] border-[1px] border-[#6f91f480]
-              pl-[1.06rem] md:w-[43rem] xlc:w-[25rem]
-              font-iBM_Plex_Sans font-[400] text-[1rem]
-              hover:border-[#6F91F4] 
-              active:border-[#4771ED] active:bg-[#FAFAFA]'
-                        /> */}
-
                                 <label
                                     className='font-iBM_Plex_Sans
           text-[#29375F] text-[1rem] font-[400] 
@@ -547,6 +578,7 @@ const SignupPage = () => {
 
                                 {/* Facebook login button */}
                                 <div
+                                    id='fgfgfg'
                                     className='w-[21.25rem] h-[2.75rem] mt-4
                         mb-[0.75rem]
                         md:w-[43rem] md:mt-[1.25rem] md:mb-[2.37rem]
@@ -579,13 +611,15 @@ const SignupPage = () => {
 
                                 {/* Google login button */}
                                 <div
-                                    className='w-[21.25rem] h-[2.75rem] 
-                        mb-[0.75rem]
-                        md:w-[43rem] md:mt-[1.25rem] md:mb-[2.37rem]
-                        xlc:w-[25rem] xlc:mb-0'
+                                    className='w-[21.25rem] h-[2.75rem]
+                                        mb-[0.75rem]
+                                        md:w-[43rem] md:mt-[1.25rem] md:mb-[2.37rem]
+                                        xlc:w-[25rem] xlc:mb-0'
                                 >
                                     <button
-                                        // onClick={handleSubmit}
+                                        onClick={(e: any) => {
+                                            handleSubmitGoogle(e);
+                                        }}
                                         className='flex bg-[#DE6558] h-full 
                             w-full items-center rounded-full border-[1px] 
                             border-[#D84A3B] uppercase text-white 
@@ -607,6 +641,12 @@ const SignupPage = () => {
                                         </span>
                                     </button>
                                 </div>
+                                {/* Google Generated Button */}
+                                <div
+                                    hidden={isGoogleButtonHidden}
+                                    className='mt-[1rem] self-center'
+                                    id='googleSignInDiv'
+                                ></div>
 
                                 {/* Twitter login button */}
                                 <div

@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { IBM_Plex_Sans } from 'next/font/google';
 import localFont from 'next/font/local';
 import { ContextProvider } from '../context/Context';
+import Script from 'next/script';
 // import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const iBM_Plex_Sans = IBM_Plex_Sans({
@@ -34,6 +35,11 @@ export default function RootLayout({
                     defer
                     crossOrigin='anonymous'
                     src='https://connect.facebook.net/en_US/sdk.js'
+                ></script>
+                <script
+                    src='https://accounts.google.com/gsi/client'
+                    async
+                    defer
                 ></script>
                 <ContextProvider>
                     {/* <GoogleOAuthProvider clientId='1060704648880-2vqttp1m0jsdkitbh77nn9if0sos43ne.apps.googleusercontent.com'> */}
