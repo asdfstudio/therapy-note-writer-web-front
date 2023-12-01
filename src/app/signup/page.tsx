@@ -325,7 +325,7 @@ const SignupPage = () => {
                 });
         }
 
-        // google login
+        // google login process
 
         if (typeof window !== undefined) {
             const handleGoogleCallbackResponse = (response: any) => {
