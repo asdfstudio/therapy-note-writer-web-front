@@ -112,3 +112,23 @@ input[type='range']::-webkit-slider-runnable-track {
 ::-webkit-calendar-picker-indicator {
     background-image: url('/dashboard-icon-calendar.svg');
 }
+
+/* Color Change animation */
+
+.colorChangeAnimation {
+    animation-name: example;
+    animation-duration: 4s;
+    transition: transform 1s ease-in-out 0s;
+    position: relative;
+    animation-iteration-count: infinite;
+}
+
+@keyframes example {
+    from {
+        top: 0px;
+    }
+    to {
+        filter: grayscale(1);
+        top: -30px;
+    }
+}

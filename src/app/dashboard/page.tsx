@@ -15,6 +15,10 @@ const DashboardPage = () => {
     const [showSubscriptionTable, setShowSubscriptionTable] = useState(false);
     const [termsOfServiceAccepted, setTermsOfServiceAccepted] = useState(false);
     const [showTermsOfServicePop, setShowTermsOfServicePop] = useState(false);
+    const [generateLoading, setGenerateLoading] = useState(false);
+
+    const clicksUsed = 4;
+    const totalClick = 10;
 
     const contents = [
         {
@@ -173,7 +177,13 @@ const DashboardPage = () => {
 
             {/* Menu body */}
             <div className={!showMenu ? 'hidden md:flex' : ''}>
-                <Menubody setMainSummary={setMainSummary} />
+                <Menubody
+                    setMainSummary={setMainSummary}
+                    setShowSubscriptionTable={setShowSubscriptionTable}
+                    clicksUsed={clicksUsed}
+                    totalClick={totalClick}
+                    setGenerateLoading={setGenerateLoading}
+                />
             </div>
 
             <div
@@ -191,6 +201,10 @@ const DashboardPage = () => {
                 <DashboardHome
                     handleShowMenu={handleShowMenu}
                     mainSummary={mainSummary}
+                    clicksUsed={clicksUsed}
+                    totalClick={totalClick}
+                    setShowSubscriptionTable={setShowSubscriptionTable}
+                    generateLoading={generateLoading}
                 />
             </div>
         </div>
