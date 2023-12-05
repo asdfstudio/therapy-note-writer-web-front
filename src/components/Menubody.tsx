@@ -80,7 +80,19 @@ const Judgment = ['Good', 'Fair', 'Poor', 'None'];
 const Oriented = ['Oriented x3', 'Confused', 'Disoriented'];
 const EyeContact = ['Good', 'Fair', 'Poor', 'None'];
 
-const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
+const Menubody = ({
+    setMainSummary,
+    setShowSubscriptionTable,
+    clicksUsed,
+    totalClick,
+    setGenerateLoading,
+}: {
+    setMainSummary: any;
+    setShowSubscriptionTable: any;
+    clicksUsed: any;
+    totalClick: any;
+    setGenerateLoading: any;
+}) => {
     const [clientPronouns, setClientPronouns] = useState<any>([]);
     const [apptLocation, setApptLocation] = useState<any>('');
     const [diagnosis, setDiagnosis] = useState<any>('');
@@ -103,6 +115,8 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
     const [homework, setHomework] = useState<any>('');
     const [nextAppt, setNextAppt] = useState<any>('');
     const [summary, setSummary] = useState('');
+    const [isGenerateButtonDisabled, setIsGenerateButtonDisabled] =
+        useState(false);
 
     const { user } = useContext<any>(Context);
 
@@ -218,40 +232,46 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
     const prompt = `Please write a therapy note based on the following session information:\n${newSummary}`;
 
     const handleSubmit = async () => {
-        await axios
-            .post(`${baseURL}/api/openai/summary`, {
-                prompt: prompt,
-            }) // Update this line
-            .then((response) => {
-                // Extract the data from the server response
-                const note = response.data.note; // or .paragraph, depending on which API you're calling
-                // Update the state of summary
-                setSummary(note);
-                setMainSummary(note);
-            })
-            .catch((error) => {
-                console.error(`Failed to generate therapy note: ${error}`);
-                setSummary(
-                    'Unable to generate therapy note. Please try again later.'
-                );
-            });
+        if (clicksUsed === totalClick) {
+            setShowSubscriptionTable(true);
+        } else {
+            setGenerateLoading(true);
+            await axios
+                .post(`${baseURL}/api/openai/summary`, {
+                    prompt: prompt,
+                }) // Update this line
+                .then((response) => {
+                    // Extract the data from the server response
+                    const note = response.data.note; // or .paragraph, depending on which API you're calling
+                    // Update the state of summary
+                    setSummary(note);
+                    setMainSummary(note);
+                    setGenerateLoading(false);
+                })
+                .catch((error) => {
+                    console.error(`Failed to generate therapy note: ${error}`);
+                    setSummary(
+                        'Unable to generate therapy note. Please try again later.'
+                    );
+                });
 
-        const email = user.user.email || '';
-        const today = new Date();
-        const month = `${today.getMonth()}/${today.getFullYear()}`;
+            const email = user.user.email || '';
+            const today = new Date();
+            const month = `${today.getMonth()}/${today.getFullYear()}`;
 
-        await axios
-            .post(`${baseURL}/api/auth/click`, {
-                email: email,
-                month: month,
-            })
-            .then((response) => {
-                // Extract the data from the server response
-                const clickData = response.data.note;
-            })
-            .catch((error) => {
-                console.error(`Failed to keep click count: ${error}`);
-            });
+            await axios
+                .post(`${baseURL}/api/auth/click`, {
+                    email: email,
+                    month: month,
+                })
+                .then((response) => {
+                    // Extract the data from the server response
+                    const clickData = response.data.note;
+                })
+                .catch((error) => {
+                    console.error(`Failed to keep click count: ${error}`);
+                });
+        }
     };
 
     return (
@@ -432,57 +452,6 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
             resize-y focus:outline-none
             focus:border-[#6F91F4]'
                 />
-                {/* <div
-                    className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
-          md:grid-cols-2
-          border-[0.518px] border-[rgba(111,145,244,0.50)]'
-                >
-                    {Diagnosis.map((item, index) => {
-                        return (
-                            <label
-                                className='text-[0.9375rem] 
-                                mr-[1.5rem] mb-[0.5rem]'
-                                key={index}
-                                // htmlFor={`${item}${index}`}
-                            >
-                                <input
-                                    type='radio'
-                                    value={item}
-                                    id={`${item}${index}`}
-                                    name='Diagnosis'
-                                    checked={item === diagnosis ? true : false}
-                                    className='checkbox appearance-none 
-                            ring-[#F4776F] ring-[1.5px] 
-                            checked:ring-[4px] checked:ring-[#F4776F]
-                            ring-inset rounded-full
-                            cursor-pointer 
-                            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                                    onChange={(event) => {
-                                        setDiagnosis(event.target.value);
-                                    }}
-                                />
-
-                                {item}
-                            </label>
-                        );
-                    })}
-                </div> */}
-                {/* <div
-          className='bg-[rgba(53,61,82,0.60)]
-        rounded-[0.25888rem] p-[0.62rem]
-        w-full mb-[1.25rem]
-        border-[0.518px] 
-        border-[rgba(111,145,244,0.50)] flex flex-wrap'
-        >
-          <TagsInputCustom
-            tag_background='bg-[#f4776f]'
-            close_background='bg-[#ffb9b5]'
-            close_icon_color='text-[#f4776f]'
-            placeholder_text='Write diagnosis...'
-          />
-        </div> */}
 
                 {/* Options */}
                 <p
@@ -491,20 +460,7 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
                 >
                     Current Symptoms
                 </p>
-                {/* <div
-          className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem]
-          border-[0.518px] border-[rgba(111,145,244,0.50)]'
-        >
-          <input
-            type='text'
-            placeholder='Write symptoms...'
-            id='option_1'
-            name='pronouns'
-            className=' bg-transparent w-full'
-          />
-        </div> */}
+
                 <div
                     className='bg-[rgba(53,61,82,0.60)]
         rounded-[0.25888rem] p-[0.62rem]
@@ -552,20 +508,7 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
                 >
                     Interventions used
                 </p>
-                {/* <div
-          className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] p-[0.62rem]
-          w-full mb-[1.25rem]
-          border-[0.518px] border-[rgba(111,145,244,0.50)]'
-        >
-          <input
-            type='text'
-            placeholder='Write interventions...'
-            id='option_1'
-            name='pronouns'
-            className=' bg-transparent w-full'
-          />
-        </div> */}
+
                 <div
                     className='bg-[rgba(53,61,82,0.60)]
         rounded-[0.25888rem] p-[0.62rem]
@@ -1302,6 +1245,7 @@ const Menubody = ({ setMainSummary }: { setMainSummary: any }) => {
                     >
                         <button
                             onClick={handleSubmit}
+                            // disabled={isGenerateButtonDisabled}
                             className='flex bg-[#6F91F4] py-[12px] 
                             w-full rounded-full border-[1px] 
                             border-[#3157C9] uppercase text-white 
