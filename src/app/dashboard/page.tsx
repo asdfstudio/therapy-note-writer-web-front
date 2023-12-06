@@ -2,6 +2,7 @@
 import DashboardHome from '@/components/DashboardHome';
 import DashboardNavMenu from '@/components/DashboardNavMenu';
 import Menubody from '@/components/Menubody';
+import SendFeedback from '@/components/sendFeedback';
 import SubscriptionPop from '@/components/subscriptionPop';
 import TermsOfService from '@/components/termsOfService';
 import Image from 'next/image';
@@ -16,6 +17,7 @@ const DashboardPage = () => {
     const [termsOfServiceAccepted, setTermsOfServiceAccepted] = useState(false);
     const [showTermsOfServicePop, setShowTermsOfServicePop] = useState(false);
     const [generateLoading, setGenerateLoading] = useState(false);
+    const [showSendFeedbackPop, setShowSendFeedbackPop] = useState(false);
 
     const clicksUsed = 4;
     const totalClick = 10;
@@ -70,6 +72,13 @@ const DashboardPage = () => {
                 <TermsOfService
                     setShowTermsOfServicePop={setShowTermsOfServicePop}
                 />
+            ) : (
+                ''
+            )}
+
+            {/* Send Feedback page pop-up */}
+            {showSendFeedbackPop ? (
+                <SendFeedback setShowSendFeedbackPop={setShowSendFeedbackPop} />
             ) : (
                 ''
             )}
@@ -183,6 +192,8 @@ const DashboardPage = () => {
                     clicksUsed={clicksUsed}
                     totalClick={totalClick}
                     setGenerateLoading={setGenerateLoading}
+                    setShowTermsOfServicePop={setShowTermsOfServicePop}
+                    setShowSendFeedbackPop={setShowSendFeedbackPop}
                 />
             </div>
 

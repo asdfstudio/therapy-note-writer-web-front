@@ -86,12 +86,16 @@ const Menubody = ({
     clicksUsed,
     totalClick,
     setGenerateLoading,
+    setShowTermsOfServicePop,
+    setShowSendFeedbackPop,
 }: {
     setMainSummary: any;
     setShowSubscriptionTable: any;
     clicksUsed: any;
     totalClick: any;
     setGenerateLoading: any;
+    setShowTermsOfServicePop: any;
+    setShowSendFeedbackPop: any;
 }) => {
     const [clientPronouns, setClientPronouns] = useState<any>([]);
     const [apptLocation, setApptLocation] = useState<any>('');
@@ -285,7 +289,7 @@ const Menubody = ({
             <div
                 className='ml-[1.25rem] mr-[1.1rem]
         flex flex-col justify-center mb-[7rem] 
-        md:w-[20.75rem] md:mr-0'
+        md:w-[20.75rem] md:mr-0 '
             >
                 <p
                     className='font-[700]
@@ -1258,6 +1262,29 @@ const Menubody = ({
                         </button>
                     </div>
                     {/* </Link> */}
+                </div>
+
+                <div className='h-[2px] w-full bg-[rgba(111,145,244,0.50)] mb-5'></div>
+
+                <div
+                    className='flex text-[#6F91F4] text-[0.875rem] font-iBM_Plex_Sans font-[600] 
+                    tracking-[0.0875rem] uppercase gap-[2.5rem] items-center justify-center
+                    cursor-pointer'
+                >
+                    <p
+                        onClick={() => {
+                            setShowTermsOfServicePop(true);
+                        }}
+                    >
+                        terms of servcie
+                    </p>
+                    <p
+                        onClick={() => {
+                            setShowSendFeedbackPop(true);
+                        }}
+                    >
+                        Send feedback
+                    </p>
                 </div>
             </div>
         </div>
