@@ -235,7 +235,8 @@ mt-[1.5rem] mb-[0.5rem]'
                         name='userID'
                         value={user && user.user._id}
                     />
-                    <input type='hidden' name='sub' value='sub' />
+                    <input type='hidden' name='sub' value='BASIC' />
+                    <input type='hidden' name='clickLimit' value={100} />
                     <div
                         className='w-[21.25rem] h-[2.75rem] mt-4
             mb-[0.94rem]
