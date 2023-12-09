@@ -272,7 +272,7 @@ const SubscriptionPop = ({
                                             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
                                             hover:border-[#4771ED] hover:bg-[#FAFAFA]
                                             active:border-[#4063C7] active:bg-[#FAFAFA]
-                                            disabled:bg-[#dad9d9]'
+                                            disabled:bg-[#dad9d9] disabled:cursor-not-allowed'
                                             >
                                                 Select plan
                                             </button>

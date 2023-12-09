@@ -38,6 +38,7 @@ const DashboardHome = ({
                 className='bg-[url("/bg-home-2.svg")] h-[calc(screen-15%)] md:h-screen w-full
                     bg-repeat-x bg-cover flex flex-col xlc:bg-contain '
             >
+                {/* Note Counter */}
                 <div className='mt-[1.5rem] ml-[2rem]'>
                     <p
                         className=' font-iBM_Plex_Sans font-[400] text-[1rem] 
@@ -67,6 +68,8 @@ const DashboardHome = ({
                         ></div>
                     </div>
                 </div>
+
+                {/* Main body */}
 
                 {generateLoading ? (
                     <div className='flex flex-col items-center justify-center mt-[15%]'>

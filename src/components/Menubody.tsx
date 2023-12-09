@@ -99,8 +99,8 @@ const Menubody = ({
 }) => {
     const [clientPronouns, setClientPronouns] = useState<any>([]);
     const [apptLocation, setApptLocation] = useState<any>('');
-    const [diagnosis, setDiagnosis] = useState<any>('');
-    const [currentSymptoms, setCurrentSymptoms] = useState<any>([]);
+    const [diagnosis, setDiagnosis] = useState<any>([]);
+    const [currentSymptoms, setCurrentSymptoms] = useState<any>('');
     const [discussed, setDiscussed] = useState<any>('');
     const [interventions, setInterventions] = useState<any>([]);
     const [appearance, setAppearance] = useState<any>([]);
@@ -133,11 +133,13 @@ const Menubody = ({
         const local_apptLocation = localStorage.getItem('LOCAL_apptLocation');
         if (local_apptLocation) setApptLocation(local_apptLocation);
 
-        const local_diagnosis = localStorage.getItem('LOCAL_diagnosis');
+        const local_diagnosis = JSON.parse(
+            localStorage.getItem('LOCAL_diagnosis')!
+        );
         if (local_diagnosis) setDiagnosis(local_diagnosis);
 
-        const local_currentSymptoms = JSON.parse(
-            localStorage.getItem('LOCAL_currentSymptoms')!
+        const local_currentSymptoms = localStorage.getItem(
+            'LOCAL_currentSymptoms'
         );
         if (local_currentSymptoms) setCurrentSymptoms(local_currentSymptoms);
     }, []);
@@ -148,11 +150,16 @@ const Menubody = ({
             JSON.stringify(clientPronouns)
         );
         localStorage.setItem('LOCAL_apptLocation', apptLocation);
-        localStorage.setItem('LOCAL_diagnosis', diagnosis);
-        localStorage.setItem(
-            'LOCAL_currentSymptoms',
-            JSON.stringify(currentSymptoms)
-        );
+
+        // localStorage.setItem('LOCAL_diagnosis', diagnosis);
+        localStorage.setItem('LOCAL_diagnosis', JSON.stringify(diagnosis));
+
+        localStorage.setItem('LOCAL_currentSymptoms', currentSymptoms);
+        // localStorage.setItem(
+        //     'LOCAL_currentSymptoms',
+        //     JSON.stringify(currentSymptoms)
+        // );
+
         localStorage.setItem('LOCAL_discussed', discussed);
         localStorage.setItem(
             'LOCAL_interventions',
@@ -301,21 +308,19 @@ const Menubody = ({
                 {/* Options Start */}
                 <p
                     className=' opacity-[0.6] font-[400]
-          text-[0.75rem] mb-[0.5rem]'
+                    text-[0.9375rem] mb-[0.5rem]'
                 >
                     Pronouns
                 </p>
                 <div
-                    className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-          md:grid-cols-3
-          border-[0.518px] border-[rgba(111,145,244,0.50)]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
+                    md:grid-cols-3 gap-[0.5rem]'
                 >
                     {Pronouns.map((item, index) => {
                         return (
                             <label
-                                className='container '
+                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -351,63 +356,30 @@ const Menubody = ({
                             </label>
                         );
                     })}
-                    {/* {Appearance.map((item, index) => {
-                        return (
-                            <label
-                                className='container'
-                                key={index}
-                                // htmlFor={`${item}${index}`}
-                            >
-                                <input
-                                    type='checkbox'
-                                    value={item}
-                                    id={`${item}${index}`}
-                                    name='Appearance'
-                                    onChange={(event) => {
-                                        const currentValue = event.target.value;
-                                        if (appearance.includes(currentValue)) {
-                                            const tempArray = appearance;
-                                            const index =
-                                                tempArray.indexOf(currentValue);
-                                            tempArray.splice(index, 1);
-                                            setAppearance(tempArray);
-                                        } else {
-                                            setAppearance((prevValue: any) => [
-                                                ...prevValue,
-                                                event.target.value,
-                                            ]);
-                                        }
-                                    }}
-                                />
-                                <span className='checkmark'></span>
-                                {item}
-                            </label>
-                        );
-                    })} */}
                 </div>
 
                 {/* Options */}
                 <p
                     className=' opacity-[0.6] font-[400]
-          text-[0.75rem] mb-[0.5rem]'
+                    text-[0.9375rem] mb-[0.5rem]'
                 >
                     Appointment Location
                 </p>
                 <div
-                    className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
-          md:grid-cols-2
-          border-[0.518px] border-[rgba(111,145,244,0.50)]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2'
                 >
                     {AppointmentLocation.map((item, index) => {
                         return (
                             <label
                                 className='text-[0.9375rem] 
-                                mr-[1.5rem] mb-[0.5rem]'
+                                mr-[1.5rem] mb-[0.5rem] 
+                                border-[0.518px] border-[rgba(111,145,244,0.50)]
+                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.4rem]'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
+                                {item}
                                 <input
                                     type='radio'
                                     value={item}
@@ -417,17 +389,15 @@ const Menubody = ({
                                         item === apptLocation ? true : false
                                     }
                                     className='checkbox appearance-none 
-                            ring-[#F4776F] ring-[1.5px] 
-                            checked:ring-[4px] checked:ring-[#F4776F]
-                            ring-inset rounded-full
-                            cursor-pointer 
-                            w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
+                                    ring-[#F4776F] ring-[1.5px] 
+                                    checked:ring-[4px] checked:ring-[#F4776F]
+                                    ring-inset rounded-full
+                                    cursor-pointer 
+                                    w-[1rem] h-[1rem] ml-[2rem]'
                                     onChange={(event) => {
                                         setApptLocation(event.target.value);
                                     }}
                                 />
-
-                                {item}
                             </label>
                         );
                     })}
@@ -436,20 +406,46 @@ const Menubody = ({
                 {/* Options */}
                 <p
                     className=' opacity-[0.6] font-[400]
-                    text-[0.75rem] mb-[0.5rem]'
+                    text-[0.9375rem] mb-[0.5rem]'
                 >
                     Diagnosis
                 </p>
 
+                <div
+                    className=' bg-transparent
+        rounded-[0.25888rem] p-[0.62rem]
+        w-full mb-[1.25rem]
+        border-[0.518px] 
+        border-[rgba(111,145,244,0.50)] flex flex-wrap
+        focus:border-[#6F91F4]'
+                >
+                    <TagsInputCustom
+                        tag_background='bg-[#C24545]'
+                        close_background='bg-[#FFF2EE]'
+                        close_icon_color='text-[#6F91F4]'
+                        placeholder_text='Write diagnosis...'
+                        setFunc={setDiagnosis}
+                        currentTags={diagnosis}
+                    />
+                </div>
+
+                {/* Options */}
+                <p
+                    className=' opacity-[0.6] font-[400]
+                    text-[0.9375rem] mb-[0.5rem]'
+                >
+                    Current Symptoms
+                </p>
+
                 <input
-                    placeholder='Write diagnosis...'
-                    id='diagnosis'
-                    name='diagnosis'
-                    value={diagnosis}
+                    placeholder='Write symptoms...'
+                    id='symptoms'
+                    name='current_symptoms'
+                    value={currentSymptoms}
                     onChange={(event) => {
-                        setDiagnosis(event.target.value);
+                        setCurrentSymptoms(event.target.value);
                     }}
-                    className=' bg-[rgba(53,61,82,0.60)]
+                    className=' bg-transparent
             rounded-[0.25888rem] p-[0.62rem]
             w-full h-auto mb-[1.25rem]
             border-[0.518px] border-[rgba(111,145,244,0.50)] 
@@ -460,33 +456,7 @@ const Menubody = ({
                 {/* Options */}
                 <p
                     className=' opacity-[0.6] font-[400]
-          text-[0.75rem] mb-[0.5rem]'
-                >
-                    Current Symptoms
-                </p>
-
-                <div
-                    className='bg-[rgba(53,61,82,0.60)]
-        rounded-[0.25888rem] p-[0.62rem]
-        w-full mb-[1.25rem]
-        border-[0.518px] 
-        border-[rgba(111,145,244,0.50)] flex flex-wrap
-        focus:border-[#6F91F4]'
-                >
-                    <TagsInputCustom
-                        tag_background='bg-[#6F91F4]'
-                        close_background='bg-[#2048BE]'
-                        close_icon_color='text-[#6F91F4]'
-                        placeholder_text='Write symptoms...'
-                        setFunc={setCurrentSymptoms}
-                        currentTags={currentSymptoms}
-                    />
-                </div>
-
-                {/* Options */}
-                <p
-                    className=' opacity-[0.6] font-[400]
-          text-[0.75rem] mb-[0.5rem]'
+                    text-[0.9375rem] mb-[0.5rem]'
                 >
                     What was discussed in session
                 </p>
@@ -497,7 +467,7 @@ const Menubody = ({
                     onChange={(event) => {
                         setDiscussed(event.target.value);
                     }}
-                    className=' bg-[rgba(53,61,82,0.60)]
+                    className=' bg-transparent
             rounded-[0.25888rem] p-[0.62rem]
             w-full h-auto mb-[1.25rem]
             border-[0.518px] border-[rgba(111,145,244,0.50)] 
@@ -508,13 +478,13 @@ const Menubody = ({
                 {/* Options */}
                 <p
                     className=' opacity-[0.6] font-[400]
-          text-[0.75rem] mb-[0.5rem]'
+                    text-[0.9375rem] mb-[0.5rem]'
                 >
                     Interventions used
                 </p>
 
                 <div
-                    className='bg-[rgba(53,61,82,0.60)]
+                    className=' bg-transparent
         rounded-[0.25888rem] p-[0.62rem]
         w-full mb-[1.25rem]
         border-[0.518px] 
@@ -542,21 +512,19 @@ const Menubody = ({
                 {/* Options */}
                 <p
                     className=' opacity-[0.6] font-[400]
-          text-[0.75rem] mb-[0.5rem]'
+                    text-[0.9375rem] mb-[0.5rem]'
                 >
                     Appearance
                 </p>
                 <div
-                    className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
-          md:grid-cols-2
-          border-[0.518px] border-[rgba(111,145,244,0.50)]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
+                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Appearance.map((item, index) => {
                         return (
                             <label
-                                className='container'
+                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -581,7 +549,7 @@ const Menubody = ({
                                         }
                                     }}
                                 />
-                                <span className='checkmark'></span>
+                                <span className='checkmark ml-[3.3rem]'></span>
                                 {item}
                             </label>
                         );
@@ -591,23 +559,21 @@ const Menubody = ({
                 {/* Options */}
                 <p
                     className=' opacity-[0.6] font-[400]
-          text-[0.75rem] mb-[0.5rem]'
+                    text-[0.9375rem] mb-[0.5rem]'
                 >
                     Speech
                 </p>
                 <div
-                    className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
-          md:grid-cols-2
-          border-[0.518px] border-[rgba(111,145,244,0.50)]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
+                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Speech.map((item, index) => {
                         return (
                             <label
                                 key={index}
                                 // htmlFor={`${item}${index}`}
-                                className='container'
+                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
                             >
                                 <input
                                     value={item}
@@ -630,7 +596,7 @@ const Menubody = ({
                                         }
                                     }}
                                 />
-                                <span className='checkmark'></span>
+                                <span className='checkmark ml-[3.3rem]'></span>
                                 {item}
                             </label>
                         );
@@ -640,21 +606,19 @@ const Menubody = ({
                 {/* Options */}
                 <p
                     className=' opacity-[0.6] font-[400]
-          text-[0.75rem] mb-[0.5rem]'
+                    text-[0.9375rem] mb-[0.5rem]'
                 >
                     Affect
                 </p>
                 <div
-                    className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
-          md:grid-cols-2
-          border-[0.518px] border-[rgba(111,145,244,0.50)]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
+                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Affect.map((item, index) => {
                         return (
                             <label
-                                className='container'
+                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -679,7 +643,7 @@ const Menubody = ({
                                         }
                                     }}
                                 />
-                                <span className='checkmark'></span>
+                                <span className='checkmark ml-[3.3rem]'></span>
                                 {item}
                             </label>
                         );
@@ -689,23 +653,21 @@ const Menubody = ({
                 {/* Options */}
                 <p
                     className=' opacity-[0.6] font-[400]
-          text-[0.75rem] mb-[0.5rem]'
+                    text-[0.9375rem] mb-[0.5rem]'
                 >
                     Mood
                 </p>
                 <div
-                    className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
-          md:grid-cols-2
-          border-[0.518px] border-[rgba(111,145,244,0.50)]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
+                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Mood.map((item, index) => {
                         return (
                             <label
                                 key={index}
                                 // htmlFor={`${item}${index}`}
-                                className='container'
+                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
                             >
                                 <input
                                     value={item}
@@ -728,7 +690,7 @@ const Menubody = ({
                                         }
                                     }}
                                 />
-                                <span className='checkmark'></span>
+                                <span className='checkmark ml-[3.3rem]'></span>
                                 {item}
                             </label>
                         );
@@ -738,23 +700,21 @@ const Menubody = ({
                 {/* Options */}
                 <p
                     className=' opacity-[0.6] font-[400]
-          text-[0.75rem] mb-[0.5rem]'
+                    text-[0.9375rem] mb-[0.5rem]'
                 >
                     Behavior
                 </p>
                 <div
-                    className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
-          md:grid-cols-2
-          border-[0.518px] border-[rgba(111,145,244,0.50)]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
+                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Behavior.map((item, index) => {
                         return (
                             <label
                                 key={index}
                                 // htmlFor={`${item}${index}`}
-                                className='container'
+                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
                             >
                                 <input
                                     value={item}
@@ -777,7 +737,7 @@ const Menubody = ({
                                         }
                                     }}
                                 />
-                                <span className='checkmark'></span>
+                                <span className='checkmark ml-[3.3rem]'></span>
                                 {item}
                             </label>
                         );
@@ -787,23 +747,21 @@ const Menubody = ({
                 {/* Options */}
                 <p
                     className=' opacity-[0.6] font-[400]
-          text-[0.75rem] mb-[0.5rem]'
+                    text-[0.9375rem] mb-[0.5rem]'
                 >
                     Delusions
                 </p>
                 <div
-                    className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
-          md:grid-cols-2
-          border-[0.518px] border-[rgba(111,145,244,0.50)]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
+                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Delusions.map((item, index) => {
                         return (
                             <label
                                 key={index}
                                 // htmlFor={`${item}${index}`}
-                                className='container'
+                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
                             >
                                 <input
                                     value={item}
@@ -826,7 +784,7 @@ const Menubody = ({
                                         }
                                     }}
                                 />
-                                <span className='checkmark'></span>
+                                <span className='checkmark ml-[3.3rem]'></span>
                                 {item}
                             </label>
                         );
@@ -836,21 +794,19 @@ const Menubody = ({
                 {/* Options */}
                 <p
                     className=' opacity-[0.6] font-[400]
-          text-[0.75rem] mb-[0.5rem]'
+                    text-[0.9375rem] mb-[0.5rem]'
                 >
                     Suicidal Ideation
                 </p>
                 <div
-                    className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
-          md:grid-cols-2
-          border-[0.518px] border-[rgba(111,145,244,0.50)]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
+                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {SuicidalIdeation.map((item, index) => {
                         return (
                             <label
-                                className='container'
+                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -881,7 +837,7 @@ const Menubody = ({
                                         }
                                     }}
                                 />
-                                <span className='checkmark'></span>
+                                <span className='checkmark ml-[3.3rem]'></span>
                                 {item}
                             </label>
                         );
@@ -891,21 +847,19 @@ const Menubody = ({
                 {/* Options */}
                 <p
                     className=' opacity-[0.6] font-[400]
-          text-[0.75rem] mb-[0.5rem]'
+                    text-[0.9375rem] mb-[0.5rem]'
                 >
                     Homicidal Ideation
                 </p>
                 <div
-                    className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2  sm:grid-cols-4
-          md:grid-cols-2
-          border-[0.518px] border-[rgba(111,145,244,0.50)]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
+                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {HomicidalIdeation.map((item, index) => {
                         return (
                             <label
-                                className='container'
+                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -930,7 +884,7 @@ const Menubody = ({
                                         }
                                     }}
                                 />
-                                <span className='checkmark'></span>
+                                <span className='checkmark ml-[3.3rem]'></span>
                                 {item}
                             </label>
                         );
@@ -940,23 +894,21 @@ const Menubody = ({
                 {/* Options */}
                 <p
                     className=' opacity-[0.6] font-[400]
-          text-[0.75rem] mb-[0.5rem]'
+                    text-[0.9375rem] mb-[0.5rem]'
                 >
                     Self-Injuring Behavior
                 </p>
                 <div
-                    className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2  sm:grid-cols-4
-          md:grid-cols-2
-          border-[0.518px] border-[rgba(111,145,244,0.50)]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
+                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Self_Injuring_Behavior.map((item, index) => {
                         return (
                             <label
                                 key={index}
                                 // htmlFor={`${item}${index}`}
-                                className='container'
+                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
                             >
                                 <input
                                     value={item}
@@ -979,7 +931,7 @@ const Menubody = ({
                                         }
                                     }}
                                 />
-                                <span className='checkmark'></span>
+                                <span className='checkmark ml-[3.3rem]'></span>
                                 {item}
                             </label>
                         );
@@ -989,21 +941,19 @@ const Menubody = ({
                 {/* Options */}
                 <p
                     className=' opacity-[0.6] font-[400]
-          text-[0.75rem] mb-[0.5rem]'
+                    text-[0.9375rem] mb-[0.5rem]'
                 >
                     Insight
                 </p>
                 <div
-                    className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2  sm:grid-cols-4
-          md:grid-cols-2
-          border-[0.518px] border-[rgba(111,145,244,0.50)]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
+                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Insight.map((item, index) => {
                         return (
                             <label
-                                className='container'
+                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -1028,7 +978,7 @@ const Menubody = ({
                                         }
                                     }}
                                 />
-                                <span className='checkmark'></span>
+                                <span className='checkmark ml-[3.3rem]'></span>
                                 {item}
                             </label>
                         );
@@ -1038,21 +988,19 @@ const Menubody = ({
                 {/* Options */}
                 <p
                     className=' opacity-[0.6] font-[400]
-          text-[0.75rem] mb-[0.5rem]'
+                    text-[0.9375rem] mb-[0.5rem]'
                 >
                     Judgment
                 </p>
                 <div
-                    className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2  sm:grid-cols-4
-          md:grid-cols-2
-          border-[0.518px] border-[rgba(111,145,244,0.50)]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
+                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Judgment.map((item, index) => {
                         return (
                             <label
-                                className='container'
+                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -1077,7 +1025,7 @@ const Menubody = ({
                                         }
                                     }}
                                 />
-                                <span className='checkmark'></span>
+                                <span className='checkmark ml-[3.3rem]'></span>
                                 {item}
                             </label>
                         );
@@ -1087,21 +1035,19 @@ const Menubody = ({
                 {/* Options */}
                 <p
                     className=' opacity-[0.6] font-[400]
-          text-[0.75rem] mb-[0.5rem]'
+                    text-[0.9375rem] mb-[0.5rem]'
                 >
                     Oriented
                 </p>
                 <div
-                    className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2  sm:grid-cols-4
-          md:grid-cols-2
-          border-[0.518px] border-[rgba(111,145,244,0.50)]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
+                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Oriented.map((item, index) => {
                         return (
                             <label
-                                className='container'
+                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -1126,7 +1072,7 @@ const Menubody = ({
                                         }
                                     }}
                                 />
-                                <span className='checkmark'></span>
+                                <span className='checkmark ml-[3.3rem]'></span>
                                 {item}
                             </label>
                         );
@@ -1136,21 +1082,19 @@ const Menubody = ({
                 {/* Options */}
                 <p
                     className=' opacity-[0.6] font-[400]
-          text-[0.75rem] mb-[0.5rem]'
+                    text-[0.9375rem] mb-[0.5rem]'
                 >
                     Eye Contact
                 </p>
                 <div
-                    className='bg-[rgba(53,61,82,0.60)]
-          rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
-          w-full mb-[1.25rem] grid grid-cols-2  sm:grid-cols-4
-          md:grid-cols-2
-          border-[0.518px] border-[rgba(111,145,244,0.50)]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
+                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {EyeContact.map((item, index) => {
                         return (
                             <label
-                                className='container'
+                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -1175,7 +1119,7 @@ const Menubody = ({
                                         }
                                     }}
                                 />
-                                <span className='checkmark'></span>
+                                <span className='checkmark ml-[3.3rem]'></span>
                                 {item}
                             </label>
                         );
@@ -1185,8 +1129,8 @@ const Menubody = ({
                 {/* Plan */}
 
                 <p
-                    className='font-[700]
-          text-[0.9375rem] mb-[1.25rem]'
+                    className='font-[600]
+                    text-[0.9375rem] mb-[1.25rem]'
                 >
                     Plan
                 </p>
@@ -1194,7 +1138,7 @@ const Menubody = ({
                 {/* Options */}
                 <p
                     className=' opacity-[0.6] font-[400]
-          text-[0.75rem] mb-[0.5rem]'
+                    text-[0.9375rem] mb-[0.5rem]'
                 >
                     Homework
                 </p>
@@ -1206,7 +1150,7 @@ const Menubody = ({
                         onChange={(event) => {
                             setHomework(event.target.value);
                         }}
-                        className='bg-[rgba(53,61,82,0.60)]
+                        className='bg-transparent
                         rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
                         w-full mb-[1.25rem]
                         border-[0.518px] border-[rgba(111,145,244,0.50)] h-[9rem] 
@@ -1218,19 +1162,43 @@ const Menubody = ({
                 {/* Options */}
                 <p
                     className=' opacity-[0.6] font-[400]
-          text-[0.75rem] mb-[0.5rem]'
+                    text-[0.9375rem] mb-[0.5rem]'
+                >
+                    Plan for next session
+                </p>
+                <div className=''>
+                    <textarea
+                        placeholder='Write plan...'
+                        id='Homework'
+                        name='Homework'
+                        onChange={(event) => {
+                            setHomework(event.target.value);
+                        }}
+                        className='bg-transparent
+                        rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
+                        w-full mb-[1.25rem]
+                        border-[0.518px] border-[rgba(111,145,244,0.50)] h-[9rem] 
+                        resize-y focus:outline-none
+                        focus:border-[#6F91F4]'
+                    />
+                </div>
+
+                {/* Options */}
+                <p
+                    className=' opacity-[0.6] font-[400]
+                    text-[0.9375rem] mb-[0.5rem]'
                 >
                     Next appointment date
                 </p>
                 <input
                     type='date'
-                    placeholder='Write date...'
+                    placeholder='Select Date'
                     id='option_1'
                     name='pronouns'
                     onChange={(event) => {
                         setNextAppt(event.target.value);
                     }}
-                    className=' bg-[rgba(53,61,82,0.60)]
+                    className='bg-transparent
             rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
             w-full mb-[1.25rem] pb-2
             border-[0.518px] border-[rgba(111,145,244,0.50)] 

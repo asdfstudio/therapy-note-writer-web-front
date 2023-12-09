@@ -97,7 +97,7 @@ const DashboardPage = () => {
             }
         };
         checkClickCount();
-    }, [baseURL, email, user, userSubType]);
+    }, [baseURL, email, user]);
 
     const contents = [
         {

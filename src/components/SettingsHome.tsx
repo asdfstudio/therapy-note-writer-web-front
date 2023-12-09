@@ -3,16 +3,31 @@ import React, { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Context } from '@/context/Context';
 import axios from 'axios';
+import SubscriptionPop from './subscriptionPop';
 
 const SettingsHome = () => {
     const [nextBill, setNextBill] = useState('');
     const [subPackage, setSubPackage] = useState('');
     const { user } = useContext<any>(Context);
+    const [showSubscriptionTable, setShowSubscriptionTable] = useState(false);
+    const [disabledIndex, setDisabledIndex] = useState(4);
+    const [clicksUsed, setClicksUsed] = useState(0);
+    const [totalClick, setTotalClick] = useState(0);
 
     const stripePriceId = process.env.NEXT_PUBLIC_STRIPE_PRICE_ID;
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
     let userID = user && user.user._id;
+    let email = '';
+
+    let userLocal: any;
+    if (typeof window !== 'undefined') {
+        userLocal = JSON.parse(localStorage.getItem('user')!) || null;
+
+        if (user) {
+            email = userLocal.user.email;
+        }
+    }
 
     useEffect(() => {
         const checkSubscription = async () => {
@@ -31,16 +46,37 @@ const SettingsHome = () => {
         checkSubscription();
     }, [baseURL, nextBill, subPackage, userID]);
 
-    let email = '';
+    // Get click data
+    useEffect(() => {
+        const checkClickCount = async () => {
+            // setTotalClick(user && user.user.clickLimit);
+            const clickData = await axios.get(
+                `${baseURL}/api/auth/clickDataofCurrentMonth/${email}`
+            );
 
-    let userLocal: any;
-    if (typeof window !== 'undefined') {
-        userLocal = JSON.parse(localStorage.getItem('user')!) || null;
+            // set click data
+            if (clickData.data.data) {
+                setTotalClick(clickData.data.data.clickLimit);
+                if (clickData.data.data.clickLimit === 5) {
+                    setDisabledIndex(0);
+                } else if (clickData.data.data.clickLimit === 100) {
+                    setDisabledIndex(1);
+                } else if (clickData.data.data.clickLimit === 500) {
+                    setDisabledIndex(2);
+                }
+            }
+            if (clickData.data.data.clicks !== null) {
+                setClicksUsed(clickData.data.data.clicks.ClickCount);
+            } else {
+                setClicksUsed(0);
+            }
+        };
+        checkClickCount();
+    }, [baseURL, email, user]);
 
-        if (user) {
-            email = userLocal.user.email;
-        }
-    }
+    const handleClick = () => {
+        setShowSubscriptionTable(true);
+    };
 
     return (
         <div
@@ -49,6 +85,15 @@ const SettingsHome = () => {
       bg-no-repeat bg-contain xlc:flex-row
       xlc:justify-center '
         >
+            {/* Subscription pop-up */}
+            {showSubscriptionTable ? (
+                <SubscriptionPop
+                    setShowSubscriptionTable={setShowSubscriptionTable}
+                    disabledIndex={disabledIndex}
+                />
+            ) : (
+                ''
+            )}
             {/* Account */}
 
             <form className='flex flex-col'>
@@ -227,7 +272,8 @@ mt-[1.5rem] mb-[0.5rem]'
                     </>
                 )}
 
-                <form action={`${baseURL}/api/stripe/checkout`} method='POST'>
+                {/* <form action={`${baseURL}/api/stripe/checkout`} method='POST'> */}
+                <form>
                     {/* Hidden field with Stripe PriceID */}
                     <input type='hidden' name='priceId' value={stripePriceId} />
                     <input
@@ -238,13 +284,15 @@ mt-[1.5rem] mb-[0.5rem]'
                     <input type='hidden' name='sub' value='BASIC' />
                     <input type='hidden' name='clickLimit' value={100} />
                     <div
+                        onClick={handleClick}
                         className='w-[21.25rem] h-[2.75rem] mt-4
-            mb-[0.94rem]
-            md:w-[25rem] md:mt-[1.25rem] 
-            xlc:w-[25rem]'
+                        mb-[0.94rem]
+                        md:w-[25rem] md:mt-[1.25rem] 
+                        xlc:w-[25rem]'
                     >
                         <button
-                            type='submit'
+                            // type='submit'
+                            type='button'
                             className='flex bg-[#6F91F4] h-full 
             w-full items-center rounded-full border-[1px] 
             border-[#3157C9] uppercase text-white 
