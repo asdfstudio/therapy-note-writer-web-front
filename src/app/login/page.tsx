@@ -425,13 +425,13 @@ const LoginPage = () => {
                     {/* Forgot password link */}
                     <h3
                         className='font-iBM_Plex_Sans
-            text-[#29375F] font-[600] text-[1rem]'
+                        text-[#29375F] font-[600] text-[1rem]'
                     >
                         Forgot password?{' '}
                         <Link
-                            href={'/login'}
+                            href={'/reset'}
                             className='text-[#6F91F4]
-              underline'
+                            underline'
                         >
                             Reset
                         </Link>

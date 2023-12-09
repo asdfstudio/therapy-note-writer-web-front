@@ -1,15 +1,19 @@
 'use client';
+
 import DashboardHome from '@/components/DashboardHome';
 import DashboardNavMenu from '@/components/DashboardNavMenu';
 import Menubody from '@/components/Menubody';
 import SendFeedback from '@/components/sendFeedback';
 import SubscriptionPop from '@/components/subscriptionPop';
 import TermsOfService from '@/components/termsOfService';
+import { Context } from '@/context/Context';
+import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 const DashboardPage = () => {
+    const { user } = useContext<any>(Context);
     const [showMenu, setShowMenu] = useState(false);
     const [showNavMenu, setShowNavMenu] = useState(false);
     const [mainSummary, setMainSummary] = useState('');
@@ -18,9 +22,82 @@ const DashboardPage = () => {
     const [showTermsOfServicePop, setShowTermsOfServicePop] = useState(false);
     const [generateLoading, setGenerateLoading] = useState(false);
     const [showSendFeedbackPop, setShowSendFeedbackPop] = useState(false);
+    const [clicksUsed, setClicksUsed] = useState(0);
+    const [totalClick, setTotalClick] = useState(0);
+    const [username, setUsername] = useState(null);
+    const [disabledIndex, setDisabledIndex] = useState(4);
 
-    const clicksUsed = 4;
-    const totalClick = 10;
+    const [userSubType, setUserSubType] = useState(null);
+
+    const stripePriceId = process.env.NEXT_PUBLIC_STRIPE_PRICE_ID;
+    const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+
+    let userID = user && user.user._id;
+    let email = user && user.user.email;
+    // let userSubType = user && user.user.subPackage;
+    // const clicksUsed = 4;
+    // const totalClick = 100;
+    // const totalClick = user && user.user.clickLimit;
+    // const username = 'fff';
+    // const username = user && user.user.username;
+
+    // Set username
+    useEffect(() => {
+        return () => {
+            setUsername(user && user.user.username);
+            setUserSubType(user && user.user.subPackage);
+        };
+    });
+
+    // Get subscription data
+    useEffect(() => {
+        const checkSubscription = async () => {
+            if (userID !== null) {
+                const subscriptionData = await axios.get(
+                    `${baseURL}/api/auth/check-subscription/${userID}`
+                );
+
+                if (
+                    subscriptionData.data.nextBill <
+                        Date.now().toLocaleString() ||
+                    subscriptionData.data.nextBill === ''
+                ) {
+                    setShowSubscriptionTable(true);
+                } else {
+                    setShowSubscriptionTable(false);
+                }
+            }
+        };
+        checkSubscription();
+    }, [baseURL, userID]);
+
+    // Get click data
+    useEffect(() => {
+        const checkClickCount = async () => {
+            // setTotalClick(user && user.user.clickLimit);
+            const clickData = await axios.get(
+                `${baseURL}/api/auth/clickDataofCurrentMonth/${email}`
+            );
+
+            // set click data
+            if (clickData.data.data) {
+                setTotalClick(clickData.data.data.clickLimit);
+                if (clickData.data.data.clickLimit === 5) {
+                    setDisabledIndex(0);
+                } else if (clickData.data.data.clickLimit === 100) {
+                    setDisabledIndex(1);
+                } else if (clickData.data.data.clickLimit === 500) {
+                    setDisabledIndex(2);
+                }
+            }
+            if (clickData.data.data.clicks !== null) {
+                setClicksUsed(clickData.data.data.clicks.ClickCount);
+            } else {
+                setClicksUsed(0);
+            }
+        };
+        checkClickCount();
+    }, [baseURL, email, user]);
 
     const contents = [
         {
@@ -62,6 +139,7 @@ const DashboardPage = () => {
             {showSubscriptionTable ? (
                 <SubscriptionPop
                     setShowSubscriptionTable={setShowSubscriptionTable}
+                    disabledIndex={disabledIndex}
                 />
             ) : (
                 ''
@@ -130,6 +208,7 @@ const DashboardPage = () => {
                     className='flex justify-end items-center
           mr-[1.25rem]'
                 >
+                    {/* Pen icon */}
                     <div
                         className={`w-[2.75rem] h-[2.75rem] 
                         border-[#6F91F4] border-[1px] flex items-center justify-center
@@ -162,6 +241,13 @@ const DashboardPage = () => {
                             />
                         )}
                     </div>
+                    <p
+                        className='mr-2 font-iBM_Plex_Sans text-[0.9375rem] font-[500]
+                        text-[#6989E8]'
+                    >
+                        Hello, <br />
+                        <span className='font-[600]'>{username}</span>
+                    </p>
                     <div
                         className='w-[2.75rem] h-[2.75rem] 
           border-[#6F91F4] border-[1px] flex items-center justify-center

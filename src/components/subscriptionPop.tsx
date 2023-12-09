@@ -1,8 +1,9 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useRef, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useContext, useRef, useState } from 'react';
+import { Context } from '@/context/Context';
+import axios from 'axios';
 
 const contents = [
     {
@@ -33,11 +34,41 @@ const contents = [
 
 const SubscriptionPop = ({
     setShowSubscriptionTable,
+    disabledIndex,
 }: {
     setShowSubscriptionTable: any;
+    disabledIndex: any;
 }) => {
-    const handleSubscription = () => {
-        setShowSubscriptionTable(false);
+    const { user } = useContext<any>(Context);
+    const stripePriceId = process.env.NEXT_PUBLIC_STRIPE_PRICE_ID;
+    const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+    const userID = user && user.user._id;
+    // const clickLimit = user && user.user.clickLimit;
+
+    const handleSubscription = async (subType: any, clickLimit: any) => {
+        // priceId, sub, userID, clickLimit
+
+        try {
+            const subscriptionData = await axios
+                .post(`${baseURL}/api/stripe/checkout`, {
+                    sub: subType,
+                    priceId: stripePriceId,
+                    userID: userID,
+                    clickLimit: clickLimit,
+                })
+                .then((data) => {
+                    if (data.data.success === true) {
+                        setShowSubscriptionTable(false);
+                    }
+                    if (data.data.success === 2) {
+                        // setShowSubscriptionTable(false);
+                        const body = data.data.url;
+                        window.location.href = body;
+                    }
+                });
+        } catch (error: any) {
+            console.log(error.message);
+        }
     };
 
     return (
@@ -92,6 +123,7 @@ const SubscriptionPop = ({
                                     >
                                         {item.title}
                                     </p>
+                                    {/* premium ribbon */}
                                     {index === 2 ? (
                                         <Image
                                             src={'/pricing-popular-ribbon.png'}
@@ -126,6 +158,8 @@ const SubscriptionPop = ({
                                             /month
                                         </span>
                                     </p>
+
+                                    {/* Description */}
 
                                     <div className='flex items-baseline'>
                                         <Image
@@ -164,9 +198,30 @@ const SubscriptionPop = ({
                                         <div
                                             className='w-[16.68rem] h-[2.62rem] mb-[1.5rem]
                                                  self-center'
-                                            onClick={handleSubscription}
+                                            onClick={() => {
+                                                // priceId, sub, userID, clickLimit
+                                                let sub = 'FREE';
+                                                let clickLimit = 5;
+                                                if (index === 1) {
+                                                    sub = 'BASIC';
+                                                    clickLimit = 100;
+                                                } else if (index === 2) {
+                                                    sub = 'PREMIUM';
+                                                    clickLimit = 500;
+                                                }
+
+                                                handleSubscription(
+                                                    sub,
+                                                    clickLimit
+                                                );
+                                            }}
                                         >
                                             <button
+                                                disabled={
+                                                    index === disabledIndex
+                                                        ? true
+                                                        : false
+                                                }
                                                 className='flex bg-[#6F91F4] h-[2.75rem] 
                                             mt-[2rem] 
                                             w-full items-center rounded-full border-[1px] 
@@ -174,7 +229,8 @@ const SubscriptionPop = ({
                                             font-iBM_Plex_Sans tracking-[0.1rem]
                                             text-[1rem] font-[600] justify-center
                                             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
-                                            hover:bg-[#4771ED] active:bg-[#4063C7]'
+                                            hover:bg-[#4771ED] active:bg-[#4063C7]
+                                             disabled:bg-[#dad9d9]'
                                             >
                                                 Select plan
                                             </button>
@@ -183,9 +239,30 @@ const SubscriptionPop = ({
                                         <div
                                             className='w-[16.68rem] h-[2.62rem] mb-[1.5rem]
                                                 self-center'
-                                            onClick={handleSubscription}
+                                            onClick={() => {
+                                                // priceId, sub, userID, clickLimit
+                                                let sub = 'FREE';
+                                                let clickLimit = 5;
+                                                if (index === 1) {
+                                                    sub = 'BASIC';
+                                                    clickLimit = 100;
+                                                } else if (index === 2) {
+                                                    sub = 'PREMIUM';
+                                                    clickLimit = 500;
+                                                }
+
+                                                handleSubscription(
+                                                    sub,
+                                                    clickLimit
+                                                );
+                                            }}
                                         >
                                             <button
+                                                disabled={
+                                                    index === disabledIndex
+                                                        ? true
+                                                        : false
+                                                }
                                                 className='flex bg-white h-[2.75rem] 
                                             mt-[2rem] 
                                             w-full items-center rounded-full border-[1px] 
@@ -194,7 +271,8 @@ const SubscriptionPop = ({
                                             text-[1rem] font-[600] justify-center
                                             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
                                             hover:border-[#4771ED] hover:bg-[#FAFAFA]
-                                            active:border-[#4063C7] active:bg-[#FAFAFA]'
+                                            active:border-[#4063C7] active:bg-[#FAFAFA]
+                                            disabled:bg-[#dad9d9] disabled:cursor-not-allowed'
                                             >
                                                 Select plan
                                             </button>
