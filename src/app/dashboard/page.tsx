@@ -25,6 +25,7 @@ const DashboardPage = () => {
     const [clicksUsed, setClicksUsed] = useState(0);
     const [totalClick, setTotalClick] = useState(0);
     const [username, setUsername] = useState(null);
+    const [disabledIndex, setDisabledIndex] = useState(4);
 
     const [userSubType, setUserSubType] = useState(null);
 
@@ -73,47 +74,27 @@ const DashboardPage = () => {
     // Get click data
     useEffect(() => {
         const checkClickCount = async () => {
-            setTotalClick(user && user.user.clickLimit);
+            // setTotalClick(user && user.user.clickLimit);
             const clickData = await axios.get(
                 `${baseURL}/api/auth/clickDataofCurrentMonth/${email}`
             );
 
             // set click data
+            if (clickData.data.data) {
+                setTotalClick(clickData.data.data.clickLimit);
+                if (clickData.data.data.clickLimit === 5) {
+                    setDisabledIndex(0);
+                } else if (clickData.data.data.clickLimit === 100) {
+                    setDisabledIndex(1);
+                } else if (clickData.data.data.clickLimit === 500) {
+                    setDisabledIndex(2);
+                }
+            }
             if (clickData.data.data.clicks !== null) {
                 setClicksUsed(clickData.data.data.clicks.ClickCount);
             } else {
                 setClicksUsed(0);
             }
-
-            // set subscription data
-
-            // if (
-            //     userSubType === 'FREE' &&
-            //     clickData.data.data.clicks.ClickCount >= 5
-            // ) {
-            //     setShowSubscriptionTable(true);
-            //     setIsDisabled(true);
-            // }
-            // if (userSubType === null) {
-            //     setShowSubscriptionTable(true);
-            //     setIsDisabled(true);
-            // }
-            // if (
-            //     userSubType === 'BASIC' &&
-            //     clickData.data.data.clicks.ClickCount >= 100
-            // ) {
-            //     setShowSubscriptionTable(true);
-            //     setIsDisabled(true);
-            // }
-            // if (
-            //     userSubType === 'PREMIUM' &&
-            //     clickData.data.data.clicks.ClickCount >= 500
-            // ) {
-            //     setShowSubscriptionTable(true);
-            //     setIsDisabled(true);
-            // } else {
-            //     setShowSubscriptionTable(false);
-            // }
         };
         checkClickCount();
     }, [baseURL, email, user, userSubType]);
@@ -158,6 +139,7 @@ const DashboardPage = () => {
             {showSubscriptionTable ? (
                 <SubscriptionPop
                     setShowSubscriptionTable={setShowSubscriptionTable}
+                    disabledIndex={disabledIndex}
                 />
             ) : (
                 ''

@@ -1,6 +1,7 @@
 'use client';
 import Navbar2 from '@/components/Navbar2';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 const LoginPage = () => {
@@ -10,6 +11,7 @@ const LoginPage = () => {
     const [mailError, setMailError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [showEmailSent, setShowEmailSent] = useState(false);
+    const router = useRouter();
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
@@ -24,6 +26,12 @@ const LoginPage = () => {
             setCurrentError(true);
             setErrorMessage(error.response.data.error);
         }
+    };
+
+    const handleDone = async (e: any) => {
+        e.preventDefault();
+
+        router.push('/login');
     };
 
     useEffect(() => {
@@ -117,6 +125,7 @@ const LoginPage = () => {
                               mb-[0.75rem]
                               md:w-[43rem] md:mt-[1.25rem] 
                               xlc:w-[25rem]'
+                                    onClick={handleDone}
                                 >
                                     <button
                                         type='button'

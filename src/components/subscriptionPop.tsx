@@ -34,8 +34,10 @@ const contents = [
 
 const SubscriptionPop = ({
     setShowSubscriptionTable,
+    disabledIndex,
 }: {
     setShowSubscriptionTable: any;
+    disabledIndex: any;
 }) => {
     const { user } = useContext<any>(Context);
     const stripePriceId = process.env.NEXT_PUBLIC_STRIPE_PRICE_ID;
@@ -57,6 +59,11 @@ const SubscriptionPop = ({
                 .then((data) => {
                     if (data.data.success === true) {
                         setShowSubscriptionTable(false);
+                    }
+                    if (data.data.success === 2) {
+                        // setShowSubscriptionTable(false);
+                        const body = data.data.url;
+                        window.location.href = body;
                     }
                 });
         } catch (error: any) {
@@ -210,6 +217,11 @@ const SubscriptionPop = ({
                                             }}
                                         >
                                             <button
+                                                disabled={
+                                                    index === disabledIndex
+                                                        ? true
+                                                        : false
+                                                }
                                                 className='flex bg-[#6F91F4] h-[2.75rem] 
                                             mt-[2rem] 
                                             w-full items-center rounded-full border-[1px] 
@@ -217,7 +229,8 @@ const SubscriptionPop = ({
                                             font-iBM_Plex_Sans tracking-[0.1rem]
                                             text-[1rem] font-[600] justify-center
                                             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
-                                            hover:bg-[#4771ED] active:bg-[#4063C7]'
+                                            hover:bg-[#4771ED] active:bg-[#4063C7]
+                                             disabled:bg-[#dad9d9]'
                                             >
                                                 Select plan
                                             </button>
@@ -245,6 +258,11 @@ const SubscriptionPop = ({
                                             }}
                                         >
                                             <button
+                                                disabled={
+                                                    index === disabledIndex
+                                                        ? true
+                                                        : false
+                                                }
                                                 className='flex bg-white h-[2.75rem] 
                                             mt-[2rem] 
                                             w-full items-center rounded-full border-[1px] 
@@ -253,7 +271,8 @@ const SubscriptionPop = ({
                                             text-[1rem] font-[600] justify-center
                                             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
                                             hover:border-[#4771ED] hover:bg-[#FAFAFA]
-                                            active:border-[#4063C7] active:bg-[#FAFAFA]'
+                                            active:border-[#4063C7] active:bg-[#FAFAFA]
+                                            disabled:bg-[#dad9d9]'
                                             >
                                                 Select plan
                                             </button>
