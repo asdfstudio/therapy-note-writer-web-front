@@ -88,6 +88,7 @@ const Menubody = ({
     setGenerateLoading,
     setShowTermsOfServicePop,
     setShowSendFeedbackPop,
+    updateTrackButtonCLick,
 }: {
     setMainSummary: any;
     setShowSubscriptionTable: any;
@@ -96,6 +97,7 @@ const Menubody = ({
     setGenerateLoading: any;
     setShowTermsOfServicePop: any;
     setShowSendFeedbackPop: any;
+    updateTrackButtonCLick: any;
 }) => {
     const [clientPronouns, setClientPronouns] = useState<any>([]);
     const [apptLocation, setApptLocation] = useState<any>('');
@@ -282,6 +284,9 @@ const Menubody = ({
                 .catch((error) => {
                     console.error(`Failed to keep click count: ${error}`);
                 });
+
+            // Update button click number to run the useEffect for updating click data
+            updateTrackButtonCLick();
         }
     };
 

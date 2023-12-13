@@ -26,6 +26,7 @@ const DashboardPage = () => {
     const [totalClick, setTotalClick] = useState(0);
     const [username, setUsername] = useState(null);
     const [disabledIndex, setDisabledIndex] = useState(4);
+    const [trackButtonCLick, setTrackButtonCLick] = useState(0);
 
     const [userSubType, setUserSubType] = useState(null);
 
@@ -71,6 +72,10 @@ const DashboardPage = () => {
         checkSubscription();
     }, [baseURL, userID]);
 
+    const updateTrackButtonCLick = () => {
+        setTrackButtonCLick(trackButtonCLick + 1);
+    };
+
     // Get click data
     useEffect(() => {
         const checkClickCount = async () => {
@@ -97,7 +102,7 @@ const DashboardPage = () => {
             }
         };
         checkClickCount();
-    }, [baseURL, email, user]);
+    }, [baseURL, email, user, trackButtonCLick]);
 
     const contents = [
         {
@@ -280,6 +285,7 @@ const DashboardPage = () => {
                     setGenerateLoading={setGenerateLoading}
                     setShowTermsOfServicePop={setShowTermsOfServicePop}
                     setShowSendFeedbackPop={setShowSendFeedbackPop}
+                    updateTrackButtonCLick={updateTrackButtonCLick}
                 />
             </div>
 
