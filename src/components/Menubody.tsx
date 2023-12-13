@@ -5,17 +5,7 @@ import TagsInputCustom from './TagsInputCustom';
 import axios from 'axios';
 import { Context } from '@/context/Context';
 
-const Pronouns = [
-    'She',
-    'Her',
-    'Hers',
-    'He',
-    'Him',
-    'His',
-    'They',
-    'Them',
-    'Theirs',
-];
+const Pronouns = ['She/Her/Hers', 'He/Him/His', 'They/Them/Theirs'];
 const AppointmentLocation = ['In person', 'Telehealth'];
 const Diagnosis = ['In person', 'Telehealth'];
 const Appearance = [
@@ -99,7 +89,7 @@ const Menubody = ({
     setShowSendFeedbackPop: any;
     updateTrackButtonCLick: any;
 }) => {
-    const [clientPronouns, setClientPronouns] = useState<any>([]);
+    const [clientPronouns, setClientPronouns] = useState<any>('');
     const [apptLocation, setApptLocation] = useState<any>('');
     const [diagnosis, setDiagnosis] = useState<any>([]);
     const [currentSymptoms, setCurrentSymptoms] = useState<any>('');
@@ -127,9 +117,9 @@ const Menubody = ({
     const { user } = useContext<any>(Context);
 
     useEffect(() => {
-        const local_clientPronouns = JSON.parse(
-            localStorage.getItem('LOCAL_clientPronouns')!
-        );
+        const local_clientPronouns = localStorage.getItem(
+            'LOCAL_clientPronouns'
+        )!;
         if (local_clientPronouns) setClientPronouns(local_clientPronouns);
 
         const local_apptLocation = localStorage.getItem('LOCAL_apptLocation');
@@ -147,10 +137,7 @@ const Menubody = ({
     }, []);
 
     useEffect(() => {
-        localStorage.setItem(
-            'LOCAL_clientPronouns',
-            JSON.stringify(clientPronouns)
-        );
+        localStorage.setItem('LOCAL_clientPronouns', clientPronouns);
         localStorage.setItem('LOCAL_apptLocation', apptLocation);
 
         // localStorage.setItem('LOCAL_diagnosis', diagnosis);
@@ -318,46 +305,38 @@ const Menubody = ({
                     Pronouns
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-1 sm:grid-cols-2
+                    md:grid-cols-1'
                 >
                     {Pronouns.map((item, index) => {
                         return (
                             <label
-                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
+                                className='text-[0.9375rem] 
+                            mr-[1.5rem] mb-[0.5rem] 
+                            border-[0.518px] border-[rgba(111,145,244,0.50)] w-[12rem]
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.4rem]'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
+                                {item}
                                 <input
-                                    type='checkbox'
+                                    type='radio'
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Pronouns'
+                                    checked={
+                                        item === clientPronouns ? true : false
+                                    }
+                                    className='checkbox appearance-none 
+                                    ring-[#F4776F] ring-[1.5px] 
+                                    checked:ring-[4px] checked:ring-[#F4776F]
+                                    ring-inset rounded-full
+                                    cursor-pointer 
+                                    w-[1rem] h-[1rem] ml-[1rem]'
                                     onChange={(event) => {
-                                        const currentValue = event.target.value;
-                                        if (
-                                            clientPronouns.includes(
-                                                currentValue
-                                            )
-                                        ) {
-                                            const tempArray = clientPronouns;
-                                            const index =
-                                                tempArray.indexOf(currentValue);
-                                            tempArray.splice(index, 1);
-                                            setClientPronouns(tempArray);
-                                        } else {
-                                            setClientPronouns(
-                                                (prevValue: any) => [
-                                                    ...prevValue,
-                                                    event.target.value,
-                                                ]
-                                            );
-                                        }
+                                        setClientPronouns(event.target.value);
                                     }}
                                 />
-                                {item}
-                                <span className='checkmark'></span>
                             </label>
                         );
                     })}
@@ -372,7 +351,7 @@ const Menubody = ({
                 </p>
                 <div
                     className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
-                    md:grid-cols-2'
+                    md:grid-cols-2 '
                 >
                     {AppointmentLocation.map((item, index) => {
                         return (
