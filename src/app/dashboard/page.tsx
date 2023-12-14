@@ -28,6 +28,15 @@ const DashboardPage = () => {
     const [disabledIndex, setDisabledIndex] = useState(4);
     const [trackButtonCLick, setTrackButtonCLick] = useState(0);
     const [privacyPolicyAccepted, setPrivacyPolicyAccepted] = useState(true);
+    const [subscriptionTitle, setSubscriptionTitle] = useState(
+        'Welcome to TherapyNoteWriter'
+    );
+    const [subscriptionSubTitle, setSubscriptionSubTitle] = useState(
+        `Select the plan that’s right for you`
+    );
+    // 2 reasons, first one is default one and 2nd one is for upgrade
+    const [subscriptinCallReason, setSubscriptinCallReason] =
+        useState('default');
 
     const [userSubType, setUserSubType] = useState(null);
 
@@ -36,12 +45,6 @@ const DashboardPage = () => {
 
     let userID = user && user.user._id;
     let email = user && user.user.email;
-    // let userSubType = user && user.user.subPackage;
-    // const clicksUsed = 4;
-    // const totalClick = 100;
-    // const totalClick = user && user.user.clickLimit;
-    // const username = 'fff';
-    // const username = user && user.user.username;
 
     // Set username
     useEffect(() => {
@@ -172,6 +175,15 @@ const DashboardPage = () => {
         setPrivacyPolicyAccepted(true);
     };
 
+    const handleUpgradeSubscriptionTable = () => {
+        setSubscriptionTitle('Upgrade Your Plan');
+        setSubscriptionSubTitle(
+            `You have reached the maximum number of notes this month based on your current subscription. Upgrade to create more notes now or wait until next month's reset on December 8, 2023.`
+        );
+        setSubscriptinCallReason('upgrade');
+        setShowSubscriptionTable(true);
+    };
+
     return (
         <div className='flex md:justify-between'>
             {/* Subscription pop-up */}
@@ -179,6 +191,10 @@ const DashboardPage = () => {
                 <SubscriptionPop
                     setShowSubscriptionTable={setShowSubscriptionTable}
                     disabledIndex={disabledIndex}
+                    username={username}
+                    title={subscriptionTitle}
+                    subTitle={subscriptionSubTitle}
+                    subReason={subscriptinCallReason}
                 />
             ) : (
                 ''
@@ -343,6 +359,9 @@ const DashboardPage = () => {
                     clicksUsed={clicksUsed}
                     totalClick={totalClick}
                     setShowSubscriptionTable={setShowSubscriptionTable}
+                    handleUpgradeSubscriptionTable={
+                        handleUpgradeSubscriptionTable
+                    }
                     generateLoading={generateLoading}
                 />
             </div>

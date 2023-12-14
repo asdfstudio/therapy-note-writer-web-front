@@ -24,6 +24,7 @@ const DashboardHome = ({
     clicksUsed,
     totalClick,
     setShowSubscriptionTable,
+    handleUpgradeSubscriptionTable,
     generateLoading,
 }: {
     handleShowMenu: any;
@@ -31,6 +32,7 @@ const DashboardHome = ({
     clicksUsed: number;
     totalClick: number;
     setShowSubscriptionTable: any;
+    handleUpgradeSubscriptionTable: any;
     generateLoading: any;
 }) => {
     const [clickAreaCovered, setClickAreaCovered] = useState(0);
@@ -64,9 +66,7 @@ const DashboardHome = ({
                         notes generated.
                         <span
                             className='font-[600] text-[#3157C9] cursor-pointer'
-                            onClick={() => {
-                                setShowSubscriptionTable(true);
-                            }}
+                            onClick={handleUpgradeSubscriptionTable}
                         >
                             {' '}
                             Upgrade for more
