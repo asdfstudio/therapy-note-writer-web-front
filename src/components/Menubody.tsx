@@ -388,7 +388,7 @@ const Menubody = ({
                     Appointment Location
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
                     md:grid-cols-2 '
                 >
                     {AppointmentLocation.map((item, index) => {
@@ -539,8 +539,8 @@ const Menubody = ({
                     Appearance
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Appearance.map((item, index) => {
                         return (
@@ -586,8 +586,8 @@ const Menubody = ({
                     Speech
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Speech.map((item, index) => {
                         return (
@@ -633,8 +633,8 @@ const Menubody = ({
                     Affect
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Affect.map((item, index) => {
                         return (
@@ -680,8 +680,8 @@ const Menubody = ({
                     Mood
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Mood.map((item, index) => {
                         return (
@@ -727,8 +727,8 @@ const Menubody = ({
                     Behavior
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Behavior.map((item, index) => {
                         return (
@@ -774,8 +774,8 @@ const Menubody = ({
                     Delusions
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Delusions.map((item, index) => {
                         return (
@@ -821,8 +821,8 @@ const Menubody = ({
                     Suicidal Ideation
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {SuicidalIdeation.map((item, index) => {
                         return (
@@ -874,8 +874,8 @@ const Menubody = ({
                     Homicidal Ideation
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {HomicidalIdeation.map((item, index) => {
                         return (
@@ -921,8 +921,8 @@ const Menubody = ({
                     Self-Injuring Behavior
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Self_Injuring_Behavior.map((item, index) => {
                         return (
@@ -968,8 +968,8 @@ const Menubody = ({
                     Insight
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Insight.map((item, index) => {
                         return (
@@ -1015,8 +1015,8 @@ const Menubody = ({
                     Judgment
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Judgment.map((item, index) => {
                         return (
@@ -1062,8 +1062,8 @@ const Menubody = ({
                     Oriented
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Oriented.map((item, index) => {
                         return (
@@ -1109,8 +1109,8 @@ const Menubody = ({
                     Eye Contact
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {EyeContact.map((item, index) => {
                         return (
