@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import TagsInputCustom from './TagsInputCustom';
 import axios from 'axios';
 import { Context } from '@/context/Context';
+import { useRouter } from 'next/navigation';
 
 const Pronouns = ['She/Her/Hers', 'He/Him/His', 'They/Them/Theirs'];
 const AppointmentLocation = ['In person', 'Telehealth'];
@@ -76,7 +77,7 @@ const Menubody = ({
     clicksUsed,
     totalClick,
     setGenerateLoading,
-    setShowTermsOfServicePop,
+    // setShowTermsOfServicePop,
     setShowSendFeedbackPop,
     updateTrackButtonCLick,
 }: {
@@ -85,7 +86,7 @@ const Menubody = ({
     clicksUsed: any;
     totalClick: any;
     setGenerateLoading: any;
-    setShowTermsOfServicePop: any;
+    // setShowTermsOfServicePop: any;
     setShowSendFeedbackPop: any;
     updateTrackButtonCLick: any;
 }) => {
@@ -115,83 +116,84 @@ const Menubody = ({
         useState(false);
 
     const { user } = useContext<any>(Context);
+    const router = useRouter();
 
-    useEffect(() => {
-        const local_clientPronouns = localStorage.getItem(
-            'LOCAL_clientPronouns'
-        )!;
-        if (local_clientPronouns) setClientPronouns(local_clientPronouns);
+    // useEffect(() => {
+    //     const local_clientPronouns = localStorage.getItem(
+    //         'LOCAL_clientPronouns'
+    //     )!;
+    //     if (local_clientPronouns) setClientPronouns(local_clientPronouns);
 
-        const local_apptLocation = localStorage.getItem('LOCAL_apptLocation');
-        if (local_apptLocation) setApptLocation(local_apptLocation);
+    //     const local_apptLocation = localStorage.getItem('LOCAL_apptLocation');
+    //     if (local_apptLocation) setApptLocation(local_apptLocation);
 
-        const local_diagnosis = JSON.parse(
-            localStorage.getItem('LOCAL_diagnosis')!
-        );
-        if (local_diagnosis) setDiagnosis(local_diagnosis);
+    //     const local_diagnosis = JSON.parse(
+    //         localStorage.getItem('LOCAL_diagnosis')!
+    //     );
+    //     if (local_diagnosis) setDiagnosis(local_diagnosis);
 
-        const local_currentSymptoms = localStorage.getItem(
-            'LOCAL_currentSymptoms'
-        );
-        if (local_currentSymptoms) setCurrentSymptoms(local_currentSymptoms);
-    }, []);
+    //     const local_currentSymptoms = localStorage.getItem(
+    //         'LOCAL_currentSymptoms'
+    //     );
+    //     if (local_currentSymptoms) setCurrentSymptoms(local_currentSymptoms);
+    // }, []);
 
-    useEffect(() => {
-        localStorage.setItem('LOCAL_clientPronouns', clientPronouns);
-        localStorage.setItem('LOCAL_apptLocation', apptLocation);
+    // useEffect(() => {
+    //     localStorage.setItem('LOCAL_clientPronouns', clientPronouns);
+    //     localStorage.setItem('LOCAL_apptLocation', apptLocation);
 
-        // localStorage.setItem('LOCAL_diagnosis', diagnosis);
-        localStorage.setItem('LOCAL_diagnosis', JSON.stringify(diagnosis));
+    //     // localStorage.setItem('LOCAL_diagnosis', diagnosis);
+    //     localStorage.setItem('LOCAL_diagnosis', JSON.stringify(diagnosis));
 
-        localStorage.setItem('LOCAL_currentSymptoms', currentSymptoms);
-        // localStorage.setItem(
-        //     'LOCAL_currentSymptoms',
-        //     JSON.stringify(currentSymptoms)
-        // );
+    //     localStorage.setItem('LOCAL_currentSymptoms', currentSymptoms);
+    //     // localStorage.setItem(
+    //     //     'LOCAL_currentSymptoms',
+    //     //     JSON.stringify(currentSymptoms)
+    //     // );
 
-        localStorage.setItem('LOCAL_discussed', discussed);
-        localStorage.setItem(
-            'LOCAL_interventions',
-            JSON.stringify(interventions)
-        );
-        localStorage.setItem('LOCAL_appearance', JSON.stringify(appearance));
-        localStorage.setItem('LOCAL_speech', JSON.stringify(speech));
-        localStorage.setItem('LOCAL_affect', JSON.stringify(affect));
-        localStorage.setItem('LOCAL_mood', JSON.stringify(mood));
-        localStorage.setItem('LOCAL_behavior', JSON.stringify(behavior));
-        localStorage.setItem('LOCAL_delusion', JSON.stringify(delusion));
-        localStorage.setItem('LOCAL_suicidal', JSON.stringify(suicidal));
-        localStorage.setItem('LOCAL_homicidal', JSON.stringify(homicidal));
-        localStorage.setItem('LOCAL_selfInjury', JSON.stringify(selfInjury));
-        localStorage.setItem('LOCAL_insight', JSON.stringify(insight));
-        localStorage.setItem('LOCAL_judgment', JSON.stringify(judgment));
-        localStorage.setItem('LOCAL_oriented', JSON.stringify(oriented));
-        localStorage.setItem('LOCAL_eyeContact', JSON.stringify(eyeContact));
-        localStorage.setItem('LOCAL_homework', homework);
-        localStorage.setItem('LOCAL_nextAppt', nextAppt);
-    }, [
-        affect,
-        appearance,
-        apptLocation,
-        behavior,
-        clientPronouns,
-        currentSymptoms,
-        delusion,
-        diagnosis,
-        discussed,
-        eyeContact,
-        homework,
-        homicidal,
-        insight,
-        interventions,
-        judgment,
-        mood,
-        nextAppt,
-        oriented,
-        selfInjury,
-        speech,
-        suicidal,
-    ]);
+    //     localStorage.setItem('LOCAL_discussed', discussed);
+    //     localStorage.setItem(
+    //         'LOCAL_interventions',
+    //         JSON.stringify(interventions)
+    //     );
+    //     localStorage.setItem('LOCAL_appearance', JSON.stringify(appearance));
+    //     localStorage.setItem('LOCAL_speech', JSON.stringify(speech));
+    //     localStorage.setItem('LOCAL_affect', JSON.stringify(affect));
+    //     localStorage.setItem('LOCAL_mood', JSON.stringify(mood));
+    //     localStorage.setItem('LOCAL_behavior', JSON.stringify(behavior));
+    //     localStorage.setItem('LOCAL_delusion', JSON.stringify(delusion));
+    //     localStorage.setItem('LOCAL_suicidal', JSON.stringify(suicidal));
+    //     localStorage.setItem('LOCAL_homicidal', JSON.stringify(homicidal));
+    //     localStorage.setItem('LOCAL_selfInjury', JSON.stringify(selfInjury));
+    //     localStorage.setItem('LOCAL_insight', JSON.stringify(insight));
+    //     localStorage.setItem('LOCAL_judgment', JSON.stringify(judgment));
+    //     localStorage.setItem('LOCAL_oriented', JSON.stringify(oriented));
+    //     localStorage.setItem('LOCAL_eyeContact', JSON.stringify(eyeContact));
+    //     localStorage.setItem('LOCAL_homework', homework);
+    //     localStorage.setItem('LOCAL_nextAppt', nextAppt);
+    // }, [
+    //     affect,
+    //     appearance,
+    //     apptLocation,
+    //     behavior,
+    //     clientPronouns,
+    //     currentSymptoms,
+    //     delusion,
+    //     diagnosis,
+    //     discussed,
+    //     eyeContact,
+    //     homework,
+    //     homicidal,
+    //     insight,
+    //     interventions,
+    //     judgment,
+    //     mood,
+    //     nextAppt,
+    //     oriented,
+    //     selfInjury,
+    //     speech,
+    //     suicidal,
+    // ]);
 
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -277,6 +279,31 @@ const Menubody = ({
         }
     };
 
+    // Clear form data
+    const handleClearFormData = () => {
+        setClientPronouns('');
+        setApptLocation('');
+        setDiagnosis([]);
+        setCurrentSymptoms('');
+        setDiscussed('');
+        setInterventions([]);
+        setAppearance([]);
+        setSpeech([]);
+        setAffect([]);
+        setMood([]);
+        setBehavior([]);
+        setDelusion([]);
+        setSuicidal([]);
+        setHomicidal([]);
+        setSelfInjury([]);
+        setInsight([]);
+        setJudgment([]);
+        setOriented([]);
+        setEyeContact([]);
+        setHomework('');
+        setNextAppt('');
+    };
+
     return (
         <div
             className='bg-[#12192E] w-screen h-screen 
@@ -296,6 +323,17 @@ const Menubody = ({
                 >
                     Session Description
                 </p>
+
+                <div
+                    onClick={handleClearFormData}
+                    className='text-[0.9375rem] 
+                            mr-[1.5rem] mb-[0.5rem] 
+                            border-[0.518px] border-[rgba(111,145,244,0.50)] w-[12rem]
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.4rem]
+                            hover:bg-[rgba(111,145,244,1)] cursor-pointer'
+                >
+                    <p>Clear Form Data</p>
+                </div>
 
                 {/* Options Start */}
                 <p
@@ -1225,7 +1263,8 @@ const Menubody = ({
                 >
                     <p
                         onClick={() => {
-                            setShowTermsOfServicePop(true);
+                            // setShowTermsOfServicePop(true);
+                            router.push('/termsofservice');
                         }}
                     >
                         terms of servcie

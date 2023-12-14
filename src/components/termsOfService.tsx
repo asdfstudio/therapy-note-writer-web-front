@@ -4,12 +4,21 @@ import React, { useState } from 'react';
 import data from '../../public/data.json';
 
 const TermsOfService = ({
-    setShowTermsOfServicePop,
+    // setShowTermsOfServicePop,
+    setCancel,
+    setConfirm,
 }: {
-    setShowTermsOfServicePop: any;
+    // setShowTermsOfServicePop: any;
+    setCancel: any;
+    setConfirm: any;
 }) => {
     const handleClick = () => {
-        setShowTermsOfServicePop(false);
+        // setShowTermsOfServicePop(false);
+        setConfirm();
+    };
+
+    const handleCancel = () => {
+        setCancel();
     };
 
     return (
@@ -76,7 +85,7 @@ const TermsOfService = ({
                             <div
                                 className='w-[16.68rem] h-[2.62rem] mb-[1.5rem]
                                                 self-center'
-                                onClick={handleClick}
+                                onClick={handleCancel}
                             >
                                 <button
                                     className='flex bg-white h-[2.75rem] 

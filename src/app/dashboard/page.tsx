@@ -18,7 +18,7 @@ const DashboardPage = () => {
     const [showNavMenu, setShowNavMenu] = useState(false);
     const [mainSummary, setMainSummary] = useState('');
     const [showSubscriptionTable, setShowSubscriptionTable] = useState(false);
-    const [termsOfServiceAccepted, setTermsOfServiceAccepted] = useState(false);
+    // const [termsOfServiceAccepted, setTermsOfServiceAccepted] = useState(false);
     const [showTermsOfServicePop, setShowTermsOfServicePop] = useState(false);
     const [generateLoading, setGenerateLoading] = useState(false);
     const [showSendFeedbackPop, setShowSendFeedbackPop] = useState(false);
@@ -27,6 +27,7 @@ const DashboardPage = () => {
     const [username, setUsername] = useState(null);
     const [disabledIndex, setDisabledIndex] = useState(4);
     const [trackButtonCLick, setTrackButtonCLick] = useState(0);
+    const [privacyPolicyAccepted, setPrivacyPolicyAccepted] = useState(true);
 
     const [userSubType, setUserSubType] = useState(null);
 
@@ -138,6 +139,39 @@ const DashboardPage = () => {
     const handleSubscription = () => {
         setShowSubscriptionTable(false);
     };
+
+    // Get terms of service check
+    useEffect(() => {
+        const getTermsOfService = async () => {
+            const result = await axios.post(
+                `${baseURL}/api/auth/getTermsOfService`,
+                {
+                    email: email,
+                }
+            );
+
+            if (result.data.success === true) {
+                const checkResult = result.data.privacyPolicyAccepted;
+                setPrivacyPolicyAccepted(checkResult);
+            }
+        };
+        getTermsOfService();
+    }, [baseURL, email, privacyPolicyAccepted]);
+
+    const acceptTermsOfService = async () => {
+        const result = await axios.post(`${baseURL}/api/auth/termsOfService`, {
+            email: email,
+        });
+
+        if (result.data.success === true) {
+            setPrivacyPolicyAccepted(result.data.privacyPolicyAccepted);
+        }
+    };
+
+    const cancelTermsOfService = () => {
+        setPrivacyPolicyAccepted(true);
+    };
+
     return (
         <div className='flex md:justify-between'>
             {/* Subscription pop-up */}
@@ -151,9 +185,11 @@ const DashboardPage = () => {
             )}
 
             {/* Terms of Service page pop-up */}
-            {showTermsOfServicePop ? (
+            {!privacyPolicyAccepted ? (
                 <TermsOfService
-                    setShowTermsOfServicePop={setShowTermsOfServicePop}
+                    // setShowTermsOfServicePop={setShowTermsOfServicePop}
+                    setConfirm={acceptTermsOfService}
+                    setCancel={cancelTermsOfService}
                 />
             ) : (
                 ''
@@ -283,7 +319,7 @@ const DashboardPage = () => {
                     clicksUsed={clicksUsed}
                     totalClick={totalClick}
                     setGenerateLoading={setGenerateLoading}
-                    setShowTermsOfServicePop={setShowTermsOfServicePop}
+                    // setShowTermsOfServicePop={setShowTermsOfServicePop}
                     setShowSendFeedbackPop={setShowSendFeedbackPop}
                     updateTrackButtonCLick={updateTrackButtonCLick}
                 />
