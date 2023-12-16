@@ -10,7 +10,8 @@ const contents = [
         title: 'Free',
         amount: '$0',
         desc: 'Saved 10 hours on week 1. No more busy work for me. Only patient care. Just love the service. Easy, fast and very convenient.',
-        point_1: '5 notes generated per month, completely free',
+        point_1_part_1: '5 notes generated ',
+        point_1_part_2: 'per month, completely free',
         point_2: 'Simple and easy-to-use interface',
         subTitle: 'PhD in Mental Health',
     },
@@ -18,7 +19,8 @@ const contents = [
         title: 'Basic',
         amount: '$10',
         desc: 'Everything is just better with this tool. Highly suggested. I wish I had known about this earlier.',
-        point_1: '100 notes generated per month',
+        point_1_part_1: '100 notes generated ',
+        point_1_part_2: 'per month',
         point_2: 'Suitable for therapists with a moderate caseload',
         subTitle: 'PhD in Mental Health',
     },
@@ -26,7 +28,8 @@ const contents = [
         title: 'Premium',
         amount: '$20',
         desc: 'Saved 10 hours on week 1. No more busy work for me. Only patient care. Just love the service. Easy, fast and very convenient.',
-        point_1: '500 notes generated per month',
+        point_1_part_1: '500 notes generated ',
+        point_1_part_2: 'per month',
         point_2: 'Perfect for therapists with a large caseload',
         subTitle: 'PhD in Mental Health',
     },
@@ -35,9 +38,17 @@ const contents = [
 const SubscriptionPop = ({
     setShowSubscriptionTable,
     disabledIndex,
+    username,
+    title,
+    subTitle,
+    subReason,
 }: {
     setShowSubscriptionTable: any;
     disabledIndex: any;
+    username: any;
+    title: any;
+    subTitle: any;
+    subReason: any;
 }) => {
     const { user } = useContext<any>(Context);
     const stripePriceId = process.env.NEXT_PUBLIC_STRIPE_PRICE_ID;
@@ -82,21 +93,42 @@ const SubscriptionPop = ({
                     drop-shadow-lg bg-gradient-to-b
                     from-[#f6f7f8] to-[rgba(240,244,255,1)]'
             >
+                {/* Close icon */}
+                <span
+                    onClick={() => {
+                        setShowSubscriptionTable(false);
+                    }}
+                    className={`absolute right-[3.38rem] ${
+                        subReason === 'upgrade' ? 'block' : 'hidden'
+                    } cursor-pointer`}
+                >
+                    <Image
+                        src={'/icon-close-color.svg'}
+                        alt=''
+                        width={1200}
+                        height={550}
+                        className={`w-[1.375rem]  `}
+                    />
+                </span>
                 {/* Title */}
                 <p
-                    className='font-poynter_Oldstyle_Display font-[400]
+                    className={`font-poynter_Oldstyle_Display font-[400]
                         text-[2.8125rem] text-[#29375F] leading-[3.09375rem]
-                        mb-[1.25rem]'
+                        mb-[1.25rem] mx-[2.81rem] ${
+                            subReason === 'upgrade'
+                                ? 'self-start'
+                                : 'self-center'
+                        } `}
                 >
-                    Welcome to TherapyNoteWriter, Adam
+                    {title}, {username}
                 </p>
                 {/* paragraph */}
                 <p
                     className='font-iBM_Plex_Sans font-[500]
                         text-[1.25rem] text-[#29375F] leading-[1.75rem]
-                        mb-[2rem]'
+                        mb-[2rem] mx-[2.81rem]'
                 >
-                    Select the plan that’s right for you
+                    {subTitle}
                 </p>
 
                 {/* Pricing Card */}
@@ -105,11 +137,7 @@ const SubscriptionPop = ({
                         return (
                             <div
                                 key={index}
-                                className={`w-[21.25rem] h-auto ${
-                                    index === 2
-                                        ? 'bg-[#CAD8FB] border-[#3157C9] border-[1px]'
-                                        : 'bg-[#fff]'
-                                }  
+                                className={`w-[21.25rem] h-auto bg-[#fff]
                             rounded-[1.125rem]
                             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)] mx-[1rem]
                             flex flex-col 
@@ -132,7 +160,7 @@ const SubscriptionPop = ({
                                             height={550}
                                             draggable={false}
                                             className='absolute w-[8.625rem] h-auto mr-[0.44rem]
-                                                right-[-1.3rem] top-[2.7rem]'
+                                                right-[-1.3rem] top-[2.2rem]'
                                         />
                                     ) : (
                                         ''
@@ -147,13 +175,13 @@ const SubscriptionPop = ({
                                     <p className='mb-[2rem]'>
                                         <span
                                             className='text-[2.81rem] text-[#29375F]
-                                                font-[600 font-poynter_Oldstyle_Display]'
+                                                font-[600] font-poynter_Oldstyle_Display'
                                         >
                                             {item.amount}
                                         </span>
                                         <span
                                             className='text-[1.5rem] text-[#29375F]
-                                        font-[400] italic  font-poynter_Oldstyle_Display]'
+                                        font-[400] italic  font-poynter_Oldstyle_Display'
                                         >
                                             /month
                                         </span>
@@ -174,7 +202,10 @@ const SubscriptionPop = ({
                                             className='font-iBM_Plex_Sans font-[400]
                                         leading-[1.35rem] text-[1.125rem]'
                                         >
-                                            {item.point_1}
+                                            <span className='font-[700]'>
+                                                {item.point_1_part_1}
+                                            </span>
+                                            {item.point_1_part_2}
                                         </p>
                                     </div>
                                     <div className='flex items-baseline'>
@@ -194,7 +225,47 @@ const SubscriptionPop = ({
                                         </p>
                                     </div>
 
-                                    {index === 2 ? (
+                                    <div
+                                        className='w-[16.68rem] h-[2.62rem] mb-[1.5rem]
+                                                self-center'
+                                        onClick={() => {
+                                            // priceId, sub, userID, clickLimit
+                                            let sub = 'FREE';
+                                            let clickLimit = 5;
+                                            if (index === 1) {
+                                                sub = 'BASIC';
+                                                clickLimit = 100;
+                                            } else if (index === 2) {
+                                                sub = 'PREMIUM';
+                                                clickLimit = 500;
+                                            }
+
+                                            handleSubscription(sub, clickLimit);
+                                        }}
+                                    >
+                                        <button
+                                            disabled={
+                                                index === disabledIndex
+                                                    ? true
+                                                    : false
+                                            }
+                                            className='flex bg-[#3052B5] h-[2.75rem] 
+                                            mt-[2rem] 
+                                            w-full items-center rounded-full border-[1px] 
+                                            border-[#3157C9] uppercase text-[#fff] 
+                                            font-iBM_Plex_Sans tracking-[0.1rem]
+                                            text-[1rem] font-[600] justify-center
+                                            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
+                                            hover:bg-white hover:text-[#3052B5]
+                                            active:bg-white active:text-[#3052B5]
+                                            disabled:bg-white disabled:text-[#9e9d9d] 
+                                            disabled:cursor-not-allowed'
+                                        >
+                                            Select plan
+                                        </button>
+                                    </div>
+
+                                    {/* {index === 2 ? (
                                         <div
                                             className='w-[16.68rem] h-[2.62rem] mb-[1.5rem]
                                                  self-center'
@@ -218,7 +289,7 @@ const SubscriptionPop = ({
                                         >
                                             <button
                                                 disabled={
-                                                    index === disabledIndex
+                                                    disabledIndex === index
                                                         ? true
                                                         : false
                                                 }
@@ -277,7 +348,7 @@ const SubscriptionPop = ({
                                                 Select plan
                                             </button>
                                         </div>
-                                    )}
+                                    )} */}
                                 </div>
                             </div>
                         );

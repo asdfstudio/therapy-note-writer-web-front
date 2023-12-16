@@ -4,18 +4,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import TagsInputCustom from './TagsInputCustom';
 import axios from 'axios';
 import { Context } from '@/context/Context';
+import { useRouter } from 'next/navigation';
 
-const Pronouns = [
-    'She',
-    'Her',
-    'Hers',
-    'He',
-    'Him',
-    'His',
-    'They',
-    'Them',
-    'Theirs',
-];
+const Pronouns = ['She/Her/Hers', 'He/Him/His', 'They/Them/Theirs'];
 const AppointmentLocation = ['In person', 'Telehealth'];
 const Diagnosis = ['In person', 'Telehealth'];
 const Appearance = [
@@ -86,18 +77,20 @@ const Menubody = ({
     clicksUsed,
     totalClick,
     setGenerateLoading,
-    setShowTermsOfServicePop,
+    // setShowTermsOfServicePop,
     setShowSendFeedbackPop,
+    updateTrackButtonCLick,
 }: {
     setMainSummary: any;
     setShowSubscriptionTable: any;
     clicksUsed: any;
     totalClick: any;
     setGenerateLoading: any;
-    setShowTermsOfServicePop: any;
+    // setShowTermsOfServicePop: any;
     setShowSendFeedbackPop: any;
+    updateTrackButtonCLick: any;
 }) => {
-    const [clientPronouns, setClientPronouns] = useState<any>([]);
+    const [clientPronouns, setClientPronouns] = useState<any>('');
     const [apptLocation, setApptLocation] = useState<any>('');
     const [diagnosis, setDiagnosis] = useState<any>([]);
     const [currentSymptoms, setCurrentSymptoms] = useState<any>('');
@@ -123,86 +116,84 @@ const Menubody = ({
         useState(false);
 
     const { user } = useContext<any>(Context);
+    const router = useRouter();
 
-    useEffect(() => {
-        const local_clientPronouns = JSON.parse(
-            localStorage.getItem('LOCAL_clientPronouns')!
-        );
-        if (local_clientPronouns) setClientPronouns(local_clientPronouns);
+    // useEffect(() => {
+    //     const local_clientPronouns = localStorage.getItem(
+    //         'LOCAL_clientPronouns'
+    //     )!;
+    //     if (local_clientPronouns) setClientPronouns(local_clientPronouns);
 
-        const local_apptLocation = localStorage.getItem('LOCAL_apptLocation');
-        if (local_apptLocation) setApptLocation(local_apptLocation);
+    //     const local_apptLocation = localStorage.getItem('LOCAL_apptLocation');
+    //     if (local_apptLocation) setApptLocation(local_apptLocation);
 
-        const local_diagnosis = JSON.parse(
-            localStorage.getItem('LOCAL_diagnosis')!
-        );
-        if (local_diagnosis) setDiagnosis(local_diagnosis);
+    //     const local_diagnosis = JSON.parse(
+    //         localStorage.getItem('LOCAL_diagnosis')!
+    //     );
+    //     if (local_diagnosis) setDiagnosis(local_diagnosis);
 
-        const local_currentSymptoms = localStorage.getItem(
-            'LOCAL_currentSymptoms'
-        );
-        if (local_currentSymptoms) setCurrentSymptoms(local_currentSymptoms);
-    }, []);
+    //     const local_currentSymptoms = localStorage.getItem(
+    //         'LOCAL_currentSymptoms'
+    //     );
+    //     if (local_currentSymptoms) setCurrentSymptoms(local_currentSymptoms);
+    // }, []);
 
-    useEffect(() => {
-        localStorage.setItem(
-            'LOCAL_clientPronouns',
-            JSON.stringify(clientPronouns)
-        );
-        localStorage.setItem('LOCAL_apptLocation', apptLocation);
+    // useEffect(() => {
+    //     localStorage.setItem('LOCAL_clientPronouns', clientPronouns);
+    //     localStorage.setItem('LOCAL_apptLocation', apptLocation);
 
-        // localStorage.setItem('LOCAL_diagnosis', diagnosis);
-        localStorage.setItem('LOCAL_diagnosis', JSON.stringify(diagnosis));
+    //     // localStorage.setItem('LOCAL_diagnosis', diagnosis);
+    //     localStorage.setItem('LOCAL_diagnosis', JSON.stringify(diagnosis));
 
-        localStorage.setItem('LOCAL_currentSymptoms', currentSymptoms);
-        // localStorage.setItem(
-        //     'LOCAL_currentSymptoms',
-        //     JSON.stringify(currentSymptoms)
-        // );
+    //     localStorage.setItem('LOCAL_currentSymptoms', currentSymptoms);
+    //     // localStorage.setItem(
+    //     //     'LOCAL_currentSymptoms',
+    //     //     JSON.stringify(currentSymptoms)
+    //     // );
 
-        localStorage.setItem('LOCAL_discussed', discussed);
-        localStorage.setItem(
-            'LOCAL_interventions',
-            JSON.stringify(interventions)
-        );
-        localStorage.setItem('LOCAL_appearance', JSON.stringify(appearance));
-        localStorage.setItem('LOCAL_speech', JSON.stringify(speech));
-        localStorage.setItem('LOCAL_affect', JSON.stringify(affect));
-        localStorage.setItem('LOCAL_mood', JSON.stringify(mood));
-        localStorage.setItem('LOCAL_behavior', JSON.stringify(behavior));
-        localStorage.setItem('LOCAL_delusion', JSON.stringify(delusion));
-        localStorage.setItem('LOCAL_suicidal', JSON.stringify(suicidal));
-        localStorage.setItem('LOCAL_homicidal', JSON.stringify(homicidal));
-        localStorage.setItem('LOCAL_selfInjury', JSON.stringify(selfInjury));
-        localStorage.setItem('LOCAL_insight', JSON.stringify(insight));
-        localStorage.setItem('LOCAL_judgment', JSON.stringify(judgment));
-        localStorage.setItem('LOCAL_oriented', JSON.stringify(oriented));
-        localStorage.setItem('LOCAL_eyeContact', JSON.stringify(eyeContact));
-        localStorage.setItem('LOCAL_homework', homework);
-        localStorage.setItem('LOCAL_nextAppt', nextAppt);
-    }, [
-        affect,
-        appearance,
-        apptLocation,
-        behavior,
-        clientPronouns,
-        currentSymptoms,
-        delusion,
-        diagnosis,
-        discussed,
-        eyeContact,
-        homework,
-        homicidal,
-        insight,
-        interventions,
-        judgment,
-        mood,
-        nextAppt,
-        oriented,
-        selfInjury,
-        speech,
-        suicidal,
-    ]);
+    //     localStorage.setItem('LOCAL_discussed', discussed);
+    //     localStorage.setItem(
+    //         'LOCAL_interventions',
+    //         JSON.stringify(interventions)
+    //     );
+    //     localStorage.setItem('LOCAL_appearance', JSON.stringify(appearance));
+    //     localStorage.setItem('LOCAL_speech', JSON.stringify(speech));
+    //     localStorage.setItem('LOCAL_affect', JSON.stringify(affect));
+    //     localStorage.setItem('LOCAL_mood', JSON.stringify(mood));
+    //     localStorage.setItem('LOCAL_behavior', JSON.stringify(behavior));
+    //     localStorage.setItem('LOCAL_delusion', JSON.stringify(delusion));
+    //     localStorage.setItem('LOCAL_suicidal', JSON.stringify(suicidal));
+    //     localStorage.setItem('LOCAL_homicidal', JSON.stringify(homicidal));
+    //     localStorage.setItem('LOCAL_selfInjury', JSON.stringify(selfInjury));
+    //     localStorage.setItem('LOCAL_insight', JSON.stringify(insight));
+    //     localStorage.setItem('LOCAL_judgment', JSON.stringify(judgment));
+    //     localStorage.setItem('LOCAL_oriented', JSON.stringify(oriented));
+    //     localStorage.setItem('LOCAL_eyeContact', JSON.stringify(eyeContact));
+    //     localStorage.setItem('LOCAL_homework', homework);
+    //     localStorage.setItem('LOCAL_nextAppt', nextAppt);
+    // }, [
+    //     affect,
+    //     appearance,
+    //     apptLocation,
+    //     behavior,
+    //     clientPronouns,
+    //     currentSymptoms,
+    //     delusion,
+    //     diagnosis,
+    //     discussed,
+    //     eyeContact,
+    //     homework,
+    //     homicidal,
+    //     insight,
+    //     interventions,
+    //     judgment,
+    //     mood,
+    //     nextAppt,
+    //     oriented,
+    //     selfInjury,
+    //     speech,
+    //     suicidal,
+    // ]);
 
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -282,7 +273,35 @@ const Menubody = ({
                 .catch((error) => {
                     console.error(`Failed to keep click count: ${error}`);
                 });
+
+            // Update button click number to run the useEffect for updating click data
+            updateTrackButtonCLick();
         }
+    };
+
+    // Clear form data
+    const handleClearFormData = () => {
+        setClientPronouns('');
+        setApptLocation('');
+        setDiagnosis([]);
+        setCurrentSymptoms('');
+        setDiscussed('');
+        setInterventions([]);
+        setAppearance([]);
+        setSpeech([]);
+        setAffect([]);
+        setMood([]);
+        setBehavior([]);
+        setDelusion([]);
+        setSuicidal([]);
+        setHomicidal([]);
+        setSelfInjury([]);
+        setInsight([]);
+        setJudgment([]);
+        setOriented([]);
+        setEyeContact([]);
+        setHomework('');
+        setNextAppt('');
     };
 
     return (
@@ -305,6 +324,17 @@ const Menubody = ({
                     Session Description
                 </p>
 
+                <div
+                    onClick={handleClearFormData}
+                    className='text-[0.9375rem] 
+                            mr-[1.5rem] mb-[0.5rem] 
+                            border-[0.518px] border-[rgba(111,145,244,0.50)] w-[12rem]
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.4rem]
+                            hover:bg-[rgba(111,145,244,1)] cursor-pointer'
+                >
+                    <p>Clear Form Data</p>
+                </div>
+
                 {/* Options Start */}
                 <p
                     className=' opacity-[0.6] font-[400]
@@ -313,46 +343,38 @@ const Menubody = ({
                     Pronouns
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-1 sm:grid-cols-2
+                    md:grid-cols-1'
                 >
                     {Pronouns.map((item, index) => {
                         return (
                             <label
-                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
+                                className='text-[0.9375rem] 
+                            mr-[1.5rem] mb-[0.5rem] 
+                            border-[0.518px] border-[rgba(111,145,244,0.50)] w-[12rem]
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.4rem]'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
+                                {item}
                                 <input
-                                    type='checkbox'
+                                    type='radio'
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Pronouns'
+                                    checked={
+                                        item === clientPronouns ? true : false
+                                    }
+                                    className='checkbox appearance-none 
+                                    ring-[#F4776F] ring-[1.5px] 
+                                    checked:ring-[4px] checked:ring-[#F4776F]
+                                    ring-inset rounded-full
+                                    cursor-pointer 
+                                    w-[1rem] h-[1rem] ml-[1rem]'
                                     onChange={(event) => {
-                                        const currentValue = event.target.value;
-                                        if (
-                                            clientPronouns.includes(
-                                                currentValue
-                                            )
-                                        ) {
-                                            const tempArray = clientPronouns;
-                                            const index =
-                                                tempArray.indexOf(currentValue);
-                                            tempArray.splice(index, 1);
-                                            setClientPronouns(tempArray);
-                                        } else {
-                                            setClientPronouns(
-                                                (prevValue: any) => [
-                                                    ...prevValue,
-                                                    event.target.value,
-                                                ]
-                                            );
-                                        }
+                                        setClientPronouns(event.target.value);
                                     }}
                                 />
-                                {item}
-                                <span className='checkmark'></span>
                             </label>
                         );
                     })}
@@ -366,8 +388,8 @@ const Menubody = ({
                     Appointment Location
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
-                    md:grid-cols-2'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
+                    md:grid-cols-2 '
                 >
                     {AppointmentLocation.map((item, index) => {
                         return (
@@ -517,8 +539,8 @@ const Menubody = ({
                     Appearance
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Appearance.map((item, index) => {
                         return (
@@ -564,8 +586,8 @@ const Menubody = ({
                     Speech
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Speech.map((item, index) => {
                         return (
@@ -611,8 +633,8 @@ const Menubody = ({
                     Affect
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Affect.map((item, index) => {
                         return (
@@ -658,8 +680,8 @@ const Menubody = ({
                     Mood
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Mood.map((item, index) => {
                         return (
@@ -705,8 +727,8 @@ const Menubody = ({
                     Behavior
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Behavior.map((item, index) => {
                         return (
@@ -752,8 +774,8 @@ const Menubody = ({
                     Delusions
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Delusions.map((item, index) => {
                         return (
@@ -799,8 +821,8 @@ const Menubody = ({
                     Suicidal Ideation
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {SuicidalIdeation.map((item, index) => {
                         return (
@@ -852,8 +874,8 @@ const Menubody = ({
                     Homicidal Ideation
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {HomicidalIdeation.map((item, index) => {
                         return (
@@ -899,8 +921,8 @@ const Menubody = ({
                     Self-Injuring Behavior
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Self_Injuring_Behavior.map((item, index) => {
                         return (
@@ -946,8 +968,8 @@ const Menubody = ({
                     Insight
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Insight.map((item, index) => {
                         return (
@@ -993,8 +1015,8 @@ const Menubody = ({
                     Judgment
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Judgment.map((item, index) => {
                         return (
@@ -1040,8 +1062,8 @@ const Menubody = ({
                     Oriented
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {Oriented.map((item, index) => {
                         return (
@@ -1087,8 +1109,8 @@ const Menubody = ({
                     Eye Contact
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-3 xl:grid-cols-2 gap-[0.5rem]'
+                    className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-4
+                    md:grid-cols-2 xl:grid-cols-2 gap-[0.5rem]'
                 >
                     {EyeContact.map((item, index) => {
                         return (
@@ -1241,7 +1263,8 @@ const Menubody = ({
                 >
                     <p
                         onClick={() => {
-                            setShowTermsOfServicePop(true);
+                            // setShowTermsOfServicePop(true);
+                            router.push('/termsofservice');
                         }}
                     >
                         terms of servcie

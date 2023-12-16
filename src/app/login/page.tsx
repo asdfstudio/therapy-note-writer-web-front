@@ -25,6 +25,7 @@ const LoginPage = () => {
     const [currentError, setCurrentError] = useState(false);
     const [mailError, setMailError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const [isGoogleButtonHidden, setIsGoogleButtonHidden] = useState(true);
     const router = useRouter();
     const params = useSearchParams();
@@ -36,6 +37,7 @@ const LoginPage = () => {
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         setCurrentError(false);
+        setIsLoading(true);
 
         console.log('email', email);
         dispatch({ type: 'LOGIN_START' });
@@ -51,6 +53,7 @@ const LoginPage = () => {
             });
             dispatch({ type: 'LOGIN_SUCCESS', payload: res.data });
         } catch (error: any) {
+            setIsLoading(false);
             dispatch({ type: 'LOGIN_FAILURE' });
             setCurrentError(true);
             setErrorMessage(error.response.data.error);
@@ -245,6 +248,17 @@ const LoginPage = () => {
             className='flex min-h-screen flex-row bg-[url("/bg-home-1.svg")] w-screen 
       bg-no-repeat bg-contain xlc:bg-none'
         >
+            <div
+                className={`absolute w-screen h-screen  bg-[rgba(0,0,0,0.25)]
+                    z-[10] ${isLoading ? 'block' : 'hidden'}`}
+            >
+                <div
+                    className='absolute border-[gray-300] h-[4rem] w-[4rem] animate-spin 
+                        rounded-full border-[0.5rem] border-t-[#3157C9]
+                        top-[40%] right-[50%]'
+                />
+            </div>
+
             <Navbar2 />
 
             {/* Big image Left */}

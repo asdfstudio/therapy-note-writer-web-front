@@ -3,6 +3,20 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Lottie from 'lottie-react';
 import penLoadingAnimation from '../../public/lottie-Pen-Loading-Red.json';
+// import { Player } from '@lottiefiles/react-lottie-player';
+
+const loaderImage = [
+    '/loading-img-0.jpg',
+    '/loading-img-1.jpg',
+    '/loading-img-2.jpg',
+    '/loading-img-3.jpg',
+    '/loading-img-4.jpg',
+    '/loading-img-5.jpg',
+    '/loading-img-6.jpg',
+    '/loading-img-7.jpg',
+    '/loading-img-8.jpg',
+    '/loading-img-9.jpg',
+];
 
 const DashboardHome = ({
     handleShowMenu,
@@ -10,6 +24,7 @@ const DashboardHome = ({
     clicksUsed,
     totalClick,
     setShowSubscriptionTable,
+    handleUpgradeSubscriptionTable,
     generateLoading,
 }: {
     handleShowMenu: any;
@@ -17,6 +32,7 @@ const DashboardHome = ({
     clicksUsed: number;
     totalClick: number;
     setShowSubscriptionTable: any;
+    handleUpgradeSubscriptionTable: any;
     generateLoading: any;
 }) => {
     const [clickAreaCovered, setClickAreaCovered] = useState(0);
@@ -50,9 +66,7 @@ const DashboardHome = ({
                         notes generated.
                         <span
                             className='font-[600] text-[#3157C9] cursor-pointer'
-                            onClick={() => {
-                                setShowSubscriptionTable(true);
-                            }}
+                            onClick={handleUpgradeSubscriptionTable}
                         >
                             {' '}
                             Upgrade for more
@@ -78,13 +92,32 @@ const DashboardHome = ({
                             loop={true}
                             className=' absolute z-[5] w-[9rem] '
                         />
-                        <Image
-                            src={`/loading-img-${pictureSerial}.jpg`}
-                            alt=''
-                            width={1200}
-                            height={550}
-                            className='w-[33rem] h-auto rounded-[1.125rem] colorChangeAnimation'
-                        />
+                        <div>
+                            {/* <Player
+                                src={penLoadingAnimation}
+                                loop
+                                autoplay
+                                className=' absolute z-[5] w-[9rem] right-[40%]
+                            md:right-[20%] xlc:right-[30%] top-[28%]'
+                            /> */}
+                        </div>
+                        {loaderImage.map((url: any, index: any) => {
+                            return (
+                                <Image
+                                    key={index}
+                                    src={url}
+                                    alt=''
+                                    width={1200}
+                                    height={550}
+                                    className={`w-[33rem] h-auto rounded-[1.125rem] colorChangeAnimation
+                                    ${
+                                        pictureSerial === index
+                                            ? 'block'
+                                            : 'hidden'
+                                    }`}
+                                />
+                            );
+                        })}
                         <p
                             className='text-[#29375F] font-iBM_Plex_Sans 
                             tetx-[0.9375rem] font-[400] mt-[1.5rem] italic'

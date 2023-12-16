@@ -22,6 +22,8 @@ import {
 } from '../../utils/FacebookSDK';
 import Image from 'next/image';
 import { jwtDecode } from 'jwt-decode';
+import Lottie from 'lottie-react';
+import loadingAnimation from '../../lotties/loading.json';
 
 declare global {
     interface Window {
@@ -30,6 +32,7 @@ declare global {
 }
 
 const SignupPage = () => {
+    const { user, dispatch, isFetching } = useContext(Context);
     const passwordRef = useRef<any>(null);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -37,7 +40,10 @@ const SignupPage = () => {
     const [signupMedium, setSignupMedium] = useState('manual');
     const [error, setError] = useState(false);
     const [mailError, setMailError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [isEmailFormShown, setIsEmailFormShown] = useState(true);
     const [isOTPShown, setIsOTPShown] = useState(false);
     const [isVerifiedScreenShown, setIsVerifiedScreenShown] = useState(false);
@@ -65,6 +71,11 @@ const SignupPage = () => {
         'Narrative',
         'Other',
     ];
+
+    const handleLoginClick = () => {
+        setIsLoading(true);
+        router.push('/login');
+    };
 
     const login = async () => {
         // e.preventDefault();
@@ -112,6 +123,7 @@ const SignupPage = () => {
         if (passwordParam !== password) {
             setError(true);
         } else {
+            setIsButtonDisabled(false);
             setError(false);
         }
     };
@@ -229,6 +241,7 @@ const SignupPage = () => {
 
     const handleSIgnupComplete = async (e: any) => {
         e.preventDefault();
+        setIsLoading(true);
 
         try {
             let tempPassword = password;
@@ -245,9 +258,34 @@ const SignupPage = () => {
                     noteTakingPreference: noteTakingPref,
                     avgNumOfSessionsPerWeek: avgNumOfSessionsPerWeek,
                 })
-                .then((data: any) => {
+                .then(async (data: any) => {
                     if (data.data.success === true) {
-                        router.push('/login');
+                        // router.push('/login');
+
+                        dispatch({ type: 'LOGIN_START' });
+                        try {
+                            const headers = {
+                                'Content-Type': 'application/json',
+                            };
+                            const res = await axios.post(
+                                `${baseURL}/api/auth/login`,
+                                {
+                                    headers,
+                                    email: email,
+                                    password: password,
+                                    signupMedium: signupMedium,
+                                }
+                            );
+                            dispatch({
+                                type: 'LOGIN_SUCCESS',
+                                payload: res.data,
+                            });
+
+                            router.push('/login');
+                        } catch (error: any) {
+                            dispatch({ type: 'LOGIN_FAILURE' });
+                            setErrorMessage(error.response.data.error);
+                        }
                     } else {
                         console.log('Problem with server');
                         setErrorMessage('Problem with server');
@@ -379,6 +417,17 @@ const SignupPage = () => {
             className='flex min-h-screen flex-row bg-[url("/bg-home-1.svg")] w-screen 
       bg-no-repeat bg-contain xlc:bg-none'
         >
+            <div
+                className={`absolute w-screen h-screen  bg-[rgba(0,0,0,0.25)]
+                    z-[10] ${isLoading ? 'block' : 'hidden'}`}
+            >
+                <div
+                    className='absolute border-[gray-300] h-[4rem] w-[4rem] animate-spin 
+                        rounded-full border-[0.5rem] border-t-[#3157C9]
+                        top-[40%] right-[50%]'
+                />
+            </div>
+
             <Navbar2 />
 
             {/* Big image Left */}
@@ -674,7 +723,7 @@ const SignupPage = () => {
                                             width={1200}
                                             height={550}
                                             draggable={false}
-                                            className='w-[1.8125rem] h-[1.5625rem] ml-[0.52rem]'
+                                            className='w-[1.8125rem] h-[1.5625rem] ml-[0.8rem]'
                                         />
                                         <span className='flex-1'>
                                             sign up with twitter
@@ -704,7 +753,7 @@ const SignupPage = () => {
                                             width={1200}
                                             height={550}
                                             draggable={false}
-                                            className='w-[1.81988rem] h-[1.80188rem] ml-[0.52rem]'
+                                            className='w-[1.81988rem] h-[1.80188rem] ml-[0.8rem]'
                                         />
                                         <span className='flex-1'>
                                             sign up with linkedin
@@ -725,27 +774,28 @@ const SignupPage = () => {
                             >
                                 Already have an account?
                             </h3>
-                            <Link
-                                href='/login'
+                            <div
+                                // href='/login'
+                                onClick={handleLoginClick}
                                 className='w-[21.25rem] h-[2.75rem] mt-3
-            mb-[2.13rem]
-            md:w-[43rem] md:mt-[1.25rem] md:mb-[2.37rem]
-            xlc:w-[25rem] xlc:mb-2'
+                                mb-[2.13rem]
+                                md:w-[43rem] md:mt-[1.25rem] md:mb-[2.37rem]
+                                xlc:w-[25rem] xlc:mb-2'
                             >
                                 <button
                                     className='flex bg-white h-full 
-            w-full items-center rounded-full border-[1px] 
-            border-[#3157C9] uppercase text-[#6F91F4] 
-            font-iBM_Plex_Sans tracking-[0.1rem]
-            text-[1rem] font-[600] justify-center
-            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
-            hover:border-[#4771ED] hover:bg-[#FAFAFA]
-            active:border-[#4063C7] 
-            active:bg-[#FAFAFA]'
+                                    w-full items-center rounded-full border-[1px] 
+                                    border-[#3157C9] uppercase text-[#6F91F4] 
+                                    font-iBM_Plex_Sans tracking-[0.1rem]
+                                    text-[1rem] font-[600] justify-center
+                                    drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
+                                    hover:border-[#4771ED] hover:bg-[#FAFAFA]
+                                    active:border-[#4063C7] 
+                                    active:bg-[#FAFAFA]'
                                 >
                                     Login
                                 </button>
-                            </Link>
+                            </div>
                         </div>
                     </div>
                 )}
@@ -984,7 +1034,21 @@ const SignupPage = () => {
                                 placeholder='****  ****  ****'
                                 // ref={passwordRef}
                                 onChange={(e: any) => {
-                                    setPassword(e.target.value);
+                                    const passwordValue = e.target.value;
+
+                                    const mailRegexPattern =
+                                        /(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
+                                    const matched =
+                                        passwordValue.match(mailRegexPattern);
+
+                                    if (matched !== null) {
+                                        setPasswordError(false);
+                                        setPassword(e.target.value);
+                                    } else {
+                                        setPasswordError(true);
+                                    }
+
+                                    // setPassword(e.target.value);
                                 }}
                                 className='w-[21.25rem] h-[2.75rem] rounded-full
             bg-[#fff] border-[1px] border-[#6f91f480]
@@ -1019,6 +1083,27 @@ const SignupPage = () => {
                                         : setShowPassword(false);
                                 }}
                             />
+                            {passwordError && (
+                                <span
+                                    className='ml-[0.75rem] text-[#F4776F] font-iBM_Plex_Sans
+                                font-[400] text-[1rem]'
+                                >
+                                    Please set a strong password. <br />
+                                    Password must - <br />
+                                    <span className='text-[0.9rem]'>
+                                        * be greater than or equal to 8
+                                        characters
+                                        <br />
+                                        * contain one or more lowercase &
+                                        uppercase characters
+                                        <br />
+                                        * contain one or more numeric values
+                                        <br />
+                                        * contain one or more special characters
+                                        <br />
+                                    </span>
+                                </span>
+                            )}
                         </div>
                         <div className='flex flex-col'>
                             <label
@@ -1095,13 +1180,21 @@ const SignupPage = () => {
                             >
                                 <button
                                     onClick={setupScreenOne}
+                                    disabled={
+                                        passwordError ||
+                                        error ||
+                                        isButtonDisabled
+                                            ? true
+                                            : false
+                                    }
                                     className='flex bg-[#6F91F4] h-full 
                             w-full items-center rounded-full border-[1px] 
                             border-[#3157C9] uppercase text-white 
                             font-iBM_Plex_Sans tracking-[0.1rem]
                             text-[1rem] font-[600] justify-center
                             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
-                            hover:bg-[#4771ED] active:bg-[#4063C7]'
+                            hover:bg-[#4771ED] active:bg-[#4063C7]
+                             disabled:bg-[#adadad]'
                                 >
                                     Next
                                 </button>

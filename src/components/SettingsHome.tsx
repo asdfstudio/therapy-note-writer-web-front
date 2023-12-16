@@ -9,10 +9,16 @@ const SettingsHome = () => {
     const [nextBill, setNextBill] = useState('');
     const [subPackage, setSubPackage] = useState('');
     const { user } = useContext<any>(Context);
+    const [username, setUsername] = useState(null);
     const [showSubscriptionTable, setShowSubscriptionTable] = useState(false);
     const [disabledIndex, setDisabledIndex] = useState(4);
     const [clicksUsed, setClicksUsed] = useState(0);
     const [totalClick, setTotalClick] = useState(0);
+    const subscriptionTitle = 'Upgrade Your Plan';
+    const subscriptionSubTitle = `You have reached the maximum number of notes this month based on your current subscription. Upgrade to create more notes now or wait until next month's reset on December 8, 2023.`;
+
+    // 2 reasons, first one is default one and 2nd one is for upgrade
+    const subscriptinCallReason = 'upgrade';
 
     const stripePriceId = process.env.NEXT_PUBLIC_STRIPE_PRICE_ID;
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -28,6 +34,13 @@ const SettingsHome = () => {
             email = userLocal.user.email;
         }
     }
+
+    // Set username
+    useEffect(() => {
+        return () => {
+            setUsername(user && user.user.username);
+        };
+    });
 
     useEffect(() => {
         const checkSubscription = async () => {
@@ -90,6 +103,10 @@ const SettingsHome = () => {
                 <SubscriptionPop
                     setShowSubscriptionTable={setShowSubscriptionTable}
                     disabledIndex={disabledIndex}
+                    username={username}
+                    title={subscriptionTitle}
+                    subTitle={subscriptionSubTitle}
+                    subReason={subscriptinCallReason}
                 />
             ) : (
                 ''
