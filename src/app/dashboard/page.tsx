@@ -269,9 +269,8 @@ const DashboardPage = () => {
                     <div
                         className={`w-[2.75rem] h-[2.75rem] 
                         border-[#6F91F4] border-[1px] flex items-center justify-center
-                        rounded-[6.25rem] mr-[0.5rem] md:hidden ${
-                            showMenu ? 'bg-[#6F91F4]' : ''
-                        }`}
+                        rounded-[6.25rem] mr-[0.5rem] md:hidden cursor-pointer 
+                        ${showMenu ? 'bg-[#6F91F4]' : ''}`}
                         onClick={() => {
                             !showMenu ? setShowMenu(true) : setShowMenu(false);
                         }}
@@ -308,7 +307,7 @@ const DashboardPage = () => {
                     <div
                         className='w-[2.75rem] h-[2.75rem] 
           border-[#6F91F4] border-[1px] flex items-center justify-center
-          rounded-[6.25rem]'
+          rounded-[6.25rem] cursor-pointer'
                         onClick={() => {
                             !showNavMenu
                                 ? setShowNavMenu(true)
