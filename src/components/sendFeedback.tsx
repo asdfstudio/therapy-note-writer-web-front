@@ -22,7 +22,7 @@ const SendFeedback = ({
 
     return (
         <div
-            className='absolute z-[70] bg-[rgba(0,0,0,0.50)] w-screen h-[800px] md:h-screen flex 
+            className='absolute z-[70] bg-[rgba(0,0,0,0.50)] w-screen h-[1000px] md:h-screen flex 
             items-center justify-center'
         >
             <div
