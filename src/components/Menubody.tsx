@@ -5,6 +5,7 @@ import TagsInputCustom from './TagsInputCustom';
 import axios from 'axios';
 import { Context } from '@/context/Context';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 const Pronouns = ['She/Her/Hers', 'He/Him/His', 'They/Them/Theirs'];
 const AppointmentLocation = ['In person', 'Telehealth'];
@@ -1258,7 +1259,7 @@ const Menubody = ({
 
                 <div
                     className='flex text-[#6F91F4] text-[0.875rem] font-iBM_Plex_Sans font-[600] 
-                    tracking-[0.0875rem] uppercase gap-[2.5rem] items-center justify-center
+                    tracking-[0.0875rem] uppercase gap-[1.5rem] items-center justify-center
                     cursor-pointer'
                 >
                     <p
@@ -1273,8 +1274,17 @@ const Menubody = ({
                         onClick={() => {
                             setShowSendFeedbackPop(true);
                         }}
+                        className='flex'
                     >
                         Send feedback
+                        <Image
+                            src={'/dashboard-icon-feedback.svg'}
+                            alt=''
+                            width={1200}
+                            height={550}
+                            draggable={false}
+                            className='w-5 ml-[0.5rem]'
+                        />
                     </p>
                 </div>
             </div>
