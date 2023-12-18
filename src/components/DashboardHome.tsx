@@ -145,7 +145,7 @@ const DashboardHome = ({
                                         className='w-[9rem] 
                                 flex bg-[#fff] py-[12px] 
                                 rounded-full border-[1px] 
-                                border-[#3157C9] uppercase text-[#6F91F4] 
+                                border-[#3157C9] uppercase text-[#3052B5] 
                                 text-[1rem] font-[600] justify-center
                                 drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
                                 font-iBM_Plex_Sans tracking-[0.1rem]

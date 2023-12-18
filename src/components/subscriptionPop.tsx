@@ -274,7 +274,7 @@ const SubscriptionPop = ({
                                     >
                                         <button
                                             disabled={
-                                                index === disabledIndex
+                                                index <= disabledIndex
                                                     ? true
                                                     : false
                                             }
@@ -499,7 +499,7 @@ const SubscriptionPop = ({
                                     >
                                         <button
                                             disabled={
-                                                index === disabledIndex
+                                                index <= disabledIndex
                                                     ? true
                                                     : false
                                             }

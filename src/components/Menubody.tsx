@@ -74,7 +74,8 @@ const EyeContact = ['Good', 'Fair', 'Poor', 'None'];
 
 const Menubody = ({
     setMainSummary,
-    setShowSubscriptionTable,
+    // setShowSubscriptionTable,
+    handleUpgradeSubscriptionTable,
     clicksUsed,
     totalClick,
     setGenerateLoading,
@@ -83,7 +84,8 @@ const Menubody = ({
     updateTrackButtonCLick,
 }: {
     setMainSummary: any;
-    setShowSubscriptionTable: any;
+    // setShowSubscriptionTable: any;
+    handleUpgradeSubscriptionTable: any;
     clicksUsed: any;
     totalClick: any;
     setGenerateLoading: any;
@@ -236,7 +238,7 @@ const Menubody = ({
 
     const handleSubmit = async () => {
         if (clicksUsed === totalClick) {
-            setShowSubscriptionTable(true);
+            handleUpgradeSubscriptionTable();
         } else {
             setGenerateLoading(true);
             await axios
@@ -327,8 +329,7 @@ const Menubody = ({
 
                 <div
                     onClick={handleClearFormData}
-                    className='text-[0.9375rem] 
-                            mr-[1.5rem] mb-[0.5rem] 
+                    className='text-[0.9375rem] mr-[1.5rem] mb-[2rem] 
                             border-[0.518px] border-[rgba(111,145,244,0.50)] w-[12rem]
                             rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.4rem]
                             hover:bg-[rgba(111,145,244,1)] cursor-pointer'
@@ -1241,7 +1242,7 @@ const Menubody = ({
                         <button
                             onClick={handleSubmit}
                             // disabled={isGenerateButtonDisabled}
-                            className='flex bg-[#6F91F4] py-[12px] 
+                            className='flex bg-[#3052B5] py-[12px] 
                             w-full rounded-full border-[1px] 
                             border-[#3157C9] uppercase text-white 
                             text-[1rem] font-[600] justify-center
@@ -1256,6 +1257,8 @@ const Menubody = ({
                 </div>
 
                 <div className='h-[2px] w-full bg-[rgba(111,145,244,0.50)] mb-5'></div>
+
+                {/* Bottom links */}
 
                 <div
                     className='flex text-[#6F91F4] text-[0.875rem] font-iBM_Plex_Sans font-[600] 

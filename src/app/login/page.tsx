@@ -422,7 +422,7 @@ const LoginPage = () => {
                             <button
                                 type='submit'
                                 disabled={isFetching}
-                                className='flex bg-[#6F91F4] h-full 
+                                className='flex bg-[#3052B5] h-full 
                                   w-full items-center rounded-full border-[1px] 
                                   border-[#3157C9] uppercase text-white 
                                   font-iBM_Plex_Sans tracking-[0.1rem]
@@ -613,7 +613,7 @@ const LoginPage = () => {
                         <button
                             className='flex bg-white h-full 
                               w-full items-center rounded-full border-[1px] 
-                              border-[#3157C9] uppercase text-[#6F91F4] 
+                              border-[#3157C9] uppercase text-[#3052B5] 
                               font-iBM_Plex_Sans tracking-[0.1rem]
                               text-[1rem] font-[600] justify-center
                               drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
