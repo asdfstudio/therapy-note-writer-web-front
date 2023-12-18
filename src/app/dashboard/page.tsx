@@ -330,7 +330,10 @@ const DashboardPage = () => {
             <div className={!showMenu ? 'hidden md:flex' : ''}>
                 <Menubody
                     setMainSummary={setMainSummary}
-                    setShowSubscriptionTable={setShowSubscriptionTable}
+                    // setShowSubscriptionTable={setShowSubscriptionTable}
+                    handleUpgradeSubscriptionTable={
+                        handleUpgradeSubscriptionTable
+                    }
                     clicksUsed={clicksUsed}
                     totalClick={totalClick}
                     setGenerateLoading={setGenerateLoading}
