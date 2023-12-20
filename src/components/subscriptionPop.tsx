@@ -275,7 +275,7 @@ const SubscriptionPop = ({
                                         <button
                                             disabled={
                                                 index <= disabledIndex &&
-                                                disabledIndex !== null
+                                                disabledIndex !== 4
                                                     ? true
                                                     : false
                                             }
@@ -416,7 +416,7 @@ const SubscriptionPop = ({
                                         <button
                                             disabled={
                                                 index <= disabledIndex &&
-                                                disabledIndex !== null
+                                                disabledIndex !== 4
                                                     ? true
                                                     : false
                                             }

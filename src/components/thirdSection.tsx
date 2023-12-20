@@ -233,7 +233,7 @@ const ThirdSection = () => {
                 >
                     {/* Card Title */}
                     <h3
-                        className='text-[#6F91F4] text-[2.25rem]
+                        className='text-[#3052B5] text-[2.25rem]
             font-[400] font-poynter_Oldstyle_Display
             leading-[2.475rem] mt-[2rem] mb-[1.31rem]
             md:text-[2.81rem] md:leading-[3.09375rem]
