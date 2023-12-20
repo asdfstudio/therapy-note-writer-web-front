@@ -25,7 +25,7 @@ const DashboardPage = () => {
     const [clicksUsed, setClicksUsed] = useState(0);
     const [totalClick, setTotalClick] = useState(0);
     const [username, setUsername] = useState(null);
-    const [disabledIndex, setDisabledIndex] = useState(4);
+    const [disabledIndex, setDisabledIndex] = useState(null);
     const [trackButtonCLick, setTrackButtonCLick] = useState(0);
     const [privacyPolicyAccepted, setPrivacyPolicyAccepted] = useState(true);
     const [subscriptionTitle, setSubscriptionTitle] = useState(
