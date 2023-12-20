@@ -139,7 +139,7 @@ const Feedback = () => {
                     {/* Left Arrow */}
                     <div
                         onClick={prevSlide}
-                        className='flex bg-[#6F91F4] w-[2.75rem]
+                        className='flex bg-[#3052B5] w-[2.75rem]
             h-[2.75rem] rounded-full justify-center
             border-[1px] shadow-[#3b60cb40] shadow-md
             md:absolute md:left-[-21rem] md:top-[-15rem]
@@ -158,7 +158,7 @@ const Feedback = () => {
                     {/* Right Arrow */}
                     <div
                         onClick={nextSlide}
-                        className='flex bg-[#6F91F4] w-[2.75rem]
+                        className='flex bg-[#3052B5] w-[2.75rem]
             h-[2.75rem] rounded-full justify-center
             border-[1px] shadow-[#3b60cb40] shadow-md
             md:absolute md:right-[-21rem] md:top-[-15rem]
@@ -213,7 +213,7 @@ const Feedback = () => {
             {/* Button */}
             <Link href='/signup' className='w-[17rem] mt-8 mb-8'>
                 <button
-                    className='flex bg-[#6F91F4] py-[12px] 
+                    className='flex bg-[#3052B5] py-[12px] 
             w-full rounded-full border-[1px] 
             border-[#3157C9] uppercase text-white 
             text-[1rem] font-[600] justify-center
