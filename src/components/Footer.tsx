@@ -82,6 +82,7 @@ const Footer = () => {
                 </div>
                 {/* Numeric Logo */}
                 <Link
+                    aria-label='therapynotewriter.com'
                     className='ml-2 mr-2 md:mr-[1.31rem] 
               xlc:mr-4'
                     href='/'

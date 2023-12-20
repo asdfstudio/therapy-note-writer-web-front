@@ -61,6 +61,7 @@ const Menu = () => {
                     >
                         {links.map((item) => (
                             <Link
+                                aria-label={`${item.title}`}
                                 className='font-iBM_Plex_Sans'
                                 key={item.id}
                                 href={item.url}
