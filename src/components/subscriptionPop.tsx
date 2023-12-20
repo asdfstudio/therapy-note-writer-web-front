@@ -274,7 +274,8 @@ const SubscriptionPop = ({
                                     >
                                         <button
                                             disabled={
-                                                index <= disabledIndex
+                                                index <= disabledIndex &&
+                                                disabledIndex !== null
                                                     ? true
                                                     : false
                                             }
@@ -293,91 +294,6 @@ const SubscriptionPop = ({
                                             Select plan
                                         </button>
                                     </div>
-
-                                    {/* {index === 2 ? (
-                                        <div
-                                            className='w-[16.68rem] h-[2.62rem] mb-[1.5rem]
-                                                 self-center'
-                                            onClick={() => {
-                                                // priceId, sub, userID, clickLimit
-                                                let sub = 'FREE';
-                                                let clickLimit = 5;
-                                                if (index === 1) {
-                                                    sub = 'BASIC';
-                                                    clickLimit = 100;
-                                                } else if (index === 2) {
-                                                    sub = 'PREMIUM';
-                                                    clickLimit = 500;
-                                                }
-
-                                                handleSubscription(
-                                                    sub,
-                                                    clickLimit
-                                                );
-                                            }}
-                                        >
-                                            <button
-                                                disabled={
-                                                    disabledIndex === index
-                                                        ? true
-                                                        : false
-                                                }
-                                                className='flex bg-[#6F91F4] h-[2.75rem] 
-                                            mt-[2rem] 
-                                            w-full items-center rounded-full border-[1px] 
-                                            border-[#3157C9] uppercase text-white 
-                                            font-iBM_Plex_Sans tracking-[0.1rem]
-                                            text-[1rem] font-[600] justify-center
-                                            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
-                                            hover:bg-[#4771ED] active:bg-[#4063C7]
-                                             disabled:bg-[#dad9d9]'
-                                            >
-                                                Select plan
-                                            </button>
-                                        </div>
-                                    ) : (
-                                        <div
-                                            className='w-[16.68rem] h-[2.62rem] mb-[1.5rem]
-                                                self-center'
-                                            onClick={() => {
-                                                // priceId, sub, userID, clickLimit
-                                                let sub = 'FREE';
-                                                let clickLimit = 5;
-                                                if (index === 1) {
-                                                    sub = 'BASIC';
-                                                    clickLimit = 100;
-                                                } else if (index === 2) {
-                                                    sub = 'PREMIUM';
-                                                    clickLimit = 500;
-                                                }
-
-                                                handleSubscription(
-                                                    sub,
-                                                    clickLimit
-                                                );
-                                            }}
-                                        >
-                                            <button
-                                                disabled={
-                                                    index === disabledIndex
-                                                        ? true
-                                                        : false
-                                                }
-                                                className='flex bg-white h-[2.75rem] 
-                                            mt-[2rem] 
-                                            w-full items-center rounded-full border-[1px] 
-                                            border-[#3157C9] uppercase text-[#6F91F4] 
-                                            font-iBM_Plex_Sans tracking-[0.1rem]
-                                            text-[1rem] font-[600] justify-center
-                                            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
-                                            hover:border-[#4771ED] hover:bg-[#FAFAFA]
-                                            active:border-[#4063C7] active:bg-[#FAFAFA]
-                                            disabled:bg-[#dad9d9] disabled:cursor-not-allowed'
-                                            >
-                                                Select plan
-                                            </button>
-                                        </div>
-                                    )} */}
                                 </div>
                             </div>
                         );
@@ -499,7 +415,8 @@ const SubscriptionPop = ({
                                     >
                                         <button
                                             disabled={
-                                                index <= disabledIndex
+                                                index <= disabledIndex &&
+                                                disabledIndex !== null
                                                     ? true
                                                     : false
                                             }
@@ -518,91 +435,6 @@ const SubscriptionPop = ({
                                             Select plan
                                         </button>
                                     </div>
-
-                                    {/* {index === 2 ? (
-                                        <div
-                                            className='w-[16.68rem] h-[2.62rem] mb-[1.5rem]
-                                                 self-center'
-                                            onClick={() => {
-                                                // priceId, sub, userID, clickLimit
-                                                let sub = 'FREE';
-                                                let clickLimit = 5;
-                                                if (index === 1) {
-                                                    sub = 'BASIC';
-                                                    clickLimit = 100;
-                                                } else if (index === 2) {
-                                                    sub = 'PREMIUM';
-                                                    clickLimit = 500;
-                                                }
-
-                                                handleSubscription(
-                                                    sub,
-                                                    clickLimit
-                                                );
-                                            }}
-                                        >
-                                            <button
-                                                disabled={
-                                                    disabledIndex === index
-                                                        ? true
-                                                        : false
-                                                }
-                                                className='flex bg-[#6F91F4] h-[2.75rem] 
-                                            mt-[2rem] 
-                                            w-full items-center rounded-full border-[1px] 
-                                            border-[#3157C9] uppercase text-white 
-                                            font-iBM_Plex_Sans tracking-[0.1rem]
-                                            text-[1rem] font-[600] justify-center
-                                            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
-                                            hover:bg-[#4771ED] active:bg-[#4063C7]
-                                             disabled:bg-[#dad9d9]'
-                                            >
-                                                Select plan
-                                            </button>
-                                        </div>
-                                    ) : (
-                                        <div
-                                            className='w-[16.68rem] h-[2.62rem] mb-[1.5rem]
-                                                self-center'
-                                            onClick={() => {
-                                                // priceId, sub, userID, clickLimit
-                                                let sub = 'FREE';
-                                                let clickLimit = 5;
-                                                if (index === 1) {
-                                                    sub = 'BASIC';
-                                                    clickLimit = 100;
-                                                } else if (index === 2) {
-                                                    sub = 'PREMIUM';
-                                                    clickLimit = 500;
-                                                }
-
-                                                handleSubscription(
-                                                    sub,
-                                                    clickLimit
-                                                );
-                                            }}
-                                        >
-                                            <button
-                                                disabled={
-                                                    index === disabledIndex
-                                                        ? true
-                                                        : false
-                                                }
-                                                className='flex bg-white h-[2.75rem] 
-                                            mt-[2rem] 
-                                            w-full items-center rounded-full border-[1px] 
-                                            border-[#3157C9] uppercase text-[#6F91F4] 
-                                            font-iBM_Plex_Sans tracking-[0.1rem]
-                                            text-[1rem] font-[600] justify-center
-                                            drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
-                                            hover:border-[#4771ED] hover:bg-[#FAFAFA]
-                                            active:border-[#4063C7] active:bg-[#FAFAFA]
-                                            disabled:bg-[#dad9d9] disabled:cursor-not-allowed'
-                                            >
-                                                Select plan
-                                            </button>
-                                        </div>
-                                    )} */}
                                 </div>
 
                                 {/* Left Arrow */}
