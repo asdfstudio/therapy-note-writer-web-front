@@ -108,7 +108,8 @@ const SubscriptionPop = ({
                 className=' flex flex-col items-center
                     w-[22.75rem] md:w-[45rem] xlc:w-[67.125rem] 
                     py-[2.81rem] drop-shadow-lg bg-gradient-to-b
-                    from-[#f6f7f8] to-[rgba(240,244,255,1)]'
+                    from-[#f6f7f8] to-[rgba(240,244,255,1)]
+                    rounded-[0.75rem]'
             >
                 {/* Close icon */}
                 <span

@@ -30,7 +30,8 @@ const TermsOfService = ({
                 className=' flex flex-col items-start
                     w-[67.125rem] p-[2.5rem]
                     drop-shadow-lg bg-gradient-to-b
-                    from-[#f6f7f8] to-[rgba(240,244,255,1)]'
+                    from-[#f6f7f8] to-[rgba(240,244,255,1)]
+                    rounded-[0.75rem]'
             >
                 {/* Title */}
                 <p
