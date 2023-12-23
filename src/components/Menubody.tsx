@@ -7,6 +7,15 @@ import { Context } from '@/context/Context';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
+const diagnosisOptions = [
+    'Anxiety',
+    'Depression',
+    'Bipolar',
+    'Schizophrenia',
+    'Eating Disorders',
+    'Disruptive behaviour',
+];
+
 const Pronouns = ['She/Her/Hers', 'He/Him/His', 'They/Them/Theirs'];
 const AppointmentLocation = ['In person', 'Telehealth'];
 const Diagnosis = ['In person', 'Telehealth'];
@@ -117,6 +126,8 @@ const Menubody = ({
     const [summary, setSummary] = useState('');
     const [isGenerateButtonDisabled, setIsGenerateButtonDisabled] =
         useState(false);
+    const [openDiagnosisSuggestion, setOpenDiagnosisSuggestion] =
+        useState(true);
 
     const { user } = useContext<any>(Context);
     const router = useRouter();
@@ -307,6 +318,11 @@ const Menubody = ({
         setNextAppt('');
     };
 
+    // Handle Diagnosis
+    const handleDiagnosis = (item: any) => {
+        setOpenDiagnosisSuggestion(true);
+    };
+
     return (
         <div
             className='bg-[#12192E] w-screen h-screen 
@@ -437,7 +453,7 @@ const Menubody = ({
 
                 <div
                     className=' bg-transparent
-        rounded-[0.25888rem] p-[0.62rem]
+        rounded-[0.25888rem] py-[0.62rem]
         w-full mb-[1.25rem]
         border-[0.518px] 
         border-[rgba(111,145,244,0.50)] flex flex-wrap
@@ -509,7 +525,7 @@ const Menubody = ({
 
                 <div
                     className=' bg-transparent
-        rounded-[0.25888rem] p-[0.62rem]
+        rounded-[0.25888rem] py-[0.62rem]
         w-full mb-[1.25rem]
         border-[0.518px] 
         border-[rgba(111,145,244,0.50)] flex flex-wrap'
