@@ -414,7 +414,7 @@ const SignupPage = () => {
     return (
         <div
             // <GoogleOAuthProvider clientId='1060704648880-2vqttp1m0jsdkitbh77nn9if0sos43ne.apps.googleusercontent.com'>
-            className='flex min-h-screen flex-row bg-[url("/bg-home-1.svg")] w-screen 
+            className='flex min-h-screen flex-row w-screen 
       bg-no-repeat bg-contain xlc:bg-none'
         >
             <div
@@ -438,7 +438,7 @@ const SignupPage = () => {
                         ? 'bg-[url("/signup-banner-lg-2.jpg")]'
                         : 'bg-[url("/signup-banner-lg.jpeg")]'
                 }  bg-no-repeat
-        bg-cover items-start w-[73%] h-screen`}
+                bg-cover items-start md:w-[65%] xl1440:w-[65%] h-screen`}
             >
                 <div className='w-[50%] relative mt-[7.94rem] ml-[2.5rem]'>
                     <h2
@@ -475,7 +475,7 @@ const SignupPage = () => {
             </div>
 
             {/* Right Side */}
-            <div>
+            <div className=' h-screen overflow-y-scroll'>
                 {/* Log out button */}
                 {isOTPShown ||
                 isVerifiedScreenShown ||
@@ -534,15 +534,6 @@ const SignupPage = () => {
                                 >
                                     Sign Up
                                 </h1>
-
-                                {/* <GoogleLogin
-                                onSuccess={(credentialResponse) => {
-                                    getUser(credentialResponse);
-                                }}
-                                onError={() => {
-                                    console.log('Login Failed');
-                                }}
-                            /> */}
 
                                 <label
                                     className='font-iBM_Plex_Sans
@@ -631,7 +622,6 @@ const SignupPage = () => {
 
                                 {/* Facebook login button */}
                                 <div
-                                    id='fgfgfg'
                                     className='w-[21.25rem] h-[2.75rem] mt-4
                         mb-[0.75rem]
                         md:w-[43rem] md:mt-[1.25rem] md:mb-[2.37rem]
@@ -988,7 +978,7 @@ const SignupPage = () => {
                 {isSetupScreenShown && (
                     <div
                         className='flex flex-col items-center 
-                    w-screen xlc:w-[30rem] min-h-screen'
+                    w-screen xlc:w-[30rem] min-h-screen '
                     >
                         {/* Title */}
                         <p
@@ -1031,7 +1021,7 @@ const SignupPage = () => {
                             <input
                                 type={`${showPassword ? 'text' : 'password'}`}
                                 name='password'
-                                placeholder='****  ****  ****'
+                                placeholder='••• ••• ••• ••• •••'
                                 // ref={passwordRef}
                                 onChange={(e: any) => {
                                     const passwordValue = e.target.value;
@@ -1062,7 +1052,7 @@ const SignupPage = () => {
                                 src='/sign-up-view-password.png'
                                 width='1200'
                                 height='550'
-                                className={`absolute w-[1.25rem] h-auto mt-[4rem] right-[2rem] cursor-pointer
+                                className={`absolute w-[1.25rem] h-auto mt-[4rem] right-[3.5rem] cursor-pointer
                             ${!showPassword ? '' : 'hidden'}`}
                                 onClick={() => {
                                     !showPassword
@@ -1075,7 +1065,7 @@ const SignupPage = () => {
                                 src='/sign-up-hide-password.png'
                                 width='1200'
                                 height='550'
-                                className={`absolute w-[1.25rem] h-auto mt-[4rem] right-[2rem] cursor-pointer
+                                className={`absolute w-[1.25rem] h-auto mt-[4rem] right-[3.5rem] cursor-pointer
                             z-[4] ${!showPassword ? 'hidden' : ''}`}
                                 onClick={() => {
                                     !showPassword
@@ -1118,7 +1108,7 @@ const SignupPage = () => {
                                     showPasswordAgain ? 'text' : 'password'
                                 }`}
                                 name='password'
-                                placeholder='****  ****  ****'
+                                placeholder='••• ••• ••• ••• •••'
                                 onChange={(e: any) => {
                                     handleConfirmPassword(e.target.value);
                                 }}
@@ -1134,7 +1124,7 @@ const SignupPage = () => {
                                 src='/sign-up-view-password.png'
                                 width='1200'
                                 height='550'
-                                className={`absolute w-[1.25rem] h-auto mt-[4rem] right-[2rem] cursor-pointer
+                                className={`absolute w-[1.25rem] h-auto mt-[4rem] right-[3.5rem] cursor-pointer
                             ${!showPasswordAgain ? '' : 'hidden'}`}
                                 onClick={() => {
                                     !showPasswordAgain
@@ -1147,7 +1137,7 @@ const SignupPage = () => {
                                 src='/sign-up-hide-password.png'
                                 width='1200'
                                 height='550'
-                                className={`absolute w-[1.25rem] h-auto mt-[4rem] right-[2rem] cursor-pointer
+                                className={`absolute w-[1.25rem] h-auto mt-[4rem] right-[3.5rem] cursor-pointer
                             z-[4] ${!showPasswordAgain ? 'hidden' : ''}`}
                                 onClick={() => {
                                     !showPasswordAgain

@@ -7,6 +7,15 @@ import { Context } from '@/context/Context';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
+const diagnosisOptions = [
+    'Anxiety',
+    'Depression',
+    'Bipolar',
+    'Schizophrenia',
+    'Eating Disorders',
+    'Disruptive behaviour',
+];
+
 const Pronouns = ['She/Her/Hers', 'He/Him/His', 'They/Them/Theirs'];
 const AppointmentLocation = ['In person', 'Telehealth'];
 const Diagnosis = ['In person', 'Telehealth'];
@@ -117,6 +126,8 @@ const Menubody = ({
     const [summary, setSummary] = useState('');
     const [isGenerateButtonDisabled, setIsGenerateButtonDisabled] =
         useState(false);
+    const [openDiagnosisSuggestion, setOpenDiagnosisSuggestion] =
+        useState(true);
 
     const { user } = useContext<any>(Context);
     const router = useRouter();
@@ -307,6 +318,11 @@ const Menubody = ({
         setNextAppt('');
     };
 
+    // Handle Diagnosis
+    const handleDiagnosis = (item: any) => {
+        setOpenDiagnosisSuggestion(true);
+    };
+
     return (
         <div
             className='bg-[#12192E] w-screen h-screen 
@@ -326,16 +342,6 @@ const Menubody = ({
                 >
                     Session Description
                 </p>
-
-                <div
-                    onClick={handleClearFormData}
-                    className='text-[0.9375rem] mr-[1.5rem] mb-[2rem] 
-                            border-[0.518px] border-[rgba(111,145,244,0.50)] w-[12rem]
-                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.4rem]
-                            hover:bg-[rgba(111,145,244,1)] cursor-pointer'
-                >
-                    <p>Clear Form Data</p>
-                </div>
 
                 {/* Options Start */}
                 <p
@@ -437,11 +443,11 @@ const Menubody = ({
 
                 <div
                     className=' bg-transparent
-        rounded-[0.25888rem] p-[0.62rem]
+        rounded-[0.25888rem] py-[0.62rem]
         w-full mb-[1.25rem]
         border-[0.518px] 
         border-[rgba(111,145,244,0.50)] flex flex-wrap
-        focus:border-[#6F91F4]'
+        focus:border-[#6F91F4] hover:border-[#6F91F4]'
                 >
                     <TagsInputCustom
                         tag_background='bg-[#C24545]'
@@ -474,7 +480,7 @@ const Menubody = ({
             w-full h-auto mb-[1.25rem]
             border-[0.518px] border-[rgba(111,145,244,0.50)] 
             resize-y focus:outline-none
-            focus:border-[#6F91F4]'
+            focus:border-[#6F91F4] hover:border-[#6F91F4]'
                 />
 
                 {/* Options */}
@@ -496,7 +502,7 @@ const Menubody = ({
             w-full h-auto mb-[1.25rem]
             border-[0.518px] border-[rgba(111,145,244,0.50)] 
             resize-y focus:outline-none
-            focus:border-[#6F91F4]'
+            focus:border-[#6F91F4] hover:border-[#6F91F4]'
                 />
 
                 {/* Options */}
@@ -509,10 +515,11 @@ const Menubody = ({
 
                 <div
                     className=' bg-transparent
-        rounded-[0.25888rem] p-[0.62rem]
+        rounded-[0.25888rem] py-[0.62rem]
         w-full mb-[1.25rem]
         border-[0.518px] 
-        border-[rgba(111,145,244,0.50)] flex flex-wrap'
+        border-[rgba(111,145,244,0.50)] flex flex-wrap
+        hover:border-[#6F91F4]'
                 >
                     <TagsInputCustom
                         tag_background='bg-[#6F91F4]'
@@ -1229,15 +1236,20 @@ const Menubody = ({
             focus:outline-none
             focus:border-[#6F91F4]'
                 />
+
+                <div
+                    onClick={handleClearFormData}
+                    className='text-[1rem] mb-[1rem] mt-[0.47rem]
+                    w-full cursor-pointer text-[#fff] uppercase
+                    font-iBM_Plex_Sans font-[600] flex justify-center'
+                >
+                    <p>Clear Form Data</p>
+                </div>
+
                 <div>
-                    {/* <Link
-                        href='/dashboard'
-                        className='w-[17rem] mt-10 
-          xlc:mb-10'
-                    > */}
                     <div
                         className='w-full mt-2 
-                        xlc:mb-10 '
+                        mb-10 '
                     >
                         <button
                             onClick={handleSubmit}
@@ -1253,10 +1265,9 @@ const Menubody = ({
                             Generate
                         </button>
                     </div>
-                    {/* </Link> */}
                 </div>
 
-                <div className='h-[2px] w-full bg-[rgba(111,145,244,0.50)] mb-5'></div>
+                <div className='h-[2px] w-full bg-[rgba(111,145,244,0.50)] mb-5 '></div>
 
                 {/* Bottom links */}
 

@@ -18,14 +18,15 @@ const links = [
 const Navbar2 = () => {
     return (
         <div
-            className='flex justify-start mt-[1.56rem] ml-[2.5rem]
+            className='flex justify-start mt-[1.56rem] ml-[0.74rem]
+            md:ml-[2.5rem]
        absolute z-50 xlc:justify-start xlc:ml-[2.5rem]
        xlc:mt-[2.44rem]'
         >
             <div
                 className='bg-[#fff] flex fixed justify-between 
           h-[3.75rem] w-[18.5rem]
-          border-[rgba(41,55,95,0.20)] border-[0.833px] 
+          border-[rgba(41,55,95,0.20)] border-[1px] 
           drop-shadow-[0_8.33px_16.66px_rgba(53,61,82,0.15)]
           rounded-[6.25rem]'
             >
@@ -33,7 +34,7 @@ const Navbar2 = () => {
                 <div className='flex justify-start items-center'>
                     {/* Logo Items */}
                     <div
-                        className='bg-[#fff] flex justify-between 
+                        className=' flex justify-between 
             items-center rounded-full'
                     >
                         {/* Logo Icon */}
@@ -41,7 +42,7 @@ const Navbar2 = () => {
                             className='bg-[#29375F] w-[3.75rem] 
               h-[3.75rem] flex justify-center items-center 
               rounded-full z-0
-              drop-shadow-[0_0.416px_8.437px_rgba(6,5,20,0.3)]
+              drop-shadow-[0_0.416px_4.437px_rgba(6,5,20,0.3)]
               md:h-[3.75rem] md:w-[3.75rem]'
                         >
                             <Image

@@ -133,3 +133,9 @@ input[type='range']::-webkit-slider-runnable-track {
         top: -30px;
     }
 }
+
+/*  Calender */
+
+input[type='date']::-webkit-datetime-edit-text {
+    /* color: #000000; */
+}

@@ -27,7 +27,7 @@ const SendFeedback = ({
         >
             <div
                 className='flex w-[22.75rem] md:w-[54.25rem] h-[800px] md:h-[90vh] 
-                drop-shadow-lg bg-[#fff]'
+                drop-shadow-lg bg-[#fff] rounded-[0.75rem]'
             >
                 <Image
                     onClick={() => {
@@ -76,7 +76,7 @@ const SendFeedback = ({
                         <div
                             className={`flex flex-col w-[22.75rem] md:w-[27.125rem] bg-gradient-to-b
                             from-[#f6f7f8] to-[rgba(240,244,255,1)] 
-                            px-[1.5rem] md:px-[2.37rem] pt-[1.5rem] md:pt-[4rem]`}
+                            px-[1.5rem] md:px-[2.37rem] pt-[1.5rem] md:pt-[4rem] rounded-r-[0.75rem]`}
                         >
                             <p
                                 className='font-iBM_Plex_Sans text-[1.25rem] font-[600] 

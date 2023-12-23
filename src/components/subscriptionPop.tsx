@@ -108,7 +108,8 @@ const SubscriptionPop = ({
                 className=' flex flex-col items-center
                     w-[22.75rem] md:w-[45rem] xlc:w-[67.125rem] 
                     py-[2.81rem] drop-shadow-lg bg-gradient-to-b
-                    from-[#f6f7f8] to-[rgba(240,244,255,1)]'
+                    from-[#f6f7f8] to-[rgba(240,244,255,1)]
+                    rounded-[0.75rem]'
             >
                 {/* Close icon */}
                 <span
@@ -134,12 +135,12 @@ const SubscriptionPop = ({
                     className={`font-poynter_Oldstyle_Display font-[400]
                     text-[2.25rem] md:text-[2.8125rem] text-[#29375F] 
                     leading-[3.09375rem]  mt-[1rem] md:mt-0
-                    mb-[1.25rem] mx-[2.81rem] w-[19.75rem] md:w-[39rem]
-                    xlc:w-[60rem]  ${
-                        subReason === 'upgrade'
-                            ? 'text-center md:text-left xlc:text-center self-start'
-                            : 'text-center md:text-left xlc:text-center self-center'
-                    } `}
+                    mb-[1.25rem] mx-[1.9rem] w-[19.75rem] md:w-[39rem]
+                     ${
+                         subReason === 'upgrade'
+                             ? 'text-start md:text-start xlc:text-center self-start xlc:w-[60rem]'
+                             : 'text-center md:text-left xlc:text-center self-center xlc:w-[75%]'
+                     } `}
                 >
                     <span className='hidden xlc:flex'>
                         {title}, {username}
@@ -148,13 +149,17 @@ const SubscriptionPop = ({
                 </p>
                 {/* paragraph */}
                 <p
-                    className='font-iBM_Plex_Sans font-[500]
+                    className={`font-iBM_Plex_Sans font-[500]
                     text-[1rem] md:text-[1.25rem] 
                     text-[rgba(41,55,95,0.70)] 
                     text-center md:text-left
                     leading-[1.75rem]
-                    mb-[2rem] mx-[2.81rem] w-[19.75rem] md:w-[39rem]
-                    xlc:w-[60rem]'
+                    mb-[2rem] mx-[2rem] w-[19.75rem] md:w-[39rem]
+                     ${
+                         subReason === 'upgrade'
+                             ? 'text-start md:text-left xlc:text-start self-start xlc:w-[60rem]'
+                             : 'text-center md:text-left xlc:text-center self-center xlc:w-[75%]'
+                     } `}
                 >
                     {subTitle}
                 </p>
@@ -229,7 +234,7 @@ const SubscriptionPop = ({
                                         />
                                         <p
                                             className='font-iBM_Plex_Sans font-[400]
-                                        leading-[1.35rem] text-[1.125rem]'
+                                        leading-[1.35rem] text-[1.125rem] text-[#29375F]'
                                         >
                                             <span className='font-[700]'>
                                                 {item.point_1_part_1}
@@ -248,7 +253,7 @@ const SubscriptionPop = ({
                                         />
                                         <p
                                             className='font-iBM_Plex_Sans font-[400]
-                                        leading-[1.35rem] text-[1.125rem]'
+                                        leading-[1.35rem] text-[1.125rem]  text-[#29375F]'
                                         >
                                             {item.point_2}
                                         </p>
@@ -317,7 +322,7 @@ const SubscriptionPop = ({
                                     {/* Title */}
                                     <p
                                         className='text-[2.0625rem] text-[#242C44] font-[400]
-                                            font-poynter_Oldstyle_Display'
+                                        font-poynter_Oldstyle_Display'
                                     >
                                         {item.title}
                                     </p>
@@ -337,8 +342,9 @@ const SubscriptionPop = ({
                                     )}
 
                                     <hr
-                                        className=' bg-[#6F91F4] h-[2px] w-[17.25rem] 
-                                    mt-[1.25rem] mb-[2rem]'
+                                        className=' bg-[#6F91F4] h-[2px] w-[14.125rem] 
+                                        md:w-[17.25rem] 
+                                        mt-[1.25rem] mb-[2rem]'
                                     />
 
                                     {/* Price */}
