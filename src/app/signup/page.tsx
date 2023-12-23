@@ -438,7 +438,7 @@ const SignupPage = () => {
                         ? 'bg-[url("/signup-banner-lg-2.jpg")]'
                         : 'bg-[url("/signup-banner-lg.jpeg")]'
                 }  bg-no-repeat
-                bg-cover items-start md:w-[65%] xl1440:w-[73%] h-screen`}
+                bg-cover items-start md:w-[65%] xl1440:w-[65%] h-screen`}
             >
                 <div className='w-[50%] relative mt-[7.94rem] ml-[2.5rem]'>
                     <h2

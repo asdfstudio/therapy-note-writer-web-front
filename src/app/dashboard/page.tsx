@@ -299,7 +299,7 @@ const DashboardPage = () => {
                     </div>
                     <p
                         className='mr-2 font-iBM_Plex_Sans text-[0.9375rem] font-[500]
-                        text-[#6989E8]'
+                        text-[#6989E8] text-right'
                     >
                         Hello, <br />
                         <span className='font-[600]'>{username}</span>

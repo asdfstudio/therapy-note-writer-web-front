@@ -72,7 +72,7 @@ const TermsOfService = ({
                                 {data[0].tos}
                             </p>
                         </div>
-                        <div className='mt-[1rem]'>
+                        <div className='mt-[1rem] text-[#29375F] font-iBM_Plex_Sans'>
                             <label>
                                 <input
                                     type='checkbox'
@@ -92,7 +92,7 @@ const TermsOfService = ({
                                     className='flex bg-white h-[2.75rem] 
                                             mt-[2rem] 
                                             w-full items-center rounded-full border-[1px] 
-                                            border-[#3157C9] uppercase text-[#6F91F4] 
+                                            border-[#3157C9] uppercase text-[#3052B5] 
                                             font-iBM_Plex_Sans tracking-[0.1rem]
                                             text-[1rem] font-[600] justify-center
                                             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
@@ -109,15 +109,15 @@ const TermsOfService = ({
                                 onClick={handleClick}
                             >
                                 <button
-                                    className='flex bg-white h-[2.75rem] 
+                                    className='flex bg-[#3052B5] h-[2.75rem] 
                                             mt-[2rem] 
                                             w-full items-center rounded-full border-[1px] 
-                                            border-[#3157C9] uppercase text-[#6F91F4] 
+                                            border-[#3157C9] uppercase text-[#fff] 
                                             font-iBM_Plex_Sans tracking-[0.1rem]
                                             text-[1rem] font-[600] justify-center
                                             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
-                                            hover:border-[#4771ED] hover:bg-[#FAFAFA]
-                                            active:border-[#4063C7] active:bg-[#FAFAFA]'
+                                            hover:border-[#4771ED] hover:bg-[#FAFAFA] hover:text-[#3052B5]
+                                            active:border-[#4063C7] active:bg-[#FAFAFA] active:text-[#3052B5]'
                                 >
                                     Confirm
                                 </button>
