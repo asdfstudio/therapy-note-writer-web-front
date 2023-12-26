@@ -69,16 +69,21 @@ const TagsInputCustom = ({
                 <input
                     onKeyDown={handleKeyDown}
                     onChange={handleChangeInput}
+                    value={inputSuggestion}
                     type='text'
                     className='tags-input focus:outline-none ml-[0.5rem]'
                     placeholder={`${placeholder_text}`}
                 />
                 {inputSuggestion !== '' ? (
                     <div
+                        onClick={() => {
+                            setTags([...tags, inputSuggestion]);
+                            setInputSuggestion('');
+                        }}
                         className='bg-[#3157C9] border-[#6F91F4] border-[1px] rounded-[0.25rem]
                 drop-shadow-[0_10px_10px_rgba(18,25,46,0.50)]
                 h-[3.3125rem] flex items-center w-[20.5rem] mt-[6rem]
-                absolute z-[5]'
+                absolute z-[5] cursor-pointer'
                     >
                         <p
                             className='font-iBM_Plex_Sans text-[0.9375rem] font-[400] text-[#fff]
