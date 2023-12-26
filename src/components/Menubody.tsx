@@ -316,6 +316,7 @@ const Menubody = ({
         setEyeContact([]);
         setHomework('');
         setNextAppt('');
+        // window.location.reload();
     };
 
     // Handle Diagnosis
@@ -360,7 +361,7 @@ const Menubody = ({
                                 className='text-[0.9375rem] 
                             mr-[1.5rem] mb-[0.5rem] 
                             border-[0.518px] border-[rgba(111,145,244,0.50)] w-[12rem]
-                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.4rem]'
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -405,7 +406,7 @@ const Menubody = ({
                                 className='text-[0.9375rem] 
                                 mr-[1.5rem] mb-[0.5rem] 
                                 border-[0.518px] border-[rgba(111,145,244,0.50)]
-                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.4rem]'
+                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -494,6 +495,7 @@ const Menubody = ({
                     placeholder='Write discussion...'
                     id='discussion'
                     name='discussion'
+                    value={discussed}
                     onChange={(event) => {
                         setDiscussed(event.target.value);
                     }}
@@ -555,7 +557,7 @@ const Menubody = ({
                         return (
                             <label
                                 className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -564,6 +566,7 @@ const Menubody = ({
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Appearance'
+                                    checked={appearance.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (appearance.includes(currentValue)) {
@@ -604,13 +607,14 @@ const Menubody = ({
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                                 className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
+                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
                             >
                                 <input
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Speech'
                                     type='checkbox'
+                                    checked={speech.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (speech.includes(currentValue)) {
@@ -649,7 +653,7 @@ const Menubody = ({
                         return (
                             <label
                                 className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -658,6 +662,7 @@ const Menubody = ({
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Affect'
+                                    checked={affect.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (affect.includes(currentValue)) {
@@ -698,13 +703,14 @@ const Menubody = ({
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                                 className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
+                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
                             >
                                 <input
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Mood'
                                     type='checkbox'
+                                    checked={mood.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (mood.includes(currentValue)) {
@@ -745,13 +751,14 @@ const Menubody = ({
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                                 className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
+                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
                             >
                                 <input
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Behavior'
                                     type='checkbox'
+                                    checked={behavior.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (behavior.includes(currentValue)) {
@@ -792,13 +799,14 @@ const Menubody = ({
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                                 className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
+                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
                             >
                                 <input
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Delusions'
                                     type='checkbox'
+                                    checked={delusion.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (delusion.includes(currentValue)) {
@@ -837,7 +845,7 @@ const Menubody = ({
                         return (
                             <label
                                 className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -852,6 +860,7 @@ const Menubody = ({
                                     ring-inset rounded-full
                                     cursor-pointer 
                                     w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
+                                    checked={suicidal.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (suicidal.includes(currentValue)) {
@@ -890,7 +899,7 @@ const Menubody = ({
                         return (
                             <label
                                 className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -899,6 +908,7 @@ const Menubody = ({
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Homicidal_Ideation'
+                                    checked={homicidal.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (homicidal.includes(currentValue)) {
@@ -939,13 +949,14 @@ const Menubody = ({
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                                 className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
+                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
                             >
                                 <input
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Self Injuring Behavior'
                                     type='checkbox'
+                                    checked={selfInjury.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (selfInjury.includes(currentValue)) {
@@ -984,7 +995,7 @@ const Menubody = ({
                         return (
                             <label
                                 className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -993,6 +1004,7 @@ const Menubody = ({
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Insight'
+                                    checked={insight.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (insight.includes(currentValue)) {
@@ -1031,7 +1043,7 @@ const Menubody = ({
                         return (
                             <label
                                 className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -1040,6 +1052,7 @@ const Menubody = ({
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Judgment'
+                                    checked={judgment.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (judgment.includes(currentValue)) {
@@ -1078,7 +1091,7 @@ const Menubody = ({
                         return (
                             <label
                                 className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -1087,6 +1100,7 @@ const Menubody = ({
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Oriented'
+                                    checked={oriented.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (oriented.includes(currentValue)) {
@@ -1125,7 +1139,7 @@ const Menubody = ({
                         return (
                             <label
                                 className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.2rem]'
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -1134,6 +1148,7 @@ const Menubody = ({
                                     value={item}
                                     id={`${item}${index}`}
                                     name='EyeContact'
+                                    checked={eyeContact.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (eyeContact.includes(currentValue)) {
@@ -1178,6 +1193,7 @@ const Menubody = ({
                         placeholder='Write homework...'
                         id='Homework'
                         name='Homework'
+                        value={homework}
                         onChange={(event) => {
                             setHomework(event.target.value);
                         }}
@@ -1202,9 +1218,9 @@ const Menubody = ({
                         placeholder='Write plan...'
                         id='Homework'
                         name='Homework'
-                        onChange={(event) => {
-                            setHomework(event.target.value);
-                        }}
+                        // onChange={(event) => {
+                        //     setHomework(event.target.value);
+                        // }}
                         className='bg-transparent
                         rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
                         w-full mb-[1.25rem]
@@ -1226,6 +1242,7 @@ const Menubody = ({
                     placeholder='Select Date'
                     id='option_1'
                     name='pronouns'
+                    value={nextAppt}
                     onChange={(event) => {
                         setNextAppt(event.target.value);
                     }}

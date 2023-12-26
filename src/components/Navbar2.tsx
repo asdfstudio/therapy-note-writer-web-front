@@ -43,7 +43,7 @@ const Navbar2 = () => {
               h-[3.75rem] flex justify-center items-center 
               rounded-full z-0
               drop-shadow-[0_0.416px_4.437px_rgba(6,5,20,0.3)]
-              md:h-[3.75rem] md:w-[3.75rem]'
+              md:h-[3.75rem] md:w-[3.75rem] -ml-[1px]'
                         >
                             <Image
                                 src='/logo-1.svg'
