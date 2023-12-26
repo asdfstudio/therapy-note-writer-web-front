@@ -53,6 +53,9 @@ const SubscriptionPop = ({
     const { user } = useContext<any>(Context);
     const [activeCardIndex, setActiveCardIndex] = useState(0);
     const stripePriceId = process.env.NEXT_PUBLIC_STRIPE_PRICE_ID;
+    const stripePriceIdBasic = process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_BASIC;
+    const stripePriceIdPremium =
+        process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_PREMIUM_SUB;
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
     const userID = user && user.user._id;
     // const clickLimit = user && user.user.clickLimit;
@@ -80,7 +83,10 @@ const SubscriptionPop = ({
             const subscriptionData = await axios
                 .post(`${baseURL}/api/stripe/checkout`, {
                     sub: subType,
-                    priceId: stripePriceId,
+                    priceId:
+                        subType === 'BASIC'
+                            ? stripePriceIdBasic
+                            : stripePriceIdPremium,
                     userID: userID,
                     clickLimit: clickLimit,
                 })

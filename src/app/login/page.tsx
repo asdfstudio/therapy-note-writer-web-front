@@ -208,6 +208,7 @@ const LoginPage = () => {
                     const headers = {
                         'Content-Type': 'application/json',
                     };
+                    console.log('first');
 
                     axios
                         .post(`${baseURL}/api/auth/login`, {
@@ -221,6 +222,11 @@ const LoginPage = () => {
                                 type: 'LOGIN_SUCCESS',
                                 payload: res.data,
                             });
+                        })
+                        .catch((error: any) => {
+                            dispatch({ type: 'LOGIN_FAILURE' });
+                            setCurrentError(true);
+                            setErrorMessage(error.response.data.error);
                         });
                 } catch (error: any) {
                     dispatch({ type: 'LOGIN_FAILURE' });

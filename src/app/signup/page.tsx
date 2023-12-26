@@ -768,7 +768,7 @@ const SignupPage = () => {
                                 // href='/login'
                                 onClick={handleLoginClick}
                                 className='w-[21.25rem] h-[2.75rem] mt-3
-                                mb-[2.13rem]
+                                mb-[8.13rem]
                                 md:w-[43rem] md:mt-[1.25rem] md:mb-[2.37rem]
                                 xlc:w-[25rem] xlc:mb-2'
                             >
