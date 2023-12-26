@@ -15,7 +15,7 @@ const SettingsHome = () => {
     const [clicksUsed, setClicksUsed] = useState(0);
     const [totalClick, setTotalClick] = useState(0);
     const subscriptionTitle = 'Upgrade Your Plan';
-    const subscriptionSubTitle = `You have reached the maximum number of notes this month based on your current subscription. Upgrade to create more notes now or wait until next month's reset on December 8, 2023.`;
+    const subscriptionSubTitle = `You have reached the maximum number of notes this month based on your current subscription. Upgrade to create more notes now or wait until next month's reset date.`;
 
     // 2 reasons, first one is default one and 2nd one is for upgrade
     const subscriptinCallReason = 'upgrade';

@@ -178,7 +178,7 @@ const DashboardPage = () => {
     const handleUpgradeSubscriptionTable = () => {
         setSubscriptionTitle('Upgrade Your Plan');
         setSubscriptionSubTitle(
-            `You have reached the maximum number of notes this month based on your current subscription. Upgrade to create more notes now or wait until next month's reset on December 8, 2023.`
+            `You have reached the maximum number of notes this month based on your current subscription. Upgrade to create more notes now or wait until next month's reset date.`
         );
         setSubscriptinCallReason('upgrade');
         setShowSubscriptionTable(true);
