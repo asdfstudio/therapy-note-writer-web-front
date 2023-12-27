@@ -122,6 +122,7 @@ const Menubody = ({
     const [oriented, setOriented] = useState<any>([]);
     const [eyeContact, setEyeContact] = useState<any>([]);
     const [homework, setHomework] = useState<any>('');
+    const [planNextSession, setPlanNextSession] = useState<any>('');
     const [nextAppt, setNextAppt] = useState<any>('');
     const [summary, setSummary] = useState('');
     const [isGenerateButtonDisabled, setIsGenerateButtonDisabled] =
@@ -240,6 +241,7 @@ const Menubody = ({
         getValue('Oriented', oriented),
         getValue('Eye Contact', eyeContact),
         getValue('Homework', homework),
+        getValue('Plan for  next session', planNextSession),
         getValue('Next Appointment Date', nextAppt),
     ]
         .filter((line) => line)
@@ -315,6 +317,7 @@ const Menubody = ({
         setOriented([]);
         setEyeContact([]);
         setHomework('');
+        setPlanNextSession('');
         setNextAppt('');
         // window.location.reload();
     };
@@ -358,10 +361,17 @@ const Menubody = ({
                     {Pronouns.map((item, index) => {
                         return (
                             <label
-                                className='text-[0.9375rem] 
+                                className={`text-[0.9375rem] 
                             mr-[1.5rem] mb-[0.5rem] 
                             border-[0.518px] border-[rgba(111,145,244,0.50)] w-[12rem]
-                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]
+                            hover:border-[#6F91F4] cursor-pointer 
+                            hover:bg-[rgba(111,145,244,0.10)] 
+                            ${
+                                item === clientPronouns
+                                    ? 'bg-[rgba(111,145,244,0.10)]'
+                                    : ''
+                            }`}
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -398,15 +408,22 @@ const Menubody = ({
                 </p>
                 <div
                     className='w-full mb-[1.25rem] grid grid-cols-2 sm:grid-cols-3
-                    md:grid-cols-2 '
+                    md:grid-cols-2 gap-[0.2rem]'
                 >
                     {AppointmentLocation.map((item, index) => {
                         return (
                             <label
-                                className='text-[0.9375rem] 
-                                mr-[1.5rem] mb-[0.5rem] 
+                                className={`text-[0.9375rem] 
+                                mr-[0.2rem] mb-[0.5rem] 
                                 border-[0.518px] border-[rgba(111,145,244,0.50)]
-                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
+                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]
+                                hover:border-[#6F91F4] cursor-pointer 
+                                hover:bg-[rgba(111,145,244,0.10)] 
+                            ${
+                                item === apptLocation
+                                    ? 'bg-[rgba(111,145,244,0.10)]'
+                                    : ''
+                            }`}
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -556,8 +573,15 @@ const Menubody = ({
                     {Appearance.map((item, index) => {
                         return (
                             <label
-                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
+                                className={`container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]
+                                hover:border-[#6F91F4] 
+                                hover:bg-[rgba(111,145,244,0.10)] 
+                            ${
+                                appearance.includes(item)
+                                    ? 'bg-[rgba(111,145,244,0.10)]'
+                                    : ''
+                            }`}
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -606,8 +630,15 @@ const Menubody = ({
                             <label
                                 key={index}
                                 // htmlFor={`${item}${index}`}
-                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
+                                className={`container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]
+                                hover:border-[#6F91F4] 
+                                hover:bg-[rgba(111,145,244,0.10)] 
+                            ${
+                                speech.includes(item)
+                                    ? 'bg-[rgba(111,145,244,0.10)]'
+                                    : ''
+                            }`}
                             >
                                 <input
                                     value={item}
@@ -652,8 +683,15 @@ const Menubody = ({
                     {Affect.map((item, index) => {
                         return (
                             <label
-                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
+                                className={`container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]
+                                hover:border-[#6F91F4] 
+                                hover:bg-[rgba(111,145,244,0.10)] 
+                            ${
+                                affect.includes(item)
+                                    ? 'bg-[rgba(111,145,244,0.10)]'
+                                    : ''
+                            }`}
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -702,8 +740,15 @@ const Menubody = ({
                             <label
                                 key={index}
                                 // htmlFor={`${item}${index}`}
-                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
+                                className={`container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]
+                                hover:border-[#6F91F4] 
+                                hover:bg-[rgba(111,145,244,0.10)] 
+                            ${
+                                mood.includes(item)
+                                    ? 'bg-[rgba(111,145,244,0.10)]'
+                                    : ''
+                            }`}
                             >
                                 <input
                                     value={item}
@@ -750,8 +795,15 @@ const Menubody = ({
                             <label
                                 key={index}
                                 // htmlFor={`${item}${index}`}
-                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
+                                className={`container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]
+                                hover:border-[#6F91F4] 
+                                hover:bg-[rgba(111,145,244,0.10)] 
+                            ${
+                                behavior.includes(item)
+                                    ? 'bg-[rgba(111,145,244,0.10)]'
+                                    : ''
+                            }`}
                             >
                                 <input
                                     value={item}
@@ -798,8 +850,15 @@ const Menubody = ({
                             <label
                                 key={index}
                                 // htmlFor={`${item}${index}`}
-                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
+                                className={`container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]
+                                hover:border-[#6F91F4] 
+                                hover:bg-[rgba(111,145,244,0.10)] 
+                            ${
+                                delusion.includes(item)
+                                    ? 'bg-[rgba(111,145,244,0.10)]'
+                                    : ''
+                            }`}
                             >
                                 <input
                                     value={item}
@@ -844,8 +903,15 @@ const Menubody = ({
                     {SuicidalIdeation.map((item, index) => {
                         return (
                             <label
-                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
+                                className={`container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]
+                            hover:border-[#6F91F4] 
+                                hover:bg-[rgba(111,145,244,0.10)] 
+                            ${
+                                suicidal.includes(item)
+                                    ? 'bg-[rgba(111,145,244,0.10)]'
+                                    : ''
+                            }`}
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -898,8 +964,15 @@ const Menubody = ({
                     {HomicidalIdeation.map((item, index) => {
                         return (
                             <label
-                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
+                                className={`container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]
+                            hover:border-[#6F91F4] 
+                                hover:bg-[rgba(111,145,244,0.10)] 
+                            ${
+                                homicidal.includes(item)
+                                    ? 'bg-[rgba(111,145,244,0.10)]'
+                                    : ''
+                            }`}
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -948,8 +1021,15 @@ const Menubody = ({
                             <label
                                 key={index}
                                 // htmlFor={`${item}${index}`}
-                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
+                                className={`container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]
+                                hover:border-[#6F91F4] 
+                                hover:bg-[rgba(111,145,244,0.10)] 
+                            ${
+                                selfInjury.includes(item)
+                                    ? 'bg-[rgba(111,145,244,0.10)]'
+                                    : ''
+                            }`}
                             >
                                 <input
                                     value={item}
@@ -994,8 +1074,15 @@ const Menubody = ({
                     {Insight.map((item, index) => {
                         return (
                             <label
-                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
+                                className={`container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]
+                            hover:border-[#6F91F4] 
+                                hover:bg-[rgba(111,145,244,0.10)] 
+                            ${
+                                insight.includes(item)
+                                    ? 'bg-[rgba(111,145,244,0.10)]'
+                                    : ''
+                            }`}
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -1042,8 +1129,15 @@ const Menubody = ({
                     {Judgment.map((item, index) => {
                         return (
                             <label
-                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
+                                className={`container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]
+                            hover:border-[#6F91F4] 
+                                hover:bg-[rgba(111,145,244,0.10)] 
+                            ${
+                                judgment.includes(item)
+                                    ? 'bg-[rgba(111,145,244,0.10)]'
+                                    : ''
+                            }`}
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -1090,8 +1184,15 @@ const Menubody = ({
                     {Oriented.map((item, index) => {
                         return (
                             <label
-                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
+                                className={`container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]
+                            hover:border-[#6F91F4] 
+                                hover:bg-[rgba(111,145,244,0.10)] 
+                            ${
+                                oriented.includes(item)
+                                    ? 'bg-[rgba(111,145,244,0.10)]'
+                                    : ''
+                            }`}
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -1138,8 +1239,15 @@ const Menubody = ({
                     {EyeContact.map((item, index) => {
                         return (
                             <label
-                                className='container border-[0.518px] border-[rgba(111,145,244,0.50)]
-                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]'
+                                className={`container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]
+                            hover:border-[#6F91F4] 
+                                hover:bg-[rgba(111,145,244,0.10)] 
+                            ${
+                                eyeContact.includes(item)
+                                    ? 'bg-[rgba(111,145,244,0.10)]'
+                                    : ''
+                            }`}
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
@@ -1202,7 +1310,8 @@ const Menubody = ({
                         w-full mb-[1.25rem]
                         border-[0.518px] border-[rgba(111,145,244,0.50)] h-[9rem] 
                         resize-y focus:outline-none
-                        focus:border-[#6F91F4]'
+                        focus:border-[#6F91F4]
+                        hover:border-[#6F91F4] '
                     />
                 </div>
 
@@ -1218,15 +1327,17 @@ const Menubody = ({
                         placeholder='Write plan...'
                         id='Homework'
                         name='Homework'
-                        // onChange={(event) => {
-                        //     setHomework(event.target.value);
-                        // }}
+                        value={planNextSession}
+                        onChange={(event) => {
+                            setPlanNextSession(event.target.value);
+                        }}
                         className='bg-transparent
                         rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem]
                         w-full mb-[1.25rem]
                         border-[0.518px] border-[rgba(111,145,244,0.50)] h-[9rem] 
                         resize-y focus:outline-none
-                        focus:border-[#6F91F4]'
+                        focus:border-[#6F91F4]
+                        hover:border-[#6F91F4] '
                     />
                 </div>
 
@@ -1251,14 +1362,16 @@ const Menubody = ({
             w-full mb-[1.25rem] pb-2
             border-[0.518px] border-[rgba(111,145,244,0.50)] 
             focus:outline-none
-            focus:border-[#6F91F4]'
+            focus:border-[#6F91F4]
+            hover:border-[#6F91F4] '
                 />
 
                 <div
                     onClick={handleClearFormData}
                     className='text-[1rem] mb-[1rem] mt-[0.47rem]
                     w-full cursor-pointer text-[#fff] uppercase
-                    font-iBM_Plex_Sans font-[600] flex justify-center'
+                    font-iBM_Plex_Sans font-[600] flex justify-center
+                    hover:underline'
                 >
                     <p>Clear Form Data</p>
                 </div>
