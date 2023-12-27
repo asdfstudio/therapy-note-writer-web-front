@@ -15,7 +15,7 @@ const SendFeedback = ({
 }) => {
     const [showFirstStep, setShowFirstStep] = useState(true);
     const [starsCount, setStarsCount] = useState(0);
-    const [feedbackText, setFeedbackText] = useState(0);
+    const [feedbackText, setFeedbackText] = useState('');
 
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
