@@ -240,7 +240,8 @@ const SubscriptionPop = ({
                                         />
                                         <p
                                             className='font-iBM_Plex_Sans font-[400]
-                                        leading-[1.35rem] text-[1.125rem] text-[#29375F]'
+                                            leading-[1.35rem] text-[1.125rem] 
+                                            text-[#29375F]'
                                         >
                                             <span className='font-[700]'>
                                                 {item.point_1_part_1}
@@ -259,7 +260,8 @@ const SubscriptionPop = ({
                                         />
                                         <p
                                             className='font-iBM_Plex_Sans font-[400]
-                                        leading-[1.35rem] text-[1.125rem]  text-[#29375F]'
+                                            leading-[1.35rem] text-[1.125rem]  
+                                            text-[#29375F]'
                                         >
                                             {item.point_2}
                                         </p>
