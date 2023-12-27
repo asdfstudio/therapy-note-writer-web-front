@@ -168,7 +168,7 @@ const SendFeedback = ({
                         className={`flex flex-col w-full p-[2.37rem] items-center justify-center`}
                     >
                         <Image
-                            src={'/feedback-icon-1.png'}
+                            src={'/feedback-icon-1.svg'}
                             alt=''
                             width={1200}
                             height={550}

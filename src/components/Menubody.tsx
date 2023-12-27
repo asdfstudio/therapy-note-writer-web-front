@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Context } from '@/context/Context';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const diagnosisOptions = [
     'Anxiety',
@@ -1406,14 +1407,16 @@ const Menubody = ({
                     tracking-[0.0875rem] uppercase gap-[1.5rem] items-center justify-center
                     cursor-pointer'
                 >
-                    <p
-                        onClick={() => {
-                            // setShowTermsOfServicePop(true);
-                            router.push('/termsofservice');
-                        }}
-                    >
-                        terms of servcie
-                    </p>
+                    <Link href={'/termsofservice'} target='_blank'>
+                        <p
+                            onClick={() => {
+                                // setShowTermsOfServicePop(true);
+                                // router.push('/termsofservice');
+                            }}
+                        >
+                            terms of servcie
+                        </p>
+                    </Link>
                     <p
                         onClick={() => {
                             setShowSendFeedbackPop(true);
