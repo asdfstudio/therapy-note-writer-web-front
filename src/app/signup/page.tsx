@@ -596,7 +596,7 @@ const SignupPage = () => {
                                             handleSubmit();
                                         }}
                                         disabled={mailError}
-                                        className={`flex bg-[#6F91F4] h-full 
+                                        className={`flex bg-[#3052B5] h-full 
                             w-full items-center rounded-full border-[1px] 
                             border-[#3157C9] uppercase text-white 
                             font-iBM_Plex_Sans tracking-[0.1rem]

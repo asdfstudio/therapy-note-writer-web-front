@@ -213,7 +213,10 @@ const DashboardPage = () => {
 
             {/* Send Feedback page pop-up */}
             {showSendFeedbackPop ? (
-                <SendFeedback setShowSendFeedbackPop={setShowSendFeedbackPop} />
+                <SendFeedback
+                    setShowSendFeedbackPop={setShowSendFeedbackPop}
+                    email={email}
+                />
             ) : (
                 ''
             )}
