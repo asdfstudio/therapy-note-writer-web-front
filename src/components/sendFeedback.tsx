@@ -1,18 +1,37 @@
 'use client';
+import { Context } from '@/context/Context';
+import axios from 'axios';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 const stars = [1, 2, 3, 4, 5];
 
 const SendFeedback = ({
     setShowSendFeedbackPop,
+    email,
 }: {
     setShowSendFeedbackPop: any;
+    email: any;
 }) => {
     const [showFirstStep, setShowFirstStep] = useState(true);
     const [starsCount, setStarsCount] = useState(0);
+    const [feedbackText, setFeedbackText] = useState(0);
 
-    const handleClickFirstStep = () => {
+    const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+
+    const handleClickFirstStep = async () => {
+        const res = await axios
+            .post(`${baseURL}/api/auth/getFeedback`, {
+                email: email,
+                feedback: feedbackText,
+                rating: starsCount,
+            })
+            .then(() => {
+                console.log('Feedback sent');
+            })
+            .catch((err: any) => {
+                console.log(err.message);
+            });
         setShowFirstStep(false);
     };
 
@@ -116,6 +135,9 @@ const SendFeedback = ({
                             </div>
 
                             <textarea
+                                onChange={(e: any) => {
+                                    setFeedbackText(e.target.value);
+                                }}
                                 className='w-[19.75rem] md:w-[22.125rem] h-[18.8rem] md:h-[21.5rem] 
                                 p-[1rem] mb-[1.5rem]'
                                 placeholder='Please tell us your reason for giving the score'
