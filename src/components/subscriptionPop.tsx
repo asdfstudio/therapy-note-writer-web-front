@@ -208,7 +208,7 @@ const SubscriptionPop = ({
 
                                     <hr
                                         className=' bg-[#6F91F4] h-[2px] w-[17.25rem] 
-                                    mt-[1.25rem] mb-[2rem]'
+                                        mt-[1.25rem] mb-[2rem]'
                                     />
 
                                     {/* Price */}

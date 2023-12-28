@@ -7,6 +7,7 @@ import { Context } from '@/context/Context';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import CalendarPage from './Calendar';
 
 const diagnosisOptions = [
     'Anxiety',
@@ -124,12 +125,13 @@ const Menubody = ({
     const [eyeContact, setEyeContact] = useState<any>([]);
     const [homework, setHomework] = useState<any>('');
     const [planNextSession, setPlanNextSession] = useState<any>('');
-    const [nextAppt, setNextAppt] = useState<any>('');
+    const [nextAppt, setNextAppt] = useState<any>('dd/mm/yyyy');
     const [summary, setSummary] = useState('');
     const [isGenerateButtonDisabled, setIsGenerateButtonDisabled] =
         useState(false);
     const [openDiagnosisSuggestion, setOpenDiagnosisSuggestion] =
         useState(true);
+    const [showCalendar, setShowCalendar] = useState(false);
 
     const { user } = useContext<any>(Context);
     const router = useRouter();
@@ -319,13 +321,17 @@ const Menubody = ({
         setEyeContact([]);
         setHomework('');
         setPlanNextSession('');
-        setNextAppt('');
+        setNextAppt('dd/mm/yyyy');
         // window.location.reload();
     };
 
     // Handle Diagnosis
     const handleDiagnosis = (item: any) => {
         setOpenDiagnosisSuggestion(true);
+    };
+
+    const handleCalendarIconClick = () => {
+        showCalendar ? setShowCalendar(false) : setShowCalendar(true);
     };
 
     return (
@@ -1349,7 +1355,7 @@ const Menubody = ({
                 >
                     Next appointment date
                 </p>
-                <input
+                {/* <input
                     type='date'
                     placeholder='Select Date'
                     id='option_1'
@@ -1365,8 +1371,34 @@ const Menubody = ({
             focus:outline-none
             focus:border-[#6F91F4]
             hover:border-[#6F91F4] '
-                />
+                /> */}
+                <div
+                    className='bg-transparent
+                        rounded-[0.25888rem] p-[0.62rem] 
+                        w-full h-[3rem] mb-[1.25rem]
+                        border-[0.518px] border-[rgba(111,145,244,0.50)] 
+                        focus:border-[#6F91F4]
+                        hover:border-[#6F91F4] 
+                        flex items-center justify-between'
+                >
+                    {nextAppt}
+                    <Image
+                        src={'/dashboard-icon-calendar.svg'}
+                        alt=''
+                        width={1200}
+                        height={550}
+                        className='w-[0.875rem] cursor-pointer'
+                        onClick={handleCalendarIconClick}
+                    />
+                    <div
+                        hidden={!showCalendar}
+                        className='absolute z-[10] w-[80%] left-[1rem] mb-[20rem]'
+                    >
+                        <CalendarPage setNextAppt={setNextAppt} />
+                    </div>
+                </div>
 
+                {/* Clear form data */}
                 <div
                     onClick={handleClearFormData}
                     className='text-[1rem] mb-[1rem] mt-[0.47rem]
@@ -1377,6 +1409,7 @@ const Menubody = ({
                     <p>Clear Form Data</p>
                 </div>
 
+                {/* Generate button */}
                 <div>
                     <div
                         className='w-full mt-2 
