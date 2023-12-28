@@ -130,18 +130,19 @@ const SettingsHome = () => {
                 >
                     Your Name
                 </label>
-                <input
-                    type='text'
-                    name='username'
-                    defaultValue={user && user.user.username}
-                    // placeholder='Amanda Groel'
+                <div
                     className='w-[21.25rem] h-[2.75rem] rounded-full
-            bg-[#fff] border-[1px] border-[#6f91f480]
-              pl-[1.06rem] md:w-[25rem] xlc:w-[25rem]
-              font-iBM_Plex_Sans font-[400] text-[1rem]
-              hover:border-[#6F91F4] 
-              active:border-[#4771ED] active:bg-[#FAFAFA]'
-                />
+                    bg-[#fff] border-[1px] flex items-center
+                    pl-[1.06rem] md:w-[25rem] xlc:w-[25rem]
+                    border-[rgba(111,145,244,0.50)] '
+                >
+                    <p
+                        className='font-iBM_Plex_Sans font-[400] text-[1rem]
+              text-[#29375F] opacity-[0.3]'
+                    >
+                        {user && user.user.username}
+                    </p>
+                </div>
 
                 <label
                     className='font-iBM_Plex_Sans
@@ -150,18 +151,19 @@ const SettingsHome = () => {
                 >
                     Email Address
                 </label>
-                <input
-                    type='email'
-                    name='email'
-                    defaultValue={user && user.user.email}
-                    // placeholder='yourname@domain.com'
+                <div
                     className='w-[21.25rem] h-[2.75rem] rounded-full
-            bg-[#fff] border-[1px] border-[#6f91f480]
-              pl-[1.06rem] md:w-[25rem] xlc:w-[25rem]
-              font-iBM_Plex_Sans font-[400] text-[1rem]
-              hover:border-[#6F91F4] 
-              active:border-[#4771ED] active:bg-[#FAFAFA]'
-                />
+                    bg-[#fff] border-[1px] flex items-center
+                    pl-[1.06rem] md:w-[25rem] xlc:w-[25rem]
+                    border-[rgba(111,145,244,0.50)] '
+                >
+                    <p
+                        className='font-iBM_Plex_Sans font-[400] text-[1rem]
+              text-[#29375F] opacity-[0.3]'
+                    >
+                        {user && user.user.email}
+                    </p>
+                </div>
 
                 <label
                     className='font-iBM_Plex_Sans
@@ -258,6 +260,7 @@ const SettingsHome = () => {
             bg-[#fff] border-[1px] border-[#6f91f480]
               pl-[1.06rem] md:w-[25rem] xlc:w-[25rem]
               font-iBM_Plex_Sans font-[400] text-[1rem]
+              text-[#29375F]
               hover:border-[#6F91F4] 
               active:border-[#4771ED] active:bg-[#FAFAFA]'
                 />
@@ -273,19 +276,19 @@ mt-[1.5rem] mb-[0.5rem]'
                         >
                             Next Billing Cycle
                         </label>
-                        <input
-                            type='text'
-                            name='date'
-                            defaultValue={nextBill}
-                            // placeholder='June 10, 2024'
-                            disabled
+                        <div
                             className='w-[21.25rem] h-[2.75rem] rounded-full
-                            bg-[#fff] border-[1px] border-[#6f91f480]
-                            pl-[1.06rem] md:w-[25rem] xlc:w-[25rem]
-                            font-iBM_Plex_Sans font-[400] text-[1rem]
-                            hover:border-[#6F91F4] 
-                            active:border-[#4771ED] active:bg-[#FAFAFA]'
-                        />
+                    bg-[#fff] border-[1px] flex items-center
+                    pl-[1.06rem] md:w-[25rem] xlc:w-[25rem]
+                    border-[rgba(111,145,244,0.50)] '
+                        >
+                            <p
+                                className='font-iBM_Plex_Sans font-[400] text-[1rem]
+              text-[#29375F] opacity-[0.3]'
+                            >
+                                {nextBill}
+                            </p>
+                        </div>
                     </>
                 )}
 

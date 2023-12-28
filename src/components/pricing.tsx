@@ -9,7 +9,8 @@ const contents = [
         title: 'Free',
         amount: '$0',
         desc: 'Saved 10 hours on week 1. No more busy work for me. Only patient care. Just love the service. Easy, fast and very convenient.',
-        point_1: '5 notes generated per month, completely free',
+        point_1_part_1: '5 notes generated ',
+        point_1_part_2: 'per month, completely free',
         point_2: 'Simple and easy-to-use interface',
         subTitle: 'PhD in Mental Health',
     },
@@ -17,7 +18,8 @@ const contents = [
         title: 'Basic',
         amount: '$10',
         desc: 'Everything is just better with this tool. Highly suggested. I wish I had known about this earlier.',
-        point_1: '100 notes generated per month',
+        point_1_part_1: '100 notes generated ',
+        point_1_part_2: 'per month',
         point_2: 'Suitable for therapists with a moderate caseload',
         subTitle: 'PhD in Mental Health',
     },
@@ -25,7 +27,8 @@ const contents = [
         title: 'Premium',
         amount: '$20',
         desc: 'Saved 10 hours on week 1. No more busy work for me. Only patient care. Just love the service. Easy, fast and very convenient.',
-        point_1: '500 notes generated per month',
+        point_1_part_1: '500 notes generated ',
+        point_1_part_2: 'per month',
         point_2: 'Perfect for therapists with a large caseload',
         subTitle: 'PhD in Mental Health',
     },
@@ -211,9 +214,13 @@ const Pricing = () => {
                                     />
                                     <p
                                         className='font-iBM_Plex_Sans font-[400]
-                                        leading-[1.35rem] text-[1.125rem]'
+                                        leading-[1.35rem] text-[1.125rem]
+                                        text-[#29375F]'
                                     >
-                                        {item.point_1}
+                                        <span className='font-[700]'>
+                                            {item.point_1_part_1}
+                                        </span>
+                                        {item.point_1_part_2}
                                     </p>
                                 </div>
                                 <div className='flex items-baseline'>
@@ -227,7 +234,8 @@ const Pricing = () => {
                                     />
                                     <p
                                         className='font-iBM_Plex_Sans font-[400]
-                                        leading-[1.35rem] text-[1.125rem]'
+                                        leading-[1.35rem] text-[1.125rem]
+                                        text-[#29375F]'
                                     >
                                         {item.point_2}
                                     </p>

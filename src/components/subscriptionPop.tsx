@@ -208,7 +208,7 @@ const SubscriptionPop = ({
 
                                     <hr
                                         className=' bg-[#6F91F4] h-[2px] w-[17.25rem] 
-                                    mt-[1.25rem] mb-[2rem]'
+                                        mt-[1.25rem] mb-[2rem]'
                                     />
 
                                     {/* Price */}
@@ -240,7 +240,8 @@ const SubscriptionPop = ({
                                         />
                                         <p
                                             className='font-iBM_Plex_Sans font-[400]
-                                        leading-[1.35rem] text-[1.125rem] text-[#29375F]'
+                                            leading-[1.35rem] text-[1.125rem] 
+                                            text-[#29375F]'
                                         >
                                             <span className='font-[700]'>
                                                 {item.point_1_part_1}
@@ -259,7 +260,8 @@ const SubscriptionPop = ({
                                         />
                                         <p
                                             className='font-iBM_Plex_Sans font-[400]
-                                        leading-[1.35rem] text-[1.125rem]  text-[#29375F]'
+                                            leading-[1.35rem] text-[1.125rem]  
+                                            text-[#29375F]'
                                         >
                                             {item.point_2}
                                         </p>
@@ -299,7 +301,7 @@ const SubscriptionPop = ({
                                             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
                                             hover:bg-white hover:text-[#3052B5]
                                             active:bg-white active:text-[#3052B5]
-                                            disabled:bg-white disabled:text-[#9e9d9d] 
+                                            disabled:bg-white disabled:text-[#3052B5] 
                                             disabled:cursor-not-allowed'
                                         >
                                             Select plan
