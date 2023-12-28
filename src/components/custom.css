@@ -71,10 +71,10 @@ input[type='range']::-webkit-slider-runnable-track {
     position: absolute;
     top: 0.82rem;
     left: 5rem;
-    height: 1rem;
-    width: 1rem;
+    height: 1.1rem;
+    width: 1.1rem;
     background-color: transparent;
-    border: 2px solid #f4776f;
+    border: 1px solid #f4776f;
     border-radius: 2px;
 }
 
@@ -96,10 +96,14 @@ input[type='range']::-webkit-slider-runnable-track {
     display: block;
 }
 
+.container input:hover ~ .checkmark:after {
+    display: block;
+}
+
 /* Style the checkmark/indicator */
 .container .checkmark:after {
-    left: 4px;
-    top: 1px;
+    left: 5px;
+    top: 2px;
     width: 5px;
     height: 10px;
     border: solid rgba(53, 61, 82, 1);
