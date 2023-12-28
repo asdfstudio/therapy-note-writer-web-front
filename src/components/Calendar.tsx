@@ -16,6 +16,7 @@ const CalendarPage = ({ setNextAppt }: { setNextAppt: any }) => {
                         setDate(e);
                     }}
                     value={date}
+                    minDate={new Date()}
                 />
             </div>
             {/* <p className='text-center'>

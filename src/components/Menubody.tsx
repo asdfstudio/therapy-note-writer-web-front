@@ -334,6 +334,15 @@ const Menubody = ({
         showCalendar ? setShowCalendar(false) : setShowCalendar(true);
     };
 
+    // Close calendar on selecting date
+    useEffect(() => {
+        return () => {
+            if (nextAppt !== 'mm/dd/yyyy') {
+                setShowCalendar(false);
+            }
+        };
+    }, [nextAppt]);
+
     return (
         <div
             className='bg-[#12192E] w-screen h-screen 
