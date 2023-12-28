@@ -368,10 +368,10 @@ const Menubody = ({
                     {Pronouns.map((item, index) => {
                         return (
                             <label
-                                className={`text-[0.9375rem] 
+                                className={`text-[0.9375rem] flex items-center justify-between
                             mr-[1.5rem] mb-[0.5rem] 
                             border-[0.518px] border-[rgba(111,145,244,0.50)] w-[12rem]
-                            rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]
+                            rounded-[0.25888rem] px-[0.62rem] p-[0.62rem] 
                             hover:border-[#6F91F4] cursor-pointer 
                             hover:bg-[rgba(111,145,244,0.10)] 
                             ${
@@ -420,10 +420,10 @@ const Menubody = ({
                     {AppointmentLocation.map((item, index) => {
                         return (
                             <label
-                                className={`text-[0.9375rem] 
+                                className={`text-[0.9375rem] flex items-center justify-between
                                 mr-[0.2rem] mb-[0.5rem] 
                                 border-[0.518px] border-[rgba(111,145,244,0.50)]
-                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]
+                                rounded-[0.25888rem] px-[0.62rem] p-[0.62rem] 
                                 hover:border-[#6F91F4] cursor-pointer 
                                 hover:bg-[rgba(111,145,244,0.10)] 
                             ${
