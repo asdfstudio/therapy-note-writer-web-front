@@ -475,7 +475,7 @@ const SignupPage = () => {
             </div>
 
             {/* Right Side */}
-            <div className=' h-screen overflow-y-scroll'>
+            <div className=' h-screen overflow-y-scroll xlc:w-[35%]'>
                 {/* Log out button */}
                 {isOTPShown ||
                 isVerifiedScreenShown ||
@@ -517,12 +517,13 @@ const SignupPage = () => {
                 {isEmailFormShown && (
                     <div
                         className='flex flex-col items-center 
-                        xlc:items-end'
+                        xlc:items-center'
                     >
                         {/* Form */}
                         <div
                             className='flex flex-col items-center 
-                        w-screen xlc:w-[30rem] min-h-screen'
+                            w-screen xlc:w-[30rem] min-h-screen
+                            xlc:snap-y scroll-auto'
                         >
                             <form className='flex flex-col'>
                                 <h1
@@ -775,7 +776,7 @@ const SignupPage = () => {
                                 <button
                                     className='flex bg-white h-full 
                                     w-full items-center rounded-full border-[1px] 
-                                    border-[#3157C9] uppercase text-[#6F91F4] 
+                                    border-[#3157C9] uppercase text-[#3052B5] 
                                     font-iBM_Plex_Sans tracking-[0.1rem]
                                     text-[1rem] font-[600] justify-center
                                     drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
@@ -795,7 +796,7 @@ const SignupPage = () => {
                 {isOTPShown && (
                     <div
                         className='flex flex-col items-center 
-                    w-screen xlc:w-[30rem] min-h-screen mx-[2.5rem]'
+                        w-screen xlc:w-auto min-h-screen mx-[2.5rem]'
                     >
                         {/* Title */}
                         <p
@@ -803,7 +804,7 @@ const SignupPage = () => {
                             font-poynter_Oldstyle_Display 
                             font-[400] leading-[2.75rem] mt-[6.5rem]
                             mb-[0.75rem] text-[#29375F] md:mb-[1.25rem]
-                            xlc:mt-0 self-start'
+                            xlc:mt-0 w-[25.0625rem]'
                         >
                             Confirm Email
                         </p>
@@ -918,7 +919,7 @@ const SignupPage = () => {
                 {isVerifiedScreenShown && (
                     <div
                         className='flex flex-col items-center justify-center 
-                    w-screen xlc:w-[30rem] min-h-screen'
+                        w-screen xlc:w-auto min-h-screen'
                     >
                         {/* Email Image */}
                         <Image
@@ -978,7 +979,7 @@ const SignupPage = () => {
                 {isSetupScreenShown && (
                     <div
                         className='flex flex-col items-center 
-                    w-screen xlc:w-[30rem] min-h-screen '
+                    w-screen xlc:w-auto min-h-screen '
                     >
                         {/* Title */}
                         <p
@@ -1196,7 +1197,7 @@ const SignupPage = () => {
                 {isAboutScreenShown && (
                     <div
                         className='flex flex-col items-center 
-                    w-screen xlc:w-[30rem] min-h-screen'
+                    w-screen xlc:w-auto min-h-screen'
                     >
                         {/* Title */}
                         <p
