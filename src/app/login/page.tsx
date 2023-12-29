@@ -268,10 +268,9 @@ const LoginPage = () => {
             <Navbar2 />
 
             {/* Big image Left */}
-
             <div
                 className='hidden xlc:flex bg-[url("/signup-banner-lg.jpeg")] bg-no-repeat
-        bg-cover items-start md:w-[65%] xl1440:w-[65%]  h-screen'
+                bg-cover items-start md:w-[65%] xl1440:w-[65%] h-screen'
             >
                 <div className='w-[50%] relative mt-[7.94rem] ml-[2.5rem]'>
                     <h2
@@ -319,16 +318,16 @@ const LoginPage = () => {
             {/* Right Side */}
 
             {/* Text Contents */}
-            <div className=' h-screen overflow-y-scroll'>
+            <div className='h-screen overflow-y-scroll xlc:w-[35%]'>
                 <div
                     className='flex flex-col items-center 
-                xlc:items-end '
+                    xlc:items-center '
                 >
                     {/* Form */}
                     <div
                         className='flex flex-col items-center 
-                    w-screen
-                    xlc:w-[30rem] min-h-screen xlc:snap-y scroll-auto '
+                        w-screen xlc:w-[30rem] min-h-screen 
+                        xlc:snap-y scroll-auto'
                     >
                         <form className='flex flex-col' onSubmit={handleSubmit}>
                             <h1
@@ -635,8 +634,6 @@ const LoginPage = () => {
                     </div>
                 </div>
             </div>
-            {/* <h1 className='flex flex-1'>WHo</h1>
-      <h1 className='flex flex-2'>Where</h1> */}
         </div>
     );
 };

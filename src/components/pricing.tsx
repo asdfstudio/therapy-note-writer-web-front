@@ -1,8 +1,7 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useRef, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
 
 const contents = [
     {
@@ -37,15 +36,14 @@ const contents = [
 const Pricing = () => {
     return (
         <div
-            id='pricing'
             className=' flex flex-col items-center   
-            font-poynter_Oldstyle_Display bg-[url("/pricing-bg.svg")] bg-no-repeat bg-top xlc:bg-bottom '
+            font-poynter_Oldstyle_Display bg-[url("/pricing-bg.svg")] bg-no-repeat bg-top xlc:bg-bottom'
         >
             {/* Title */}
             <h1
                 className='text-[2.5rem] text-[#29375F] leading-[2.75rem] 
                     w-[21rem] text-center mt-[5.19rem] mb-[7.5rem]
-                    md:text-[3.4375rem] md:w-[32.59rem] md:leading-[3.78rem] xlc:w-screen 
+                    md:text-[3.4375rem] md:w-[32.59rem] md:leading-[3.78rem] xlc:w-[62rem] 
                     xlc:mt-[6.25rem] xlc:mb-[8.12rem]'
             >
                 <span className='font-poynter_Oldstyle_Display font-[400]'>
@@ -60,6 +58,7 @@ const Pricing = () => {
                 </span>
             </h1>
 
+            {/* Other items */}
             <div className='flex flex-col-reverse xlc:flex-col items-center'>
                 {/* Pricing section */}
                 <div
@@ -210,7 +209,7 @@ const Pricing = () => {
                         width={700}
                         height={320}
                         draggable={false}
-                        className='hidden xlc:flex z-0'
+                        className='hidden md:flex z-0'
                     />
                     <Image
                         src={'/pricing-banner-mobile.png'}
@@ -218,7 +217,7 @@ const Pricing = () => {
                         width={700}
                         height={320}
                         draggable={false}
-                        className=' xlc:hidden z-0 -mb-[3.5rem]'
+                        className=' md:hidden z-0 -mb-[3.5rem]'
                     />
                 </div>
             </div>

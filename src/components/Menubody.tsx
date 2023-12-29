@@ -349,7 +349,7 @@ const Menubody = ({
             md:w-[23.75rem]
             text-[#fff] font-iBM_Plex_Sans
             fixed flex flex-col top-[4.75rem] pt-[1.25rem] z-20
-            overflow-y-scroll'
+            overflow-y-scroll menubody'
         >
             <div
                 className='ml-[1.25rem] mr-[1.1rem]

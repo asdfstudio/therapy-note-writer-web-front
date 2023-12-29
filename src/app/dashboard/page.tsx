@@ -15,6 +15,7 @@ import React, { useContext, useEffect, useState } from 'react';
 const DashboardPage = () => {
     const { user } = useContext<any>(Context);
     const [showMenu, setShowMenu] = useState(false);
+    // const [email, setEmail] = useState('');
     const [showNavMenu, setShowNavMenu] = useState(false);
     const [mainSummary, setMainSummary] = useState('');
     const [showSubscriptionTable, setShowSubscriptionTable] = useState(false);
@@ -49,6 +50,7 @@ const DashboardPage = () => {
     // Set username
     useEffect(() => {
         return () => {
+            // setEmail(user && user.user.email);
             setUsername(user && user.user.username);
             setUserSubType(user && user.user.subPackage);
         };
@@ -84,25 +86,27 @@ const DashboardPage = () => {
     useEffect(() => {
         const checkClickCount = async () => {
             // setTotalClick(user && user.user.clickLimit);
-            const clickData = await axios.get(
-                `${baseURL}/api/auth/clickDataofCurrentMonth/${email}`
-            );
+            if (email) {
+                const clickData = await axios.get(
+                    `${baseURL}/api/auth/clickDataofCurrentMonth/${email}`
+                );
 
-            // set click data
-            if (clickData.data.data) {
-                setTotalClick(clickData.data.data.clickLimit);
-                if (clickData.data.data.clickLimit === 5) {
-                    setDisabledIndex(0);
-                } else if (clickData.data.data.clickLimit === 100) {
-                    setDisabledIndex(1);
-                } else if (clickData.data.data.clickLimit === 500) {
-                    setDisabledIndex(2);
+                // set click data
+                if (clickData.data.data) {
+                    setTotalClick(clickData.data.data.clickLimit);
+                    if (clickData.data.data.clickLimit === 5) {
+                        setDisabledIndex(0);
+                    } else if (clickData.data.data.clickLimit === 100) {
+                        setDisabledIndex(1);
+                    } else if (clickData.data.data.clickLimit === 500) {
+                        setDisabledIndex(2);
+                    }
                 }
-            }
-            if (clickData.data.data.clicks !== null) {
-                setClicksUsed(clickData.data.data.clicks.ClickCount);
-            } else {
-                setClicksUsed(0);
+                if (clickData.data.data.clicks !== null) {
+                    setClicksUsed(clickData.data.data.clicks.ClickCount);
+                } else {
+                    setClicksUsed(0);
+                }
             }
         };
         checkClickCount();
@@ -146,16 +150,18 @@ const DashboardPage = () => {
     // Get terms of service check
     useEffect(() => {
         const getTermsOfService = async () => {
-            const result = await axios.post(
-                `${baseURL}/api/auth/getTermsOfService`,
-                {
-                    email: email,
-                }
-            );
+            if (email) {
+                const result = await axios.post(
+                    `${baseURL}/api/auth/getTermsOfService`,
+                    {
+                        email: email,
+                    }
+                );
 
-            if (result.data.success === true) {
-                const checkResult = result.data.privacyPolicyAccepted;
-                setPrivacyPolicyAccepted(checkResult);
+                if (result.data.success === true) {
+                    const checkResult = result.data.privacyPolicyAccepted;
+                    setPrivacyPolicyAccepted(checkResult);
+                }
             }
         };
         getTermsOfService();
