@@ -36,6 +36,7 @@ const contents = [
 const Pricing = () => {
     return (
         <div
+            id='pricing'
             className=' flex flex-col items-center   
             font-poynter_Oldstyle_Display bg-[url("/pricing-bg.svg")] bg-no-repeat bg-top xlc:bg-bottom'
         >
