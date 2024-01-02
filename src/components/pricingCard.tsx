@@ -46,7 +46,7 @@ const PricingCard = () => {
 
     return (
         <div
-            id='pricing'
+            // id='pricing'
             className=' flex flex-col items-center h-screen relative 
             font-poynter_Oldstyle_Display bg-[url("/pricing-bg.svg")] bg-no-repeat bg-top 
             xlc:h-screen'
