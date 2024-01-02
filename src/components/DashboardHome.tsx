@@ -26,6 +26,8 @@ const DashboardHome = ({
     setShowSubscriptionTable,
     handleUpgradeSubscriptionTable,
     generateLoading,
+    showCalendar,
+    setShowCalendar,
 }: {
     handleShowMenu: any;
     mainSummary: any;
@@ -34,6 +36,8 @@ const DashboardHome = ({
     setShowSubscriptionTable: any;
     handleUpgradeSubscriptionTable: any;
     generateLoading: any;
+    showCalendar: any;
+    setShowCalendar: any;
 }) => {
     const [clickAreaCovered, setClickAreaCovered] = useState(0);
 
@@ -48,8 +52,12 @@ const DashboardHome = ({
 
     const pictureSerial = Math.floor(Math.random() * 10);
 
+    const handleCalendarIconClick = () => {
+        showCalendar ? setShowCalendar(false) : setShowCalendar(true);
+    };
+
     return (
-        <div className='font-iBM_Plex_Sans'>
+        <div className='font-iBM_Plex_Sans' onClick={handleCalendarIconClick}>
             <div
                 className='bg-[url("/bg-home-2.svg")] h-[calc(screen-15%)] md:h-screen w-full
                     bg-repeat-x bg-cover flex flex-col xlc:bg-contain '
