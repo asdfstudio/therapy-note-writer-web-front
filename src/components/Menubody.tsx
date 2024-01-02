@@ -93,6 +93,8 @@ const Menubody = ({
     // setShowTermsOfServicePop,
     setShowSendFeedbackPop,
     updateTrackButtonCLick,
+    showCalendar,
+    setShowCalendar,
 }: {
     setMainSummary: any;
     // setShowSubscriptionTable: any;
@@ -103,6 +105,8 @@ const Menubody = ({
     // setShowTermsOfServicePop: any;
     setShowSendFeedbackPop: any;
     updateTrackButtonCLick: any;
+    showCalendar: any;
+    setShowCalendar: any;
 }) => {
     const [clientPronouns, setClientPronouns] = useState<any>('');
     const [apptLocation, setApptLocation] = useState<any>('');
@@ -131,7 +135,7 @@ const Menubody = ({
         useState(false);
     const [openDiagnosisSuggestion, setOpenDiagnosisSuggestion] =
         useState(true);
-    const [showCalendar, setShowCalendar] = useState(false);
+    // const [showCalendar, setShowCalendar] = useState(false);
 
     const { user } = useContext<any>(Context);
     const router = useRouter();
@@ -341,7 +345,7 @@ const Menubody = ({
                 setShowCalendar(false);
             }
         };
-    }, [nextAppt]);
+    }, [nextAppt, setShowCalendar]);
 
     return (
         <div
@@ -350,6 +354,7 @@ const Menubody = ({
             text-[#fff] font-iBM_Plex_Sans
             fixed flex flex-col top-[4.75rem] pt-[1.25rem] z-20
             overflow-y-scroll menubody'
+            onClick={handleCalendarIconClick}
         >
             <div
                 className='ml-[1.25rem] mr-[1.1rem]
@@ -397,9 +402,9 @@ const Menubody = ({
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Pronouns'
-                                    checked={
-                                        item === clientPronouns ? true : false
-                                    }
+                                    // checked={
+                                    //     item === clientPronouns ? true : false
+                                    // }
                                     className='checkbox appearance-none 
                                     ring-[#F4776F] ring-[1.5px] 
                                     checked:ring-[4px] checked:ring-[#F4776F]
@@ -449,9 +454,9 @@ const Menubody = ({
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Appointment Location'
-                                    checked={
-                                        item === apptLocation ? true : false
-                                    }
+                                    // checked={
+                                    //     item === apptLocation ? true : false
+                                    // }
                                     className='checkbox appearance-none 
                                     ring-[#F4776F] ring-[1.5px] 
                                     checked:ring-[4px] checked:ring-[#F4776F]
@@ -606,7 +611,7 @@ const Menubody = ({
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Appearance'
-                                    checked={appearance.includes(item)}
+                                    // checked={appearance.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (appearance.includes(currentValue)) {
@@ -661,7 +666,7 @@ const Menubody = ({
                                     id={`${item}${index}`}
                                     name='Speech'
                                     type='checkbox'
-                                    checked={speech.includes(item)}
+                                    // checked={speech.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (speech.includes(currentValue)) {
@@ -716,7 +721,7 @@ const Menubody = ({
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Affect'
-                                    checked={affect.includes(item)}
+                                    // checked={affect.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (affect.includes(currentValue)) {
@@ -771,7 +776,7 @@ const Menubody = ({
                                     id={`${item}${index}`}
                                     name='Mood'
                                     type='checkbox'
-                                    checked={mood.includes(item)}
+                                    // checked={mood.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (mood.includes(currentValue)) {
@@ -826,7 +831,7 @@ const Menubody = ({
                                     id={`${item}${index}`}
                                     name='Behavior'
                                     type='checkbox'
-                                    checked={behavior.includes(item)}
+                                    // checked={behavior.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (behavior.includes(currentValue)) {
@@ -881,7 +886,7 @@ const Menubody = ({
                                     id={`${item}${index}`}
                                     name='Delusions'
                                     type='checkbox'
-                                    checked={delusion.includes(item)}
+                                    // checked={delusion.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (delusion.includes(currentValue)) {
@@ -942,7 +947,7 @@ const Menubody = ({
                                     ring-inset rounded-full
                                     cursor-pointer 
                                     w-[0.9375rem] h-[0.9375rem] mr-[0.5rem]'
-                                    checked={suicidal.includes(item)}
+                                    // checked={suicidal.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (suicidal.includes(currentValue)) {
@@ -997,7 +1002,7 @@ const Menubody = ({
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Homicidal_Ideation'
-                                    checked={homicidal.includes(item)}
+                                    // checked={homicidal.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (homicidal.includes(currentValue)) {
@@ -1052,7 +1057,7 @@ const Menubody = ({
                                     id={`${item}${index}`}
                                     name='Self Injuring Behavior'
                                     type='checkbox'
-                                    checked={selfInjury.includes(item)}
+                                    // checked={selfInjury.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (selfInjury.includes(currentValue)) {
@@ -1107,7 +1112,7 @@ const Menubody = ({
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Insight'
-                                    checked={insight.includes(item)}
+                                    // checked={insight.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (insight.includes(currentValue)) {
@@ -1162,7 +1167,7 @@ const Menubody = ({
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Judgment'
-                                    checked={judgment.includes(item)}
+                                    // checked={judgment.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (judgment.includes(currentValue)) {
@@ -1217,7 +1222,7 @@ const Menubody = ({
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Oriented'
-                                    checked={oriented.includes(item)}
+                                    // checked={oriented.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (oriented.includes(currentValue)) {
@@ -1272,7 +1277,7 @@ const Menubody = ({
                                     value={item}
                                     id={`${item}${index}`}
                                     name='EyeContact'
-                                    checked={eyeContact.includes(item)}
+                                    // checked={eyeContact.includes(item)}
                                     onChange={(event) => {
                                         const currentValue = event.target.value;
                                         if (eyeContact.includes(currentValue)) {

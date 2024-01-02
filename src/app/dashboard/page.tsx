@@ -40,6 +40,7 @@ const DashboardPage = () => {
         useState('default');
 
     const [userSubType, setUserSubType] = useState(null);
+    const [showCalendar, setShowCalendar] = useState(false);
 
     const stripePriceId = process.env.NEXT_PUBLIC_STRIPE_PRICE_ID;
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -349,6 +350,8 @@ const DashboardPage = () => {
                     // setShowTermsOfServicePop={setShowTermsOfServicePop}
                     setShowSendFeedbackPop={setShowSendFeedbackPop}
                     updateTrackButtonCLick={updateTrackButtonCLick}
+                    showCalendar={showCalendar}
+                    setShowCalendar={setShowCalendar}
                 />
             </div>
 
@@ -374,6 +377,8 @@ const DashboardPage = () => {
                         handleUpgradeSubscriptionTable
                     }
                     generateLoading={generateLoading}
+                    showCalendar={showCalendar}
+                    setShowCalendar={setShowCalendar}
                 />
             </div>
         </div>
