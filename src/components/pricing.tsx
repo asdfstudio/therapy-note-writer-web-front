@@ -45,7 +45,7 @@ const Pricing = () => {
                 className='text-[2.5rem] text-[#29375F] leading-[2.75rem] 
                     w-[21rem] text-center mt-[5.19rem] mb-[7.5rem]
                     md:text-[3.4375rem] md:w-[32.59rem] md:leading-[3.78rem] xlc:w-[62rem] 
-                    xlc:mt-[6.25rem] xlc:mb-[8.12rem]'
+                    xlc:mt-[6.25rem] xlc:mb-[5rem]'
             >
                 <span className='font-poynter_Oldstyle_Display font-[400]'>
                     Our pricing is simple with{' '}
@@ -82,7 +82,7 @@ const Pricing = () => {
                             >
                                 <div className=' m-[2rem] '>
                                     {/* Title */}
-                                    <p className='text-[2.815rem] text-[#242C44] font-[400]'>
+                                    <p className='text-[2.815rem] text-[#29375F] font-[400]'>
                                         {item.title}
                                     </p>
                                     {index === 2 ? (
@@ -160,7 +160,7 @@ const Pricing = () => {
 
                                     {index === 2 ? (
                                         <Link
-                                            href='/'
+                                            href='/signup'
                                             className='w-[17.25rem] h-[2.75rem] '
                                         >
                                             <button
