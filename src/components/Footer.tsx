@@ -3,10 +3,9 @@ import Link from 'next/link';
 import React from 'react';
 
 const links = [
-    { id: 1, title: 'How it works', url: '/' },
-    { id: 2, title: 'Why choose', url: '/whychoose' },
-    { id: 3, title: 'Features', url: '/feautures' },
-    { id: 4, title: 'Pricing', url: '/pricing' },
+    { id: 1, title: 'How it works', url: '/#how_it_works' },
+    { id: 2, title: 'Why choose', url: '/#whychoose' },
+    { id: 3, title: 'Pricing', url: '/#pricing' },
 ];
 
 const Footer = () => {
