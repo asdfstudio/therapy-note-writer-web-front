@@ -38,7 +38,8 @@ const Pricing = () => {
         <div
             id='pricing'
             className=' flex flex-col items-center   
-            font-poynter_Oldstyle_Display bg-[url("/pricing-bg.svg")] bg-no-repeat bg-top xlc:bg-bottom'
+            font-poynter_Oldstyle_Display  bg-[url("/pricing-bg-tab.svg")] bg-contain 
+            xl:bg-[url("/pricing-bg-2.svg")] bg-no-repeat bg-top xlc:bg-bottom xlc:bg-cover'
         >
             {/* Title */}
             <h1
