@@ -272,7 +272,7 @@ const SignupPage = () => {
                                 {
                                     headers,
                                     email: email,
-                                    password: password,
+                                    password: tempPassword,
                                     signupMedium: signupMedium,
                                 }
                             );
