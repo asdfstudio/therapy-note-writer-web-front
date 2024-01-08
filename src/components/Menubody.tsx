@@ -18,7 +18,17 @@ const diagnosisOptions = [
     'Disruptive behaviour',
 ];
 
-const Pronouns = ['She/Her/Hers', 'He/Him/His', 'They/Them/Theirs'];
+const Pronouns = [
+    'She',
+    'Her',
+    'Hers',
+    'He',
+    'Him',
+    'His',
+    'They',
+    'Them',
+    'Theirs',
+];
 const AppointmentLocation = ['In person', 'Telehealth'];
 const Diagnosis = ['In person', 'Telehealth'];
 const Appearance = [
@@ -108,7 +118,7 @@ const Menubody = ({
     showCalendar: any;
     setShowCalendar: any;
 }) => {
-    const [clientPronouns, setClientPronouns] = useState<any>('');
+    const [clientPronouns, setClientPronouns] = useState<any>([]);
     const [apptLocation, setApptLocation] = useState<any>('');
     const [diagnosis, setDiagnosis] = useState<any>([]);
     const [currentSymptoms, setCurrentSymptoms] = useState<any>('');
@@ -338,6 +348,12 @@ const Menubody = ({
         showCalendar ? setShowCalendar(false) : setShowCalendar(true);
     };
 
+    const handleBlankSpaceClick = () => {
+        if (showCalendar) {
+            setShowCalendar(false);
+        }
+    };
+
     // Close calendar on selecting date
     useEffect(() => {
         return () => {
@@ -354,7 +370,7 @@ const Menubody = ({
             text-[#fff] font-iBM_Plex_Sans
             fixed flex flex-col top-[4.75rem] pt-[1.25rem] z-20
             overflow-y-scroll menubody'
-            onClick={handleCalendarIconClick}
+            onClick={handleBlankSpaceClick}
         >
             <div
                 className='ml-[1.25rem] mr-[1.1rem]
@@ -376,45 +392,53 @@ const Menubody = ({
                     Pronouns
                 </p>
                 <div
-                    className='w-full mb-[1.25rem] grid grid-cols-1 sm:grid-cols-2
-                    md:grid-cols-1'
+                    className='w-full mb-[1.25rem] grid grid-cols-3 sm:grid-cols-3
+                    md:grid-cols-3 xl:grid-cols-3 gap-[0.5rem]'
                 >
                     {Pronouns.map((item, index) => {
                         return (
                             <label
-                                className={`text-[0.9375rem] flex items-center justify-between
-                            mr-[1.5rem] mb-[0.5rem] 
-                            border-[0.518px] border-[rgba(111,145,244,0.50)] w-[12rem]
-                            rounded-[0.25888rem] px-[0.62rem] p-[0.62rem] 
-                            hover:border-[#6F91F4] cursor-pointer 
-                            hover:bg-[rgba(111,145,244,0.10)] 
+                                className={`container border-[0.518px] border-[rgba(111,145,244,0.50)]
+                                rounded-[0.25888rem] px-[0.62rem] pt-[0.62rem] pb-[0.62rem]
+                                hover:border-[#6F91F4] 
+                                hover:bg-[rgba(111,145,244,0.10)] 
                             ${
-                                item === clientPronouns
+                                clientPronouns.includes(item)
                                     ? 'bg-[rgba(111,145,244,0.10)]'
                                     : ''
                             }`}
                                 key={index}
                                 // htmlFor={`${item}${index}`}
                             >
-                                {item}
                                 <input
-                                    type='radio'
+                                    type='checkbox'
                                     value={item}
                                     id={`${item}${index}`}
                                     name='Pronouns'
-                                    // checked={
-                                    //     item === clientPronouns ? true : false
-                                    // }
-                                    className='checkbox appearance-none 
-                                    ring-[#F4776F] ring-[1.5px] 
-                                    checked:ring-[4px] checked:ring-[#F4776F]
-                                    ring-inset rounded-full
-                                    cursor-pointer 
-                                    w-[1rem] h-[1rem] ml-[1rem]'
                                     onChange={(event) => {
-                                        setClientPronouns(event.target.value);
+                                        const currentValue = event.target.value;
+                                        if (
+                                            clientPronouns.includes(
+                                                currentValue
+                                            )
+                                        ) {
+                                            const tempArray = clientPronouns;
+                                            const index =
+                                                tempArray.indexOf(currentValue);
+                                            tempArray.splice(index, 1);
+                                            setClientPronouns(tempArray);
+                                        } else {
+                                            setClientPronouns(
+                                                (prevValue: any) => [
+                                                    ...prevValue,
+                                                    event.target.value,
+                                                ]
+                                            );
+                                        }
                                     }}
                                 />
+                                <span className='checkmark '></span>
+                                {item}
                             </label>
                         );
                     })}
