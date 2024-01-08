@@ -53,7 +53,9 @@ const DashboardHome = ({
     const pictureSerial = Math.floor(Math.random() * 10);
 
     const handleCalendarIconClick = () => {
-        showCalendar ? setShowCalendar(false) : setShowCalendar(true);
+        if (showCalendar) {
+            setShowCalendar(false);
+        }
     };
 
     return (
