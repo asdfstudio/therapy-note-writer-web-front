@@ -476,43 +476,6 @@ const SignupPage = () => {
 
             {/* Right Side */}
             <div className=' h-screen w-screen overflow-y-scroll xlc:w-[30rem]'>
-                {/* Log out button */}
-                {isOTPShown ||
-                isVerifiedScreenShown ||
-                isSetupScreenShown ||
-                isAboutScreenShown ? (
-                    <div
-                        className='flex w-[28rem] items-center justify-end mt-[2rem]
-                    mr-[2rem]'
-                    >
-                        {/* <svg
-                            className='w-[0.75rem] h-[0.75rem] mr-[0.5rem]'
-                            xmlns='http://www.w3.org/2000/svg'
-                            viewBox='0 0 512 512'
-                        >
-                            <path
-                                d='M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 
-                                    11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 
-                                    6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 
-                                    0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 
-                                    0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 
-                                    9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 
-                                    14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 
-                                    32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 
-                                    0c17.7 0 32 14.3 32 32s-14.3 32-32 32z'
-                            />
-                        </svg>
-                        <p
-                            className='w-[5rem] text-[0.75rem] font-[600]
-                        uppercase font-iBM_Plex_Sans  text-[rgba(41,55,95,0.70)]'
-                        >
-                            Log Out
-                        </p> */}
-                    </div>
-                ) : (
-                    ''
-                )}
-
                 {/* Text Contents */}
                 {isEmailFormShown && (
                     <div
@@ -788,8 +751,8 @@ const SignupPage = () => {
                 {/* OTP Screen */}
                 {isOTPShown && (
                     <div
-                        className='flex flex-col items-center 
-                        w-auto h-auto'
+                        className='flex flex-col items-center justify-center
+                        w-auto h-screen'
                     >
                         {/* Title */}
                         <p
@@ -797,7 +760,7 @@ const SignupPage = () => {
                             font-poynter_Oldstyle_Display 
                             font-[400] leading-[2.75rem] mt-[6.5rem]
                             mb-[0.75rem] text-[#29375F] md:mb-[1.25rem]
-                            xlc:mt-0 w-[25.0625rem]'
+                            xlc:mt-[4.75rem] w-[25.0625rem]'
                         >
                             Confirm Email
                         </p>
@@ -887,14 +850,14 @@ const SignupPage = () => {
                         <div
                             className='w-[21.25rem] h-[2.75rem] mt-[4rem]
                         mb-[2.13rem]
-                        md:w-[43rem] md:mt-[1.25rem] md:mb-[2.37rem]
+                        md:w-[25rem] md:mt-[1.25rem] md:mb-[2.37rem]
                         xlc:w-[25rem] xlc:mb-0 xlc:mt-0'
                         >
                             <button
                                 onClick={(e: any) => {
                                     submitOTP(e, otpArray);
                                 }}
-                                className='flex bg-[#6F91F4] h-full 
+                                className='flex bg-[#3157C9] h-full 
                             w-full items-center rounded-full border-[1px] 
                             border-[#3157C9] uppercase text-white 
                             font-iBM_Plex_Sans tracking-[0.1rem]
@@ -912,7 +875,7 @@ const SignupPage = () => {
                 {isVerifiedScreenShown && (
                     <div
                         className='flex flex-col items-center justify-center 
-                        w-auto h-auto '
+                        w-auto h-screen '
                     >
                         {/* Email Image */}
                         <Image
@@ -921,14 +884,14 @@ const SignupPage = () => {
                             width={1200}
                             height={550}
                             draggable={false}
-                            className='w-[7.77rem] h-auto ml-[1.5rem]'
+                            className='w-[7.77rem] h-auto ml-[1.5rem] mt-[4.75rem]'
                         />
 
                         {/* Title */}
                         <p
                             className='w-[24.9375rem] text-[3.125rem] text-center
                             font-poynter_Oldstyle_Display 
-                            font-[400] leading-[3.4375rem] mt-[6.5rem]
+                            font-[400] leading-[3.4375rem] mt-[1.5rem]
                             mb-[1.5rem] text-[#29375F] md:mb-[1.25rem]
                             xlc:mt-0 '
                         >
@@ -955,7 +918,7 @@ const SignupPage = () => {
                         >
                             <button
                                 onClick={OTPVerified}
-                                className='flex bg-[#6F91F4] h-full 
+                                className='flex bg-[#3157C9] h-full 
                             w-full items-center rounded-full border-[1px] 
                             border-[#3157C9] uppercase text-white 
                             font-iBM_Plex_Sans tracking-[0.1rem]
@@ -980,7 +943,7 @@ const SignupPage = () => {
                             font-poynter_Oldstyle_Display  
                             font-[400] leading-[3.4375rem] mt-[6.5rem]
                             mb-[1.5rem] text-[#29375F] md:mb-[1.25rem]
-                            xlc:mt-0 '
+                            xlc:mt-[4.75rem] '
                         >
                             Set Up Your Account
                         </p>
@@ -1171,7 +1134,7 @@ const SignupPage = () => {
                                             ? true
                                             : false
                                     }
-                                    className='flex bg-[#6F91F4] h-full 
+                                    className='flex bg-[#3157C9] h-full 
                             w-full items-center rounded-full border-[1px] 
                             border-[#3157C9] uppercase text-white 
                             font-iBM_Plex_Sans tracking-[0.1rem]
@@ -1198,7 +1161,7 @@ const SignupPage = () => {
                             font-poynter_Oldstyle_Display 
                             font-[400] leading-[3.4375rem] mt-[6.5rem]
                             mb-[1.5rem] text-[#29375F] md:mb-[1.25rem]
-                            xlc:mt-0 '
+                            xlc:mt-[4.75rem] '
                         >
                             Tell Us About Yourself
                         </p>
@@ -1360,7 +1323,7 @@ const SignupPage = () => {
                             >
                                 <button
                                     onClick={handleSIgnupComplete}
-                                    className='flex bg-[#6F91F4] h-full 
+                                    className='flex bg-[#3157C9] h-full 
                             w-full items-center rounded-full border-[1px] 
                             border-[#3157C9] uppercase text-white 
                             font-iBM_Plex_Sans tracking-[0.1rem]
