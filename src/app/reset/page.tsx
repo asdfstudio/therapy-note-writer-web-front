@@ -1,5 +1,6 @@
 'use client';
 import Navbar2 from '@/components/Navbar2';
+import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
@@ -12,16 +13,21 @@ const LoginPage = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [showEmailSent, setShowEmailSent] = useState(false);
     const router = useRouter();
+    const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         setCurrentError(false);
 
-        setShowEmailSent(true);
-
-        // console.log('email', email);
         try {
-            // do something
+            const res = await axios.post(
+                `${baseURL}/api/auth/generateResePasswordLink`,
+                {
+                    email: email,
+                }
+            );
+
+            setShowEmailSent(true);
         } catch (error: any) {
             setCurrentError(true);
             setErrorMessage(error.response.data.error);

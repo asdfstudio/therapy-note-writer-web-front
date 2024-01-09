@@ -1,31 +1,26 @@
 'use client';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 const PasswordResetPage = () => {
-    const oldPasswordRef = useRef<any>(null);
+    // const oldPasswordRef = useRef<any>(null);
     const NewPasswordRef = useRef<any>(null);
     const [currentError, setCurrentError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+    const [series, setSeries] = useState<any>('');
+    const [email, setEmail] = useState<any>('');
     const router = useRouter();
     const params = useSearchParams();
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
-    console.log('series   ', params.get('series'));
-    console.log('identity   ', params.get('identity'));
-
-    let email = '';
-
-    let user: any;
-    if (typeof window !== 'undefined') {
-        user = JSON.parse(localStorage.getItem('user')!) || null;
-
-        if (user) {
-            email = user.user.email;
-        }
-    }
+    useEffect(() => {
+        return () => {
+            setSeries(params.get('series'));
+            setEmail(params.get('identity'));
+        };
+    });
 
     const handlePassword = (password: any) => {
         if (password !== NewPasswordRef.current.value) {
@@ -40,11 +35,14 @@ const PasswordResetPage = () => {
         setCurrentError(false);
         e.preventDefault();
         try {
-            const res = await axios.post(`${baseURL}/api/auth/updatePassword`, {
-                email: email,
-                oldPassword: oldPasswordRef.current.value,
-                newPassword: NewPasswordRef.current.value,
-            });
+            const res = await axios.post(
+                `${baseURL}/api/auth/resetPasswordFromLink`,
+                {
+                    email: email,
+                    series: series,
+                    newPassword: NewPasswordRef.current.value,
+                }
+            );
             // console.log(res.data);
             res.data && router.push('/login');
         } catch (error: any) {
