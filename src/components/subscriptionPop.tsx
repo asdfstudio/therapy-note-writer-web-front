@@ -169,7 +169,6 @@ const SubscriptionPop = ({
                 >
                     {subTitle}
                 </p>
-
                 {/* Pricing Card */}
                 <div className='hidden xlc:flex'>
                     {contents.map((item: any, index: any) => {
@@ -312,7 +311,6 @@ const SubscriptionPop = ({
                         );
                     })}
                 </div>
-
                 {/* Pricing Card Slide for tab and mobile */}
                 <div className='flex  xlc:hidden'>
                     {contents.map((item: any, index: any) => {
@@ -491,6 +489,30 @@ const SubscriptionPop = ({
                         );
                     })}
                 </div>
+
+                <p
+                    className='text-[#29375F] font-iBM_Plex_Sans text-[1.25rem] 
+                    font-[500] leading-[1.75rem] mt-[2rem]'
+                >
+                    Looking for bigger options?{' '}
+                    <span
+                        className='text-[#3157C9] font-iBM_Plex_Sans text-[1.25rem] 
+                        font-[600] leading-[1.75rem] cursor-pointer'
+                        onClick={(e: any) => {
+                            window.location.href =
+                                'mailto:admin@therapynotewriter.com';
+                        }}
+                    >
+                        {/* <Link
+                        
+                        onClick={(e:any) => {
+                            window.location.href = "mailto:no-reply@example.com"
+                        }}
+                        > */}
+                        Contact us for customized plans just for you.
+                        {/* </Link> */}
+                    </span>
+                </p>
             </div>
         </div>
     );
