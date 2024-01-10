@@ -93,6 +93,7 @@ const SubscriptionPop = ({
                 .then((data) => {
                     if (data.data.success === true) {
                         setShowSubscriptionTable(false);
+                        window.location.reload();
                     }
                     if (data.data.success === 2) {
                         // setShowSubscriptionTable(false);
