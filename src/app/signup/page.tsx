@@ -81,16 +81,10 @@ const SignupPage = () => {
         // e.preventDefault();
         setSignupMedium('facebook');
 
-        console.log('reached log in button');
-
         initFacebookSdk().then(() => {
-            console.log('2nd time');
             getFacebookLoginStatus().then((response: any) => {
-                console.log('res', response);
                 if (response === null || response.authResponse === null) {
-                    console.log('No login status for the person');
                     fbLogin().then((response: any) => {
-                        console.log('login button', response);
                         if (response.status === 'connected') {
                             console.log('Person is connected');
                         } else {
@@ -101,9 +95,7 @@ const SignupPage = () => {
                 } else {
                     // console.log('res', response);
                     if (response.authResponse != null) {
-                        console.log('person in');
                         fbMe().then((res: any) => {
-                            console.log('me', res);
                             setEmail(res.email);
                             handleSubmitSocial(res.email, 'facebook');
                         });
@@ -141,8 +133,6 @@ const SignupPage = () => {
             // console.log(res.data);
             // res.data && router.push('/login');
 
-            console.log('call before api call', email, signupMedium);
-
             const res = await axios.post(`${baseURL}/api/auth/register`, {
                 email: email,
                 signupMedium: signupMedium,
@@ -156,7 +146,6 @@ const SignupPage = () => {
                     setIsAboutScreenShown(true);
                 }
             } else {
-                console.log('Problem with server');
                 setErrorMessage('Problem with server');
                 setMailError(true);
             }
@@ -172,8 +161,6 @@ const SignupPage = () => {
         signupMediumParam: any
     ) => {
         try {
-            console.log('call before api call', email, signupMedium);
-
             const res = await axios.post(`${baseURL}/api/auth/register`, {
                 email: emailParam,
                 signupMedium: signupMediumParam,
@@ -187,7 +174,6 @@ const SignupPage = () => {
                     setIsAboutScreenShown(true);
                 }
             } else {
-                console.log('Problem with server');
                 setErrorMessage('Problem with server');
                 setMailError(true);
             }
@@ -223,7 +209,6 @@ const SignupPage = () => {
             setIsOTPShown(false);
             setIsVerifiedScreenShown(true);
         } else {
-            console.log('Problem with server');
             setErrorMessage('Problem with server');
             setMailError(true);
         }
@@ -287,19 +272,15 @@ const SignupPage = () => {
                             setErrorMessage(error.response.data.error);
                         }
                     } else {
-                        console.log('Problem with server');
                         setErrorMessage('Problem with server');
                     }
                 });
         } catch (error) {
-            console.log('Problem with server');
             setErrorMessage('Problem with server');
         }
     };
 
     const getUser = (credentialResponse: any) => {
-        console.log(credentialResponse);
-
         axios
             .get(
                 `https://www.googleapis.com/oauth2/v1/userinfo?client_id=${credentialResponse.clientId}`,
@@ -328,8 +309,6 @@ const SignupPage = () => {
                     redirect_uri: redirect_uri,
                 })
                 .then((userData) => {
-                    console.log('user data', userData.data);
-
                     setSignupMedium('linkedin');
                     setEmail(userData.data.email);
                     // handleSubmitSocial(userData.data.email, 'linkedin');
@@ -347,7 +326,6 @@ const SignupPage = () => {
                                     setIsEmailFormShown(false);
                                     setIsAboutScreenShown(true);
                                 } else {
-                                    console.log('Problem with server');
                                     setErrorMessage('Problem with server');
                                     setMailError(true);
                                 }
@@ -385,7 +363,6 @@ const SignupPage = () => {
                                 setIsEmailFormShown(false);
                                 setIsAboutScreenShown(true);
                             } else {
-                                console.log('Problem with server');
                                 setErrorMessage('Problem with server');
                                 setMailError(true);
                             }
@@ -680,7 +657,7 @@ const SignupPage = () => {
                             </div>
 
                             {/* LinkedIn login button */}
-                            <div
+                            {/* <div
                                 className='w-[21.25rem] h-[2.75rem] 
                         md:w-[43rem] md:mt-[1.25rem] md:mb-[2.37rem]
                         xlc:w-[25rem] xlc:mb-0'
@@ -707,7 +684,7 @@ const SignupPage = () => {
                                         sign up with linkedin
                                     </span>
                                 </button>
-                            </div>
+                            </div> */}
                         </form>
 
                         <hr
@@ -958,7 +935,7 @@ const SignupPage = () => {
                         <input
                             type='text'
                             name='email'
-                            placeholder='yourname@domain.com'
+                            placeholder={email}
                             // ref={emailRef}
                             disabled
                             className='w-[21.25rem] h-[2.75rem] rounded-full
@@ -983,8 +960,13 @@ const SignupPage = () => {
                                 onChange={(e: any) => {
                                     const passwordValue = e.target.value;
 
+                                    // REGEX for Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character
+                                    // const mailRegexPattern =
+                                    //     /(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
+
+                                    // REGEX for Minimum eight characters, at least one uppercase letter, one lowercase letter and one number
                                     const mailRegexPattern =
-                                        /(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
+                                        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
                                     const matched =
                                         passwordValue.match(mailRegexPattern);
 
@@ -1045,8 +1027,6 @@ const SignupPage = () => {
                                         uppercase characters
                                         <br />
                                         * contain one or more numeric values
-                                        <br />
-                                        * contain one or more special characters
                                         <br />
                                     </span>
                                 </span>

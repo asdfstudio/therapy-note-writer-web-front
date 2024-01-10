@@ -72,7 +72,7 @@ const TermsOfService = ({
                                 {data[0].tos}
                             </p>
                         </div>
-                        <div className='mt-[1rem] text-[#29375F] font-iBM_Plex_Sans'>
+                        {/* <div className='mt-[1rem] text-[#29375F] font-iBM_Plex_Sans'>
                             <label>
                                 <input
                                     type='checkbox'
@@ -81,7 +81,7 @@ const TermsOfService = ({
                                 />
                                 I agree to the terms and conditions
                             </label>
-                        </div>
+                        </div> */}
                         <div className='flex gap-[1rem] mb-[2rem]'>
                             <div
                                 className='w-[16.68rem] h-[2.62rem] mb-[1.5rem]

@@ -39,7 +39,6 @@ const LoginPage = () => {
         setCurrentError(false);
         setIsLoading(true);
 
-        console.log('email', email);
         dispatch({ type: 'LOGIN_START' });
         try {
             const headers = {
@@ -66,7 +65,7 @@ const LoginPage = () => {
         signupMediumParam: any
     ) => {
         setCurrentError(false);
-        console.log('email', email);
+
         dispatch({ type: 'LOGIN_START' });
         try {
             const headers = {
@@ -104,18 +103,11 @@ const LoginPage = () => {
         setSignupMedium('facebook');
         setPassword('facebook');
 
-        console.log('reached log in button');
-
         initFacebookSdk().then(() => {
-            console.log('2nd time');
             getFacebookLoginStatus().then((response: any) => {
-                console.log('res', response);
                 if (response === null || response.authResponse === null) {
-                    console.log('No login status for the person');
                     fbLogin().then((response: any) => {
-                        console.log('login button', response);
                         if (response.status === 'connected') {
-                            console.log('Person is connected');
                         } else {
                             // something
                             // console.log('something else');
@@ -124,11 +116,9 @@ const LoginPage = () => {
                 } else {
                     // console.log('res', response);
                     if (response.authResponse != null) {
-                        console.log('person in');
                         fbMe().then((res: any) => {
-                            console.log('me', res);
                             setEmail(res.email);
-                            console.log('email here', email);
+
                             handleSubmitSocial(
                                 res.email,
                                 'facebook',
@@ -208,7 +198,6 @@ const LoginPage = () => {
                     const headers = {
                         'Content-Type': 'application/json',
                     };
-                    console.log('first');
 
                     axios
                         .post(`${baseURL}/api/auth/login`, {
@@ -563,7 +552,7 @@ const LoginPage = () => {
                     </div>
 
                     {/* LinkedIn login button */}
-                    <div
+                    {/* <div
                         className='w-[21.25rem] h-[2.75rem] 
                         md:w-[43rem] md:mt-[1.25rem] md:mb-0
                         xlc:w-[25rem] xlc:mb-0'
@@ -590,7 +579,7 @@ const LoginPage = () => {
                                 continue with linkedin
                             </span>
                         </button>
-                    </div>
+                    </div> */}
 
                     <hr
                         className='w-[21.25rem] h-[2px] 

@@ -44,17 +44,19 @@ const SettingsHome = () => {
 
     useEffect(() => {
         const checkSubscription = async () => {
-            const headers = {
-                'Content-Type': 'application/json',
-            };
-            const data = {
-                id: userID,
-            };
-            const subscriptionData = await axios.get(
-                `${baseURL}/api/auth/check-subscription/${userID}`
-            );
-            setNextBill(subscriptionData.data.nextBill);
-            setSubPackage(subscriptionData.data.subPackage);
+            if (userID !== null) {
+                const headers = {
+                    'Content-Type': 'application/json',
+                };
+                const data = {
+                    id: userID,
+                };
+                const subscriptionData = await axios.get(
+                    `${baseURL}/api/auth/check-subscription/${userID}`
+                );
+                setNextBill(subscriptionData.data.nextBill);
+                setSubPackage(subscriptionData.data.subPackage);
+            }
         };
         checkSubscription();
     }, [baseURL, nextBill, subPackage, userID]);
@@ -63,25 +65,27 @@ const SettingsHome = () => {
     useEffect(() => {
         const checkClickCount = async () => {
             // setTotalClick(user && user.user.clickLimit);
-            const clickData = await axios.get(
-                `${baseURL}/api/auth/clickDataofCurrentMonth/${email}`
-            );
+            if (email) {
+                const clickData = await axios.get(
+                    `${baseURL}/api/auth/clickDataofCurrentMonth/${email}`
+                );
 
-            // set click data
-            if (clickData.data.data) {
-                setTotalClick(clickData.data.data.clickLimit);
-                if (clickData.data.data.clickLimit === 5) {
-                    setDisabledIndex(0);
-                } else if (clickData.data.data.clickLimit === 100) {
-                    setDisabledIndex(1);
-                } else if (clickData.data.data.clickLimit === 500) {
-                    setDisabledIndex(2);
+                // set click data
+                if (clickData.data.data) {
+                    setTotalClick(clickData.data.data.clickLimit);
+                    if (clickData.data.data.clickLimit === 5) {
+                        setDisabledIndex(0);
+                    } else if (clickData.data.data.clickLimit === 100) {
+                        setDisabledIndex(1);
+                    } else if (clickData.data.data.clickLimit === 500) {
+                        setDisabledIndex(2);
+                    }
                 }
-            }
-            if (clickData.data.data.clicks !== null) {
-                setClicksUsed(clickData.data.data.clicks.ClickCount);
-            } else {
-                setClicksUsed(0);
+                if (clickData.data.data.clicks !== null) {
+                    setClicksUsed(clickData.data.data.clicks.ClickCount);
+                } else {
+                    setClicksUsed(0);
+                }
             }
         };
         checkClickCount();
