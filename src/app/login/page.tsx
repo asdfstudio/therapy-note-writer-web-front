@@ -522,7 +522,7 @@ const LoginPage = () => {
                     ></div>
 
                     {/* Twitter login button */}
-                    <div
+                    {/* <div
                         className='w-[21.25rem] h-[2.75rem] mb-[0.75rem]
                         md:w-[43rem] md:mt-[1.25rem] md:mb-0
                         xlc:w-[25rem] xlc:mb-0'
@@ -549,7 +549,7 @@ const LoginPage = () => {
                                 continue with twitter
                             </span>
                         </button>
-                    </div>
+                    </div> */}
 
                     {/* LinkedIn login button */}
                     {/* <div

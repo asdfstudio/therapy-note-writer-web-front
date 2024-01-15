@@ -10,6 +10,7 @@ const SettingsHome = () => {
     const [subPackage, setSubPackage] = useState('');
     const { user } = useContext<any>(Context);
     const [username, setUsername] = useState(null);
+    const [email, setEmail] = useState(null);
     const [showSubscriptionTable, setShowSubscriptionTable] = useState(false);
     const [disabledIndex, setDisabledIndex] = useState(4);
     const [clicksUsed, setClicksUsed] = useState(0);
@@ -24,24 +25,26 @@ const SettingsHome = () => {
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
     let userID = user && user.user._id;
-    let email = '';
+    // let email = '';
 
-    let userLocal: any;
-    if (typeof window !== 'undefined') {
-        userLocal = JSON.parse(localStorage.getItem('user')!) || null;
+    // let userLocal: any;
+    // if (typeof window !== 'undefined') {
+    //     userLocal = JSON.parse(localStorage.getItem('user')!) || null;
 
-        if (user) {
-            email = userLocal.user.email;
-        }
-    }
+    //     // if (user) {
+    //     //     email = userLocal.user.email;
+    //     // }
+    // }
 
     // Set username
     useEffect(() => {
         return () => {
             setUsername(user && user.user.username);
+            setEmail(user && user.user.email);
         };
     });
 
+    // Check subscription
     useEffect(() => {
         const checkSubscription = async () => {
             if (userID !== null) {
@@ -144,7 +147,7 @@ const SettingsHome = () => {
                         className='font-iBM_Plex_Sans font-[400] text-[1rem]
               text-[#29375F] opacity-[0.3]'
                     >
-                        {user && user.user.username}
+                        {username}
                     </p>
                 </div>
 
@@ -165,7 +168,7 @@ const SettingsHome = () => {
                         className='font-iBM_Plex_Sans font-[400] text-[1rem]
               text-[#29375F] opacity-[0.3]'
                     >
-                        {user && user.user.email}
+                        {email}
                     </p>
                 </div>
 
