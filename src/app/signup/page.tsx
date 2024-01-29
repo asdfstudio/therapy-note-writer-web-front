@@ -964,9 +964,13 @@ const SignupPage = () => {
                                     // const mailRegexPattern =
                                     //     /(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
 
-                                    // REGEX for Minimum eight characters, at least one uppercase letter, one lowercase letter and one number
+                                    // REGEX for Minimum eight characters, at least one uppercase letter, one lowercase letter and one number but this doesn't take hyphen
+                                    // const mailRegexPattern =
+                                    //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+
+                                    // REGEX for 1 numeric, 1 uppercase, 1 lowercase
                                     const mailRegexPattern =
-                                        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+                                        /^(?:(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*)$/;
                                     const matched =
                                         passwordValue.match(mailRegexPattern);
 
