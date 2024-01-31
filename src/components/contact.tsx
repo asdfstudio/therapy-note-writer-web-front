@@ -1,8 +1,40 @@
+'use client';
+
+import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 
 const Contact = () => {
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [phone, setPhone] = useState('');
+    const [message, setMessage] = useState('');
+
+    const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+
+    const handleSubmit = async (e: any) => {
+        e.preventDefault();
+
+        await axios
+            .post(`${baseURL}/api/auth/contact`, {
+                email: email,
+                name: name,
+                phone: phone,
+                message: message,
+            })
+            .then(() => {
+                // console.log('Form data sent');
+                setEmail('');
+                setName('');
+                setPhone('');
+                setMessage('');
+            })
+            .catch((err: any) => {
+                console.log(err.message);
+            });
+    };
+
     return (
         <div
             className='flex flex-col  
@@ -52,12 +84,16 @@ const Contact = () => {
                                 type='text'
                                 name='name'
                                 placeholder='Adam Voigt'
+                                value={name}
                                 className='w-[21.25rem] h-[2.75rem] rounded-full
             bg-[#fff] border-[1px] border-[#6f91f480]
               pl-[1.06rem] md:w-[43rem] xlc:w-[25rem]
               font-iBM_Plex_Sans font-[400] text-[1rem]
               hover:border-[#6F91F4] 
               active:border-[#4771ED] active:bg-[#FAFAFA]'
+                                onChange={(e: any) => {
+                                    setName(e.target.value);
+                                }}
                             />
 
                             <label
@@ -71,12 +107,16 @@ const Contact = () => {
                                 type='text'
                                 name='email'
                                 placeholder='yourname@domain.com'
+                                value={email}
                                 className='w-[21.25rem] h-[2.75rem] rounded-full
             bg-[#fff] border-[1px] border-[#6f91f480]
               pl-[1.06rem] md:w-[43rem] xlc:w-[25rem]
               font-iBM_Plex_Sans font-[400] text-[1rem]
               hover:border-[#6F91F4] 
               active:border-[#4771ED] active:bg-[#FAFAFA]'
+                                onChange={(e: any) => {
+                                    setEmail(e.target.value);
+                                }}
                             />
 
                             <label
@@ -90,12 +130,16 @@ const Contact = () => {
                                 type='text'
                                 name='number'
                                 placeholder='01 12 1234'
+                                value={phone}
                                 className='w-[21.25rem] h-[2.75rem] rounded-full
             bg-[#fff] border-[1px] border-[#6f91f480]
               pl-[1.06rem] md:w-[43rem] xlc:w-[25rem]
               font-iBM_Plex_Sans font-[400] text-[1rem]
               hover:border-[#6F91F4] 
               active:border-[#4771ED] active:bg-[#FAFAFA]'
+                                onChange={(e: any) => {
+                                    setPhone(e.target.value);
+                                }}
                             />
 
                             <label
@@ -107,6 +151,7 @@ const Contact = () => {
                             </label>
                             <textarea
                                 placeholder='Type your message here...'
+                                value={message}
                                 className='w-[21.25rem] h-[7rem] 
               rounded-[1.25rem]
             bg-[#fff] border-[1px] border-[#6f91f480]
@@ -115,6 +160,9 @@ const Contact = () => {
               pt-[0.75rem]
               hover:border-[#6F91F4] 
               active:border-[#4771ED] active:bg-[#FAFAFA]'
+                                onChange={(e: any) => {
+                                    setMessage(e.target.value);
+                                }}
                             />
                         </form>
                         <Link
@@ -132,6 +180,7 @@ const Contact = () => {
             text-[1rem] font-[600] justify-center
             drop-shadow-[0_7px_10px_rgba(59,96,203,0.25)]
             hover:bg-[#4771ED] active:bg-[#4063C7]'
+                                onClick={handleSubmit}
                             >
                                 Submit
                             </button>
